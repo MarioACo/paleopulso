@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07110f">
+  <meta name="description" content="Paleopulso es un viaje interactivo por 4,600 millones de años de vida y cambio en la Tierra.">
+  <title>Paleopulso — La Tierra antes de nosotros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="nav">
+    <a class="brand" href="#inicio" aria-label="Paleopulso, inicio">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14"/><path d="M6 18c5-4 7-10 12-11-2 5 4 7 8 8-2 7-7 11-13 10-2-4-4-5-7-7Z"/></svg>
+      <span>PALEOPULSO</span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="#viaje">Viaje</a>
+      <a href="#misiones">Misión</a>
+      <a href="#archivo">Archivo</a>
+    </nav>
+    <button class="sound" id="soundToggle" aria-pressed="false" aria-label="Activar ambiente sonoro">
+      <span></span><span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="orbit orbit-one" aria-hidden="true"></div>
+      <div class="orbit orbit-two" aria-hidden="true"></div>
+      <div class="planet-wrap" aria-hidden="true">
+        <div class="planet"><div class="continent"></div></div>
+        <div class="planet-glow"></div>
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> Un archivo vivo de la Tierra</p>
+        <h1>Antes de nosotros,<br>hubo <em>otros mundos.</em></h1>
+        <p class="intro">Explora 4,600 millones de años de fuego, océanos, criaturas imposibles y mundos que desaparecieron para que el nuestro pudiera existir.</p>
+        <a class="primary" href="#viaje">Comenzar el viaje <span>↘</span></a>
+      </div>
+      <div class="hero-meta" aria-label="Edad de la Tierra">
+        <span>TIERRA</span>
+        <strong>4,600</strong>
+        <span>MILLONES DE AÑOS</span>
+      </div>
+      <a class="scroll-cue" href="#viaje"><span></span>Desciende en el tiempo</a>
+    </section>
+
+    <section class="manifesto">
+      <p class="section-index">01 — EL PULSO</p>
+      <div>
+        <p class="big-copy">No coleccionamos criaturas.</p>
+        <p class="big-copy muted">Coleccionamos momentos perdidos.</p>
+      </div>
+      <p class="side-copy">Cada capítulo separa la evidencia de la imaginación. Aquí las dudas también forman parte de la historia.</p>
+    </section>
+
+    <section class="journey" id="viaje">
+      <div class="journey-head">
+        <div>
+          <p class="section-index">02 — VIAJE PROFUNDO</p>
+          <h2>Elige un mundo</h2>
+        </div>
+        <p>Del planeta fundido a la edad humana. Muévete por los capítulos; la escala inferior muestra su posición real en el tiempo.</p>
+      </div>
+
+      <div class="time-stage" id="timeStage">
+        <div class="stage-sky" aria-hidden="true">
+          <div class="sun"></div>
+          <div class="cloud cloud-a"></div>
+          <div class="cloud cloud-b"></div>
+          <div class="land land-back"></div>
+          <div class="land land-front"></div>
+          <div class="creature" id="creatureVisual"></div>
+        </div>
+        <div class="stage-shade" aria-hidden="true"></div>
+        <div class="stage-top">
+          <p><span class="live-dot"></span> RECONSTRUCCIÓN INTERPRETATIVA</p>
+          <p id="chapterLabel">CAPÍTULO 01 / 10</p>
+        </div>
+        <div class="stage-copy">
+          <p class="time" id="eraTime">4,540 Ma</p>
+          <h3 id="eraName">Hádico</h3>
+          <p id="eraTagline">La Tierra aprende a existir.</p>
+        </div>
+        <button class="fact-card" id="factCard" type="button" aria-expanded="false">
+          <span class="fact-icon">+</span>
+          <span><small>DESCUBRIMIENTO</small><strong id="factTitle">Un día de cinco horas</strong></span>
+          <span class="fact-detail" id="factDetail">La joven Tierra giraba mucho más rápido. La Luna estaba más cerca y se alejaba lentamente.</span>
+        </button>
+      </div>
+
+      <div class="timeline-wrap">
+        <div class="timeline-scroll" id="timeline" role="tablist" aria-label="Capítulos de la historia de la Tierra"></div>
+        <div class="scale"><span>4,600 Ma</span><div><i></i></div><span>HOY</span></div>
+      </div>
+    </section>
+
+    <section class="evidence">
+      <div class="evidence-title">
+        <p class="section-index">03 — CÓMO LO SABEMOS</p>
+        <h2>La roca<br>también recuerda.</h2>
+      </div>
+      <div class="evidence-grid">
+        <article><span>01</span><div class="evidence-mark fossil"></div><h3>Fósiles</h3><p>Restos, moldes y rastros conservan cuerpos y comportamientos de vidas remotas.</p></article>
+        <article><span>02</span><div class="evidence-mark isotope"></div><h3>Isótopos</h3><p>Átomos inestables funcionan como relojes y revelan edades, climas y dietas.</p></article>
+        <article><span>03</span><div class="evidence-mark strata"></div><h3>Estratos</h3><p>Las capas de roca guardan una secuencia de océanos, desiertos e impactos.</p></article>
+      </div>
+      <p class="science-note"><span>◐</span><strong>Ciencia en movimiento</strong> Una reconstrucción no es una fotografía. Cambia cuando aparece nueva evidencia.</p>
+    </section>
+
+    <section class="mission" id="misiones">
+      <div class="mission-scene" aria-hidden="true"><div class="fern f1"></div><div class="fern f2"></div><div class="track t1"></div><div class="track t2"></div><div class="track t3"></div></div>
+      <div class="mission-panel">
+        <p class="section-index">MISIÓN 001 — CRETÁCICO TARDÍO</p>
+        <h2>¿Quién cruzó por aquí?</h2>
+        <p class="mission-lead">Patagonia, hace 72 millones de años. El barro conservó una historia. Tú decides qué ocurrió.</p>
+        <div class="clues">
+          <button class="clue active" type="button" data-clue="0"><span>01</span><strong>Huella</strong><small>Tres dedos · 38 cm</small></button>
+          <button class="clue" type="button" data-clue="1"><span>02</span><strong>Zancada</strong><small>2.4 metros</small></button>
+          <button class="clue" type="button" data-clue="2"><span>03</span><strong>Dirección</strong><small>Hacia el agua</small></button>
+        </div>
+        <div class="clue-reader" id="clueReader">La marca tiene tres dedos largos y termina en garras. Es la huella de un terópodo bípedo.</div>
+        <fieldset>
+          <legend>Tu hipótesis</legend>
+          <label><input type="radio" name="answer" value="sauropod"><span>Un saurópodo gigantesco</span></label>
+          <label><input type="radio" name="answer" value="theropod"><span>Un terópodo de tamaño medio</span></label>
+          <label><input type="radio" name="answer" value="mammal"><span>Un mamífero corredor</span></label>
+        </fieldset>
+        <button class="check" id="checkAnswer" type="button">Comprobar evidencia <span>→</span></button>
+        <p class="result" id="result" role="status"></p>
+      </div>
+    </section>
+
+    <section class="extinctions" id="archivo">
+      <div class="extinction-copy">
+        <p class="section-index">04 — LOS CINCO SILENCIOS</p>
+        <h2>La vida no avanza<br>en línea recta.</h2>
+        <p>Cinco extinciones masivas reescribieron el planeta. Cada pérdida abrió espacio para formas de vida nuevas, pero ninguna recuperación fue rápida.</p>
+      </div>
+      <div class="pulse-chart" aria-label="Las cinco grandes extinciones">
+        <div class="chart-line"></div>
+        <button style="--x:8%;--h:32%" data-label="Ordovícico · 444 Ma"><i></i><span>444</span></button>
+        <button style="--x:27%;--h:46%" data-label="Devónico tardío · 372 Ma"><i></i><span>372</span></button>
+        <button style="--x:48%;--h:90%" data-label="Pérmico · 252 Ma"><i></i><span>252</span></button>
+        <button style="--x:67%;--h:52%" data-label="Triásico · 201 Ma"><i></i><span>201</span></button>
+        <button style="--x:88%;--h:68%" data-label="Cretácico · 66 Ma"><i></i><span>66</span></button>
+        <div class="chart-tooltip" id="chartTooltip">Pasa sobre un pulso</div>
+        <p>Millones de años antes del presente</p>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p class="section-index">EL PRÓXIMO CAPÍTULO</p>
+      <h2>Somos la primera especie<br>capaz de <em>leer esta historia.</em></h2>
+      <p>Y también una de las pocas capaces de decidir cómo continúa.</p>
+      <a href="#inicio">Volver al presente <span>↑</span></a>
+      <div class="closing-orbit" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#inicio">PALEOPULSO</a><p>Hecho para quienes sienten curiosidad por haber llegado tan tarde.</p><p>TIERRA · PRESENTE</p></footer>
+  <script src="app.js"></script>
+</body>
+</html>
