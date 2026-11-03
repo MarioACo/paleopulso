@@ -113,6 +113,38 @@
       <p class="science-note"><span>◐</span><strong>Ciencia en movimiento</strong> Una reconstrucción no es una fotografía. Cambia cuando aparece nueva evidencia.</p>
     </section>
 
+    <section class="archive" id="archivo">
+      <div class="archive-head">
+        <div>
+          <p class="section-index">04 — ARCHIVO DE VIDA</p>
+          <h2>Formas de existir</h2>
+        </div>
+        <p>Antes de alas, huesos o flores, la vida ya llevaba miles de millones de años inventándose. Explora algunas de sus soluciones.</p>
+      </div>
+      <div class="archive-tools">
+        <div class="archive-filters" role="group" aria-label="Filtrar por ambiente">
+          <button class="active" type="button" data-filter="all">Todos</button>
+          <button type="button" data-filter="ocean">Océano</button>
+          <button type="button" data-filter="land">Tierra</button>
+          <button type="button" data-filter="air">Aire</button>
+        </div>
+        <label class="archive-search"><span>Buscar</span><input id="archiveSearch" type="search" placeholder="Nombre, periodo o grupo…" autocomplete="off"></label>
+      </div>
+      <div class="archive-grid" id="archiveGrid" aria-live="polite"></div>
+      <p class="archive-empty" id="archiveEmpty" hidden>No encontramos una criatura con esos rastros.</p>
+    </section>
+
+    <dialog class="specimen-dialog" id="specimenDialog">
+      <button class="dialog-close" id="dialogClose" type="button" aria-label="Cerrar">×</button>
+      <p class="section-index" id="dialogPeriod"></p>
+      <div class="dialog-mark" id="dialogMark" aria-hidden="true"></div>
+      <h2 id="dialogName"></h2>
+      <p class="dialog-pronounce" id="dialogGroup"></p>
+      <p class="dialog-description" id="dialogDescription"></p>
+      <div class="dialog-facts"><p><small>VIVIÓ HACE</small><strong id="dialogAge"></strong></p><p><small>AMBIENTE</small><strong id="dialogHabitat"></strong></p></div>
+      <p class="dialog-caveat"><span>◐</span> Reconstrucción basada en evidencia disponible; los detalles no preservados son interpretativos.</p>
+    </dialog>
+
     <section class="mission" id="misiones">
       <div class="mission-scene" aria-hidden="true"><div class="fern f1"></div><div class="fern f2"></div><div class="track t1"></div><div class="track t2"></div><div class="track t3"></div></div>
       <div class="mission-panel">
@@ -136,7 +168,7 @@
       </div>
     </section>
 
-    <section class="extinctions" id="archivo">
+    <section class="extinctions" id="extinciones">
       <div class="extinction-copy">
         <p class="section-index">04 — LOS CINCO SILENCIOS</p>
         <h2>La vida no avanza<br>en línea recta.</h2>
