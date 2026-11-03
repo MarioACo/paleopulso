@@ -8,7 +8,7 @@ import { mainPhoto, photosOf, periodOf, href } from '../lib/site.js';
 
 const hero = photosOf('trex').find((p) => p.kind === 'life');
 const halls = [
-  { href: '/tiempo', no: 'I', title: 'Tiempo profundo', text: 'Desciende por los estratos de 4,567 millones de años y mira cómo se movían los continentes.', sil: 'dickinsonia' },
+  { href: '/tiempo', no: 'I', title: 'Tiempo profundo', text: 'Desciende por los estratos de 4,567 millones de años o mira moverse los continentes en la máquina del tiempo.', sil: 'dickinsonia' },
   { href: '/vida', no: 'II', title: 'Archivo de vida', text: `${species.length} piezas de todo el mundo: dónde se hallaron y dónde estaba ese lugar entonces.`, sil: 'anomalocaris' },
   { href: '/dinosaurios', no: 'III', title: 'Sala mesozoica', text: 'Vitrinas de dinosaurios y un comparador de tamaños a escala real.', sil: 'trex' },
   { href: '/mexico', no: 'IV', title: 'Sala México', text: 'De los trilobites de Sonora a Chicxulub, los dinosaurios de Coahuila y Naia.', sil: 'coahuilaceratops' },
@@ -18,11 +18,11 @@ const halls = [
 // Pieza del día: se elige en el navegador según la fecha.
 const daily = species.filter((s) => mainPhoto(s.id)).map((s) => ({
   id: s.id, name: s.name, href: href(s), summary: s.summary, fact: s.fact, place: `${s.place}, ${s.country}`,
-  period: periodOf(s).name, age: formatMa(s.ma), photo: mainPhoto(s.id)!.file,
+  period: periodOf(s).name, age: formatMa(s.ma), photo: mainPhoto(s.id)!.file, frame: mainPhoto(s.id)!.frame || 'photo',
 }));
 const maxMa = 500;
 ---
-<Museum title="Paleopulso" stamp="inicio" image={hero?.file}>
+<Museum title="Paleopulso" stamp="inicio">
   <section class="hero">
     <div class="hero-light" aria-hidden="true"></div>
     {hero && <img class="hero-img" src={hero.file} alt="Reconstrucción en vida de Tyrannosaurus rex" width={hero.w} height={hero.h} fetchpriority="high" />}
@@ -88,7 +88,7 @@ const maxMa = 500;
 
   <section class="section daily-section">
     <div class="wrap daily" id="daily">
-      <div class="vitrine daily-vitrine"><img id="dailyImg" alt="" /><div class="plinth"></div></div>
+      <div class="vitrine daily-vitrine"><figure class="ph ph-photo fit-cover" id="dailyFig"><img id="dailyImg" alt="" /></figure><div class="plinth"></div></div>
       <div class="daily-copy">
         <p class="kicker">Pieza del día</p>
         <h2 id="dailyName">—</h2>
@@ -176,6 +176,7 @@ const maxMa = 500;
   function show() {
     const d = daily[idx];
     $('dailyImg').src = d.photo; $('dailyImg').alt = d.name;
+    $('dailyFig').className = `ph ph-${d.frame} ${d.frame === 'photo' ? 'fit-cover' : 'fit-contain'}`;
     $('dailyName').textContent = d.name;
     $('dailyMeta').textContent = `${d.period} · ${d.age} · ${d.place}`;
     $('dailySummary').textContent = d.summary;
@@ -251,7 +252,7 @@ const maxMa = 500;
   @media (max-width: 860px) { .where-grid { grid-template-columns: 1fr; } }
   .daily { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3.5rem; align-items: center; }
   .daily-vitrine { aspect-ratio: 4 / 3; }
-  .daily-vitrine img { width: 100%; height: 100%; object-fit: cover; }
+  .daily-vitrine .ph { position: absolute; inset: 0; }
   .daily-copy .label { margin: .8rem 0 1.2rem; }
   .daily-fact { border-left: 2px solid var(--brass); padding-left: 1rem; color: var(--text); }
   .daily-fact .label { display: block; color: var(--brass); margin-bottom: .2rem; }

@@ -1,5 +1,6 @@
 ---
 import Silhouette from './Silhouette.astro';
+import Photo from './Photo.astro';
 import { mainPhoto, periodOf, href } from '../lib/site.js';
 import { formatMa } from '../data/periods.js';
 interface Props { s: any; index?: number }
@@ -11,7 +12,7 @@ const photo = mainPhoto(s.id);
   data-id={s.id} data-period={s.period} data-era={p.group} data-habitat={s.habitat} data-continent={s.continent}
   data-mexico={s.mexico ? '1' : '0'} data-search={`${s.name} ${s.group} ${s.place} ${s.country} ${p.name} ${s.habitat}`.toLowerCase()}>
   <div class="vitrine">
-    {photo && <img src={photo.file} alt="" loading="lazy" decoding="async" width={photo.w} height={photo.h} />}
+    {photo && <Photo p={photo} sizes="(max-width: 600px) 100vw, 320px" />}
     <Silhouette id={s.id} />
   </div>
   <div class="specimen-body">

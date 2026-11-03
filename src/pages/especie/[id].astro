@@ -1,6 +1,7 @@
 ---
 import Museum from '../../layouts/Museum.astro';
 import Silhouette from '../../components/Silhouette.astro';
+import Photo from '../../components/Photo.astro';
 import { scaleSvg } from '../../scripts/scale';
 import { species, scaleRefs } from '../../data/species.js';
 import { formatMa, clockTime } from '../../data/periods.js';
@@ -42,7 +43,7 @@ const hero = mainPhoto(s.id);
 const hi = pbdb ? +Math.max(p.start, pbdb.first).toFixed(1) : 0, lo = pbdb ? +Math.min(p.end, pbdb.last).toFixed(1) : 0;
 const pos = (ma: number) => ((hi - ma) / (hi - lo || 1)) * 100;
 ---
-<Museum title={s.name} stamp="vida" description={s.summary} image={hero?.file}>
+<Museum title={s.name} stamp="vida" description={s.summary}>
   <article class="wrap ficha" style={`--pc:${p.color}`}>
     <nav class="crumbs label" aria-label="Ruta"><a href="/vida">Archivo de vida</a> › <a href={`/tiempo#${p.id}`}>{p.name}</a> › {s.name}</nav>
 
@@ -50,9 +51,9 @@ const pos = (ma: number) => ((hi - ma) / (hi - lo || 1)) * 100;
       <div class="gallery">
         <div class="vitrine stage">
           {photos.length ? photos.map((ph, k) => (
-            <figure data-photo={k} hidden={k !== 0}>
-              <img src={ph.file} alt={ph.label || s.name} width={ph.w} height={ph.h} loading={k ? 'lazy' : 'eager'} />
-            </figure>
+            <div class="slide" data-photo={k} hidden={k !== 0}>
+              <Photo p={ph} alt={ph.label || s.name} fit="contain" sizes="(max-width: 900px) 100vw, 760px" eager={k === 0} />
+            </div>
           )) : <div class="no-photo"><Silhouette id={s.id} class="big-sil" /><p class="label">Sin fotografía con licencia libre</p></div>}
           <div class="plinth"></div>
         </div>
@@ -79,7 +80,7 @@ const pos = (ma: number) => ((hi - ma) / (hi - lo || 1)) * 100;
           <div><dt>Tamaño</dt><dd>{s.lengthNote || '—'}</dd></div>
           <div><dt>Ambiente</dt><dd>{s.habitat}</dd></div>
           <div><dt>En el día de la Tierra</dt><dd>{clockTime(s.ma)}</dd></div>
-          {refs.original?.authority && <div><dt>Nombrado por</dt><dd>{refs.original.authority.replace(/(\D)(\d{4})/, '$1, $2')}</dd></div>}
+          {refs.original?.authority && <div><dt>Nombrado por</dt><dd>{refs.original.authority.replace(/\s+(\d{4})/, ', $1')}</dd></div>}
         </dl>
         {s.debated && <p class="debate"><span class="badge debate">En debate</span> {s.debated}</p>}
       </aside>
@@ -202,9 +203,8 @@ const pos = (ma: number) => ((hi - ma) / (hi - lo || 1)) * 100;
   .crumbs a { color: var(--brass); text-decoration: none; }
   .top { display: grid; grid-template-columns: 1.35fr 1fr; gap: 2.5rem; align-items: start; }
   .stage { aspect-ratio: 4 / 3; position: relative; }
-  .stage figure { margin: 0; position: absolute; inset: 0; padding: 1.4rem 1.4rem 2rem; }
-  .stage figure[hidden] { display: none; }
-  .stage img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 20px 30px #000); }
+  .stage .slide { position: absolute; inset: 0; padding: 1.4rem 1.4rem 2rem; }
+  .stage .slide :global(.ph-photo) { border-radius: 2px; box-shadow: 0 20px 40px -10px #000; }
   .no-photo { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 1rem; padding: 2rem; }
   .no-photo :global(.big-sil) { width: 70%; color: var(--paper); opacity: .85; }
   .tabs { display: flex; gap: .4rem; margin-top: .9rem; flex-wrap: wrap; }

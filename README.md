@@ -8,6 +8,7 @@ Un museo de historia natural en el navegador: 4,567 millones de años de vida, r
 | --- | --- |
 | `/` | Vestíbulo: reloj de «la Tierra en 24 horas», pieza del día, las cinco extinciones, misión de huellas |
 | `/tiempo` | Descenso por estratos con mapa paleogeográfico que cambia con cada periodo |
+| `/continentes` | Máquina del tiempo: los continentes de hace 800 Ma a hoy, con reproducción |
 | `/donde-vives` | Elige un lugar y mira dónde estaba en cada época (GPlates en vivo) y qué fósiles hay cerca |
 | `/vida` | Archivo de 69 piezas con mapa mundial, filtros por era, ambiente, continente y México |
 | `/especie/:id` | Ficha: fotos (evidencia / reconstrucción), escala con una persona, mapa «entonces y ahora», rango en PBDB, bibliografía verificada |
@@ -24,8 +25,13 @@ Un museo de historia natural en el navegador: 4,567 millones de años de vida, r
 npm install
 npm run dev        # http://localhost:4321
 npm run check      # verifica los datos y compila
-npm run build      # genera dist/
+npm test           # pruebas en navegador real sobre dist/ (usa Chrome o Edge; o CHROME_PATH)
+npm run verify     # check + test
+npm run og         # regenera las imágenes para compartir (public/og/)
+node tests/weight.mjs   # peso de carga de cada sala
 ```
+
+La URL pública se toma de `SITE_URL` o, en Vercel, de `VERCEL_PROJECT_PRODUCTION_URL` (sitemap, enlaces canónicos e imágenes para compartir). La analítica de Vercel solo se incluye al compilar en Vercel y hay que activarla en el panel del proyecto (*Analytics → Enable*).
 
 ## Datos y recursos
 
@@ -33,6 +39,7 @@ npm run build      # genera dist/
 - `src/data/species.js` — el catálogo. Cada pieza lleva lugar y coordenadas del hallazgo, edad, tamaño, dato curioso y si algo está en debate.
 - `src/data/refs.js` — estudios clave por pieza. Los DOI no se escriben a mano: `npm run assets` los busca en Crossref y solo los acepta si coinciden título, año y primer autor. Los DOI que trae PBDB también se confirman en Crossref (PBDB tiene algunos erróneos).
 - `src/data/myths.js`, `quiz.js`, `mexico.js`, `featured.js` — contenido de las salas.
+- `scripts/process-photos.mjs` — decide cómo se presenta cada imagen (lámina, recorte o fotografía) y crea miniaturas de 640 px.
 - `src/data/assets.json` + `public/assets/` — recursos descargados **y guardados en el repo**, para no depender de terceros al visitar el sitio.
 
 Para añadir una pieza: agrégala a `species.js`, ejecuta `npm run assets` (descarga silueta, foto, paleomapa y rango de PBDB solo de lo que falta) y luego `npm run check`.

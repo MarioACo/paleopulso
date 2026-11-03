@@ -9,7 +9,7 @@ import { assets, mainPhoto, periodOf, href } from '../lib/site.js';
 const mx = species.filter((s) => s.mexico).sort((a, b) => b.ma - a.ma);
 const sites = mx.map((s) => ({ id: s.id, lon: s.lon, lat: s.lat, label: s.name, mx: true, ping: true }));
 const info = Object.fromEntries(mx.map((s) => [s.id, {
-  name: s.name, place: s.place, period: periodOf(s).name, age: s.age, summary: s.summary, href: href(s), photo: mainPhoto(s.id)?.file || null,
+  name: s.name, place: s.place, period: periodOf(s).name, age: s.age, summary: s.summary, href: href(s), photo: mainPhoto(s.id)?.sm || mainPhoto(s.id)?.file || null, frame: mainPhoto(s.id)?.frame || 'photo',
 }]));
 const chicx = species.find((s) => s.id === 'chicxulub')!;
 const chicxPhoto = mainPhoto('chicxulub');
@@ -114,7 +114,7 @@ const chicxPhoto = mainPhoto('chicxulub');
   const esc = (t: string) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
   function show(id: string) {
     const d = info[id];
-    card.innerHTML = `${d.photo ? `<img src="${d.photo}" alt="" class="mx-photo">` : ''}
+    card.innerHTML = `${d.photo ? `<figure class="ph ph-${d.frame} ${d.frame === 'photo' ? 'fit-cover' : 'fit-contain'} mx-photo"><img src="${d.photo}" alt=""></figure>` : ''}
       <div class="ced-no"><span>${esc(d.period)}</span><span>${esc(d.age)}</span></div>
       <h3>${esc(d.name)}</h3><p class="sci">${esc(d.place)}</p><p>${esc(d.summary)}</p>
       <a class="btn" href="${d.href}">Ver la ficha →</a>`;
@@ -132,7 +132,7 @@ const chicxPhoto = mainPhoto('chicxulub');
   .mx-map :global(.mx-land) { fill: #7a6a48; stroke: var(--brass); stroke-width: 1; }
   .mx-map :global(.site.on) { fill: var(--rust); r: 9; }
   .mx-card { position: sticky; top: 88px; }
-  .mx-card :global(.mx-photo) { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; margin-bottom: 1rem; border-radius: 2px; }
+  .mx-card :global(.mx-photo) { width: 100%; height: auto; aspect-ratio: 16 / 10; margin-bottom: 1rem; border-radius: 2px; background-color: #1a140e; }
   .mx-card :global(.btn) { margin-top: .5rem; }
   .mx-line { list-style: none; padding: 0; margin: 0; position: relative; }
   .mx-line::before { content: ''; position: absolute; left: 8.5rem; top: 0; bottom: 0; width: 1px; background: linear-gradient(var(--brass), var(--rust)); }

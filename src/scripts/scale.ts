@@ -20,7 +20,7 @@ export function scaleSvg(input: ScaleItem[]) {
   });
   const W = x - gap * 0.5, H = maxH * 1.18 + W * 0.06;
   const base = maxH * 1.12;
-  const fs = W * 0.018;
+  const fs = Math.max(W, maxH * 2.4) * 0.018;
   const ticks = niceTicks(W / U).map((t) => t * U);
   const body = placed.map((p) => {
     const y = base - p.h;

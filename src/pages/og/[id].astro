@@ -1,0 +1,58 @@
+---
+// Plantilla de 1200×630 para las imágenes de compartir. `npm run og` la fotografía
+// y guarda public/og/<id>.jpg. No forma parte del recorrido (noindex, fuera del sitemap).
+import '../../styles/global.css';
+import Photo from '../../components/Photo.astro';
+import Silhouette from '../../components/Silhouette.astro';
+import { species } from '../../data/species.js';
+import { ogPages } from '../../data/og.js';
+import { mainPhoto, periodOf } from '../../lib/site.js';
+import { formatMa } from '../../data/periods.js';
+
+export function getStaticPaths() {
+  return [
+    ...ogPages.map((o) => ({ params: { id: o.id }, props: { kicker: o.kicker, title: o.title, pid: o.photo, sub: 'Paleopulso · museo de la Tierra' } })),
+    ...species.map((s) => ({ params: { id: s.id }, props: {
+      kicker: `${periodOf(s).name} · ${formatMa(s.ma)}`, title: s.name, pid: s.id, sub: `${s.place}, ${s.country}`, color: periodOf(s).color,
+    } })),
+  ];
+}
+const { kicker, title, pid, sub, color = '#d1ab62' } = Astro.props;
+const photo = mainPhoto(pid);
+// La columna de texto mide ~470 px: la palabra más larga debe caber en una línea.
+const longest = Math.max(...title.split(/\s+/).map((w: string) => w.length));
+const size = Math.min(78, Math.floor(470 / (longest * 0.5)));
+---
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8" /><meta name="robots" content="noindex" /><title>{title}</title></head>
+<body class="og" style={`--pc:${color}`}>
+  <div class="card">
+    <div class="art vitrine">
+      {photo ? <Photo p={photo} fit="cover" eager sizes="640px" /> : <Silhouette id={pid} class="og-sil" />}
+      <div class="plinth"></div>
+    </div>
+    <div class="text">
+      <p class="brand sc">Paleopulso</p>
+      <p class="kick">{kicker}</p>
+      <h1 style={`font-size:${size}px`}>{title}</h1>
+      <p class="sub">{sub}</p>
+      <Silhouette id={pid} class="og-mark" />
+    </div>
+  </div>
+</body>
+</html>
+<style is:global>
+  body.og { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: radial-gradient(70% 90% at 75% 40%, rgba(255, 214, 150, .16), transparent 70%), #0e0b08; }
+  body.og::after { display: none; }
+  .og .card { display: grid; grid-template-columns: 560px 1fr; gap: 56px; padding: 56px; height: 100%; box-sizing: border-box; }
+  .og .art { position: relative; height: 518px; }
+  .og .art .ph { position: absolute; inset: 0; }
+  .og .text { position: relative; display: flex; flex-direction: column; justify-content: center; }
+  .og .brand { font-size: 30px; letter-spacing: .1em; color: var(--brass); margin: 0 0 auto; }
+  .og .kick { font: 600 22px var(--label); letter-spacing: .2em; text-transform: uppercase; color: color-mix(in srgb, var(--pc) 70%, var(--brass)); margin: 0 0 18px; }
+  .og h1 { font-size: 78px; line-height: 1; margin: 0; color: var(--text); }
+  .og .sub { font-size: 24px; color: var(--muted); margin: 22px 0 auto; }
+  .og .og-mark { position: absolute; right: 0; bottom: 0; height: 150px; width: auto; max-width: 240px; color: var(--paper); opacity: .1; }
+  .og .og-sil { color: var(--paper); width: 80%; margin: auto; }
+</style>

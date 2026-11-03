@@ -559,19 +559,6 @@
    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
    "page": "https://www.phylopic.org/images/0c393043-8916-49b7-95df-5216285e7d17"
   },
-  "triceratops": {
-   "file": "/assets/silhouettes/triceratops.svg",
-   "aspect": 2.013,
-   "uuid": "4c3f2e42-c7c6-42d6-934d-fed47b6888a1",
-   "taxon": "Triceratops Marsh 1889",
-   "query": "Triceratops",
-   "exact": true,
-   "contributor": "Aiden Gauthier",
-   "attribution": "Jose Carlos Cortes",
-   "license": "CC BY 4.0",
-   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-   "page": "https://www.phylopic.org/images/4c3f2e42-c7c6-42d6-934d-fed47b6888a1"
-  },
   "titanoboa": {
    "file": "/assets/silhouettes/titanoboa.svg",
    "aspect": 1.74,
@@ -857,6 +844,19 @@
    "license": "CC0 1.0",
    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
    "page": "https://www.phylopic.org/images/f4d28481-3b28-4cdb-9877-9b9d4f07e5f2"
+  },
+  "triceratops": {
+   "file": "/assets/silhouettes/triceratops.svg",
+   "aspect": 2.341,
+   "uuid": "c85d760c-f4ec-466b-906f-e9f43e7a1406",
+   "taxon": "Triceratops prorsus Marsh 1890",
+   "query": "uuid",
+   "exact": true,
+   "contributor": "Jagged Fang Designs",
+   "attribution": "Jagged Fang Designs",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/c85d760c-f4ec-466b-906f-e9f43e7a1406"
   }
  },
  "photos": {
@@ -870,7 +870,9 @@
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "source": "https://commons.wikimedia.org/wiki/File:Stromatolites_in_Sharkbay.jpg",
     "kind": "lead",
-    "label": "Stromatolites in Sharkbay"
+    "label": "Stromatolites in Sharkbay",
+    "frame": "photo",
+    "sm": "/assets/photos/estromatolitos-lead-sm.webp"
    }
   ],
   "charnia": [
@@ -883,7 +885,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Charnia_masoni_(cast),_Wrexham_Museum.JPG",
     "kind": "lead",
-    "label": "Charnia masoni (cast), Wrexham Museum"
+    "label": "Charnia masoni (cast), Wrexham Museum",
+    "frame": "photo",
+    "sm": "/assets/photos/charnia-lead-sm.webp"
    }
   ],
   "grypania": [
@@ -896,7 +900,9 @@
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "source": "https://commons.wikimedia.org/wiki/File:Grypania_spiralis.JPG",
     "kind": "lead",
-    "label": "Grypania spiralis"
+    "label": "Grypania spiralis",
+    "frame": "photo",
+    "sm": "/assets/photos/grypania-lead-sm.webp"
    }
   ],
   "anomalocaris": [
@@ -909,7 +915,9 @@
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "source": "https://commons.wikimedia.org/wiki/File:ROM-BurgessShale-CompleteAnomalocarisFossil.png",
     "kind": "lead",
-    "label": "ROM-BurgessShale-CompleteAnomalocarisFossil"
+    "label": "ROM-BurgessShale-CompleteAnomalocarisFossil",
+    "frame": "photo",
+    "sm": "/assets/photos/anomalocaris-lead-sm.webp"
    }
   ],
   "haikouichthys": [
@@ -922,7 +930,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Haikouichthys_cropped.jpg",
     "kind": "lead",
-    "label": "Haikouichthys cropped"
+    "label": "Haikouichthys cropped",
+    "frame": "plate",
+    "sm": "/assets/photos/haikouichthys-lead-sm.webp"
    }
   ],
   "hallucigenia": [
@@ -935,7 +945,9 @@
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "source": "https://commons.wikimedia.org/wiki/File:NMNH-USNM83935_Hallucigeniasp_(cropped).jpg",
     "kind": "lead",
-    "label": "NMNH-USNM83935 Hallucigeniasp (cropped)"
+    "label": "NMNH-USNM83935 Hallucigeniasp (cropped)",
+    "frame": "photo",
+    "sm": "/assets/photos/hallucigenia-lead-sm.webp"
    }
   ],
   "dickinsonia": [
@@ -948,7 +960,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
     "source": "https://commons.wikimedia.org/wiki/File:DickinsoniaCostata.jpg",
     "kind": "lead",
-    "label": "DickinsoniaCostata"
+    "label": "DickinsoniaCostata",
+    "frame": "photo",
+    "sm": "/assets/photos/dickinsonia-lead-sm.webp"
    }
   ],
   "trilobites": [
@@ -961,7 +975,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Phacops_rana_crassituberulata_dorsal.jpg",
     "kind": "lead",
-    "label": "Phacops rana crassituberulata dorsal"
+    "label": "Phacops rana crassituberulata dorsal",
+    "frame": "photo",
+    "sm": "/assets/photos/trilobites-lead-sm.webp"
    }
   ],
   "orthoceras": [
@@ -974,7 +990,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Orthoceras_BW.jpg",
     "kind": "lead",
-    "label": "Orthoceras BW"
+    "label": "Orthoceras BW",
+    "frame": "photo",
+    "sm": "/assets/photos/orthoceras-lead-sm.webp"
    }
   ],
   "sacabambaspis": [
@@ -987,7 +1005,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
     "source": "https://commons.wikimedia.org/wiki/File:Sacabambaspis.jpg",
     "kind": "lead",
-    "label": "Sacabambaspis"
+    "label": "Sacabambaspis",
+    "frame": "photo",
+    "sm": "/assets/photos/sacabambaspis-lead-sm.webp"
    }
   ],
   "cooksonia": [
@@ -1000,7 +1020,9 @@
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "source": "https://commons.wikimedia.org/wiki/File:Cooksonia.png",
     "kind": "lead",
-    "label": "Cooksonia"
+    "label": "Cooksonia",
+    "frame": "plate",
+    "sm": "/assets/photos/cooksonia-lead-sm.webp"
    }
   ],
   "eurypterus": [
@@ -1013,7 +1035,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Eurypterus_Paleoart.jpg",
     "kind": "lead",
-    "label": "Eurypterus Paleoart"
+    "label": "Eurypterus Paleoart",
+    "frame": "photo",
+    "sm": "/assets/photos/eurypterus-lead-sm.webp"
    }
   ],
   "tiktaalik": [
@@ -1026,7 +1050,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Tiktaalik_Chicago.JPG",
     "kind": "lead",
-    "label": "Tiktaalik Chicago"
+    "label": "Tiktaalik Chicago",
+    "frame": "photo",
+    "sm": "/assets/photos/tiktaalik-lead-sm.webp"
    }
   ],
   "meganeura": [
@@ -1039,7 +1065,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Meganeura.jpg",
     "kind": "lead",
-    "label": "Meganeura"
+    "label": "Meganeura",
+    "frame": "plate",
+    "sm": "/assets/photos/meganeura-lead-sm.webp"
    }
   ],
   "dunkleosteus": [
@@ -1052,7 +1080,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Dunkleosteus_terrelli_(fossil_fish)_(Cleveland_Shale_Member,_Ohio_Shale,_Upper_Devonian;_Rocky_River_Valley,_Cleveland,_Ohio,_USA)_16_(33289195654).jpg",
     "kind": "lead",
-    "label": "Dunkleosteus terrelli (fossil fish) (Cleveland Shale Member, Ohio Shale, Upper Devonian; Rocky River Valley, Cleveland, Ohio, USA) 16 (33289195654)"
+    "label": "Dunkleosteus terrelli (fossil fish) (Cleveland Shale Member, Ohio Shale, Upper Devonian; Rocky River Valley, Cleveland, Ohio, USA) 16 (33289195654)",
+    "frame": "photo",
+    "sm": "/assets/photos/dunkleosteus-lead-sm.webp"
    }
   ],
   "archaeopteris": [
@@ -1065,7 +1095,9 @@
     "licenseUrl": null,
     "source": "https://commons.wikimedia.org/wiki/File:Archaeopteris_hibernica_2.JPG",
     "kind": "lead",
-    "label": "Archaeopteris hibernica 2"
+    "label": "Archaeopteris hibernica 2",
+    "frame": "photo",
+    "sm": "/assets/photos/archaeopteris-lead-sm.webp"
    }
   ],
   "hylonomus": [
@@ -1078,7 +1110,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Hylonomus_lyelli_-_MUSE.jpg",
     "kind": "lead",
-    "label": "Hylonomus lyelli - MUSE"
+    "label": "Hylonomus lyelli - MUSE",
+    "frame": "plate",
+    "sm": "/assets/photos/hylonomus-lead-sm.webp"
    }
   ],
   "dimetrodon": [
@@ -1091,7 +1125,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Dimetrodon_incisivum_01.jpg",
     "kind": "lead",
-    "label": "Dimetrodon incisivum 01"
+    "label": "Dimetrodon incisivum 01",
+    "frame": "photo",
+    "sm": "/assets/photos/dimetrodon-lead-sm.webp"
    }
   ],
   "arthropleura": [
@@ -1104,7 +1140,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Arthropleura_armata.jpg",
     "kind": "lead",
-    "label": "Arthropleura armata"
+    "label": "Arthropleura armata",
+    "frame": "photo",
+    "sm": "/assets/photos/arthropleura-lead-sm.webp"
    }
   ],
   "mesosaurus": [
@@ -1117,7 +1155,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
     "source": "https://commons.wikimedia.org/wiki/File:Mesosaurus_BW.jpg",
     "kind": "lead",
-    "label": "Mesosaurus BW"
+    "label": "Mesosaurus BW",
+    "frame": "plate",
+    "sm": "/assets/photos/mesosaurus-lead-sm.webp"
    }
   ],
   "inostrancevia": [
@@ -1130,7 +1170,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Inostrancevia_alexandri.JPG",
     "kind": "lead",
-    "label": "Inostrancevia alexandri"
+    "label": "Inostrancevia alexandri",
+    "frame": "photo",
+    "sm": "/assets/photos/inostrancevia-lead-sm.webp"
    }
   ],
   "glossopteris": [
@@ -1143,7 +1185,9 @@
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "source": "https://commons.wikimedia.org/wiki/File:Glossopteris_sp.,_seed_ferns,_Permian_-_Triassic_-_Houston_Museum_of_Natural_Science_-_DSC01765.JPG",
     "kind": "lead",
-    "label": "Glossopteris sp., seed ferns, Permian - Triassic - Houston Museum of Natural Science - DSC01765"
+    "label": "Glossopteris sp., seed ferns, Permian - Triassic - Houston Museum of Natural Science - DSC01765",
+    "frame": "photo",
+    "sm": "/assets/photos/glossopteris-lead-sm.webp"
    }
   ],
   "tanystropheus": [
@@ -1156,7 +1200,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
     "source": "https://commons.wikimedia.org/wiki/File:Tanystropheus_BW.jpg",
     "kind": "lead",
-    "label": "Tanystropheus BW"
+    "label": "Tanystropheus BW",
+    "frame": "plate",
+    "sm": "/assets/photos/tanystropheus-lead-sm.webp"
    }
   ],
   "lystrosaurus": [
@@ -1169,7 +1215,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Lystrosaurus_hedini.JPG",
     "kind": "lead",
-    "label": "Lystrosaurus hedini"
+    "label": "Lystrosaurus hedini",
+    "frame": "photo",
+    "sm": "/assets/photos/lystrosaurus-lead-sm.webp"
    }
   ],
   "eoraptor": [
@@ -1182,7 +1230,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Eoraptor_NT_small.jpg",
     "kind": "lead",
-    "label": "Eoraptor NT small"
+    "label": "Eoraptor NT small",
+    "frame": "plate",
+    "sm": "/assets/photos/eoraptor-lead-sm.webp"
    }
   ],
   "coelophysis": [
@@ -1195,7 +1245,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Coelophysis_bauri_mount.jpg",
     "kind": "lead",
-    "label": "Coelophysis bauri mount"
+    "label": "Coelophysis bauri mount",
+    "frame": "photo",
+    "sm": "/assets/photos/coelophysis-lead-sm.webp"
    }
   ],
   "plateosaurus": [
@@ -1208,7 +1260,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Plateosaurus_Skelett_2.jpg",
     "kind": "lead",
-    "label": "Plateosaurus Skelett 2"
+    "label": "Plateosaurus Skelett 2",
+    "frame": "photo",
+    "sm": "/assets/photos/plateosaurus-lead-sm.webp"
    }
   ],
   "ichthyosaurus": [
@@ -1221,7 +1275,9 @@
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "source": "https://commons.wikimedia.org/wiki/File:Ichthyosaurus_breviceps_2.jpg",
     "kind": "lead",
-    "label": "Ichthyosaurus breviceps 2"
+    "label": "Ichthyosaurus breviceps 2",
+    "frame": "plate",
+    "sm": "/assets/photos/ichthyosaurus-lead-sm.webp"
    }
   ],
   "allosaurus": [
@@ -1234,7 +1290,9 @@
     "licenseUrl": null,
     "source": "https://commons.wikimedia.org/wiki/File:Allosaurus_SDNHM.jpg",
     "kind": "lead",
-    "label": "Allosaurus SDNHM"
+    "label": "Allosaurus SDNHM",
+    "frame": "photo",
+    "sm": "/assets/photos/allosaurus-lead-sm.webp"
    }
   ],
   "herrerasaurus": [
@@ -1248,7 +1306,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Herrerasaurusskeleton.jpg",
     "kind": "evidence",
     "label": "Montaje esquelético de Herrerasaurus y Eoraptor",
-    "note": "Montaje de museo: combina material reconstruido y réplicas; no equivale a un esqueleto articulado hallado completo."
+    "note": "Montaje de museo: combina material reconstruido y réplicas; no equivale a un esqueleto articulado hallado completo.",
+    "frame": "photo",
+    "sm": "/assets/photos/herrerasaurus-evidence-sm.webp"
    },
    {
     "file": "/assets/photos/herrerasaurus-life.webp",
@@ -1260,7 +1320,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Herrerasaurus_reconstruction.jpg",
     "kind": "life",
     "label": "Reconstrucción científica de Herrerasaurus",
-    "note": "La anatomía se apoya en fósiles; piel, patrón y color son interpretativos."
+    "note": "La anatomía se apoya en fósiles; piel, patrón y color son interpretativos.",
+    "frame": "plate",
+    "sm": "/assets/photos/herrerasaurus-life-sm.webp"
    },
    {
     "file": "/assets/photos/herrerasaurus-lead.webp",
@@ -1271,7 +1333,9 @@
     "licenseUrl": "http://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
     "source": "https://commons.wikimedia.org/wiki/File:Herrerasaurus_ischigualastensis_DSC_2929.jpg",
     "kind": "lead",
-    "label": "Herrerasaurus ischigualastensis DSC 2929"
+    "label": "Herrerasaurus ischigualastensis DSC 2929",
+    "frame": "photo",
+    "sm": "/assets/photos/herrerasaurus-lead-sm.webp"
    }
   ],
   "diplodocus": [
@@ -1284,7 +1348,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Diplodocus_model.jpg",
     "kind": "lead",
-    "label": "Diplodocus model"
+    "label": "Diplodocus model",
+    "frame": "photo",
+    "sm": "/assets/photos/diplodocus-lead-sm.webp"
    }
   ],
   "stegosaurus": [
@@ -1298,7 +1364,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Stegosaurus_Skeleton_(36329568742).jpg",
     "kind": "evidence",
     "label": "“Sophie”, montaje de Stegosaurus stenops",
-    "note": "Sophie es uno de los esqueletos de Stegosaurus más completos conocidos; el montaje completa las partes ausentes."
+    "note": "Sophie es uno de los esqueletos de Stegosaurus más completos conocidos; el montaje completa las partes ausentes.",
+    "frame": "photo",
+    "sm": "/assets/photos/stegosaurus-evidence-sm.webp"
    },
    {
     "file": "/assets/photos/stegosaurus-life.webp",
@@ -1310,7 +1378,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Stegosaurus_stenops_Life_Reconstruction.png",
     "kind": "life",
     "label": "Reconstrucción de “Sophie” en vida",
-    "note": "Las proporciones se basan en Sophie; tejidos blandos y color siguen siendo hipótesis."
+    "note": "Las proporciones se basan en Sophie; tejidos blandos y color siguen siendo hipótesis.",
+    "frame": "plate",
+    "sm": "/assets/photos/stegosaurus-life-sm.webp"
    }
   ],
   "giraffatitan": [
@@ -1323,7 +1393,9 @@
     "licenseUrl": null,
     "source": "https://commons.wikimedia.org/wiki/File:Giraffatitan_brancai_Naturkundemuseum_Berlin.jpg",
     "kind": "lead",
-    "label": "Giraffatitan brancai Naturkundemuseum Berlin"
+    "label": "Giraffatitan brancai Naturkundemuseum Berlin",
+    "frame": "photo",
+    "sm": "/assets/photos/giraffatitan-lead-sm.webp"
    }
   ],
   "sinosauropteryx": [
@@ -1336,7 +1408,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Sinosauropteryxfossil.jpg",
     "kind": "lead",
-    "label": "Sinosauropteryxfossil"
+    "label": "Sinosauropteryxfossil",
+    "frame": "photo",
+    "sm": "/assets/photos/sinosauropteryx-lead-sm.webp"
    }
   ],
   "iguanodon": [
@@ -1349,7 +1423,9 @@
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "source": "https://commons.wikimedia.org/wiki/File:Iguanodon_de_Bernissart_IRSNB_01.JPG",
     "kind": "lead",
-    "label": "Iguanodon de Bernissart IRSNB 01"
+    "label": "Iguanodon de Bernissart IRSNB 01",
+    "frame": "photo",
+    "sm": "/assets/photos/iguanodon-lead-sm.webp"
    }
   ],
   "microraptor": [
@@ -1362,7 +1438,9 @@
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "source": "https://commons.wikimedia.org/wiki/File:Microraptor_gui_fossil.JPG",
     "kind": "lead",
-    "label": "Microraptor gui fossil"
+    "label": "Microraptor gui fossil",
+    "frame": "photo",
+    "sm": "/assets/photos/microraptor-lead-sm.webp"
    }
   ],
   "archaeopteryx": [
@@ -1376,7 +1454,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Berlin_Archaeopteryx_-_Museum_fur_Naturkunde,_Berlin_-_DSC00067.JPG",
     "kind": "evidence",
     "label": "Espécimen de Berlín de Archaeopteryx",
-    "note": "Fósil auténtico sobre caliza de Solnhofen; conserva esqueleto y delicadas impresiones de plumas."
+    "note": "Fósil auténtico sobre caliza de Solnhofen; conserva esqueleto y delicadas impresiones de plumas.",
+    "frame": "photo",
+    "sm": "/assets/photos/archaeopteryx-evidence-sm.webp"
    },
    {
     "file": "/assets/photos/archaeopteryx-life.webp",
@@ -1388,7 +1468,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Archaeopteryx_TD.png",
     "kind": "life",
     "label": "Reconstrucción moderna de Archaeopteryx",
-    "note": "Las plumas están demostradas por fósiles; parte del color y la postura son interpretativos."
+    "note": "Las plumas están demostradas por fósiles; parte del color y la postura son interpretativos.",
+    "frame": "cutout",
+    "sm": "/assets/photos/archaeopteryx-life-sm.webp"
    },
    {
     "file": "/assets/photos/archaeopteryx-lead.webp",
@@ -1399,7 +1481,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Archaeopteryx_lithographica_(Berlin_specimen).jpg",
     "kind": "lead",
-    "label": "Archaeopteryx lithographica (Berlin specimen)"
+    "label": "Archaeopteryx lithographica (Berlin specimen)",
+    "frame": "photo",
+    "sm": "/assets/photos/archaeopteryx-lead-sm.webp"
    }
   ],
   "argentinosaurus": [
@@ -1412,7 +1496,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
     "source": "https://commons.wikimedia.org/wiki/File:Argentinosaurus_skeleton,_PLoS_ONE.png",
     "kind": "lead",
-    "label": "Argentinosaurus skeleton, PLoS ONE"
+    "label": "Argentinosaurus skeleton, PLoS ONE",
+    "frame": "photo",
+    "sm": "/assets/photos/argentinosaurus-lead-sm.webp"
    }
   ],
   "velociraptor": [
@@ -1425,7 +1511,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Fred_Wierum_Velociraptor.png",
     "kind": "lead",
-    "label": "Fred Wierum Velociraptor"
+    "label": "Fred Wierum Velociraptor",
+    "frame": "plate",
+    "sm": "/assets/photos/velociraptor-lead-sm.webp"
    }
   ],
   "muzquizopteryx": [
@@ -1438,7 +1526,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Muzquizopteryx_coahuilensis_copia.jpg",
     "kind": "lead",
-    "label": "Muzquizopteryx coahuilensis copia"
+    "label": "Muzquizopteryx coahuilensis copia",
+    "frame": "photo",
+    "sm": "/assets/photos/muzquizopteryx-lead-sm.webp"
    }
   ],
   "spinosaurus": [
@@ -1452,7 +1542,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Digital_skeletal_reconstruction_of_Spinosaurus.png",
     "kind": "evidence",
     "label": "Mapa científico del material conocido de Spinosaurus",
-    "note": "No existe un esqueleto completo. Los colores distinguen holotipo, neotipo y otros ejemplares referidos."
+    "note": "No existe un esqueleto completo. Los colores distinguen holotipo, neotipo y otros ejemplares referidos.",
+    "frame": "plate",
+    "sm": "/assets/photos/spinosaurus-evidence-sm.webp"
    },
    {
     "file": "/assets/photos/spinosaurus-life.webp",
@@ -1464,7 +1556,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Spinosaurus_2020_reconstruction.jpg",
     "kind": "life",
     "label": "Reconstrucción de Spinosaurus basada en evidencia de 2020",
-    "note": "Su postura, capacidad natatoria y contorno corporal continúan bajo debate científico."
+    "note": "Su postura, capacidad natatoria y contorno corporal continúan bajo debate científico.",
+    "frame": "photo",
+    "sm": "/assets/photos/spinosaurus-life-sm.webp"
    },
    {
     "file": "/assets/photos/spinosaurus-lead.webp",
@@ -1475,7 +1569,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Spinosaurus_new_skull.jpg",
     "kind": "lead",
-    "label": "Spinosaurus new skull"
+    "label": "Spinosaurus new skull",
+    "frame": "photo",
+    "sm": "/assets/photos/spinosaurus-lead-sm.webp"
    }
   ],
   "tlatolophus": [
@@ -1488,7 +1584,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Tlatolophus_El_Alebrije_Prehist%C3%B3rico.png",
     "kind": "lead",
-    "label": "Tlatolophus El Alebrije Prehistórico"
+    "label": "Tlatolophus El Alebrije Prehistórico",
+    "frame": "cutout",
+    "sm": "/assets/photos/tlatolophus-lead-sm.webp"
    }
   ],
   "latirhinus": [
@@ -1501,7 +1599,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Museo_del_Desierto_de_Saltillo_-_panoramio_(10).jpg",
     "kind": "lead",
-    "label": "Museo del Desierto de Saltillo - panoramio (10)"
+    "label": "Museo del Desierto de Saltillo - panoramio (10)",
+    "frame": "photo",
+    "sm": "/assets/photos/latirhinus-lead-sm.webp"
    }
   ],
   "quetzalcoatlus": [
@@ -1514,7 +1614,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Dinosaurs_at_CMNH_44.JPG",
     "kind": "lead",
-    "label": "Dinosaurs at CMNH 44"
+    "label": "Dinosaurs at CMNH 44",
+    "frame": "photo",
+    "sm": "/assets/photos/quetzalcoatlus-lead-sm.webp"
    }
   ],
   "mosasaurus": [
@@ -1527,7 +1629,9 @@
     "licenseUrl": null,
     "source": "https://commons.wikimedia.org/wiki/File:MosasaurMaastricht080910.JPG",
     "kind": "lead",
-    "label": "MosasaurMaastricht080910"
+    "label": "MosasaurMaastricht080910",
+    "frame": "photo",
+    "sm": "/assets/photos/mosasaurus-lead-sm.webp"
    }
   ],
   "chicxulub": [
@@ -1540,7 +1644,9 @@
     "licenseUrl": null,
     "source": "https://commons.wikimedia.org/wiki/File:Chicxulub.jpg",
     "kind": "lead",
-    "label": "Chicxulub"
+    "label": "Chicxulub",
+    "frame": "photo",
+    "sm": "/assets/photos/chicxulub-lead-sm.webp"
    }
   ],
   "titanoboa": [
@@ -1553,7 +1659,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Titanoboa_NT.jpg",
     "kind": "lead",
-    "label": "Titanoboa NT"
+    "label": "Titanoboa NT",
+    "frame": "plate",
+    "sm": "/assets/photos/titanoboa-lead-sm.webp"
    }
   ],
   "basilosaurus": [
@@ -1566,7 +1674,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Basilosaurus_isis_fossil,_Nantes_History_Museum_03.jpg",
     "kind": "lead",
-    "label": "Basilosaurus isis fossil, Nantes History Museum 03"
+    "label": "Basilosaurus isis fossil, Nantes History Museum 03",
+    "frame": "photo",
+    "sm": "/assets/photos/basilosaurus-lead-sm.webp"
    }
   ],
   "paraceratherium": [
@@ -1579,7 +1689,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Indricotherium.png",
     "kind": "lead",
-    "label": "Indricotherium"
+    "label": "Indricotherium",
+    "frame": "cutout",
+    "sm": "/assets/photos/paraceratherium-lead-sm.webp"
    }
   ],
   "trex": [
@@ -1593,7 +1705,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Tyrannosaurus_Rex_Full_Skeleton.JPG",
     "kind": "evidence",
     "label": "Montaje de Tyrannosaurus rex, UC Berkeley",
-    "note": "Los montajes públicos suelen incluir réplicas y piezas reconstruidas para completar la anatomía."
+    "note": "Los montajes públicos suelen incluir réplicas y piezas reconstruidas para completar la anatomía.",
+    "frame": "photo",
+    "sm": "/assets/photos/trex-evidence-sm.webp"
    },
    {
     "file": "/assets/photos/trex-life.webp",
@@ -1605,7 +1719,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Life_reconstruction_of_Tyrannosaurus_rex_specimen_TMP_1981.006.0001_(%22Black_Beauty%22).png",
     "kind": "life",
     "label": "Reconstrucción del ejemplar “Black Beauty”",
-    "note": "Volumen muscular basado en el esqueleto; coloración y detalles de piel son interpretativos."
+    "note": "Volumen muscular basado en el esqueleto; coloración y detalles de piel son interpretativos.",
+    "frame": "cutout",
+    "sm": "/assets/photos/trex-life-sm.webp"
    },
    {
     "file": "/assets/photos/trex-lead.webp",
@@ -1616,7 +1732,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Tyrannosaurus_Rex_Holotype.jpg",
     "kind": "lead",
-    "label": "Tyrannosaurus Rex Holotype"
+    "label": "Tyrannosaurus Rex Holotype",
+    "frame": "photo",
+    "sm": "/assets/photos/trex-lead-sm.webp"
    }
   ],
   "megalodon": [
@@ -1629,7 +1747,9 @@
     "licenseUrl": null,
     "source": "https://commons.wikimedia.org/wiki/File:Megalodon_shark_jaws_museum_of_natural_history_068.jpg",
     "kind": "lead",
-    "label": "Megalodon shark jaws museum of natural history 068"
+    "label": "Megalodon shark jaws museum of natural history 068",
+    "frame": "photo",
+    "sm": "/assets/photos/megalodon-lead-sm.webp"
    }
   ],
   "lucy": [
@@ -1642,7 +1762,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Australopithecus_afarensis.png",
     "kind": "lead",
-    "label": "Australopithecus afarensis"
+    "label": "Australopithecus afarensis",
+    "frame": "photo",
+    "sm": "/assets/photos/lucy-lead-sm.webp"
    }
   ],
   "smilodon": [
@@ -1655,7 +1777,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Smilodon_californicus_-_Slice_and_stab.jpg",
     "kind": "lead",
-    "label": "Smilodon californicus - Slice and stab"
+    "label": "Smilodon californicus - Slice and stab",
+    "frame": "photo",
+    "sm": "/assets/photos/smilodon-lead-sm.webp"
    }
   ],
   "glyptodon": [
@@ -1668,7 +1792,9 @@
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "source": "https://commons.wikimedia.org/wiki/File:Glyptodon-1.jpg",
     "kind": "lead",
-    "label": "Glyptodon-1"
+    "label": "Glyptodon-1",
+    "frame": "photo",
+    "sm": "/assets/photos/glyptodon-lead-sm.webp"
    }
   ],
   "huizachal": [
@@ -1682,7 +1808,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Cynosphenodon.svg",
     "kind": "evidence",
     "label": "Cráneo de Cynosphenodon, esfenodonte de Huizachal",
-    "note": "Dibujo científico del cráneo; Cynosphenodon es pariente de la tuátara actual."
+    "note": "Dibujo científico del cráneo; Cynosphenodon es pariente de la tuátara actual.",
+    "frame": "cutout",
+    "sm": "/assets/photos/huizachal-evidence-sm.webp"
    }
   ],
   "tlayua": [
@@ -1696,7 +1824,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Pez_fosil_Museo_Tepexi.jpg",
     "kind": "evidence",
     "label": "Pez fósil de la región de Tepexi",
-    "note": "Pieza exhibida en el museo de Tepexi de Rodríguez, Puebla."
+    "note": "Pieza exhibida en el museo de Tepexi de Rodríguez, Puebla.",
+    "frame": "photo",
+    "sm": "/assets/photos/tlayua-evidence-sm.webp"
    },
    {
     "file": "/assets/photos/tlayua-evidence2.webp",
@@ -1708,7 +1838,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Tortuga_Museo_Tepexi.jpg",
     "kind": "evidence2",
     "label": "Tortuga fósil del museo de Tepexi",
-    "note": "Las tortugas son parte de la fauna de la laguna cretácica."
+    "note": "Las tortugas son parte de la fauna de la laguna cretácica.",
+    "frame": "photo",
+    "sm": "/assets/photos/tlayua-evidence2-sm.webp"
    }
   ],
   "coahuilaceratops": [
@@ -1721,7 +1853,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Life_reconstruction_of_Coahuilaceratops_(cropped).png",
     "kind": "lead",
-    "label": "Life reconstruction of Coahuilaceratops (cropped)"
+    "label": "Life reconstruction of Coahuilaceratops (cropped)",
+    "frame": "photo",
+    "sm": "/assets/photos/coahuilaceratops-lead-sm.webp"
    }
   ],
   "carnotaurus": [
@@ -1735,7 +1869,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Carnotaurus_skeleton.jpg",
     "kind": "evidence",
     "label": "Montaje esquelético de Carnotaurus",
-    "note": "El espécimen original conserva gran parte del esqueleto e impresiones de piel; el montaje repone elementos ausentes."
+    "note": "El espécimen original conserva gran parte del esqueleto e impresiones de piel; el montaje repone elementos ausentes.",
+    "frame": "photo",
+    "sm": "/assets/photos/carnotaurus-evidence-sm.webp"
    },
    {
     "file": "/assets/photos/carnotaurus-life.webp",
@@ -1747,7 +1883,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Carnotaurus_sastrei_life_reconstruction.png",
     "kind": "life",
     "label": "Reconstrucción tridimensional de Carnotaurus",
-    "note": "Basada en proporciones esqueléticas; color, labios y otros tejidos blandos son interpretativos."
+    "note": "Basada en proporciones esqueléticas; color, labios y otros tejidos blandos son interpretativos.",
+    "frame": "photo",
+    "sm": "/assets/photos/carnotaurus-life-sm.webp"
    },
    {
     "file": "/assets/photos/carnotaurus-lead.webp",
@@ -1758,7 +1896,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Carnotaurus,_Chlup%C3%A1%C4%8D_Museum,_Prague-2.jpg",
     "kind": "lead",
-    "label": "Carnotaurus, Chlupáč Museum, Prague-2"
+    "label": "Carnotaurus, Chlupáč Museum, Prague-2",
+    "frame": "photo",
+    "sm": "/assets/photos/carnotaurus-lead-sm.webp"
    }
   ],
   "megatherium": [
@@ -1771,7 +1911,9 @@
     "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
     "source": "https://commons.wikimedia.org/wiki/File:Megatherium_americanum_Skeleton_NHM.JPG",
     "kind": "lead",
-    "label": "Megatherium americanum Skeleton NHM"
+    "label": "Megatherium americanum Skeleton NHM",
+    "frame": "photo",
+    "sm": "/assets/photos/megatherium-lead-sm.webp"
    }
   ],
   "mamut": [
@@ -1784,7 +1926,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Columbian_mammoth.JPG",
     "kind": "lead",
-    "label": "Columbian mammoth"
+    "label": "Columbian mammoth",
+    "frame": "photo",
+    "sm": "/assets/photos/mamut-lead-sm.webp"
    }
   ],
   "neandertal": [
@@ -1798,7 +1942,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Homo_neanderthalensis_-_reconstruction_-_MUSE.jpg",
     "kind": "life",
     "label": "Reconstrucción de un neandertal (MUSE, Trento)",
-    "note": "Rasgos óseos a partir de cráneos reales; piel, pelo y expresión son interpretativos."
+    "note": "Rasgos óseos a partir de cráneos reales; piel, pelo y expresión son interpretativos.",
+    "frame": "plate",
+    "sm": "/assets/photos/neandertal-life-sm.webp"
    }
   ],
   "naia": [],
@@ -1813,7 +1959,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Life_reconstruction_of_Velafrons_coahuilensis.png",
     "kind": "life",
     "label": "Reconstrucción en vida de Velafrons",
-    "note": "Basada en un cráneo juvenil; el tamaño adulto, la cresta adulta y el color son inferencias."
+    "note": "Basada en un cráneo juvenil; el tamaño adulto, la cresta adulta y el color son inferencias.",
+    "frame": "cutout",
+    "sm": "/assets/photos/velafrons-life-sm.webp"
    },
    {
     "file": "/assets/photos/velafrons-lead.webp",
@@ -1824,7 +1972,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Velafrons_skull.png",
     "kind": "lead",
-    "label": "Velafrons skull"
+    "label": "Velafrons skull",
+    "frame": "photo",
+    "sm": "/assets/photos/velafrons-lead-sm.webp"
    }
   ],
   "triceratops": [
@@ -1838,7 +1988,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Triceratops_Skeleton_Senckenberg_2_White_Background.jpg",
     "kind": "evidence",
     "label": "Montaje compuesto de Triceratops",
-    "note": "Está ensamblado con fragmentos de distintos individuos; la interfaz lo identifica como montaje, no como un ejemplar único."
+    "note": "Está ensamblado con fragmentos de distintos individuos; la interfaz lo identifica como montaje, no como un ejemplar único.",
+    "frame": "plate",
+    "sm": "/assets/photos/triceratops-evidence-sm.webp"
    },
    {
     "file": "/assets/photos/triceratops-life.webp",
@@ -1850,7 +2002,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Triceratops_TD.png",
     "kind": "life",
     "label": "Reconstrucción de Triceratops horridus en vida",
-    "note": "Cuernos y gola son fósiles; queratina, piel y color se reconstruyen por comparación e inferencia."
+    "note": "Cuernos y gola son fósiles; queratina, piel y color se reconstruyen por comparación e inferencia.",
+    "frame": "cutout",
+    "sm": "/assets/photos/triceratops-life-sm.webp"
    },
    {
     "file": "/assets/photos/triceratops-lead.webp",
@@ -1861,7 +2015,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:LA-Triceratops_mount-2.jpg",
     "kind": "lead",
-    "label": "LA-Triceratops mount-2"
+    "label": "LA-Triceratops mount-2",
+    "frame": "plate",
+    "sm": "/assets/photos/triceratops-lead-sm.webp"
    }
   ],
   "eryops": [
@@ -1874,7 +2030,9 @@
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "source": "https://commons.wikimedia.org/wiki/File:Eryops_at_AMNH.jpg",
     "kind": "lead",
-    "label": "Eryops at AMNH"
+    "label": "Eryops at AMNH",
+    "frame": "photo",
+    "sm": "/assets/photos/eryops-lead-sm.webp"
    }
   ],
   "cryolophosaurus": [
@@ -1887,7 +2045,9 @@
     "licenseUrl": null,
     "source": "https://commons.wikimedia.org/wiki/File:CryolophosaurusDB.jpg",
     "kind": "lead",
-    "label": "CryolophosaurusDB"
+    "label": "CryolophosaurusDB",
+    "frame": "photo",
+    "sm": "/assets/photos/cryolophosaurus-lead-sm.webp"
    }
   ],
   "ambar-chiapas": [
@@ -1900,7 +2060,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Ambardechiapas.jpg",
     "kind": "lead",
-    "label": "Ambardechiapas"
+    "label": "Ambardechiapas",
+    "frame": "photo",
+    "sm": "/assets/photos/ambar-chiapas-lead-sm.webp"
    }
   ],
   "titanis": [
@@ -1913,7 +2075,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Skeleton_of_Titanis_at_the_Florida_Museum_of_Natural_History.jpg",
     "kind": "lead",
-    "label": "Skeleton of Titanis at the Florida Museum of Natural History"
+    "label": "Skeleton of Titanis at the Florida Museum of Natural History",
+    "frame": "photo",
+    "sm": "/assets/photos/titanis-lead-sm.webp"
    }
   ],
   "diprotodon": [
@@ -1926,7 +2090,9 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Diprotodon_australis_skeleton_1.JPG",
     "kind": "lead",
-    "label": "Diprotodon australis skeleton 1"
+    "label": "Diprotodon australis skeleton 1",
+    "frame": "photo",
+    "sm": "/assets/photos/diprotodon-lead-sm.webp"
    }
   ]
  },

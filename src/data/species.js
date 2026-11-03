@@ -283,7 +283,7 @@ export const species = [
     place: 'Formación Hell Creek, Montana', country: 'Estados Unidos', continent: 'América', lat: 47.6, lon: -106.6, length: 8.5, lengthNote: '≈ 8–9 m',
     summary: 'Herbívoro robusto con gola ósea, pico curvo y tres cuernos que cambiaban de forma al crecer.',
     fact: 'Hay golas con marcas de cuernos cicatrizadas: luchaban entre ellos. También hay mordidas de T. rex que sanaron.',
-    silhouette: ['Triceratops', 'Chasmosaurinae'], wiki: 'Triceratops', pbdb: 'Triceratops' }),
+    silhouette: ['uuid:c85d760c-f4ec-466b-906f-e9f43e7a1406', 'Triceratops'], wiki: 'Triceratops', pbdb: 'Triceratops' }),
   S({ id: 'trex', name: 'Tyrannosaurus rex', group: 'Dinosaurio', habitat: 'Tierra', period: 'cretacico', ma: 67, age: '≈ 68–66 Ma',
     place: 'Formación Hell Creek, Montana', country: 'Estados Unidos', continent: 'América', lat: 47.6, lon: -106.6, length: 12.3, lengthNote: '≈ 12–13 m («Sue»: 12.3 m)',
     summary: 'Depredador de cráneo masivo, visión binocular y una mordida aplastahuesos de las más fuertes conocidas en animales terrestres.',

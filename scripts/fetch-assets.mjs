@@ -13,10 +13,12 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+import { optimize } from 'svgo';
 import { species, scaleRefs } from '../src/data/species.js';
 import { periods, MAP_TIMES, mapTimeFor } from '../src/data/periods.js';
 import { featured } from '../src/data/featured.js';
 import { keyRefs } from '../src/data/refs.js';
+import { processPhotos } from './process-photos.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'public/assets');
@@ -125,7 +127,7 @@ await pool(silhouetteJobs, 4, async (s) => {
   if (!hit) { console.warn(`  · sin silueta libre: ${s.id}`); delete manifest.silhouettes[s.id]; await fs.rm(file, { force: true }); return; }
   const svg = await get(hit.vector, 'text');
   if (!svg) return;
-  await fs.writeFile(file, cleanSvg(svg));
+  await fs.writeFile(file, optimize(cleanSvg(svg), { multipass: true }).data);
   const vb = svg.match(/viewBox="([^"]+)"/)?.[1]?.split(/[\s,]+/).map(Number);
   const { vector, ...credit } = hit;
   manifest.silhouettes[s.id] = { file: `/assets/silhouettes/${s.id}.svg`, aspect: vb ? +(vb[2] / vb[3]).toFixed(3) : 2, ...credit };
@@ -212,13 +214,13 @@ function simplifyRing(pts, eps) {
   return pts.filter((_, i) => keep[i]);
 }
 const ringArea = (r) => Math.abs(r.reduce((s, [x, y], i) => { const [x2, y2] = r[(i + 1) % r.length]; return s + x * y2 - x2 * y; }, 0) / 2);
-function simplifyGeo(fc, eps = 0.35, minArea = 0.6) {
+function simplifyGeo(fc, eps = 0.45, minArea = 0.6) {
   const polys = [];
   for (const f of fc.features || []) {
     const g = f.geometry; if (!g) continue;
     const list = g.type === 'Polygon' ? [g.coordinates] : g.type === 'MultiPolygon' ? g.coordinates : [];
     for (const poly of list) {
-      const outer = simplifyRing(poly[0], eps).map(([x, y]) => [+x.toFixed(2), +y.toFixed(2)]);
+      const outer = simplifyRing(poly[0], eps).map(([x, y]) => [+x.toFixed(1), +y.toFixed(1)]);
       if (outer.length >= 4 && ringArea(outer) >= minArea) polys.push([outer]);
     }
   }
@@ -327,6 +329,9 @@ await pool(species, 2, async (s) => {
   }
   manifest.refs[s.id] = out;
 });
+
+const ph = await processPhotos(manifest);
+console.log(`Fotos: ${ph.plates} láminas, ${ph.cutouts} recortes, ${ph.made} miniaturas nuevas`);
 
 for (const s of species) if (s._article) (manifest.articles ||= {})[s.id] = s._article;
 await fs.writeFile(MANIFEST, JSON.stringify(manifest, null, 1));

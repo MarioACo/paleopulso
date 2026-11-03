@@ -1,0 +1,157 @@
+---
+import Museum from '../layouts/Museum.astro';
+import { periods, clockTime } from '../data/periods.js';
+import { species } from '../data/species.js';
+import { assets, paleoOf, href } from '../lib/site.js';
+
+// Qué pasaba con los continentes en cada mapa disponible.
+const notes: Record<number, string> = {
+  800: 'Rodinia, el supercontinente del Proterozoico, empieza a fragmentarse.',
+  560: 'Los fragmentos se reúnen en el sur y forman Gondwana; el norte queda disperso en islas-continente.',
+  540: 'Comienza el Cámbrico: continentes dispersos y mares someros por todas partes.',
+  510: 'Laurentia, el núcleo de Norteamérica, está en el ecuador. Ahí vivían los animales del Burgess Shale.',
+  480: 'Gondwana se extiende del ecuador al polo sur.',
+  460: 'El océano Iapetus se cierra poco a poco entre Laurentia y Báltica.',
+  430: 'Laurentia y Báltica chocan y levantan montañas: nace Laurussia.',
+  420: 'Primeras plantas vasculares en las costas de estos continentes.',
+  400: 'Laurussia y Gondwana se acercan; entre ellas queda el océano Rheico.',
+  380: 'Los primeros bosques crecen en tierras que hoy son Norteamérica y Europa.',
+  370: 'Extinciones del Devónico tardío en mares tropicales.',
+  340: 'Gondwana y Laurussia chocan: empieza a formarse Pangea.',
+  310: 'Selvas de carbón en el ecuador; hielo en el sur de Gondwana.',
+  290: 'Pangea casi completa: un solo supercontinente de polo a polo.',
+  270: 'Interiores secos y extremos en el corazón de Pangea.',
+  260: 'Pangea en su máxima unión. Pronto llegará la peor extinción.',
+  250: 'Inicio del Triásico: la vida se recupera en un mundo muy cálido.',
+  230: 'Aparecen los primeros dinosaurios en el sur de Pangea.',
+  220: 'Pangea sigue unida, pero ya se marcan las grietas.',
+  210: 'Se abren cuencas de rift entre Norteamérica y África; hacia 201 Ma estallará ahí el vulcanismo del Atlántico Central.',
+  190: 'Se abre el Atlántico central: Norteamérica se separa de África.',
+  170: 'Gondwana comienza a dividirse entre oeste y este.',
+  150: 'Se abre el Golfo de México; los mares inundan los continentes.',
+  125: 'Sudamérica y África empiezan a separarse: nace el Atlántico sur.',
+  110: 'La India ya se separó de Australia y la Antártida, pero sigue unida a Madagascar.',
+  90: 'La India se separa de Madagascar (~88 Ma). El nivel del mar está muy alto.',
+  80: 'La India viaja rápido hacia el norte, sobre el océano Tetis.',
+  66: 'Chicxulub. Los continentes ya son reconocibles.',
+  50: 'La India choca con Asia y empieza a levantar el Himalaya.',
+  30: 'Australia se aleja de la Antártida, que queda aislada y se congela.',
+  15: 'El mundo casi como hoy; el istmo de Panamá aún no se cierra.',
+  0: 'Hoy. Los continentes se mueven unos centímetros al año, lo que crecen tus uñas.',
+};
+// Todos los mapas descargados (los de la lista general más los de cada periodo).
+const times = Object.keys(assets.maps || {}).filter((k) => /^\d+$/.test(k)).map(Number).sort((a, b) => b - a);
+const frames = times.map((t) => {
+  const p = periods.filter((x) => x.rank === 'Periodo' && t <= x.start && t >= x.end).at(-1)
+    || periods.find((x) => x.rank === 'Eón' && t <= x.start && t >= x.end);
+  return {
+    t, url: assets.maps[t], note: notes[t] || '', clock: clockTime(t), period: p?.name || '', color: p?.color || '#888',
+    sites: species.filter((s) => paleoOf(s.id)?.time === t).map((s) => ({ id: s.id, lon: paleoOf(s.id)!.lon, lat: paleoOf(s.id)!.lat, label: s.name, href: href(s), mx: s.mexico })),
+  };
+});
+const TICKS: Record<number, string> = { 800: '800 Ma', 540: 'Cámbrico', 380: 'Bosques', 260: 'Pangea', 150: 'Jurásico', 66: 'Chicxulub', 0: 'Hoy' };
+const start = Math.max(0, frames.findIndex((f) => f.t === 260));
+---
+<Museum title="Máquina del tiempo" stamp="tiempo" description="Mira cómo se mueven los continentes de hace 800 millones de años a hoy.">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Sala I · Máquina del tiempo</p>
+      <h1>Los continentes<br /><em>nunca se quedan quietos.</em></h1>
+      <p class="lead">Desliza de hace 800 millones de años a hoy y mira cómo se arman y se rompen Rodinia, Gondwana y Pangea. Los puntos son fósiles de la colección en su posición de entonces.</p>
+    </div>
+  </section>
+
+  <section class="wrap machine">
+    <div class="screen vitrine">
+      <svg id="mA" class="layer on" aria-hidden="true"></svg>
+      <svg id="mB" class="layer" aria-hidden="true"></svg>
+      <div class="readout">
+        <strong class="num" id="tMa"></strong>
+        <span id="tPeriod" class="label"></span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn play" id="play" type="button" aria-pressed="false">▶ Reproducir</button>
+      <div class="slider">
+        <input type="range" id="slider" min="0" max={frames.length - 1} step="1" value={start} aria-label="Edad del mapa" />
+        <div class="ticks" aria-hidden="true">
+          {frames.map((f, i) => TICKS[f.t] && <span style={`left:${(i / (frames.length - 1)) * 100}%`}>{TICKS[f.t]}</span>)}
+        </div>
+      </div>
+    </div>
+
+    <div class="cedula caption" aria-live="polite">
+      <div class="ced-no"><span id="cPeriod"></span><span id="cClock"></span></div>
+      <p class="note-text" id="cNote"></p>
+      <p id="cSites"></p>
+    </div>
+    <p class="fine">Costas: GPlates Web Service, modelo MERDITH2021. Son los contornos de los continentes actuales desplazados; el nivel del mar antiguo era distinto. Entre 800 y 560 Ma no hay mapas intermedios.</p>
+  </section>
+</Museum>
+
+<script type="application/json" id="tmData" set:html={JSON.stringify({ frames, start })} />
+<script>
+  import { drawMap } from '../scripts/map';
+  const { frames, start } = JSON.parse(document.getElementById('tmData')!.textContent!);
+  const $ = (id: string) => document.getElementById(id)!;
+  const layers = [$('mA'), $('mB')] as unknown as SVGSVGElement[];
+  const slider = $('slider') as HTMLInputElement;
+  let front = 0, idx = start, timer = 0, token = 0;
+  const esc = (t: string) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
+
+  // Dibuja en la capa oculta y cruza las dos: el cambio se ve como un fundido.
+  async function show(i: number) {
+    const my = ++token;
+    const f = frames[i];
+    prefetch(i);
+    const back = layers[1 - front];
+    await drawMap(back, { url: f.url, sites: f.sites.map((s: any) => ({ ...s, ping: true })), width: 1000, height: 500 });
+    if (my !== token) return;
+    back.classList.add('on'); layers[front].classList.remove('on');
+    front = 1 - front;
+    document.querySelector<HTMLElement>('.screen')!.style.setProperty('--c', f.color);
+    $('tMa').textContent = f.t === 0 ? 'Hoy' : `${f.t} Ma`;
+    $('tPeriod').textContent = f.period;
+    $('cPeriod').textContent = f.t === 0 ? 'Presente' : `${f.period} · hace ${f.t} millones de años`;
+    $('cClock').textContent = `${f.clock} en el día de la Tierra`;
+    $('cNote').textContent = f.note;
+    $('cSites').innerHTML = f.sites.length ? `<span class="label">En el mapa:</span> ${f.sites.map((s: any) => `<a href="${s.href}">${esc(s.label)}</a>`).join(' · ')}` : '';
+  }
+
+  slider.addEventListener('input', () => { idx = +slider.value; stop(); show(idx); });
+  function stop() { clearInterval(timer); timer = 0; $('play').setAttribute('aria-pressed', 'false'); $('play').textContent = '▶ Reproducir'; }
+  $('play').addEventListener('click', () => {
+    if (timer) return stop();
+    if (idx >= frames.length - 1) idx = 0;
+    $('play').setAttribute('aria-pressed', 'true'); $('play').textContent = '❚❚ Pausa';
+    const step = () => { slider.value = String(idx); show(idx); if (++idx > frames.length - 1) { idx = frames.length - 1; stop(); } };
+    step();
+    timer = window.setInterval(step, matchMedia('(prefers-reduced-motion: reduce)').matches ? 2600 : 1400);
+  });
+  // Precarga solo los mapas vecinos (el navegador los guarda en caché) para que avanzar sea fluido.
+  const warm = new Set<string>();
+  const prefetch = (i: number) => [i - 1, i + 1, i + 2].forEach((j) => { const u = frames[j]?.url; if (u && !warm.has(u)) { warm.add(u); fetch(u); } });
+  show(idx);
+</script>
+
+<style>
+  .machine { padding-bottom: 6rem; display: grid; gap: 1.2rem; }
+  .screen { position: relative; aspect-ratio: 2 / 1; }
+  .screen .layer { position: absolute; inset: 3%; width: 94%; height: 94%; opacity: 0; transition: opacity .9s ease; }
+  .screen .layer.on { opacity: 1; }
+  .screen :global(.land) { fill: color-mix(in srgb, var(--c, #6d6249) 40%, #6d6249); transition: fill .8s; }
+  .readout { position: absolute; left: 4%; bottom: 6%; display: grid; z-index: 4; text-shadow: 0 2px 12px #000; }
+  .readout strong { font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1; }
+  .readout .label { color: var(--c, var(--brass)); filter: brightness(1.4); }
+  .controls { display: grid; grid-template-columns: auto 1fr; gap: 1.4rem; align-items: center; }
+  .play { min-width: 10.5rem; justify-content: center; }
+  .slider { position: relative; padding-bottom: 1.6rem; }
+  .slider input { width: 100%; accent-color: var(--brass); height: 2rem; cursor: pointer; }
+  .ticks span { position: absolute; bottom: 0; translate: -50% 0; font: 500 .72rem var(--label); color: var(--muted); letter-spacing: .08em; white-space: nowrap; }
+  .ticks span:first-child { translate: 0 0; } .ticks span:last-child { translate: -100% 0; }
+  .note-text { font: 400 clamp(1.2rem, 2vw, 1.6rem)/1.4 var(--serif); margin: .8rem 0; color: var(--ink); }
+  .caption :global(a) { color: var(--ink); }
+  .fine { font-size: .8rem; color: var(--muted); }
+  @media (max-width: 700px) { .controls { grid-template-columns: 1fr; } .screen { aspect-ratio: 4 / 3; } }
+</style>
