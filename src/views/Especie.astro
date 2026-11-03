@@ -1,0 +1,292 @@
+---
+import Museum from '../layouts/Museum.astro';
+import Silhouette from '../components/Silhouette.astro';
+import Photo from '../components/Photo.astro';
+import { scaleSvg } from '../scripts/scale';
+import { assets, photosOf, mainPhoto, paleoOf, pbdbOf, articleOf, silhouetteOf, silhouetteIsProxy, issueUrl, KIND_LABEL, KIND_NOTE } from '../lib/site.js';
+import { clockTime } from '../data/periods.js';
+import { speciesL, periodByIdL, formatMaL, numL, tr, L } from '../i18n.js';
+import { featuredEn, refWhyEn } from '../data/en/content.js';
+
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const species = speciesL(lang);
+const { id } = Astro.params;
+const s = species.find((x) => x.id === id)!;
+const p = periodByIdL(lang)[s.period];
+const KIND_LABEL_EN: Record<string, string> = { life: 'Life reconstruction', evidence: 'Fossil or mount', evidence2: 'Fossil', lead: 'Reference image' };
+const KIND_NOTE_EN: Record<string, string> = {
+  life: 'Scientific interpretation: the anatomy rests on fossils; skin, colour and posture are hypotheses.',
+  evidence: 'Evidence: a fossil, site or museum mount. Mounts often fill in missing parts with casts.',
+  evidence2: 'Fossil evidence.', lead: 'Reference image from Wikimedia Commons.',
+};
+const kindLabel = (k: string) => (lang === 'en' ? KIND_LABEL_EN[k] : KIND_LABEL[k]) || T('Vista', 'View');
+const photos = [...photosOf(s.id)]
+  .sort((a, b) => ['life', 'evidence', 'evidence2', 'lead'].indexOf(a.kind) - ['life', 'evidence', 'evidence2', 'lead'].indexOf(b.kind))
+  .map((ph) => {
+    const en = lang === 'en' && featuredEn[`${s.id}-${ph.kind}`];
+    return { ...ph, label: en ? en.label : ph.label, note: en ? en.note : lang === 'en' ? null : ph.note };
+  });
+const paleo = paleoOf(s.id);
+const pbdb = pbdbOf(s.id);
+const refs = assets.refs?.[s.id] || { original: null, studies: [] };
+const doiUrl = (d: string) => `https://doi.org/${d}`;
+const scholar = (t: string) => `https://scholar.google.com/scholar?q=${encodeURIComponent(t.slice(0, 200))}`;
+const sil = silhouetteOf(s.id);
+const human = silhouetteOf('humano');
+const chrono = [...species].sort((a, b) => b.ma - a.ma);
+const i = chrono.findIndex((x) => x.id === s.id);
+const prev = chrono[i - 1], next = chrono[i + 1];
+const no = String(species.indexOf(s) + 1).padStart(3, '0');
+
+// Distancia recorrida por la placa desde entonces (gran círculo).
+function km(a: { lat: number; lon: number }, b: { lat: number; lon: number }) {
+  const r = Math.PI / 180, dLat = (b.lat - a.lat) * r, dLon = (b.lon - a.lon) * r;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(dLon / 2) ** 2;
+  return Math.round(2 * 6371 * Math.asin(Math.sqrt(h)));
+}
+const moved = paleo ? km(s, paleo) : null;
+const W = T('O', 'W');
+const fmtCoord = (lat: number, lon: number) => `${Math.abs(lat).toFixed(1)}° ${lat >= 0 ? 'N' : 'S'}, ${Math.abs(lon).toFixed(1)}° ${lon >= 0 ? 'E' : W}`;
+
+// Escala con una persona de 1.70 m (o regla de 10–30 cm para piezas pequeñas).
+const small = s.length !== null && s.length < 0.5;
+const ruler = s.length !== null && s.length < 0.1 ? 0.1 : 0.3;
+const rulerLabel = T(`Regla de ${ruler * 100} cm`, `${ruler * 100} cm ruler`);
+// Eje del bloque PBDB: abarca el periodo y el rango registrado.
+const hi = pbdb ? +Math.max(p.start, pbdb.first).toFixed(1) : 0, lo = pbdb ? +Math.min(p.end, pbdb.last).toFixed(1) : 0;
+const pos = (ma: number) => ((hi - ma) / (hi - lo || 1)) * 100;
+---
+<Museum title={s.name} stamp="vida" description={s.summary}>
+  <article class="wrap ficha" style={`--pc:${p.color}`}>
+    <nav class="crumbs label" aria-label={T('Ruta', 'Breadcrumb')}><a href={L(lang, '/vida')}>{T('Archivo de vida', 'Archive of life')}</a> › <a href={L(lang, `/tiempo#${p.id}`)}>{p.name}</a> › {s.name}</nav>
+
+    <div class="top">
+      <div class="gallery">
+        <div class="vitrine stage">
+          {photos.length ? photos.map((ph, k) => (
+            <div class="slide" data-photo={k} hidden={k !== 0}>
+              <Photo p={ph} alt={ph.label || s.name} fit="contain" sizes="(max-width: 900px) 100vw, 760px" eager={k === 0} />
+            </div>
+          )) : <div class="no-photo"><Silhouette id={s.id} class="big-sil" /><p class="label">{T('Sin fotografía con licencia libre', 'No freely licensed photo')}</p></div>}
+          <div class="plinth"></div>
+        </div>
+        {photos.length > 1 && (
+          <div class="tabs" role="tablist" aria-label={T('Vistas de la pieza', 'Views of the piece')}>
+            {photos.map((ph, k) => <button type="button" class="chip" role="tab" aria-selected={k === 0 ? 'true' : 'false'} data-tab={k}>{kindLabel(ph.kind)}{photos.filter((x) => x.kind === ph.kind).length > 1 ? ` ${photos.slice(0, k + 1).filter((x) => x.kind === ph.kind).length}` : ''}</button>)}
+          </div>
+        )}
+        {photos.map((ph, k) => (
+          <div class="caption" data-cap={k} hidden={k !== 0}>
+            <p><span class={`tag tag-${ph.kind}`}>{kindLabel(ph.kind)}</span> {ph.note || (lang === 'en' ? KIND_NOTE_EN[ph.kind] : KIND_NOTE[ph.kind])}</p>
+            <p class="credit">{ph.label && <>{ph.label} · </>}{ph.credit} · <a href={ph.licenseUrl || ph.source} rel="noopener">{ph.license}</a> · <a href={ph.source} rel="noopener">Wikimedia Commons ↗</a></p>
+          </div>
+        ))}
+      </div>
+
+      <aside class="cedula main-ced">
+        <div class="ced-no"><span>{T('Pieza', 'Piece')} {no}</span><span>{p.name}</span></div>
+        <h1>{s.name}</h1>
+        <p class="sci">{s.group} · {s.place}, {s.country}</p>
+        <p>{s.summary}</p>
+        <dl>
+          <div><dt>{T('Edad', 'Age')}</dt><dd>{s.age}</dd></div>
+          <div><dt>{T('Tamaño', 'Size')}</dt><dd>{s.lengthNote || '—'}</dd></div>
+          <div><dt>{T('Ambiente', 'Environment')}</dt><dd>{s.habitat}</dd></div>
+          <div><dt>{T('En el día de la Tierra', 'On Earth’s 24-hour clock')}</dt><dd>{clockTime(s.ma)}</dd></div>
+          {refs.original?.authority && <div><dt>{T('Nombrado por', 'Named by')}</dt><dd>{refs.original.authority.replace(/\s+(\d{4})/, ', $1')}</dd></div>}
+        </dl>
+        {s.debated && <p class="debate"><span class="badge debate">{T('En debate', 'Debated')}</span> {s.debated}</p>}
+      </aside>
+    </div>
+
+    <section class="fact reveal">
+      <span class="label">{T('¿Sabías que…?', 'Did you know…?')}</span>
+      <p>{s.fact}</p>
+    </section>
+
+    {s.length && sil && (
+      <section class="block reveal">
+        <div class="block-head"><p class="kicker">{T('A escala', 'To scale')}</p><h2>{small ? T(`Frente a una regla de ${ruler * 100} cm`, `Next to a ${ruler * 100} cm ruler`) : T('Frente a una persona de 1.70 m', 'Next to a 1.70 m person')}</h2></div>
+        <div class="scale">
+          <Fragment set:html={scaleSvg([
+            ...(small ? [{ length: ruler, rect: { h: ruler / 12 }, label: rulerLabel }] : human ? [{ file: human.file, aspect: human.aspect, length: 1.7, tone: 'human' as const, label: T('Persona', 'Person') }] : []),
+            { file: sil.file, aspect: sil.aspect, length: s.length, label: s.name },
+          ])} />
+          <p class="note">{T('Longitud de referencia', 'Reference length')}: {s.lengthNote}. {T('Silueta', 'Silhouette')}: {silhouetteOf(s.id)!.taxon}{silhouetteIsProxy(s) && T(' (taxón emparentado; no hay silueta libre de esta especie)', ' (a related taxon; no free silhouette of this species exists)')}.</p>
+        </div>
+      </section>
+    )}
+
+    <section class="block reveal">
+      <div class="block-head">
+        <p class="kicker">{T('Entonces y ahora', 'Then and now')}</p>
+        <h2>{paleo ? <>{T('El lugar del hallazgo', 'The find site')} <em>{T(`se ha movido ${numL(moved!, lang)} km`, `has moved ${numL(moved!, lang)} km`)}</em></> : T('El lugar del hallazgo', 'The find site')}</h2>
+        {paleo && <p class="muted">{T(`Hoy ${s.place} está en ${fmtCoord(s.lat, s.lon)}. Hace ${paleo.time} Ma, según el modelo de placas, estaba en ${fmtCoord(paleo.lat, paleo.lon)}.`, `Today ${s.place} lies at ${fmtCoord(s.lat, s.lon)}. ${paleo.time} Ma ago, according to the plate model, it was at ${fmtCoord(paleo.lat, paleo.lon)}.`)}</p>}
+      </div>
+      <div class={`maps ${paleo ? '' : 'single'}`}>
+        {paleo && <figure class="vitrine"><svg id="mapThen"></svg><figcaption class="label">{T(`Hace ${paleo.time} Ma`, `${paleo.time} Ma ago`)}</figcaption></figure>}
+        <figure class="vitrine"><svg id="mapNow"></svg><figcaption class="label">{T('Hoy', 'Today')}</figcaption></figure>
+      </div>
+      {!paleo && s.ma <= 1000 && <p class="note">{T('El modelo de placas no asigna este punto a ninguna placa en esa época, así que no se muestra su posición antigua.', 'The plate model does not assign this point to any plate at that age, so its ancient position is not shown.')}</p>}
+      {!paleo && s.ma > 1000 && <p class="note">{T('De hace más de 1,000 Ma no hay reconstrucciones fiables de la posición de los continentes.', 'There are no reliable reconstructions of continental positions older than 1,000 Ma.')}</p>}
+      <p class="note">{T('Paleogeografía: GPlates Web Service, modelo MERDITH2021. Las costas antiguas son reconstrucciones aproximadas.', 'Palaeogeography: GPlates Web Service, MERDITH2021 model. Ancient coastlines are approximate reconstructions.')}</p>
+    </section>
+
+    {pbdb && (
+      <section class="block reveal">
+        <div class="block-head"><p class="kicker">{T('En la base de datos', 'In the database')}</p><h2>{T('Lo que registra la', 'What the')} <em>Paleobiology Database</em>{T('', ' records')}</h2></div>
+        <div class="pbdb">
+          <div class="pbdb-bar">
+            <span class="period" style={`left:${pos(p.start)}%;right:${100 - pos(p.end)}%`}><i>{p.name}</i></span>
+            <span class="range" style={`left:${pos(pbdb.first)}%;right:${100 - pos(pbdb.last)}%`}></span>
+          </div>
+          <div class="pbdb-axis label"><span>{hi} Ma</span><span>{lo} Ma</span></div>
+          <p class="note" style="margin:0 0 .8rem">{T('Barra de color: el periodo. Línea dorada: el rango del taxón en PBDB.', 'Coloured bar: the period. Gold line: the taxon’s range in PBDB.')}</p>
+          <p>{T('PBDB tiene', 'PBDB has')} <b>{pbdb.occurrences ? numL(pbdb.occurrences, lang) : '—'}</b> {pbdb.occurrences === 1 ? T('registro', 'occurrence') : T('registros', 'occurrences')} {T('de', 'of')} <i>{pbdb.taxon}</i>, {T('con primera aparición hacia', 'first appearing around')} <b>{pbdb.first} Ma</b> {T('y última hacia', 'and last around')} <b>{pbdb.last} Ma</b>.
+            {s.pbdbNote && <> {s.pbdbNote}</>}
+          </p>
+          <a class="btn ghost" href={pbdb.url} rel="noopener">{T('Ver en PBDB ↗', 'View in PBDB ↗')}</a>
+        </div>
+      </section>
+    )}
+
+    <section class="block sources reveal">
+      {(refs.studies.length > 0 || refs.original) && (
+        <div class="biblio">
+          <div class="block-head"><p class="kicker">{T('Bibliografía', 'References')}</p><h2>{T('De dónde sale', 'Where')} <em>{T('lo que leíste', 'this comes from')}</em></h2></div>
+          {refs.studies.length > 0 && (
+            <ol class="refs">
+              {refs.studies.map((r: any) => (
+                <li>
+                  <span class="why label">{lang === 'en' ? refWhyEn[r.why] || r.why : r.why}</span>
+                  <span class="cite">{r.authors.replace(/ y /, lang === 'en' ? ' & ' : ' y ')} ({r.year}). {r.title}. <i>{r.journal}</i>.</span>
+                  <a href={doiUrl(r.doi)} rel="noopener">doi:{r.doi} ↗</a>
+                </li>
+              ))}
+            </ol>
+          )}
+          {refs.original && (
+            <div class="pbdb-ref">
+              <span class="label">{T('Fuente de su clasificación en PBDB', 'Source of its classification in PBDB')}</span>
+              <p class="cite">{refs.original.citation}</p>
+              {refs.original.doi
+                ? <a href={doiUrl(refs.original.doi)} rel="noopener">doi:{refs.original.doi} ↗</a>
+                : <a href={scholar(refs.original.citation)} rel="noopener">{T('Buscar en Google Académico ↗', 'Search Google Scholar ↗')}</a>}
+            </div>
+          )}
+          <p class="note">{T('Cada DOI se comprobó en Crossref (título, año y primer autor) antes de publicarse.', 'Every DOI was checked against Crossref (title, year and first author) before publishing.')}</p>
+        </div>
+      )}
+      <p class="kicker" style="margin-top:3rem">{T('Para seguir leyendo', 'Further reading')}</p>
+      <ul>
+        {(lang === 'en' ? assets.articlesEn?.[s.id] : articleOf(s.id)) && <li><a href={lang === 'en' ? assets.articlesEn[s.id] : articleOf(s.id)} rel="noopener">{T('Artículo en Wikipedia ↗', 'Wikipedia article ↗')}</a></li>}
+        {sil && (sil.page
+          ? <li>{T('Silueta', 'Silhouette')}: <a href={sil.page} rel="noopener">{sil.taxon}</a> {T('por', 'by')} {sil.attribution || sil.contributor} · {sil.license} (PhyloPic)</li>
+          : <li>{T('Esquema dibujado para Paleopulso (no es una silueta anatómica)', 'Sketch drawn for Paleopulso (not an anatomical silhouette)')} · {sil.license}</li>)}
+      </ul>
+    </section>
+
+    <aside class="report">
+      <p><strong>{T('¿Ves un error o sabes algo que falta?', 'Spot an error or know something missing?')}</strong> {T('Paleopulso se corrige con ayuda de quien lo visita.', 'Paleopulso is corrected with help from its visitors.')}</p>
+      <a class="btn ghost" href={issueUrl('correccion.yml', `[${T('Corrección', 'Correction')}] ${s.name}`, { pieza: L(lang, `/especie/${s.id}`) })} rel="noopener">{T('Reportar o sugerir una corrección ↗', 'Report or suggest a correction ↗')}</a>
+    </aside>
+
+    <nav class="pager" aria-label={T('Piezas vecinas en el tiempo', 'Neighbouring pieces in time')}>
+      {prev ? <a href={L(lang, `/especie/${prev.id}`)}><span class="label">{T('← Más antiguo', '← Older')}</span><strong>{prev.name}</strong><small>{formatMaL(prev.ma, lang)}</small></a> : <span></span>}
+      {next ? <a href={L(lang, `/especie/${next.id}`)} class="right"><span class="label">{T('Más reciente →', 'More recent →')}</span><strong>{next.name}</strong><small>{formatMaL(next.ma, lang)}</small></a> : <span></span>}
+    </nav>
+  </article>
+</Museum>
+
+<script type="application/json" id="fichaData" set:html={JSON.stringify({
+  now: { url: assets.maps?.[0], site: { id: s.id, lon: s.lon, lat: s.lat, label: s.place, mx: s.mexico, ping: true } },
+  then: paleo ? { url: assets.maps?.[paleo.time], site: { id: s.id, lon: paleo.lon, lat: paleo.lat, label: s.name, mx: s.mexico, ping: true } } : null,
+})} />
+<script>
+  import { drawMap } from '../scripts/map';
+  const d = JSON.parse(document.getElementById('fichaData')!.textContent!);
+  const el = (id: string) => document.getElementById(id) as unknown as SVGSVGElement | null;
+  if (el('mapNow')) drawMap(el('mapNow')!, { url: d.now.url, sites: [d.now.site], width: 640, height: 320 });
+  if (d.then && el('mapThen')) drawMap(el('mapThen')!, { url: d.then.url, sites: [d.then.site], width: 640, height: 320 });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-tab]').forEach((b) => b.addEventListener('click', () => {
+    const k = b.dataset.tab;
+    document.querySelectorAll<HTMLButtonElement>('[data-tab]').forEach((x) => { x.setAttribute('aria-selected', String(x === b)); });
+    document.querySelectorAll<HTMLElement>('[data-photo]').forEach((f) => (f.hidden = f.dataset.photo !== k));
+    document.querySelectorAll<HTMLElement>('[data-cap]').forEach((f) => (f.hidden = f.dataset.cap !== k));
+  }));
+</script>
+
+<style>
+  .ficha { padding: 2rem 0 6rem; }
+  .crumbs { margin-bottom: 1.5rem; }
+  .crumbs a { color: var(--brass); text-decoration: none; }
+  .top { display: grid; grid-template-columns: 1.35fr 1fr; gap: 2.5rem; align-items: start; }
+  .stage { aspect-ratio: 4 / 3; position: relative; }
+  .stage .slide { position: absolute; inset: 0; padding: 1.4rem 1.4rem 2rem; }
+  .stage .slide :global(.ph-photo) { border-radius: 2px; box-shadow: 0 20px 40px -10px #000; }
+  .no-photo { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 1rem; padding: 2rem; }
+  .no-photo :global(.big-sil) { width: 70%; color: var(--paper); opacity: .85; }
+  .tabs { display: flex; gap: .4rem; margin-top: .9rem; flex-wrap: wrap; }
+  .caption { margin-top: .9rem; font-size: .9rem; color: var(--muted); }
+  .caption p { margin: 0 0 .3rem; }
+  .credit { font-size: .78rem; }
+  .credit a { color: var(--brass); }
+  .tag { font: 600 .68rem var(--label); letter-spacing: .14em; text-transform: uppercase; padding: .15rem .45rem; border-radius: 3px; background: var(--wall-2); color: var(--brass); margin-right: .3rem; }
+  .tag-life { color: var(--sky); }
+  .main-ced { position: sticky; top: 88px; }
+  .main-ced h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); color: var(--ink); margin: .6rem 0 .2rem; }
+  .main-ced .sci { margin-bottom: 1rem; }
+  .debate { margin-top: 1rem; font-size: .9rem; color: #3d3226; }
+  .fact { margin: 4rem 0 2rem; padding: 2rem 2.4rem; border-left: 3px solid var(--brass); background: linear-gradient(90deg, rgba(209, 171, 98, .1), transparent); }
+  .fact p { font: 400 clamp(1.3rem, 2.2vw, 1.8rem)/1.4 var(--serif); margin: .4rem 0 0; max-width: 46ch; }
+  .block { margin-top: 4.5rem; }
+  .block-head { margin-bottom: 1.6rem; max-width: 70ch; }
+  .block-head h2 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); margin-top: .5rem; }
+  .block-head .muted { margin-top: .8rem; }
+  .scale { background: var(--wall); border: 1px solid var(--line); border-radius: 6px; padding: 2rem 2rem 1rem; }
+  .scale-stage { display: flex; align-items: flex-end; gap: 2%; min-height: 120px; border-bottom: 2px solid var(--brass-dim); padding-bottom: 2px; }
+  .scale-stage .sil { flex: none; }
+  .scale-human { color: var(--muted); }
+  .scale-animal { color: var(--paper); }
+  .ruler { position: relative; height: 2rem; }
+  .ruler span { position: absolute; top: .4rem; translate: -50% 0; font: 500 .72rem var(--label); color: var(--muted); letter-spacing: .08em; }
+  .ruler span:first-child { translate: 0 0; }
+  .ruler span:last-child { translate: -100% 0; }
+  .note { font-size: .8rem; color: var(--muted); margin: .8rem 0 0; }
+  .maps { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .maps.single { grid-template-columns: minmax(0, 640px); }
+  .maps figure { margin: 0; padding: .8rem; }
+  .maps figcaption { text-align: center; margin-top: .4rem; }
+  .pbdb { background: var(--wall); border: 1px solid var(--line); border-radius: 6px; padding: 1.5rem; }
+  .pbdb-bar { position: relative; height: 34px; background: var(--wall-2); border-radius: 4px; }
+  .pbdb-bar .period { position: absolute; top: 0; height: 22px; background: color-mix(in srgb, var(--pc) 70%, #000); border-radius: 4px; }
+  .pbdb-bar .period i { font: 600 .68rem var(--label); letter-spacing: .1em; text-transform: uppercase; font-style: normal; color: #000; padding: .2rem .5rem; display: block; white-space: nowrap; overflow: hidden; }
+  .pbdb-bar .range { position: absolute; bottom: 3px; height: 6px; min-width: 6px; background: var(--brass); border-radius: 3px; }
+  .pbdb-axis { display: flex; justify-content: space-between; margin: .3rem 0 1rem; }
+  .biblio { margin-bottom: 1rem; }
+  .refs { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; gap: .8rem; counter-reset: ref; }
+  .refs li { counter-increment: ref; display: grid; gap: .25rem; padding: 1rem 1.2rem 1rem 3rem; position: relative; background: var(--wall); border: 1px solid var(--line); border-radius: 6px; }
+  .refs li::before { content: counter(ref); position: absolute; left: 1.1rem; top: .9rem; font: 400 1.3rem var(--serif); color: var(--brass-dim); }
+  .refs .why { color: var(--brass); }
+  .cite { font-family: var(--serif); font-size: 1.05rem; line-height: 1.45; }
+  .refs a, .pbdb-ref a { font-size: .82rem; overflow-wrap: anywhere; }
+  .pbdb-ref { padding: 1rem 1.2rem; border-left: 2px solid var(--brass-dim); }
+  .pbdb-ref .cite { margin: .4rem 0; color: var(--muted); font-size: .98rem; }
+  .sources ul { padding-left: 1.2rem; color: var(--muted); }
+  .sources a { color: var(--brass); }
+  .report { margin-top: 4rem; padding: 1.4rem 1.6rem; border: 1px dashed var(--brass-dim); border-radius: 6px; display: flex; gap: 1rem 2rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .report p { margin: 0; color: var(--muted); }
+  .report strong { color: var(--text); }
+  .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 5rem; border-top: 1px solid var(--line); padding-top: 2rem; }
+  .pager a { text-decoration: none; display: grid; gap: .2rem; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: 6px; transition: border-color .2s; }
+  .pager a:hover { border-color: var(--brass); }
+  .pager .right { text-align: right; }
+  .pager strong { font: 400 1.4rem var(--serif); }
+  .pager small { color: var(--muted); }
+  @media (max-width: 900px) {
+    .top, .maps { grid-template-columns: 1fr; }
+    .main-ced { position: static; }
+  }
+</style>

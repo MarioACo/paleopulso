@@ -158,5 +158,15 @@ export const featured = {
         "note": "Dibujo científico del cráneo; Cynosphenodon es pariente de la tuátara actual."
       }
     ]
+  },
+  "microraptor": {
+    "media": [
+      {
+        "kind": "life",
+        "file": "Microraptor mmartyniuk true colors.png",
+        "label": "Reconstrucción de Microraptor con su color iridiscente",
+        "note": "El negro iridiscente se infirió de melanosomas fosilizados (Li et al., 2012); la postura es interpretativa."
+      }
+    ]
   }
 };

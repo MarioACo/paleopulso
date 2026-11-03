@@ -62,3 +62,10 @@ export function silhouetteIsProxy(s) {
 }
 
 export const fmtLength = (m) => (m >= 1 ? `${m.toLocaleString('es-MX', { maximumFractionDigits: 1 })} m` : `${Math.round(m * 100)} cm`);
+
+// Avisos en GitHub (plantillas en .github/ISSUE_TEMPLATE), prellenados con la pieza.
+export const REPO = 'https://github.com/MarioACo/paleopulso';
+export function issueUrl(template, title, fields = {}) {
+  const q = new URLSearchParams({ template, title, ...fields });
+  return `${REPO}/issues/new?${q}`;
+}

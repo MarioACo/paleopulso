@@ -10,8 +10,9 @@
     "assets": "node scripts/fetch-assets.mjs",
     "check": "node scripts/check-data.mjs && astro build",
     "test": "node tests/e2e.mjs",
-    "verify": "npm run check && npm test",
-    "og": "astro build && node scripts/og.mjs && astro build"
+    "verify": "npm run check && npm test && npm run a11y",
+    "og": "astro build && node scripts/og.mjs && astro build",
+    "a11y": "node tests/a11y.mjs"
   },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.3.0",
@@ -22,6 +23,7 @@
     "d3-geo": "^3.1.2"
   },
   "devDependencies": {
+    "axe-core": "^4.14.0",
     "playwright-core": "^1.64.1",
     "sharp": "^0.35.5",
     "svgo": "^4.1.0",

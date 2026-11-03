@@ -1,6 +1,11 @@
 ---
 // La historia de la Tierra comprimida en 24 horas. Ángulos calculados con la edad real.
-import { EARTH_AGE, clockTime, periodById } from '../data/periods.js';
+import { EARTH_AGE, clockTime } from '../data/periods.js';
+import { periodByIdL, tr, numL } from '../i18n.js';
+import { clockEn } from '../data/en/content.js';
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const periodById = periodByIdL(lang);
 
 const events = [
   { ma: 4567, t: 'Se forma la Tierra', d: 'Polvo y rocas alrededor del joven Sol se agregan en un planeta.' },
@@ -17,9 +22,9 @@ const events = [
   { ma: 233, t: 'Primeros dinosaurios', d: 'Pequeños y escasos, en el sur de Pangea.' },
   { ma: 66, t: 'Chicxulub', d: 'Un asteroide cae en Yucatán y termina la era de los dinosaurios no avianos.' },
   { ma: 0.3, t: 'Homo sapiens', d: 'Nuestra especie aparece en África hace ~300,000 años.' },
-].map((e) => ({ ...e, time: clockTime(e.ma), angle: (1 - e.ma / EARTH_AGE) * 360 }));
+].map((e, i) => ({ ...e, ...(lang === 'en' ? clockEn[i] : {}), time: clockTime(e.ma), angle: (1 - e.ma / EARTH_AGE) * 360 }));
 
-const eons = ['hadico', 'arcaico', 'proterozoico'].map((id) => periodById[id]).concat([{ ...periodById.cambrico, name: 'Fanerozoico', start: 538.8, end: 0, color: '#9AD9DD' }]);
+const eons = ['hadico', 'arcaico', 'proterozoico'].map((id) => periodById[id]).concat([{ ...periodById.cambrico, name: T('Fanerozoico', 'Phanerozoic'), start: 538.8, end: 0, color: '#9AD9DD' }]);
 const R = 180, C = 210;
 const pt = (deg: number, r: number) => {
   const a = ((deg - 90) * Math.PI) / 180;
@@ -32,8 +37,8 @@ const arc = (from: number, to: number, r: number) => {
 const deg = (ma: number) => (1 - ma / EARTH_AGE) * 360;
 ---
 <div class="clock">
-  <svg viewBox="0 0 420 420" class="clock-face" role="img" aria-labelledby="clockTitle">
-    <title id="clockTitle">Reloj de 24 horas con la historia de la Tierra</title>
+  <svg viewBox="0 0 420 420" class="clock-face" role="group" aria-labelledby="clockTitle">
+    <title id="clockTitle">{T('Reloj de 24 horas con la historia de la Tierra', 'A 24-hour clock of Earth history')}</title>
     <circle cx={C} cy={C} r={R + 22} class="clock-rim" />
     {eons.map((e) => <path d={arc(deg(e.start), Math.min(deg(e.end), 359.99), R)} stroke={e.color} class="clock-eon"><title>{e.name}</title></path>)}
     {Array.from({ length: 24 }, (_, h) => {
@@ -46,17 +51,17 @@ const deg = (ma: number) => (1 - ma / EARTH_AGE) * 360;
     })}
     {events.map((e, i) => {
       const [x, y] = pt(e.angle, R);
-      return <circle cx={x} cy={y} r="6" class="clock-dot" data-event={i} tabindex="0" aria-label={`${e.time} · ${e.t}`} />;
+      return <circle cx={x} cy={y} r="6" class="clock-dot" data-event={i} tabindex="0" role="button" aria-label={`${e.time} · ${e.t}`} />;
     })}
     <line x1={C} y1={C} x2={C} y2={C - R + 40} class="clock-hand" id="clockHand" />
     <circle cx={C} cy={C} r="5" fill="var(--brass)" />
     <text x={C} y={C + 40} class="clock-center" id="clockCenter">23:59:54</text>
-    <text x={C} y={C + 60} class="clock-sub" id="clockSub">aparece Homo sapiens</text>
+    <text x={C} y={C + 60} class="clock-sub" id="clockSub">Homo sapiens</text>
   </svg>
   <ol class="clock-list">
     {events.map((e, i) => (
       <li data-event={i}>
-        <button type="button"><span class="clock-time num">{e.time}</span><span><strong>{e.t}</strong><small>{e.ma >= 1 ? `${e.ma.toLocaleString('es-MX')} Ma` : `hace ${(e.ma * 1000).toLocaleString('es-MX')} mil años`} · {e.d}</small></span></button>
+        <button type="button"><span class="clock-time num">{e.time}</span><span><strong>{e.t}</strong><small>{e.ma >= 1 ? `${numL(e.ma, lang)} Ma` : T(`hace ${numL(e.ma * 1000, lang)} mil años`, `${numL(e.ma * 1000, lang)},000 years ago`)} · {e.d}</small></span></button>
       </li>
     ))}
   </ol>

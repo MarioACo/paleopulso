@@ -1,0 +1,8 @@
+---
+import View from '../../../views/Especie.astro';
+import { species } from '../../../data/species.js';
+export function getStaticPaths() {
+  return species.map((s) => ({ params: { id: s.id } }));
+}
+---
+<View />

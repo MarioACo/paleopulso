@@ -53,6 +53,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 ::selection { background: var(--brass); color: var(--night); }
 
 .wrap { width: var(--wrap); margin-inline: auto; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .skip { position: absolute; left: -999px; top: 0; z-index: 200; background: var(--brass); color: var(--night); padding: .6rem 1rem; }
 .skip:focus { left: 1rem; }
 
@@ -94,6 +95,14 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   font: 600 .8rem var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--brass);
 }
 .passport-chip svg { width: 20px; height: 20px; }
+.lang-switch { font: 600 .8rem var(--label); letter-spacing: .14em; text-decoration: none; color: var(--muted); border: 1px solid var(--line); border-radius: 99px; padding: .35rem .7rem; }
+.lang-switch:hover { color: var(--brass); border-color: var(--brass-dim); }
+.site-foot .made { color: var(--brass-dim); font-size: .85rem; }
+.sound-btn { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: none; color: var(--muted); flex: none; }
+.sound-btn svg { width: 20px; height: 20px; }
+.sound-btn .wave { opacity: .25; }
+.sound-btn[aria-pressed='true'] { color: var(--brass); border-color: var(--brass-dim); }
+.sound-btn[aria-pressed='true'] .wave { opacity: 1; }
 .menu-toggle { display: none; margin-left: auto; background: none; border: 1px solid var(--line); border-radius: var(--radius); padding: .4rem .6rem; }
 @media (max-width: 1080px) {
   .menu-toggle { display: block; }
@@ -133,7 +142,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   font: 500 .85rem var(--label); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); transition: all .2s;
 }
 .chip:hover { color: var(--text); border-color: var(--brass-dim); }
-.chip[aria-pressed='true'], .chip.active { background: var(--brass); border-color: var(--brass); color: var(--night); }
+.chip[aria-pressed='true'], .chip[aria-selected='true'], .chip.active { background: var(--brass); border-color: var(--brass); color: var(--night); }
 
 /* ── Vitrina: caja oscura con foco cálido y reflejo de vidrio ── */
 .vitrine {
@@ -189,7 +198,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .specimen-body { padding: 1rem 1.1rem 1.2rem; display: grid; gap: .3rem; }
 .specimen-body h3 { font-size: 1.5rem; }
 .specimen-body .meta { font: 500 .78rem var(--label); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: flex; gap: .4rem; flex-wrap: wrap; }
-.specimen-body .meta b { color: var(--pc, var(--brass)); font-weight: 600; }
+.specimen-body .meta b { color: color-mix(in srgb, var(--pc, var(--brass)) 62%, #fff); font-weight: 600; }
 .mx-flag { color: var(--rust) !important; }
 .badge { display: inline-block; font: 600 .68rem var(--label); letter-spacing: .14em; text-transform: uppercase; padding: .15rem .45rem; border-radius: 3px; background: rgba(207, 107, 67, .16); color: var(--rust); }
 .badge.debate { background: rgba(127, 176, 181, .15); color: var(--sky); }
@@ -201,6 +210,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .map .land { fill: #6d6249; stroke: #b6a47a55; stroke-width: .5; }
 .map .site { fill: var(--rust); stroke: var(--paper); stroke-width: 1.5; }
 .map .site.mx { fill: var(--brass); }
+.map .site:focus-visible { outline: none; stroke: var(--brass); stroke-width: 3; r: 9; }
 .map .site-ring { fill: none; stroke: var(--rust); stroke-width: 1.5; animation: ping 2.4s ease-out infinite; transform-box: fill-box; transform-origin: center; }
 .map .you-halo { fill: rgba(209, 171, 98, .18); stroke: var(--brass); stroke-width: 1; animation: pulse 2s ease-in-out infinite; }
 .map .you-dot { fill: var(--brass); stroke: var(--night); stroke-width: 2.5; }

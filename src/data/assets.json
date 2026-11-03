@@ -857,6 +857,131 @@
    "license": "CC0 1.0",
    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
    "page": "https://www.phylopic.org/images/c85d760c-f4ec-466b-906f-e9f43e7a1406"
+  },
+  "grypania": {
+   "file": "/assets/icons/grypania.svg",
+   "aspect": 1.667,
+   "taxon": "Esquema de Paleopulso",
+   "query": "icon",
+   "exact": true,
+   "contributor": "Paleopulso",
+   "attribution": "Paleopulso",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": null
+  },
+  "glossopteris": {
+   "file": "/assets/icons/glossopteris.svg",
+   "aspect": 0.6,
+   "taxon": "Esquema de Paleopulso",
+   "query": "icon",
+   "exact": true,
+   "contributor": "Paleopulso",
+   "attribution": "Paleopulso",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": null
+  },
+  "tlayua": {
+   "file": "/assets/icons/tlayua.svg",
+   "aspect": 2,
+   "taxon": "Esquema de Paleopulso",
+   "query": "icon",
+   "exact": true,
+   "contributor": "Paleopulso",
+   "attribution": "Paleopulso",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": null
+  },
+  "chicxulub": {
+   "file": "/assets/icons/chicxulub.svg",
+   "aspect": 1.667,
+   "taxon": "Esquema de Paleopulso",
+   "query": "icon",
+   "exact": true,
+   "contributor": "Paleopulso",
+   "attribution": "Paleopulso",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": null
+  },
+  "lucy": {
+   "file": "/assets/silhouettes/lucy.svg",
+   "aspect": 0.31,
+   "uuid": "b384f4f0-49fe-4374-bf86-8f03cafdc263",
+   "taxon": "Australopithecus africanus Dart 1925",
+   "query": "Australopithecus africanus",
+   "exact": true,
+   "contributor": "T. Michael Keesey",
+   "attribution": "T. Michael Keesey",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/b384f4f0-49fe-4374-bf86-8f03cafdc263"
+  },
+  "estromatolitos": {
+   "file": "/assets/icons/estromatolitos.svg",
+   "aspect": 2,
+   "taxon": "Esquema de Paleopulso",
+   "query": "icon",
+   "exact": true,
+   "contributor": "Paleopulso",
+   "attribution": "Paleopulso",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": null
+  },
+  "acantholipan": {
+   "file": "/assets/silhouettes/acantholipan.svg",
+   "aspect": 1.363,
+   "uuid": "80592c68-b4ff-4909-b1b4-a9831303232b",
+   "taxon": "Borealopelta markmitchelli Brown & al. 2017",
+   "query": "Nodosauridae",
+   "exact": false,
+   "contributor": "Marie Aimée ALLARD",
+   "attribution": "Marie Aimée ALLARD",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/80592c68-b4ff-4909-b1b4-a9831303232b"
+  },
+  "vallecillosaurus": {
+   "file": "/assets/silhouettes/vallecillosaurus.svg",
+   "aspect": 1.774,
+   "uuid": "4e498bf6-bc90-41d1-9c3c-00badad7a92f",
+   "taxon": "Aigialosaurus bucchichi",
+   "query": "Mosasauroidea",
+   "exact": false,
+   "contributor": "thefunkmonk",
+   "attribution": "FunkMonk",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/4e498bf6-bc90-41d1-9c3c-00badad7a92f"
+  },
+  "yehuecauhceratops": {
+   "file": "/assets/silhouettes/yehuecauhceratops.svg",
+   "aspect": 2.43,
+   "uuid": "030d53b7-5625-478e-9971-ef07a117f23b",
+   "taxon": "Avaceratops lammersi Dodson 1986",
+   "query": "Centrosaurinae",
+   "exact": false,
+   "contributor": "Scott Hartman",
+   "attribution": "Scott Hartman",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+   "page": "https://www.phylopic.org/images/030d53b7-5625-478e-9971-ef07a117f23b"
+  },
+  "labocania": {
+   "file": "/assets/silhouettes/labocania.svg",
+   "aspect": 2.626,
+   "uuid": "3e7b600a-c38c-44ed-b659-4ee50bbc590c",
+   "taxon": "Jinbeisaurus wangi Wu & al. 2020",
+   "query": "Tyrannosauroidea",
+   "exact": false,
+   "contributor": "Cy Marchant",
+   "attribution": "Cy Marchant",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/3e7b600a-c38c-44ed-b659-4ee50bbc590c"
   }
  },
  "photos": {
@@ -1426,21 +1551,6 @@
     "label": "Iguanodon de Bernissart IRSNB 01",
     "frame": "photo",
     "sm": "/assets/photos/iguanodon-lead-sm.webp"
-   }
-  ],
-  "microraptor": [
-   {
-    "file": "/assets/photos/microraptor-lead.webp",
-    "w": 822,
-    "h": 1024,
-    "credit": "Autor desconocido",
-    "license": "CC BY-SA 3.0",
-    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Microraptor_gui_fossil.JPG",
-    "kind": "lead",
-    "label": "Microraptor gui fossil",
-    "frame": "photo",
-    "sm": "/assets/photos/microraptor-lead-sm.webp"
    }
   ],
   "archaeopteryx": [
@@ -2094,6 +2204,81 @@
     "frame": "photo",
     "sm": "/assets/photos/diprotodon-lead-sm.webp"
    }
+  ],
+  "microraptor": [
+   {
+    "file": "/assets/photos/microraptor-life.webp",
+    "w": 800,
+    "h": 435,
+    "credit": "Matt Martyniuk, Tyrannosaure",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Microraptor_mmartyniuk_true_colors.png",
+    "kind": "life",
+    "label": "Reconstrucción de Microraptor con su color iridiscente",
+    "note": "El negro iridiscente se infirió de melanosomas fosilizados (Li et al., 2012); la postura es interpretativa.",
+    "frame": "cutout",
+    "sm": "/assets/photos/microraptor-life-sm.webp"
+   },
+   {
+    "file": "/assets/photos/microraptor-lead.webp",
+    "w": 822,
+    "h": 1024,
+    "credit": "Autor desconocido",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Microraptor_gui_fossil.JPG",
+    "kind": "lead",
+    "label": "Microraptor gui fossil",
+    "frame": "photo",
+    "sm": "/assets/photos/microraptor-lead-sm.webp"
+   }
+  ],
+  "vallecillosaurus": [],
+  "acantholipan": [
+   {
+    "file": "/assets/photos/acantholipan-lead.webp",
+    "w": 1600,
+    "h": 548,
+    "credit": "Leví Martínez-Reza",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Acantholipan_LM.png",
+    "kind": "lead",
+    "label": "Acantholipan LM",
+    "frame": "plate",
+    "sm": "/assets/photos/acantholipan-lead-sm.webp"
+   }
+  ],
+  "yehuecauhceratops": [
+   {
+    "file": "/assets/photos/yehuecauhceratops-lead.webp",
+    "w": 1507,
+    "h": 1600,
+    "credit": "Rogelio Reyna",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yehuecauhcertops.png",
+    "kind": "lead",
+    "label": "Yehuecauhcertops",
+    "frame": "photo",
+    "sm": "/assets/photos/yehuecauhceratops-lead-sm.webp"
+   }
+  ],
+  "labocania": [
+   {
+    "file": "/assets/photos/labocania-lead.webp",
+    "w": 1600,
+    "h": 628,
+    "credit": "D. Barrera Guevara",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:LabocaniaanomalaBody.png",
+    "kind": "lead",
+    "label": "LabocaniaanomalaBody",
+    "frame": "plate",
+    "sm": "/assets/photos/labocania-lead-sm.webp"
+   }
   ]
  },
  "paleo": {
@@ -2426,6 +2611,21 @@
    "time": 15,
    "lon": -86.85,
    "lat": 16.76
+  },
+  "acantholipan": {
+   "time": 80,
+   "lon": -67.43,
+   "lat": 32.87
+  },
+  "vallecillosaurus": {
+   "time": 90,
+   "lon": -61.25,
+   "lat": 30.59
+  },
+  "yehuecauhceratops": {
+   "time": 80,
+   "lon": -66.99,
+   "lat": 34.43
   }
  },
  "pbdb": {
@@ -2869,6 +3069,34 @@
    "last": 0,
    "occurrences": 72,
    "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=40187"
+  },
+  "acantholipan": {
+   "taxon": "Acantholipan",
+   "first": 83.6,
+   "last": 72.2,
+   "occurrences": 1,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=377303"
+  },
+  "labocania": {
+   "taxon": "Labocania",
+   "first": 85.7,
+   "last": 72.2,
+   "occurrences": 2,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38627"
+  },
+  "vallecillosaurus": {
+   "taxon": "Vallecillosaurus",
+   "first": 93.9,
+   "last": 89.8,
+   "occurrences": 1,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=197677"
+  },
+  "yehuecauhceratops": {
+   "taxon": "Yehuecauhceratops",
+   "first": 83.6,
+   "last": 72.2,
+   "occurrences": 1,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=378712"
   }
  },
  "maps": {
@@ -2972,7 +3200,10 @@
   "cryolophosaurus": "https://es.wikipedia.org/wiki/Cryolophosaurus_ellioti",
   "ambar-chiapas": "https://es.wikipedia.org/wiki/%C3%81mbar_de_Chiapas",
   "titanis": "https://es.wikipedia.org/wiki/Titanis",
-  "diprotodon": "https://en.wikipedia.org/wiki/Diprotodon"
+  "diprotodon": "https://en.wikipedia.org/wiki/Diprotodon",
+  "acantholipan": "https://es.wikipedia.org/wiki/Acantholipan_gonzalezi",
+  "yehuecauhceratops": "https://es.wikipedia.org/wiki/Yehuecauhceratops_mudei",
+  "labocania": "https://es.wikipedia.org/wiki/Labocania_anomala"
  },
  "refs": {
   "estromatolitos": {
@@ -3767,6 +3998,628 @@
      "why": "Descripción de Cryolophosaurus"
     }
    ]
+  },
+  "vallecillosaurus": {
+   "original": {
+    "authority": "Smith and Buchy 2008",
+    "citation": "K. T. Smith and M.-C. Buchy. 2008. A new aigialosaur (Squamata: Anguimorpha) with soft tissue remains from the Upper Cretaceous of Nuevo León, Mexico. Journal of Vertebrate Paleontology 28(1):85-94",
+    "doi": "10.1671/0272-4634(2008)28[85:anasaw]2.0.co;2"
+   },
+   "studies": [
+    {
+     "title": "A new aigialosaur (Squamata: Anguimorpha) with soft tissue remains from the Upper Cretaceous of Nuevo León, Mexico",
+     "year": 2008,
+     "journal": "Journal of Vertebrate Paleontology",
+     "authors": "Smith y Buchy",
+     "doi": "10.1671/0272-4634(2008)28[85:anasaw]2.0.co;2",
+     "why": "Descripción de Vallecillosaurus"
+    }
+   ]
+  },
+  "acantholipan": {
+   "original": {
+    "authority": "Rivera-Sylva et al. 2018",
+    "citation": "H. E. Rivera-Sylva, E. Frey, and W. Stinnesbeck, G. Carbot-Chanona, I. E. Sanchez-Uribe, J. R. Guzman-Gutierrez. 2018. Paleodiversity of Late Cretaceous Ankylosauria from Mexico and their\r\nphylogenetic significance. Swiss Journal of Palaeontology 137(1):83-93",
+    "doi": "10.1007/s13358-018-0153-1"
+   },
+   "studies": []
+  },
+  "labocania": {
+   "original": {
+    "authority": "Molnar 1974",
+    "citation": "R. E. Molnar. 1974. A distinctive theropod dinosaur from the Upper Cretaceous of Baja California (Mexico). Journal of Paleontology 48(5):1009-1017",
+    "doi": null
+   },
+   "studies": []
+  },
+  "yehuecauhceratops": {
+   "original": {
+    "authority": "Rivera-Sylva et al. 2017",
+    "citation": "H. E. Rivera-Sylva, E. Frey, and W. Stinnesbeckc, J. R. Guzmán-Gutiérrez, A. H. González-González. 2017. Mexican ceratopsids: considerations on their diversity and biogeography. Journal of South American Earth Sciences 75:66-73",
+    "doi": "10.1016/j.jsames.2017.01.008"
+   },
+   "studies": [
+    {
+     "title": "A Centrosaurine (Dinosauria: Ceratopsia) from the Aguja Formation (Late Campanian) of Northern Coahuila, Mexico",
+     "year": 2016,
+     "journal": "PLOS ONE",
+     "authors": "Rivera-Sylva et al.",
+     "doi": "10.1371/journal.pone.0150529",
+     "why": "Descripción del ejemplar, que recibió su nombre en 2017"
+    }
+   ]
   }
+ },
+ "cities": {
+  "Ciudad de México": {
+   "0": {
+    "lon": -99.1,
+    "lat": 19.4
+   },
+   "15": {
+    "lon": -92.92,
+    "lat": 19.7
+   },
+   "50": {
+    "lon": -78.6,
+    "lat": 22.24
+   },
+   "90": {
+    "lon": -62.27,
+    "lat": 23.34
+   },
+   "150": {
+    "lon": -37.22,
+    "lat": 15.48
+   },
+   "220": {
+    "lon": -36.42,
+    "lat": -6.91
+   },
+   "260": {
+    "lon": -40.09,
+    "lat": -5.13
+   },
+   "310": {
+    "lon": -46.63,
+    "lat": -13.58
+   },
+   "380": {
+    "lon": -86.31,
+    "lat": -40.88
+   },
+   "430": null,
+   "460": null,
+   "510": null,
+   "560": null,
+   "800": null
+  },
+  "Monterrey": {
+   "0": {
+    "lon": -100.3,
+    "lat": 25.7
+   },
+   "15": {
+    "lon": -93.3,
+    "lat": 26.09
+   },
+   "50": {
+    "lon": -78,
+    "lat": 28.61
+   },
+   "90": {
+    "lon": -61.84,
+    "lat": 29.73
+   },
+   "150": {
+    "lon": -35.63,
+    "lat": 21.62
+   },
+   "220": {
+    "lon": -32.34,
+    "lat": -3.07
+   },
+   "260": {
+    "lon": -31.86,
+    "lat": 1.47
+   },
+   "310": {
+    "lon": -37.38,
+    "lat": -8.21
+   },
+   "380": {
+    "lon": -89.86,
+    "lat": -28.7
+   },
+   "430": {
+    "lon": -128.47,
+    "lat": -13.72
+   },
+   "460": {
+    "lon": -143.82,
+    "lat": -9.26
+   },
+   "510": {
+    "lon": -166.14,
+    "lat": 0.9
+   },
+   "560": {
+    "lon": 174.52,
+    "lat": -11.89
+   },
+   "800": null
+  },
+  "Guadalajara": {
+   "0": {
+    "lon": -103.4,
+    "lat": 20.7
+   },
+   "15": {
+    "lon": -97.04,
+    "lat": 21.46
+   },
+   "50": {
+    "lon": -82.51,
+    "lat": 24.51
+   },
+   "90": {
+    "lon": -66.27,
+    "lat": 25.52
+   },
+   "150": {
+    "lon": -40.44,
+    "lat": 18.07
+   },
+   "220": {
+    "lon": -36.5,
+    "lat": -6.27
+   },
+   "260": null,
+   "310": null,
+   "380": null,
+   "430": null,
+   "460": null,
+   "510": null,
+   "560": null,
+   "800": null
+  },
+  "Saltillo": {
+   "0": {
+    "lon": -101,
+    "lat": 25.4
+   },
+   "15": {
+    "lon": -94.04,
+    "lat": 25.87
+   },
+   "50": {
+    "lon": -78.78,
+    "lat": 28.49
+   },
+   "90": {
+    "lon": -62.63,
+    "lat": 29.58
+   },
+   "150": {
+    "lon": -36.38,
+    "lat": 21.59
+   },
+   "220": {
+    "lon": -33.58,
+    "lat": -1.96
+   },
+   "260": null,
+   "310": null,
+   "380": null,
+   "430": null,
+   "460": null,
+   "510": null,
+   "560": null,
+   "800": null
+  },
+  "Mérida": {
+   "0": {
+    "lon": -89.6,
+    "lat": 21
+   },
+   "15": {
+    "lon": -83.3,
+    "lat": 20.26
+   },
+   "50": {
+    "lon": -68.87,
+    "lat": 21.52
+   },
+   "90": {
+    "lon": -52.44,
+    "lat": 22.83
+   },
+   "150": {
+    "lon": -27.95,
+    "lat": 15.33
+   },
+   "220": {
+    "lon": -25.89,
+    "lat": 0.93
+   },
+   "260": null,
+   "310": null,
+   "380": null,
+   "430": null,
+   "460": null,
+   "510": null,
+   "560": null,
+   "800": null
+  },
+  "Tijuana": {
+   "0": {
+    "lon": -117,
+    "lat": 32.5
+   },
+   "15": null,
+   "50": null,
+   "90": null,
+   "150": null,
+   "220": null,
+   "260": null,
+   "310": null,
+   "380": null,
+   "430": null,
+   "460": null,
+   "510": null,
+   "560": null,
+   "800": null
+  },
+  "Oaxaca": {
+   "0": {
+    "lon": -96.7,
+    "lat": 17.1
+   },
+   "15": {
+    "lon": -90.81,
+    "lat": 17.15
+   },
+   "50": {
+    "lon": -76.85,
+    "lat": 19.45
+   },
+   "90": {
+    "lon": -60.44,
+    "lat": 20.58
+   },
+   "150": {
+    "lon": -35.9,
+    "lat": 12.51
+   },
+   "220": {
+    "lon": -34.53,
+    "lat": -9.55
+   },
+   "260": {
+    "lon": -42.31,
+    "lat": -7.5
+   },
+   "310": {
+    "lon": -49.26,
+    "lat": -15.57
+   },
+   "380": {
+    "lon": -90.6,
+    "lat": -40.96
+   },
+   "430": null,
+   "460": null,
+   "510": null,
+   "560": null,
+   "800": null
+  },
+  "Bogotá": {
+   "0": {
+    "lon": -74.1,
+    "lat": 4.7
+   },
+   "15": {
+    "lon": -70.35,
+    "lat": -0.47
+   },
+   "50": {
+    "lon": -58.29,
+    "lat": -2.75
+   },
+   "90": {
+    "lon": -43.57,
+    "lat": 0.1
+   },
+   "150": {
+    "lon": -31.95,
+    "lat": 2.43
+   },
+   "220": null,
+   "260": null,
+   "310": null,
+   "380": null,
+   "430": null,
+   "460": null,
+   "510": null,
+   "560": null,
+   "800": null
+  },
+  "Buenos Aires": {
+   "0": {
+    "lon": -58.4,
+    "lat": -34.6
+   },
+   "15": {
+    "lon": -55.77,
+    "lat": -38.58
+   },
+   "50": {
+    "lon": -45.67,
+    "lat": -41.52
+   },
+   "90": {
+    "lon": -28.95,
+    "lat": -37.98
+   },
+   "150": {
+    "lon": -20.28,
+    "lat": -36.47
+   },
+   "220": {
+    "lon": -11.74,
+    "lat": -46.53
+   },
+   "260": {
+    "lon": -33.87,
+    "lat": -45.55
+   },
+   "310": {
+    "lon": -49.12,
+    "lat": -54.31
+   },
+   "380": {
+    "lon": -145.93,
+    "lat": -62.27
+   },
+   "430": {
+    "lon": 166.24,
+    "lat": -45.03
+   },
+   "460": {
+    "lon": 177.68,
+    "lat": -24.47
+   },
+   "510": {
+    "lon": -167.67,
+    "lat": -37.54
+   },
+   "560": {
+    "lon": 165.9,
+    "lat": -26.05
+   },
+   "800": {
+    "lon": 104.45,
+    "lat": -39.84
+   }
+  },
+  "Madrid": {
+   "0": {
+    "lon": -3.7,
+    "lat": 40.4
+   },
+   "15": {
+    "lon": -3.84,
+    "lat": 35
+   },
+   "50": {
+    "lon": 1.24,
+    "lat": 29.65
+   },
+   "90": {
+    "lon": 8.42,
+    "lat": 31.4
+   },
+   "150": {
+    "lon": 20.38,
+    "lat": 23.75
+   },
+   "220": {
+    "lon": 13.31,
+    "lat": 19.42
+   },
+   "260": {
+    "lon": 18.2,
+    "lat": 6.74
+   },
+   "310": {
+    "lon": 13.07,
+    "lat": -5.14
+   },
+   "380": {
+    "lon": -6.01,
+    "lat": -42.46
+   },
+   "430": {
+    "lon": -7.4,
+    "lat": -64.43
+   },
+   "460": {
+    "lon": -51.9,
+    "lat": -82.61
+   },
+   "510": {
+    "lon": -23.69,
+    "lat": -68.72
+   },
+   "560": {
+    "lon": -24.34,
+    "lat": -63.83
+   },
+   "800": null
+  },
+  "Nueva York": {
+   "0": {
+    "lon": -74,
+    "lat": 40.7
+   },
+   "15": {
+    "lon": -65.31,
+    "lat": 38.18
+   },
+   "50": {
+    "lon": -47.93,
+    "lat": 36.82
+   },
+   "90": {
+    "lon": -31.49,
+    "lat": 38.43
+   },
+   "150": {
+    "lon": -7.19,
+    "lat": 27.56
+   },
+   "220": {
+    "lon": -10.08,
+    "lat": 11.42
+   },
+   "260": {
+    "lon": -5.87,
+    "lat": 6.87
+   },
+   "310": {
+    "lon": -10.92,
+    "lat": -5.08
+   },
+   "380": {
+    "lon": -59.33,
+    "lat": -33.07
+   },
+   "430": {
+    "lon": -101.82,
+    "lat": -21.26
+   },
+   "460": {
+    "lon": -119.35,
+    "lat": -21.37
+   },
+   "510": {
+    "lon": -147.05,
+    "lat": -17.74
+   },
+   "560": {
+    "lon": -162.1,
+    "lat": -26.64
+   },
+   "800": null
+  },
+  "Tokio": {
+   "0": {
+    "lon": 139.7,
+    "lat": 35.7
+   },
+   "15": {
+    "lon": 138.13,
+    "lat": 40.44
+   },
+   "50": {
+    "lon": 138.09,
+    "lat": 47.47
+   },
+   "90": {
+    "lon": 147.91,
+    "lat": 46.32
+   },
+   "150": {
+    "lon": 161.49,
+    "lat": 52.46
+   },
+   "220": {
+    "lon": 178.73,
+    "lat": 46.2
+   },
+   "260": null,
+   "310": null,
+   "380": null,
+   "430": null,
+   "460": null,
+   "510": null,
+   "560": null,
+   "800": null
+  }
+ },
+ "articlesEn": {
+  "estromatolitos": "https://en.wikipedia.org/wiki/Stromatolite",
+  "grypania": "https://en.wikipedia.org/wiki/Grypania",
+  "charnia": "https://en.wikipedia.org/wiki/Charnia",
+  "dickinsonia": "https://en.wikipedia.org/wiki/Dickinsonia",
+  "anomalocaris": "https://en.wikipedia.org/wiki/Anomalocaris",
+  "hallucigenia": "https://en.wikipedia.org/wiki/Hallucigenia",
+  "haikouichthys": "https://en.wikipedia.org/wiki/Haikouichthys",
+  "trilobites": "https://en.wikipedia.org/wiki/Trilobite",
+  "sacabambaspis": "https://en.wikipedia.org/wiki/Sacabambaspis",
+  "orthoceras": "https://en.wikipedia.org/wiki/Orthoceras",
+  "cooksonia": "https://en.wikipedia.org/wiki/Cooksonia",
+  "eurypterus": "https://en.wikipedia.org/wiki/Eurypterus",
+  "dunkleosteus": "https://en.wikipedia.org/wiki/Dunkleosteus",
+  "tiktaalik": "https://en.wikipedia.org/wiki/Tiktaalik",
+  "archaeopteris": "https://en.wikipedia.org/wiki/Archaeopteris",
+  "meganeura": "https://en.wikipedia.org/wiki/Meganeura",
+  "arthropleura": "https://en.wikipedia.org/wiki/Arthropleura",
+  "hylonomus": "https://en.wikipedia.org/wiki/Hylonomus",
+  "dimetrodon": "https://en.wikipedia.org/wiki/Dimetrodon",
+  "mesosaurus": "https://en.wikipedia.org/wiki/Mesosaurus",
+  "glossopteris": "https://en.wikipedia.org/wiki/Glossopteris",
+  "inostrancevia": "https://en.wikipedia.org/wiki/Inostrancevia",
+  "lystrosaurus": "https://en.wikipedia.org/wiki/Lystrosaurus",
+  "tanystropheus": "https://en.wikipedia.org/wiki/Tanystropheus",
+  "eoraptor": "https://en.wikipedia.org/wiki/Eoraptor",
+  "herrerasaurus": null,
+  "coelophysis": "https://en.wikipedia.org/wiki/Coelophysis_bauri",
+  "plateosaurus": "https://en.wikipedia.org/wiki/Plateosaurus",
+  "ichthyosaurus": "https://en.wikipedia.org/wiki/Ichthyosaurus",
+  "huizachal": null,
+  "allosaurus": "https://en.wikipedia.org/wiki/Allosaurus",
+  "stegosaurus": "https://en.wikipedia.org/wiki/Stegosaurus",
+  "diplodocus": "https://en.wikipedia.org/wiki/Diplodocus",
+  "giraffatitan": "https://en.wikipedia.org/wiki/Giraffatitan",
+  "archaeopteryx": "https://en.wikipedia.org/wiki/Archaeopteryx",
+  "iguanodon": null,
+  "sinosauropteryx": null,
+  "microraptor": "https://en.wikipedia.org/wiki/Microraptor",
+  "tlayua": null,
+  "argentinosaurus": "https://en.wikipedia.org/wiki/Argentinosaurus",
+  "spinosaurus": "https://en.wikipedia.org/wiki/Spinosaurus",
+  "muzquizopteryx": "https://en.wikipedia.org/wiki/Muzquizopteryx",
+  "velociraptor": null,
+  "coahuilaceratops": "https://en.wikipedia.org/wiki/Coahuilaceratops",
+  "velafrons": "https://en.wikipedia.org/wiki/Velafrons_coahuilensis",
+  "tlatolophus": "https://en.wikipedia.org/wiki/Tlatolophus",
+  "latirhinus": "https://en.wikipedia.org/wiki/Latirhinus",
+  "carnotaurus": "https://en.wikipedia.org/wiki/Carnotaurus",
+  "mosasaurus": "https://en.wikipedia.org/wiki/Mosasaurus",
+  "quetzalcoatlus": "https://en.wikipedia.org/wiki/Quetzalcoatlus",
+  "triceratops": "https://en.wikipedia.org/wiki/Triceratops",
+  "trex": "https://en.wikipedia.org/wiki/Tyrannosaurus_rex",
+  "chicxulub": "https://en.wikipedia.org/wiki/Chicxulub_crater",
+  "titanoboa": "https://en.wikipedia.org/wiki/Titanoboa",
+  "basilosaurus": "https://en.wikipedia.org/wiki/Basilosaurus",
+  "paraceratherium": "https://en.wikipedia.org/wiki/Paraceratherium",
+  "megalodon": "https://en.wikipedia.org/wiki/Megalodon",
+  "lucy": "https://en.wikipedia.org/wiki/Australopithecus_afarensis",
+  "smilodon": "https://en.wikipedia.org/wiki/Smilodon",
+  "megatherium": "https://en.wikipedia.org/wiki/Megatherium",
+  "glyptodon": "https://en.wikipedia.org/wiki/Glyptodon",
+  "mamut": "https://en.wikipedia.org/wiki/Columbian_mammoth",
+  "neandertal": "https://en.wikipedia.org/wiki/Neanderthal",
+  "naia": null,
+  "eryops": "https://en.wikipedia.org/wiki/Eryops",
+  "cryolophosaurus": "https://en.wikipedia.org/wiki/Cryolophosaurus",
+  "ambar-chiapas": "https://en.wikipedia.org/wiki/Mexican_amber",
+  "titanis": "https://en.wikipedia.org/wiki/Titanis",
+  "diprotodon": "https://en.wikipedia.org/wiki/Diprotodon",
+  "vallecillosaurus": null,
+  "acantholipan": "https://en.wikipedia.org/wiki/Acantholipan",
+  "yehuecauhceratops": "https://en.wikipedia.org/wiki/Yehuecauhceratops",
+  "labocania": null
  }
 }

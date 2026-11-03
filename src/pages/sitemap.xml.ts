@@ -2,7 +2,7 @@
 import type { APIRoute } from 'astro';
 import { species } from '../data/species.js';
 
-const rooms = ['', 'tiempo', 'continentes', 'vida', 'dinosaurios', 'mexico', 'donde-vives', 'mitos', 'metodo', 'pasaporte', 'creditos'];
+const rooms = ['', 'tiempo', 'continentes', 'vida', 'dinosaurios', 'mexico', 'donde-vives', 'mitos', 'metodo', 'pasaporte', 'visita', 'colabora', 'creditos'];
 
 export const GET: APIRoute = ({ site }) => {
   const urls = [...rooms.map((r) => `/${r}`), ...species.map((s) => `/especie/${s.id}`)];

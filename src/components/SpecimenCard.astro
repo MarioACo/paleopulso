@@ -1,24 +1,26 @@
 ---
 import Silhouette from './Silhouette.astro';
 import Photo from './Photo.astro';
-import { mainPhoto, periodOf, href } from '../lib/site.js';
-import { formatMa } from '../data/periods.js';
+import { mainPhoto } from '../lib/site.js';
+import { periodByIdL, formatMaL, L, tr } from '../i18n.js';
 interface Props { s: any; index?: number }
 const { s } = Astro.props;
-const p = periodOf(s);
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const p = periodByIdL(lang)[s.period];
 const photo = mainPhoto(s.id);
 ---
-<a class="specimen" href={href(s)} style={`--pc:${p.color}`}
-  data-id={s.id} data-period={s.period} data-era={p.group} data-habitat={s.habitat} data-continent={s.continent}
+<a class="specimen" href={L(lang, `/especie/${s.id}`)} style={`--pc:${p.color}`}
+  data-id={s.id} data-period={s.period} data-era={p.groupEs || p.group} data-habitat={s.habitat} data-continent={s.continentEs || s.continent}
   data-mexico={s.mexico ? '1' : '0'} data-search={`${s.name} ${s.group} ${s.place} ${s.country} ${p.name} ${s.habitat}`.toLowerCase()}>
   <div class="vitrine">
     {photo && <Photo p={photo} sizes="(max-width: 600px) 100vw, 320px" />}
     <Silhouette id={s.id} />
   </div>
   <div class="specimen-body">
-    <span class="meta"><b>{p.name}</b> · {formatMa(s.ma)}</span>
+    <span class="meta"><b>{p.name}</b> · {formatMaL(s.ma, lang)}</span>
     <h3>{s.name}</h3>
     <span class="meta">{s.group} · <span class={s.mexico ? 'mx-flag' : ''}>{s.country}</span></span>
-    {s.debated && <span><span class="badge debate">En debate</span></span>}
+    {s.debated && <span><span class="badge debate">{T('En debate', 'Debated')}</span></span>}
   </div>
 </a>

@@ -1,0 +1,303 @@
+---
+import Museum from '../layouts/Museum.astro';
+import EarthClock from '../components/EarthClock.astro';
+import Silhouette from '../components/Silhouette.astro';
+import { mainPhoto, photosOf } from '../lib/site.js';
+import { speciesL, periodByIdL, extinctionsL, formatMaL, tr, L } from '../i18n.js';
+
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const species = speciesL(lang);
+const periodById = periodByIdL(lang);
+const extinctions = extinctionsL(lang);
+const hero = photosOf('trex').find((p) => p.kind === 'life');
+const halls = [
+  { href: '/tiempo', no: 'I', title: T('Tiempo profundo', 'Deep time'), text: T('Desciende por los estratos de 4,567 millones de años o mira moverse los continentes en la máquina del tiempo.', 'Descend through 4,567 million years of strata or watch the continents move in the time machine.'), sil: 'dickinsonia' },
+  { href: '/vida', no: 'II', title: T('Archivo de vida', 'Archive of life'), text: T(`${species.length} piezas de todo el mundo: dónde se hallaron y dónde estaba ese lugar entonces.`, `${species.length} pieces from around the world: where they were found and where that place was back then.`), sil: 'anomalocaris' },
+  { href: '/dinosaurios', no: 'III', title: T('Sala mesozoica', 'Mesozoic hall'), text: T('Vitrinas de dinosaurios y un comparador de tamaños a escala real.', 'Dinosaur showcases and a true-to-scale size comparator.'), sil: 'trex' },
+  { href: '/mexico', no: 'IV', title: T('Sala México', 'Mexico hall'), text: T('De los trilobites de Sonora a Chicxulub, los dinosaurios de Coahuila y Naia.', 'From the trilobites of Sonora to Chicxulub, the dinosaurs of Coahuila and Naia.'), sil: 'coahuilaceratops' },
+  { href: '/mitos', no: 'V', title: T('Mitos y evidencia', 'Myths & evidence'), text: T('¿El T. rex no te ve si no te mueves? Lo que dicen los fósiles.', 'T. rex can’t see you if you don’t move? What the fossils say.'), sil: 'velociraptor' },
+  { href: '/metodo', no: 'VI', title: T('Cómo sabemos', 'How we know'), text: T('Fósiles, isótopos y estratos: cómo se reconstruye un mundo perdido.', 'Fossils, isotopes and strata: how a lost world is reconstructed.'), sil: 'trilobites' },
+];
+// Pieza del día: se elige en el navegador según la fecha.
+const daily = species.filter((s) => mainPhoto(s.id)).map((s) => ({
+  id: s.id, name: s.name, href: L(lang, `/especie/${s.id}`), summary: s.summary, fact: s.fact, place: `${s.place}, ${s.country}`,
+  period: periodById[s.period].name, age: formatMaL(s.ma, lang), photo: mainPhoto(s.id)!.file, frame: mainPhoto(s.id)!.frame || 'photo',
+}));
+const S = {
+  clues: [
+    T('Cada huella mide 38 cm de largo y tiene tres dedos estrechos que terminan en marcas de garra.', 'Each footprint is 38 cm long, with three narrow toes ending in claw marks.'),
+    T('De una huella a la siguiente del mismo pie hay 2.4 m. Las huellas casi forman una sola línea.', 'From one print to the next of the same foot there are 2.4 m. The prints almost form a single line.'),
+    T('No hay marcas de manos ni de cola arrastrada: el animal caminaba sobre dos patas.', 'There are no hand prints or tail drag marks: the animal walked on two legs.'),
+  ],
+  pick: T('Elige una hipótesis primero.', 'Pick a hypothesis first.'),
+  calcTitle: T('Así se calcula', 'How it is calculated'),
+  calc: T('Altura de la cadera ≈ 4 × huella = <b>{hip} m</b>. Con la fórmula de Alexander, v = 0.25·g<sup>½</sup>·zancada<sup>1.67</sup>·cadera<sup>−1.17</sup> ≈ <b>{v} m/s ({kmh} km/h)</b>: caminaba sin prisa.',
+    'Hip height ≈ 4 × footprint = <b>{hip} m</b>. With Alexander’s formula, v = 0.25·g<sup>½</sup>·stride<sup>1.67</sup>·hip<sup>−1.17</sup> ≈ <b>{v} m/s ({kmh} km/h)</b>: it was walking unhurried.'),
+  ok: T('<b>¡Bien leído!</b> Tres dedos con garras y paso bípedo son la firma de un terópodo. Con una cadera de ~1.5 m sería un animal de unos 6–7 m de largo.', '<b>Well read!</b> Three clawed toes and a bipedal gait are the signature of a theropod. With a ~1.5 m hip it would be an animal about 6–7 m long.'),
+  sauropod: T('<b>No encaja.</b> Los saurópodos dejaban huellas redondas, enormes, y marcas de manos.', '<b>Doesn’t fit.</b> Sauropods left huge round prints, plus hand prints.'),
+  mammal: T('<b>No encaja.</b> Hace 72 Ma los mamíferos eran pequeños; ninguno dejaba huellas de 38 cm con tres dedos.', '<b>Doesn’t fit.</b> 72 Ma ago mammals were small; none left 38 cm three-toed prints.'),
+};
+const maxMa = 500;
+---
+<Museum title="Paleopulso" stamp="inicio">
+  <section class="hero">
+    <div class="hero-light" aria-hidden="true"></div>
+    {hero && <img class="hero-img" src={hero.file} alt={T('Reconstrucción en vida de Tyrannosaurus rex', 'Life reconstruction of Tyrannosaurus rex')} width={hero.w} height={hero.h} fetchpriority="high" />}
+    <div class="wrap hero-copy">
+      <p class="kicker">{T('Museo de historia natural · abierto toda la noche', 'Natural history museum · open all night')}</p>
+      <h1>{T('La Tierra', 'The Earth')}<br /><em>{T('antes de nosotros.', 'before us.')}</em></h1>
+      <p class="lead">{T('Recorre 4,567 millones de años de océanos de magma, microbios, bosques gigantes, dinosaurios y mamuts. Cada pieza separa lo que muestran los fósiles de lo que todavía interpretamos.', 'Walk through 4,567 million years of magma oceans, microbes, giant forests, dinosaurs and mammoths. Every piece separates what the fossils show from what we still interpret.')}</p>
+      <div class="hero-actions">
+        <a class="btn" href={L(lang, '/tiempo')}>{T('Comenzar el recorrido', 'Start the tour')} <span aria-hidden="true">→</span></a>
+        <a class="btn ghost" href={L(lang, '/visita')}>{T('Visita guiada', 'Guided tour')}</a>
+        <a class="btn ghost" href={L(lang, '/mexico')}>{T('Sala México', 'Mexico hall')}</a>
+      </div>
+    </div>
+    <aside class="cedula hero-cedula">
+      <div class="ced-no"><span>{T('Pieza 01', 'Piece 01')}</span><span>{T('Cretácico tardío', 'Late Cretaceous')}</span></div>
+      <p class="ced-title">Tyrannosaurus rex</p>
+      <p class="sci">Osborn, 1905 · Hell Creek, Montana</p>
+      {hero && <p style="font-size:.82rem;margin:0">{T('Reconstrucción en vida', 'Life reconstruction')}: {hero.credit} · {hero.license}</p>}
+    </aside>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="kicker">{T('Sala de orientación', 'Orientation hall')}</p><h2>{T('Si la historia de la Tierra', 'If Earth’s history')}<br />{T('fuera', 'were')} <em>{T('un solo día', 'a single day')}</em></h2></div>
+        <p>{T('Medianoche es el origen del planeta. Los dinosaurios llegan pasadas las diez de la noche y nuestra especie, en los últimos seis segundos. Toca un punto del reloj.', 'Midnight is the origin of the planet. Dinosaurs arrive after 10 p.m. and our species in the last six seconds. Tap a point on the clock.')}</p>
+      </div>
+      <div class="reveal"><EarthClock /></div>
+    </div>
+  </section>
+
+  <section class="section halls">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="kicker">{T('Plano del museo', 'Museum map')}</p><h2>{T('Seis salas,', 'Six halls,')}<br /><em>{T('una sola historia', 'one story')}</em></h2></div>
+        <p>{T('Puedes recorrerlas en orden o perderte. Cada sala que visitas sella tu pasaporte.', 'Walk them in order or get lost. Every hall you visit stamps your passport.')}</p>
+      </div>
+      <div class="hall-grid">
+        {halls.map((h) => (
+          <a class="hall reveal" href={L(lang, h.href)}>
+            <span class="hall-no sc">{h.no}</span>
+            <Silhouette id={h.sil} class="hall-sil" />
+            <h3>{h.title}</h3>
+            <p>{h.text}</p>
+            <span class="label">{T('Entrar →', 'Enter →')}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section where">
+    <div class="wrap where-grid reveal">
+      <div>
+        <p class="kicker">{T('Nuevo · Tu lugar en el tiempo', 'New · Your place in time')}</p>
+        <h2>{T('¿Qué había', 'What was')}<br /><em>{T('donde vives?', 'where you live?')}</em></h2>
+      </div>
+      <div>
+        <p class="lead">{T('Elige tu ciudad y viaja: mira dónde estaba ese punto del planeta en cada época, qué latitud tenía y qué fósiles de la colección vivieron cerca.', 'Pick your city and travel: see where that spot on the planet was in each age, its latitude, and which fossils in the collection lived nearby.')}</p>
+        <a class="btn" href={L(lang, '/donde-vives')}>{T('Viajar desde mi ciudad →', 'Travel from my city →')}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section daily-section">
+    <div class="wrap daily" id="daily">
+      <div class="vitrine daily-vitrine"><figure class="ph ph-photo fit-cover" id="dailyFig"><img id="dailyImg" alt="" /></figure><div class="plinth"></div></div>
+      <div class="daily-copy">
+        <p class="kicker">{T('Pieza del día', 'Piece of the day')}</p>
+        <h2 id="dailyName">—</h2>
+        <p class="label" id="dailyMeta"></p>
+        <p class="lead" id="dailySummary"></p>
+        <p class="daily-fact"><span class="label">{T('¿Sabías que…?', 'Did you know…?')}</span> <span id="dailyFact"></span></p>
+        <div class="hero-actions"><a class="btn" id="dailyLink" href={L(lang, '/vida')}>{T('Ver la ficha →', 'See the record →')}</a><button class="btn ghost" id="dailyNext" type="button">{T('Otra pieza', 'Another piece')}</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="kicker">{T('Los cinco silencios', 'The five silences')}</p><h2>{T('La vida no avanza', 'Life does not move')}<br /><em>{T('en línea recta', 'in a straight line')}</em></h2></div>
+        <p>{T('Cinco extinciones masivas borraron la mayor parte de las especies marinas. La altura es el porcentaje estimado de especies perdidas. Elige una.', 'Five mass extinctions wiped out most marine species. Bar height is the estimated percentage of species lost. Pick one.')}</p>
+      </div>
+      <div class="ext reveal">
+        <div class="ext-chart" role="group" aria-label={T('Las cinco grandes extinciones', 'The five great extinctions')}>
+          {[25, 50, 75, 100].map((y) => <span class="ext-grid" style={`bottom:${y}%`}><i>{y} %</i></span>)}
+          {extinctions.map((e, i) => (
+            <button type="button" class="ext-bar" style={`left:${(1 - e.ma / maxMa) * 100}%;--h:${e.loss}%;--row:${i % 2}`} data-ext={i} aria-pressed={i === 2 ? 'true' : 'false'}>
+              <span class="ext-pct">{e.range}</span><span class="ext-name">{e.name}</span>
+            </button>
+          ))}
+          <div class="ext-axis"><span>500 Ma</span><span>400</span><span>300</span><span>200</span><span>100</span><span>{T('hoy', 'today')}</span></div>
+        </div>
+        <div class="cedula ext-card" aria-live="polite">
+          {extinctions.map((e, i) => (
+            <div data-ext-card={i} hidden={i !== 2}>
+              <div class="ced-no"><span>{e.ma} Ma</span><span>{e.range} {T('de especies marinas', 'of marine species')}</span></div>
+              <h3>{e.name}</h3>
+              <p>{e.cause}</p>
+            </div>
+          ))}
+          <p style="font-size:.8rem;margin:0;color:var(--ink-soft)">{T('Estimaciones a partir del registro fósil marino; varían según el método y el estudio.', 'Estimates from the marine fossil record; they vary by method and study.')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section mission">
+    <div class="wrap mission-grid">
+      <div class="trackway reveal" aria-hidden="true">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <svg viewBox="0 0 60 70" class="print" style={`left:${30 + (i % 2) * 24}%;top:${80 - i * 18}%;rotate:${i % 2 ? 6 : -8}deg`}><path d="M30 68c-9 0-13-8-11-17L8 14c-1-5 5-7 7-2l10 28 2-36c0-5 6-5 6 0l2 36 10-28c2-5 8-3 7 2L41 51c2 9-2 17-11 17Z" /></svg>
+        ))}
+      </div>
+      <div class="mission-panel reveal">
+        <p class="kicker">{T('Misión de campo 001 · Patagonia, 72 Ma', 'Field mission 001 · Patagonia, 72 Ma')}</p>
+        <h2>{T('¿Quién pasó', 'Who walked')}<br /><em>{T('por aquí?', 'through here?')}</em></h2>
+        <p class="muted">{T('El lodo de una orilla conservó cinco huellas seguidas. Analiza las pistas y propón una hipótesis.', 'The mud of a riverbank preserved five footprints in a row. Study the clues and propose a hypothesis.')}</p>
+        <div class="clues">
+          <button type="button" class="chip" aria-pressed="true" data-clue="0">{T('Huella', 'Footprint')}</button>
+          <button type="button" class="chip" aria-pressed="false" data-clue="1">{T('Zancada', 'Stride')}</button>
+          <button type="button" class="chip" aria-pressed="false" data-clue="2">{T('Forma', 'Gait')}</button>
+        </div>
+        <p class="clue-text" id="clueText">{S.clues[0]}</p>
+        <fieldset class="answers">
+          <legend class="label">{T('Tu hipótesis', 'Your hypothesis')}</legend>
+          <label><input type="radio" name="trk" value="sauropod" /> {T('Un saurópodo gigante', 'A giant sauropod')}</label>
+          <label><input type="radio" name="trk" value="theropod" /> {T('Un terópodo mediano', 'A medium-sized theropod')}</label>
+          <label><input type="radio" name="trk" value="mammal" /> {T('Un mamífero corredor', 'A running mammal')}</label>
+        </fieldset>
+        <button class="btn" id="trkCheck" type="button">{T('Comprobar', 'Check')}</button>
+        <div class="trk-result" id="trkResult" role="status"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section closing">
+    <div class="wrap reveal">
+      <p class="kicker">{T('La última sala', 'The last hall')}</p>
+      <h2>{T('Somos la primera especie capaz', 'We are the first species able')}<br />{T('de', 'to')} <em>{T('leer esta historia.', 'read this story.')}</em></h2>
+      <p class="lead" style="margin-inline:auto">{T('Y una de las pocas capaces de decidir cómo continúa.', 'And one of the few able to decide how it continues.')}</p>
+      <a class="btn" href={L(lang, '/pasaporte')}>{T('Revisa tu pasaporte →', 'Check your passport →')}</a>
+    </div>
+  </section>
+</Museum>
+
+<script define:vars={{ daily, S }}>
+  // Pieza del día (cambia cada día; «Otra pieza» avanza).
+  let idx = Math.floor(Date.now() / 86400000) % daily.length;
+  const $ = (id) => document.getElementById(id);
+  function show() {
+    const d = daily[idx];
+    $('dailyImg').src = d.photo; $('dailyImg').alt = d.name;
+    $('dailyFig').className = `ph ph-${d.frame} ${d.frame === 'photo' ? 'fit-cover' : 'fit-contain'}`;
+    $('dailyName').textContent = d.name;
+    $('dailyMeta').textContent = `${d.period} · ${d.age} · ${d.place}`;
+    $('dailySummary').textContent = d.summary;
+    $('dailyFact').textContent = d.fact;
+    $('dailyLink').href = d.href;
+  }
+  $('dailyNext').addEventListener('click', () => { idx = (idx + 7) % daily.length; show(); });
+  show();
+
+  // Extinciones.
+  document.querySelectorAll('.ext-bar').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('.ext-bar').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    document.querySelectorAll('[data-ext-card]').forEach((c) => (c.hidden = c.dataset.extCard !== b.dataset.ext));
+  }));
+
+  // Misión de las huellas.
+  document.querySelectorAll('[data-clue]').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-clue]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    document.getElementById('clueText').textContent = S.clues[Number(b.dataset.clue)];
+  }));
+  document.getElementById('trkCheck').addEventListener('click', () => {
+    const v = document.querySelector('input[name="trk"]:checked')?.value;
+    const out = document.getElementById('trkResult');
+    if (!v) { out.innerHTML = `<p>${S.pick}</p>`; return; }
+    // Altura de cadera ≈ 4 × longitud de la huella; velocidad con la fórmula de Alexander (1976).
+    const foot = 0.38, stride = 2.4, hip = 4 * foot;
+    const speed = 0.25 * Math.sqrt(9.81) * stride ** 1.67 * hip ** -1.17;
+    const calc = `<p class="trk-calc"><span class="label">${S.calcTitle}</span>${S.calc.replace('{hip}', hip.toFixed(2)).replace('{v}', speed.toFixed(1)).replace('{kmh}', (speed * 3.6).toFixed(0))}</p>`;
+    out.innerHTML = v === 'theropod' ? `<p class="ok">${S.ok}</p>${calc}` : `<p class="no">${S[v]}</p>`;
+  });
+</script>
+
+<style>
+  .hero { position: relative; min-height: min(92vh, 900px); display: grid; align-items: center; overflow: hidden; border-bottom: 1px solid var(--line); }
+  .hero-light { position: absolute; inset: 0; background: radial-gradient(60% 70% at 70% 35%, rgba(255, 214, 150, .2), transparent 70%), radial-gradient(40% 30% at 70% 95%, rgba(209, 171, 98, .12), transparent 70%); }
+  .hero-img { position: absolute; right: -4%; bottom: 6%; width: min(66vw, 1050px); height: auto; filter: drop-shadow(0 40px 50px #000) brightness(1.18) contrast(1.06) sepia(.12); mask: linear-gradient(90deg, transparent, #000 22%); animation: breathe 9s ease-in-out infinite; }
+  @keyframes breathe { 50% { transform: translateY(-6px) scale(1.006); } }
+  .hero-copy { position: relative; z-index: 2; padding-block: 6rem; }
+  .hero-copy h1 { max-width: 14ch; text-shadow: 0 4px 30px #000; }
+  .hero-copy .lead { margin-top: 1.6rem; max-width: 48ch; color: #cfc4ad; text-shadow: 0 2px 12px #000; }
+  .hero-actions { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2rem; }
+  .hero-cedula { position: absolute; right: 3rem; bottom: 2.5rem; z-index: 2; width: 280px; padding: 1rem 1.2rem; }
+  .hero-cedula .ced-title { font: 400 1.5rem/1.1 var(--serif); margin: .5rem 0 .15rem; }
+  @media (max-width: 900px) {
+    .hero { min-height: auto; }
+    .hero-img { position: relative; right: auto; bottom: auto; width: 110%; margin: -2rem -5% 0; order: 2; mask: none; }
+    .hero-cedula { position: relative; right: auto; bottom: auto; margin: 0 1.5rem 2rem; }
+    .hero-copy { padding-block: 4rem 0; }
+  }
+
+  .hall-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .hall { position: relative; background: var(--wall); padding: 2rem 1.8rem 1.8rem; text-decoration: none; display: grid; gap: .6rem; min-height: 320px; align-content: end; overflow: hidden; transition: background .3s; }
+  .hall:hover { background: #1f1810; }
+  .hall-no { position: absolute; top: 1.2rem; left: 1.5rem; font-size: 1.6rem; color: var(--brass-dim); }
+  .hall :global(.hall-sil) { position: absolute; top: 1.6rem; right: 1.4rem; width: 46%; max-height: 130px; color: var(--paper); opacity: .14; transition: opacity .4s, transform .6s; }
+  .hall:hover :global(.hall-sil) { opacity: .5; transform: translateX(-6px); }
+  .hall p { color: var(--muted); margin: 0; font-size: .98rem; }
+  @media (max-width: 900px) { .hall-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .hall-grid { grid-template-columns: 1fr; } .hall { min-height: 240px; } }
+
+  .where { background: radial-gradient(60% 90% at 80% 50%, rgba(127, 176, 181, .12), transparent 70%), var(--night); }
+  .where-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: center; }
+  .where-grid .btn { margin-top: 1rem; }
+  @media (max-width: 860px) { .where-grid { grid-template-columns: 1fr; } }
+  .daily { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3.5rem; align-items: center; }
+  .daily-vitrine { aspect-ratio: 4 / 3; }
+  .daily-vitrine .ph { position: absolute; inset: 0; }
+  .daily-copy .label { margin: .8rem 0 1.2rem; }
+  .daily-fact { border-left: 2px solid var(--brass); padding-left: 1rem; color: var(--text); }
+  .daily-fact .label { display: block; color: var(--brass); margin-bottom: .2rem; }
+  @media (max-width: 860px) { .daily { grid-template-columns: 1fr; } }
+
+  .ext { display: grid; grid-template-columns: 1fr 340px; gap: 2.5rem; align-items: end; }
+  .ext-chart { position: relative; height: 380px; border-bottom: 1px solid var(--brass-dim); margin-bottom: 5.4rem; }
+  .ext-grid { position: absolute; left: 0; right: 0; border-top: 1px dashed var(--line); }
+  .ext-grid i { position: absolute; left: 0; top: -.75rem; font: 500 .72rem var(--label); color: var(--muted); font-style: normal; }
+  .ext-bar { position: absolute; bottom: 0; translate: -50% 0; width: 54px; height: var(--h); background: linear-gradient(180deg, var(--rust), #6d2f1d); border: 0; border-radius: 3px 3px 0 0; padding: 0; transition: filter .2s, box-shadow .3s; }
+  .ext-bar:hover { filter: brightness(1.2); }
+  .ext-bar[aria-pressed='true'] { background: linear-gradient(180deg, var(--brass), #7d5f2d); box-shadow: 0 0 30px rgba(209, 171, 98, .35); }
+  .ext-pct { position: absolute; top: -1.6rem; left: 50%; translate: -50% 0; white-space: nowrap; font: 400 1rem var(--serif); color: var(--text); }
+  .ext-name { position: absolute; bottom: calc(-1.8rem - var(--row) * 1.2rem); left: 50%; translate: -50% 0; white-space: nowrap; font: 500 .72rem var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .ext-axis { position: absolute; bottom: -5rem; left: 0; right: 0; display: flex; justify-content: space-between; font: 500 .7rem var(--label); color: var(--brass-dim); letter-spacing: .1em; }
+  @media (max-width: 900px) { .ext { grid-template-columns: 1fr; } .ext-name { display: none; } .ext-bar { width: 34px; } .ext-pct { font-size: .8rem; } }
+
+  .mission { background: radial-gradient(70% 60% at 25% 50%, #2a1f14, transparent), var(--night); }
+  .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .trackway { position: relative; height: 520px; border-radius: 8px; background: repeating-linear-gradient(170deg, #3a2c1d 0 3px, #33261a 3px 9px); box-shadow: inset 0 0 80px #000; overflow: hidden; }
+  .print { position: absolute; width: 74px; fill: #1b140d; filter: drop-shadow(0 1px 0 #5b4630); }
+  .mission-panel h2 { margin: .8rem 0 1rem; }
+  .clues { display: flex; gap: .5rem; flex-wrap: wrap; margin: 1.4rem 0 1rem; }
+  .clue-text { min-height: 3.4em; font-family: var(--serif); font-size: 1.2rem; }
+  .answers { border: 0; padding: 0; margin: 0 0 1.2rem; display: grid; gap: .5rem; }
+  .answers label { display: flex; gap: .7rem; align-items: center; padding: .7rem .9rem; border: 1px solid var(--line); border-radius: 4px; cursor: pointer; }
+  .answers label:has(input:checked) { border-color: var(--brass); background: rgba(209, 171, 98, .08); }
+  .answers input { accent-color: var(--brass); }
+  .trk-result { margin-top: 1.2rem; }
+  .trk-result .ok b { color: var(--moss); } .trk-result .no b { color: var(--rust); }
+  .trk-calc { background: var(--wall-2); padding: 1rem; border-radius: 4px; font-size: .95rem; }
+  .trk-calc .label { display: block; margin-bottom: .3rem; color: var(--brass); }
+  @media (max-width: 860px) { .mission-grid { grid-template-columns: 1fr; } .trackway { height: 300px; } .print { width: 48px; } }
+
+  .closing { text-align: center; background: radial-gradient(50% 80% at 50% 100%, rgba(209, 171, 98, .12), transparent), var(--night); }
+  .closing h2 { margin: 1rem 0 1.4rem; }
+  .closing .btn { margin-top: 1rem; }
+</style>

@@ -1,0 +1,23 @@
+name: Sugerir una mejora
+description: Una pieza que falta, una idea para una sala o algo incómodo de usar.
+title: "[Sugerencia] "
+labels: ["sugerencia"]
+body:
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo
+      options: ["Nueva pieza para la colección", "Mejorar una sala", "Algo es difícil de usar o leer", "Accesibilidad", "Imágenes o fotos", "Traducción", "Otro"]
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Cuéntanos
+      description: Si es una pieza nueva, dinos el nombre, la época y dónde se encontró. Si es un problema de uso, en qué dispositivo y navegador.
+    validations:
+      required: true
+  - type: input
+    id: fuente
+    attributes:
+      label: Fuente o imagen con licencia libre (opcional)

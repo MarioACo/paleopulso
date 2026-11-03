@@ -26,6 +26,7 @@ const chicxPhoto = mainPhoto('chicxulub');
   <section class="wrap mx-map-wrap">
     <div class="vitrine mx-map"><svg id="mxMap" aria-label="Mapa de yacimientos de México"></svg></div>
     <aside class="cedula mx-card" id="mxCard" aria-live="polite">
+      <h2 class="sr-only">Yacimiento seleccionado</h2>
       <p class="label" style="color:var(--ink-soft)">Toca un punto del mapa</p>
     </aside>
   </section>
@@ -116,7 +117,7 @@ const chicxPhoto = mainPhoto('chicxulub');
     const d = info[id];
     card.innerHTML = `${d.photo ? `<figure class="ph ph-${d.frame} ${d.frame === 'photo' ? 'fit-cover' : 'fit-contain'} mx-photo"><img src="${d.photo}" alt=""></figure>` : ''}
       <div class="ced-no"><span>${esc(d.period)}</span><span>${esc(d.age)}</span></div>
-      <h3>${esc(d.name)}</h3><p class="sci">${esc(d.place)}</p><p>${esc(d.summary)}</p>
+      <h2 class="mx-name">${esc(d.name)}</h2><p class="sci">${esc(d.place)}</p><p>${esc(d.summary)}</p>
       <a class="btn" href="${d.href}">Ver la ficha →</a>`;
     document.querySelectorAll<SVGElement>('[data-site]').forEach((c) => c.classList.toggle('on', c.dataset.site === id));
   }
@@ -134,6 +135,7 @@ const chicxPhoto = mainPhoto('chicxulub');
   .mx-card { position: sticky; top: 88px; }
   .mx-card :global(.mx-photo) { width: 100%; height: auto; aspect-ratio: 16 / 10; margin-bottom: 1rem; border-radius: 2px; background-color: #1a140e; }
   .mx-card :global(.btn) { margin-top: .5rem; }
+  .mx-card :global(.mx-name) { font-size: 1.9rem; color: var(--ink); margin: .5rem 0 .15rem; }
   .mx-line { list-style: none; padding: 0; margin: 0; position: relative; }
   .mx-line::before { content: ''; position: absolute; left: 8.5rem; top: 0; bottom: 0; width: 1px; background: linear-gradient(var(--brass), var(--rust)); }
   .mx-line li { display: grid; grid-template-columns: 8.5rem 1fr; gap: 2.2rem; padding: 1.2rem 0; position: relative; }

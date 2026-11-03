@@ -10,6 +10,8 @@ export const ogPages = [
   { id: 'donde-vives', kicker: 'Tu lugar en el tiempo', title: '¿Qué había donde vives?', photo: 'mamut' },
   { id: 'mitos', kicker: 'Sala V · Mitos y evidencia', title: '¿Mito o fósil?', photo: 'velociraptor' },
   { id: 'metodo', kicker: 'Sala VI · Método', title: 'La ciencia no adivina: reconstruye', photo: 'trilobites' },
+  { id: 'visita', kicker: 'Visita guiada · 10 paradas', title: 'De un microbio a una persona', photo: 'tiktaalik' },
+  { id: 'colabora', kicker: 'Colabora', title: 'Un museo que se corrige en público', photo: 'archaeopteryx' },
   { id: 'pasaporte', kicker: 'Pasaporte del museo', title: 'Tu cuaderno de campo', photo: 'stegosaurus' },
 ];
 export const ogIdFor = (pathname) => {

@@ -4,10 +4,11 @@
 interface Props { p: any; alt?: string; fit?: 'cover' | 'contain'; sizes?: string; eager?: boolean; class?: string }
 const { p, alt = '', fit = 'cover', sizes = '(max-width: 700px) 100vw, 640px', eager = false, class: cls = '' } = Astro.props;
 const frame = p.frame || 'photo';
+const plateLabel = Astro.url.pathname.startsWith('/en') ? 'Plate' : 'Lámina';
 const srcset = p.sm ? `${p.sm} 640w, ${p.file} ${p.w}w` : undefined;
 ---
 <figure class={`ph ph-${frame} fit-${frame === 'photo' ? fit : 'contain'} ${cls}`}>
   <img src={p.sm && !eager ? p.sm : p.file} srcset={srcset} sizes={sizes} alt={alt} width={p.w} height={p.h}
     loading={eager ? 'eager' : 'lazy'} decoding="async" />
-  {frame === 'plate' && <span class="ph-tag">Lámina</span>}
+  {frame === 'plate' && <span class="ph-tag">{plateLabel}</span>}
 </figure>

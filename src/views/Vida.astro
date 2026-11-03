@@ -1,0 +1,119 @@
+---
+import Museum from '../layouts/Museum.astro';
+import SpecimenCard from '../components/SpecimenCard.astro';
+import { speciesById as speciesEsById } from '../data/species.js';
+import { assets } from '../lib/site.js';
+import { speciesL, erasL, tr, L } from '../i18n.js';
+import { continentEn } from '../data/en/species.js';
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const species = speciesL(lang);
+const eras = erasL(lang);
+
+const env = (h: string) => /mar/i.test(h) ? 'mar' : /aire/i.test(h) ? 'aire' : /r[ií]o|lago|laguna|pantano|cueva|costa/i.test(h) ? 'agua' : 'tierra';
+const list = [...species].sort((a, b) => b.ma - a.ma);
+// Los filtros usan los valores en español (atributos data-*); las etiquetas se traducen.
+const continents = [...new Set(list.map((s) => s.continentEs || s.continent))].sort();
+const sites = list.map((s) => ({ id: s.id, lon: s.lon, lat: s.lat, label: `${s.name} · ${s.place}`, href: L(lang, `/especie/${s.id}`), mx: s.mexico }));
+---
+<Museum title={T('Archivo de vida', 'Archive of life')} stamp="vida" description={T(`${species.length} piezas de todas las eras y de todo el mundo, con el lugar de su hallazgo y su posición en el mapa antiguo.`, `${species.length} pieces from every era and every continent, with where each was found and where that place was on the ancient map.`)}>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">{T('Sala II · Archivo de vida', 'Hall II · Archive of life')}</p>
+      <h1>{species.length} {T('formas', 'ways')}<br /><em>{T('de existir.', 'of being alive.')}</em></h1>
+      <p class="lead">{T('Microbios, árboles, monstruos marinos, dinosaurios y humanos de todos los continentes. Cada punto del mapa marca dónde se encontró una pieza; en su ficha verás dónde estaba ese lugar cuando el animal vivía.', 'Microbes, trees, sea monsters, dinosaurs and humans from every continent. Each dot on the map marks where a piece was found; its record shows where that place was when the animal lived.')}</p>
+    </div>
+  </section>
+
+  <section class="wrap archive">
+    <div class="vitrine world"><svg id="worldMap" aria-label={T('Mapa mundial de hallazgos', 'World map of finds')}></svg></div>
+    <p class="map-legend"><span class="dot"></span> {T('Hallazgo', 'Find')} <span class="dot mx"></span> {T('México · Toca un punto para ver la pieza. Mapa: costas actuales (GPlates).', 'Mexico · Tap a dot to see the piece. Map: present-day coastlines (GPlates).')}</p>
+
+    <div class="tools" role="search">
+      <div class="chips" role="group" aria-label="Era">
+        <button class="chip" type="button" data-era="" aria-pressed="true">{T('Todas las eras', 'All eras')}</button>
+        {eras.map((e) => <button class="chip" type="button" data-era={e.id} aria-pressed="false">{e.label}</button>)}
+      </div>
+      <div class="chips" role="group" aria-label={T('Ambiente', 'Environment')}>
+        {[['', T('Todo ambiente', 'Any environment')], ['mar', T('Mar', 'Sea')], ['tierra', T('Tierra', 'Land')], ['agua', T('Ríos y costas', 'Rivers & coasts')], ['aire', T('Aire', 'Air')]].map(([v, l]) => <button class="chip" type="button" data-env={v} aria-pressed={v === '' ? 'true' : 'false'}>{l}</button>)}
+      </div>
+      <div class="row">
+        <label class="select"><span class="label">{T('Continente', 'Continent')}</span>
+          <select id="continent"><option value="">{T('Todos', 'All')}</option>{continents.map((c) => <option value={c}>{lang === 'en' ? continentEn[c] || c : c}</option>)}</select>
+        </label>
+        <label class="search"><span class="label">{T('Buscar', 'Search')}</span><input id="q" type="search" placeholder={T('Nombre, lugar, grupo…', 'Name, place, group…')} autocomplete="off" /></label>
+        <label class="mxonly"><input type="checkbox" id="mx" /> {T('Solo México', 'Mexico only')}</label>
+      </div>
+      <p class="count" aria-live="polite"><span id="count">{species.length}</span> {T('piezas', 'pieces')}</p>
+    </div>
+
+    <h2 class="sr-only">{T('Piezas de la colección', 'Pieces in the collection')}</h2>
+    <div class="specimen-grid" id="grid">
+      {list.map((s) => <div data-env={env(speciesEsById[s.id].habitat)} class="cell"><SpecimenCard s={s} /></div>)}
+    </div>
+    <p class="empty" id="empty" hidden>{T('Ningún fósil con esas pistas. Prueba con menos filtros.', 'No fossil matches those clues. Try fewer filters.')}</p>
+  </section>
+</Museum>
+
+<script type="application/json" id="sitesData" set:html={JSON.stringify({ sites, url: assets.maps?.[0] })} />
+<script>
+  import { drawMap } from '../scripts/map';
+  const { sites, url } = JSON.parse(document.getElementById('sitesData')!.textContent!);
+  const svg = document.getElementById('worldMap') as unknown as SVGSVGElement;
+  const cells = [...document.querySelectorAll<HTMLElement>('.cell')];
+  const state = { era: '', env: '', continent: '', q: '', mx: false };
+
+  drawMap(svg, { url, sites, width: 960, height: 470 }).then(apply);
+
+  function apply() {
+    let n = 0; const visible = new Set<string>();
+    for (const c of cells) {
+      const a = c.querySelector<HTMLElement>('.specimen')!.dataset;
+      const ok = (!state.era || a.era === state.era || (state.era === 'Precámbrico' && a.era === 'Precámbrico'))
+        && (!state.env || c.dataset.env === state.env)
+        && (!state.continent || a.continent === state.continent)
+        && (!state.mx || a.mexico === '1')
+        && (!state.q || a.search!.includes(state.q));
+      c.hidden = !ok;
+      if (ok) { n++; visible.add(a.id!); }
+    }
+    document.getElementById('count')!.textContent = String(n);
+    document.getElementById('empty')!.hidden = n > 0;
+    svg.querySelectorAll<SVGElement>('[data-site]').forEach((d) => (d.closest('a')!.style.display = visible.has(d.dataset.site!) ? '' : 'none'));
+  }
+  function bindChips(attr: 'era' | 'env') {
+    const btns = document.querySelectorAll<HTMLButtonElement>(`[data-${attr}]:is(button)`);
+    btns.forEach((b) => b.addEventListener('click', () => {
+      btns.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      state[attr] = b.dataset[attr]!; apply();
+    }));
+  }
+  bindChips('era'); bindChips('env');
+  document.getElementById('continent')!.addEventListener('change', (e) => { state.continent = (e.target as HTMLSelectElement).value; apply(); });
+  document.getElementById('q')!.addEventListener('input', (e) => { state.q = (e.target as HTMLInputElement).value.trim().toLowerCase(); apply(); });
+  document.getElementById('mx')!.addEventListener('change', (e) => { state.mx = (e.target as HTMLInputElement).checked; apply(); });
+  // Era de las piezas: se toma del periodo (las del Precámbrico vienen como «Precámbrico»).
+</script>
+
+<style>
+  .archive { padding-bottom: 6rem; }
+  .world { padding: 1rem; }
+  .world svg { width: 100%; }
+  .world :global(.site) { transition: r .2s; }
+  .world :global(a:hover .site) { r: 8; fill: var(--brass); }
+  .map-legend { font-size: .82rem; color: var(--muted); display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; margin: .8rem 0 3rem; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--rust); display: inline-block; border: 1.5px solid var(--paper); }
+  .dot.mx { background: var(--brass); }
+  .tools { display: grid; gap: .9rem; margin-bottom: 2rem; padding: 1.4rem; background: var(--wall); border: 1px solid var(--line); border-radius: 6px; }
+  .chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+  .row { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: end; }
+  .select, .search { display: grid; gap: .3rem; }
+  .search { flex: 1; min-width: 220px; }
+  select, input[type='search'] { font: inherit; color: var(--text); background: var(--night); border: 1px solid var(--line); border-radius: 4px; padding: .55rem .8rem; }
+  .mxonly { display: flex; gap: .5rem; align-items: center; padding-bottom: .55rem; color: var(--brass); }
+  .mxonly input { accent-color: var(--brass); width: 18px; height: 18px; }
+  .count { margin: 0; font: 500 .85rem var(--label); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .count span { color: var(--brass); font-size: 1.1rem; }
+  .cell[hidden] { display: none; }
+  .empty { text-align: center; color: var(--muted); padding: 3rem; font-family: var(--serif); font-size: 1.3rem; }
+</style>

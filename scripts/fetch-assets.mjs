@@ -19,6 +19,7 @@ import { periods, MAP_TIMES, mapTimeFor } from '../src/data/periods.js';
 import { featured } from '../src/data/featured.js';
 import { keyRefs } from '../src/data/refs.js';
 import { processPhotos } from './process-photos.mjs';
+import { quickCities } from '../src/data/cities.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'public/assets');
@@ -121,6 +122,12 @@ function cleanSvg(svg) {
 const silhouetteJobs = [...species, ...scaleRefs].filter((s) => s.silhouette);
 console.log(`Siluetas (${silhouetteJobs.length}) · PhyloPic build ${BUILD}`);
 await pool(silhouetteJobs, 4, async (s) => {
+  if (s.icon) {
+    const svg = await fs.readFile(path.join(OUT, 'icons', `${s.id}.svg`), 'utf8');
+    const vb = svg.match(/viewBox="([^"]+)"/)[1].split(/\s+/).map(Number);
+    manifest.silhouettes[s.id] = { file: `/assets/icons/${s.id}.svg`, aspect: +(vb[2] / vb[3]).toFixed(3), taxon: 'Esquema de Paleopulso', query: 'icon', exact: true, contributor: 'Paleopulso', attribution: 'Paleopulso', license: 'CC0 1.0', licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/', page: null };
+    return;
+  }
   const file = path.join(OUT, 'silhouettes', `${s.id}.svg`);
   if (!FORCE && manifest.silhouettes[s.id] && (await exists(file))) return;
   const hit = await phylopic(s.silhouette, s.name.split(' ')[0]);
@@ -330,10 +337,41 @@ await pool(species, 2, async (s) => {
   manifest.refs[s.id] = out;
 });
 
+// ── Ciudades de acceso rápido: viaje precalculado ───────────
+{
+  const times = [...new Set(periods.filter((p) => p.map !== null).map((p) => p.map))];
+  manifest.cities ||= {};
+  console.log('Ciudades rápidas');
+  for (const c of quickCities) {
+    const key = c.name;
+    if (!FORCE && manifest.cities[key] && times.every((t) => t in manifest.cities[key])) continue;
+    const out = {};
+    for (const t of times) {
+      const j = await get(`https://gws.gplates.org/reconstruct/reconstruct_points/?points=${c.lon},${c.lat}&time=${t}&model=${MODEL}`);
+      const p = j?.coordinates?.[0];
+      out[t] = p && Math.abs(p[1]) <= 90 && Math.abs(p[0]) <= 180 ? { lon: +p[0].toFixed(2), lat: +p[1].toFixed(2) } : null;
+    }
+    manifest.cities[key] = out;
+  }
+}
+
 const ph = await processPhotos(manifest);
 console.log(`Fotos: ${ph.plates} láminas, ${ph.cutouts} recortes, ${ph.made} miniaturas nuevas`);
 
 for (const s of species) if (s._article) (manifest.articles ||= {})[s.id] = s._article;
+// ── Artículo equivalente en la Wikipedia en inglés (interwiki) ──
+manifest.articlesEn ||= {};
+for (const s of species) {
+  if (!FORCE && manifest.articlesEn[s.id] !== undefined) continue;
+  const es = manifest.articles?.[s.id];
+  if (!es) { manifest.articlesEn[s.id] = null; continue; }
+  if (es.includes('//en.wikipedia.org')) { manifest.articlesEn[s.id] = es; continue; }
+  const title = decodeURIComponent(es.split('/wiki/')[1] || '');
+  const j = await get(`https://es.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(title)}&prop=langlinks&lllang=en&llprop=url&format=json&redirects=1&origin=*`);
+  const page = j && Object.values(j.query?.pages || {})[0];
+  manifest.articlesEn[s.id] = page?.langlinks?.[0]?.url || null;
+}
+
 await fs.writeFile(MANIFEST, JSON.stringify(manifest, null, 1));
 const n = (o) => Object.keys(o || {}).length;
 console.log(`\nListo: ${n(manifest.silhouettes)} siluetas, ${Object.values(manifest.photos).flat().length} fotos, ${n(manifest.maps)} mapas, ${n(manifest.paleo)} paleocoordenadas, ${n(manifest.pbdb)} rangos PBDB.`);

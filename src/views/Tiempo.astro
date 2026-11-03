@@ -1,0 +1,230 @@
+---
+import Museum from '../layouts/Museum.astro';
+import Silhouette from '../components/Silhouette.astro';
+import { strataRange, clockTime } from '../data/periods.js';
+import { assets, paleoOf } from '../lib/site.js';
+import { speciesL, strataL, extinctionsL, formatMaL, numL, tr, L } from '../i18n.js';
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const species = speciesL(lang);
+const strata = strataL(lang);
+const extinctions = extinctionsL(lang);
+const href = (s: any) => L(lang, `/especie/${s.id}`);
+
+const rocks: Record<string, string> = {
+  cuaternario: 'loose', neogeno: 'sand', paleogeno: 'sand', cretacico: 'chalk', jurasico: 'lime', triasico: 'redbed',
+  permico: 'redbed', carbonifero: 'coal', devonico: 'sand', silurico: 'shale', ordovicico: 'shale', cambrico: 'lime',
+  ediacarico: 'shale', proterozoico: 'bif', arcaico: 'green', hadico: 'igneous',
+};
+const rockName: Record<string, string> = lang === 'en' ? {
+  loose: 'Loose sediments', sand: 'Sandstone', chalk: 'Chalk', lime: 'Limestone', redbed: 'Red beds',
+  coal: 'Coal and shale', shale: 'Shale', bif: 'Banded iron', green: 'Greenstone belt', igneous: 'Igneous rock',
+} : {
+  loose: 'Sedimentos sueltos', sand: 'Arenisca', chalk: 'Creta', lime: 'Caliza', redbed: 'Capas rojas',
+  coal: 'Carbón y lutita', shale: 'Lutita', bif: 'Hierro bandeado', green: 'Cinturón de rocas verdes', igneous: 'Roca ígnea',
+};
+const layers = strata.map((p) => {
+  const r = strataRange(p);
+  const list = species.filter((s) => s.period === p.id);
+  const ext = extinctions.find((e) => e.id === p.id);
+  return {
+    ...p, ...r, rock: rocks[p.id], list, ext,
+    clock: clockTime(r.end), mapUrl: p.map !== null ? assets.maps?.[p.map] : null,
+    sites: list.map((s) => ({ s, paleo: paleoOf(s.id) })).filter((x) => x.paleo),
+  };
+});
+const panelData = layers.map((l) => ({
+  id: l.id, name: l.name, color: l.color, start: l.start, end: l.end, map: l.map, mapUrl: l.mapUrl, clock: l.clock,
+  sites: l.sites.map(({ s, paleo }) => ({ id: s.id, lon: paleo!.lon, lat: paleo!.lat, label: s.name, href: href(s), mx: s.mexico })),
+}));
+const total = Math.log10(4567 + 1);
+// Texto legible sobre cada capa (fondo = color ICS al 70 % sobre negro).
+const textOn = (hex: string) => {
+  const [r, g, b] = [1, 3, 5].map((i) => (parseInt(hex.slice(i, i + 2), 16) / 255) * 0.7).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.18 ? '#000' : '#fff';
+};
+const barH = (l: any) => (Math.log10(l.start + 1) - Math.log10(l.end + 1)) / total * 100;
+---
+<Museum title={T('Tiempo profundo', 'Deep time')} stamp="tiempo" description={T('Desciende por los estratos de la Tierra: 4,567 millones de años con mapas de cómo se movían los continentes.', 'Descend through Earth’s strata: 4,567 million years with maps of how the continents moved.')}>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">{T('Sala I · Tiempo profundo', 'Hall I · Deep time')}</p>
+      <h1>{T('Desciende por', 'Descend through')}<br /><em>{T('los estratos.', 'the strata.')}</em></h1>
+      <p class="lead">{T('Cada capa de roca es una página del diario de la Tierra: las de arriba son recientes, las de abajo, antiguas. Baja y mira cómo cambian el mundo, la vida y la forma de los continentes.', 'Each rock layer is a page in Earth’s diary: the top ones are recent, the lower ones ancient. Scroll down and watch the world, life and the shape of the continents change.')}</p>
+      <p style="margin-top:1.6rem"><a class="btn ghost" href={L(lang, '/continentes')}>{T('Abrir la máquina del tiempo tectónica →', 'Open the plate tectonics time machine →')}</a></p>
+    </div>
+  </section>
+
+  <div class="descent wrap">
+    <aside class="panel" aria-live="polite" data-map-of={T('Mapa de hace {t} Ma', 'Map of {t} Ma ago')} data-no-map={T('Sin mapa', 'No map')} data-today={T('Hoy', 'Today')} data-ka={T('{n} mil años', '{n},000 years')}>
+      <div class="panel-inner">
+        <div class="depth">
+          <span class="label">{T('Profundidad en el tiempo', 'Depth in time')}</span>
+          <strong class="num" id="pDepth">0 Ma</strong>
+          <span class="label">{T('En el día de la Tierra', 'On Earth’s 24-hour clock')}: <b id="pClock">24:00:00</b></span>
+        </div>
+        <div class="panel-map vitrine">
+          <svg id="pMap" aria-label={T('Mapa paleogeográfico', 'Palaeogeographic map')}></svg>
+          <div class="no-map" id="pNoMap" hidden>
+            <div class="young-earth"></div>
+            <p>{T('No quedan suficientes rocas de esta época para reconstruir la posición de los continentes.', 'Too little rock survives from this time to reconstruct where the continents were.')}</p>
+          </div>
+        </div>
+        <p class="map-note"><span id="pMapAge"></span> · {T('Costas reconstruidas con GPlates (modelo MERDITH2021). Los puntos son los fósiles de esta sala en su posición de entonces.', 'Coastlines reconstructed with GPlates (MERDITH2021 model). Dots are this hall’s fossils in their position at the time.')}</p>
+        <div class="column" aria-label={T('Columna estratigráfica', 'Stratigraphic column')}>
+          {layers.map((l) => <a href={`#${l.id}`} style={`--c:${l.color};--tc:${textOn(l.color)};height:${Math.max(barH(l), 2.2)}%`} title={l.name} data-col={l.id} aria-label={l.name}>{barH(l) > 5 && <span>{l.name}</span>}</a>)}
+        </div>
+      </div>
+    </aside>
+
+    <div class="strata">
+      {layers.map((l) => (
+        <section class={`stratum rock-${l.rock}`} id={l.id} style={`--c:${l.color}`} data-stratum={l.id}>
+          <div class="stratum-head">
+            <span class="label">{l.rank} · {l.group} · {rockName[l.rock]}</span>
+            <h2>{l.name}</h2>
+            <p class="range num">{numL(l.start, lang)} – {l.end === 0 ? T('hoy', 'today') : `${numL(l.end, lang)} Ma`}</p>
+          </div>
+          <p class="stratum-lead">{l.lead}</p>
+          <dl class="stratum-facts">
+            <div><dt>{T('El planeta', 'The planet')}</dt><dd>{l.world}</dd></div>
+            <div><dt>{T('La vida', 'Life')}</dt><dd>{l.life}</dd></div>
+            <div><dt>{T('La evidencia', 'The evidence')}</dt><dd>{l.evidence}</dd></div>
+          </dl>
+          {l.list.length > 0 && (
+            <div class="fossils">
+              <span class="label">{T('En la colección', 'In the collection')}</span>
+              <ul>
+                {l.list.map((s) => (
+                  <li><a href={href(s)}><Silhouette id={s.id} class="fossil-sil" /><span>{s.name}</span><small>{s.place}, {s.country}</small></a></li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {l.ext && (
+            <div class="boundary">
+              <span class="label">{T('Límite', 'Boundary')} · {l.ext.ma} Ma</span>
+              <strong>{T(`Extinción del ${l.ext.name}`, `${l.ext.name} extinction`)}</strong>
+              <p>{l.ext.cause} {T(`Se perdió ${l.ext.range} de las especies marinas.`, `${l.ext.range} of marine species were lost.`)}</p>
+            </div>
+          )}
+        </section>
+      ))}
+      <div class="bedrock"><p class="label">{T('Fin del registro', 'End of the record')} · {formatMaL(4567, lang)}</p><p>{T('Antes de esto solo había polvo y gas alrededor de una estrella joven.', 'Before this there was only dust and gas around a young star.')}</p></div>
+    </div>
+  </div>
+</Museum>
+
+<script>
+  import { drawMap } from '../scripts/map';
+  const data = JSON.parse(document.getElementById('strataData')!.textContent!);
+  const byId = Object.fromEntries(data.map((d: any) => [d.id, d]));
+  const $ = (id: string) => document.getElementById(id)!;
+  const svg = $('pMap') as unknown as SVGSVGElement;
+  let current = '';
+  const P = document.querySelector<HTMLElement>('.panel')!.dataset;
+
+  async function show(id: string) {
+    if (id === current) return;
+    current = id;
+    const d = byId[id];
+    dispatchEvent(new CustomEvent('paleo:era', { detail: id }));
+    document.querySelectorAll<HTMLElement>('[data-col]').forEach((a) => a.classList.toggle('on', a.dataset.col === id));
+    $('pClock').textContent = d.clock;
+    document.querySelector<HTMLElement>('.panel')!.style.setProperty('--c', d.color);
+    if (d.mapUrl) {
+      $('pNoMap').hidden = true; svg.style.display = '';
+      $('pMapAge').textContent = P.mapOf!.replace('{t}', d.map);
+      await drawMap(svg, { url: d.mapUrl, sites: d.sites.map((s: any) => ({ ...s, ping: true })), width: 720, height: 370 });
+    } else {
+      svg.style.display = 'none'; $('pNoMap').hidden = false;
+      $('pMapAge').textContent = P.noMap!;
+    }
+  }
+
+  // Profundidad continua: interpola Ma según la posición dentro de cada estrato.
+  const sections = [...document.querySelectorAll<HTMLElement>('[data-stratum]')];
+  function onScroll() {
+    const mid = innerHeight * 0.45;
+    if (sections[0].getBoundingClientRect().top > mid) { $('pDepth').textContent = P.today!; show(data[0].id); return; }
+    for (const sec of sections) {
+      const r = sec.getBoundingClientRect();
+      if (r.top <= mid && r.bottom > mid) {
+        const d = byId[sec.dataset.stratum!];
+        const t = Math.min(1, Math.max(0, (mid - r.top) / r.height));
+        const ma = d.end + (d.start - d.end) * t;
+        $('pDepth').textContent = ma < 1 ? P.ka!.replace('{n}', Math.round(ma * 1000).toLocaleString(document.documentElement.lang === 'en' ? 'en-US' : 'es-MX')) : `${Math.round(ma).toLocaleString(document.documentElement.lang === 'en' ? 'en-US' : 'es-MX')} Ma`;
+        show(d.id);
+        return;
+      }
+    }
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); show(data[0].id);
+</script>
+<script type="application/json" id="strataData" set:html={JSON.stringify(panelData)} />
+
+<style>
+  .descent { display: grid; grid-template-columns: minmax(320px, 0.9fr) 1.1fr; gap: 3rem; align-items: start; padding-bottom: 6rem; }
+  .panel { position: sticky; top: 84px; }
+  .panel-inner { display: grid; gap: 1rem; }
+  .depth { display: grid; gap: .2rem; border-left: 3px solid var(--c, var(--brass)); padding-left: 1rem; transition: border-color .5s; }
+  .depth strong { font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; }
+  .depth b { color: var(--brass); font-weight: 600; }
+  .panel-map { aspect-ratio: 720 / 370; display: grid; place-items: center; }
+  .panel-map svg { width: 100%; }
+  .panel-map :global(.land) { fill: color-mix(in srgb, var(--c, #6d6249) 45%, #6d6249); transition: fill .6s; }
+  .no-map { text-align: center; padding: 1.5rem; color: var(--muted); font-size: .92rem; }
+  .young-earth { width: 120px; height: 120px; margin: 0 auto 1rem; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ffb86b, #b8361c 45%, #3a0d06 75%); box-shadow: 0 0 60px rgba(255, 110, 40, .45); animation: glow 4s ease-in-out infinite; }
+  @keyframes glow { 50% { box-shadow: 0 0 90px rgba(255, 140, 60, .6); } }
+  .map-note { font-size: .78rem; color: var(--muted); margin: 0; }
+  .column { display: flex; flex-direction: column; height: 220px; border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+  .column a { background: color-mix(in srgb, var(--c) 70%, #000); display: flex; align-items: center; padding-left: .5rem; text-decoration: none; min-height: 0; transition: filter .2s; border-bottom: 1px solid #0006; }
+  .column a span { font: 600 .62rem/1 var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--tc, #000); white-space: nowrap; overflow: hidden; }
+  .column a:hover, .column a.on { filter: brightness(1.35); }
+  .column a.on { box-shadow: inset 4px 0 0 var(--paper); }
+
+  .strata { border-left: 1px solid var(--line); }
+  .stratum { position: relative; padding: 4rem 2.5rem 4rem 3rem; min-height: 80vh; border-bottom: 1px solid #0008; isolation: isolate; scroll-margin-top: 70px; }
+  .stratum::before { content: ''; position: absolute; inset: 0; z-index: -1; opacity: .22; background-color: var(--c); }
+  .stratum::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: var(--c); }
+  .rock-loose::before { background-image: radial-gradient(#0004 1.5px, transparent 2px), radial-gradient(#fff2 1px, transparent 1.5px); background-size: 14px 14px, 9px 9px; background-position: 0 0, 5px 7px; }
+  .rock-sand::before { background-image: radial-gradient(#0003 1px, transparent 1.4px); background-size: 6px 6px; }
+  .rock-chalk::before { background-image: radial-gradient(#fff5 1.2px, transparent 1.6px); background-size: 10px 10px; }
+  .rock-lime::before { background-image: linear-gradient(#0004 2px, transparent 2px), linear-gradient(90deg, #0004 2px, transparent 2px); background-size: 60px 30px, 60px 60px; }
+  .rock-redbed::before { background-image: repeating-linear-gradient(0deg, #0003 0 3px, transparent 3px 22px, #fff1 22px 24px, transparent 24px 40px); }
+  .rock-coal::before { background-image: repeating-linear-gradient(0deg, #000a 0 8px, transparent 8px 26px); }
+  .rock-shale::before { background-image: repeating-linear-gradient(0deg, #0004 0 1px, transparent 1px 7px); }
+  .rock-bif::before { background-image: repeating-linear-gradient(0deg, #8b2b1c66 0 10px, #33333366 10px 16px, transparent 16px 24px); }
+  .rock-green::before { background-image: radial-gradient(#2f5a3a88 2px, transparent 3px), radial-gradient(#0005 1px, transparent 2px); background-size: 16px 16px, 7px 7px; }
+  .rock-igneous::before { background-image: radial-gradient(#fff3 2px, transparent 3px), radial-gradient(#0006 2.5px, transparent 3.5px), radial-gradient(#ff784022 6px, transparent 8px); background-size: 18px 18px, 11px 13px, 40px 40px; }
+  .stratum-head h2 { margin: .4rem 0 .2rem; }
+  .stratum-head .label { color: color-mix(in srgb, var(--c) 60%, var(--text)); }
+  .range { font-size: 1.3rem; color: var(--muted); margin: 0; }
+  .stratum-lead { font: 400 clamp(1.3rem, 2vw, 1.7rem)/1.35 var(--serif); font-style: italic; margin: 1.6rem 0; max-width: 34ch; }
+  .stratum-facts { display: grid; gap: 1.2rem; margin: 0; }
+  .stratum-facts div { background: #0b0907cc; border: 1px solid #ffffff10; border-radius: 4px; padding: 1rem 1.2rem; backdrop-filter: blur(2px); }
+  .stratum-facts dt { font: 600 .74rem var(--label); letter-spacing: .18em; text-transform: uppercase; color: var(--brass); margin-bottom: .3rem; }
+  .stratum-facts dd { margin: 0; font-size: .98rem; }
+  .fossils { margin-top: 1.8rem; }
+  .fossils ul { list-style: none; padding: 0; margin: .7rem 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .6rem; }
+  .fossils a { display: grid; gap: .2rem; padding: .8rem; background: #0b0907dd; border: 1px solid #ffffff14; border-radius: 4px; text-decoration: none; transition: border-color .2s, transform .2s; height: 100%; }
+  .fossils a:hover { border-color: var(--brass); transform: translateY(-2px); }
+  .fossils :global(.fossil-sil) { color: var(--paper); height: 46px; width: 100%; margin-bottom: .3rem; }
+  .fossils li span { font: 400 1.08rem var(--serif); }
+  .fossils li { min-width: 0; }
+  .fossils small { color: var(--muted); font-size: .76rem; line-height: 1.3; overflow-wrap: anywhere; }
+  .boundary { margin-top: 2.2rem; padding: 1.2rem 1.3rem; border: 1px solid var(--rust); background: #2a0f08cc; border-radius: 4px; }
+  .boundary .label { color: var(--rust); }
+  .boundary strong { display: block; font: 400 1.4rem var(--serif); margin: .3rem 0; }
+  .boundary p { margin: 0; color: #dcc9b9; font-size: .95rem; }
+  .bedrock { padding: 4rem 3rem; background: radial-gradient(circle at 30% 0, #5a1d0e, #120806 70%); color: #e8c4a8; }
+  @media (max-width: 900px) {
+    .descent { grid-template-columns: 1fr; }
+    .panel { top: 64px; z-index: 5; background: var(--night); padding: .6rem 0; border-bottom: 1px solid var(--line); }
+    .panel-inner { grid-template-columns: 1fr 1.3fr; align-items: center; gap: .6rem; }
+    .depth strong { font-size: 1.8rem; }
+    .column, .map-note { display: none; }
+    .stratum { padding: 3rem 1.2rem 3rem 1.6rem; min-height: 0; }
+  }
+</style>

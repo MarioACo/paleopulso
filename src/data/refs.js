@@ -43,5 +43,9 @@ export const keyRefs = {
   lucy: [{ q: 'Johanson Taieb Plio-Pleistocene hominid discoveries in Hadar Ethiopia', year: 1976, must: ['hadar', 'hominid'], why: 'Hallazgos de Hadar' }],
   mamut: [{ q: 'Vartanyan Holocene dwarf mammoths from Wrangel Island in the Siberian Arctic', year: 1993, must: ['wrangel', 'mammoths'], why: 'Mamuts de Wrangel (dato de la sala de mitos)' }],
   neandertal: [{ q: 'Green A Draft Sequence of the Neandertal Genome Krause Briggs Science', year: 2010, must: ['draft', 'neandertal', 'genome'], why: 'ADN neandertal en humanos actuales' }],
+  vallecillosaurus: [{ q: 'Smith A new aigialosaur Squamata Anguimorpha with soft tissue remains from the Upper Cretaceous of Nuevo Leon Mexico', year: 2008, must: ['aigialosaur', 'mexico'], why: 'Descripción de Vallecillosaurus' }],
+  acantholipan: [{ q: 'Rivera-Sylva Acantholipan gonzalezi nodosaurid Coahuila Mexico', year: 2018, must: ['nodosaurid'], why: 'Descripción de Acantholipan' }],
+  yehuecauhceratops: [{ q: 'Rivera-Sylva Yehuecauhceratops mudei centrosaurine Aguja Formation Coahuila', year: 2016, must: ['centrosaurine', 'aguja'], why: 'Descripción del ejemplar, que recibió su nombre en 2017' }],
+  labocania: [{ q: 'Molnar A distinctive theropod dinosaur from the Upper Cretaceous of Baja California Mexico', year: 1974, must: ['theropod', 'baja california'], why: 'Descripción de Labocania' }],
   naia: [{ q: 'Chatters Late Pleistocene human skeleton and mtDNA link Paleoamericans and modern Native Americans', year: 2014, must: ['pleistocene', 'paleoamericans'], why: 'Naia y su ADN' }],
 };

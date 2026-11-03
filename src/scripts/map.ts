@@ -58,7 +58,12 @@ export async function drawMap(svg: SVGSVGElement, o: Opts) {
   if (o.onSite) {
     svg.querySelectorAll<SVGCircleElement>('[data-site]').forEach((c) => {
       c.style.cursor = 'pointer';
+      // Accesible con teclado: Tab para llegar, Enter o espacio para elegir.
+      c.setAttribute('tabindex', '0');
+      c.setAttribute('role', 'button');
+      c.setAttribute('aria-label', c.querySelector('title')?.textContent || c.dataset.site!);
       c.addEventListener('click', (e) => { e.preventDefault(); o.onSite!(c.dataset.site!); });
+      c.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); o.onSite!(c.dataset.site!); } });
     });
   }
   return { proj };

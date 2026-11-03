@@ -1,0 +1,38 @@
+name: Corregir un dato
+description: Algo en una ficha o sala no es correcto o está desactualizado.
+title: "[Corrección] "
+labels: ["corrección"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¡Gracias por ayudar! Paleopulso intenta que cada dato sea verificable. Una fuente (artículo, DOI, libro o museo) nos ayuda muchísimo a corregir rápido.
+  - type: input
+    id: pieza
+    attributes:
+      label: Pieza o sala
+      description: El nombre o la dirección de la página (p. ej. /especie/trex).
+    validations:
+      required: true
+  - type: textarea
+    id: dice
+    attributes:
+      label: ¿Qué dice ahora?
+    validations:
+      required: true
+  - type: textarea
+    id: deberia
+    attributes:
+      label: ¿Qué debería decir?
+    validations:
+      required: true
+  - type: input
+    id: fuente
+    attributes:
+      label: Fuente
+      description: DOI, enlace o referencia bibliográfica.
+  - type: dropdown
+    id: experiencia
+    attributes:
+      label: Tu relación con el tema (opcional)
+      options: ["Aficionado/a", "Estudiante", "Docente", "Investigador/a", "Personal de museo", "Prefiero no decir"]

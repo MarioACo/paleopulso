@@ -1,0 +1,139 @@
+---
+import Museum from '../layouts/Museum.astro';
+import SpecimenCard from '../components/SpecimenCard.astro';
+import { speciesById as esById } from '../data/species.js';
+import { silhouetteOf } from '../lib/site.js';
+import { speciesL, scaleRefsL, periodByIdL, tr, L } from '../i18n.js';
+
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const species = speciesL(lang);
+const scaleRefs = scaleRefsL(lang);
+const periodById = periodByIdL(lang);
+const isDino = (s: any) => ['Dinosaurio', 'Ave primitiva'].includes(esById[s.id].group);
+const rooms = ['triasico', 'jurasico', 'cretacico'].map((id) => ({
+  p: periodById[id],
+  list: species.filter((s) => s.period === id && s.id !== 'chicxulub').sort((a, b) => b.ma - a.ma),
+}));
+const comparable = [
+  ...scaleRefs.map((r) => ({ id: r.id, name: r.name, length: r.length, note: r.note, ref: true })),
+  ...species.filter((s) => s.length && silhouetteOf(s.id)).sort((a, b) => b.length! - a.length!)
+    .map((s) => ({ id: s.id, name: s.name, length: s.length, note: s.lengthNote, ref: false })),
+].map((c) => {
+  const sil = silhouetteOf(c.id);
+  return { ...c, file: sil?.file, aspect: sil?.aspect };
+});
+const defaults = ['humano', 'trex', 'argentinosaurus', 'autobus'];
+const dinoCount = species.filter(isDino).length;
+---
+<Museum title={T('Sala mesozoica', 'Mesozoic hall')} stamp="dinosaurios" description={T('Dinosaurios del Triásico, Jurásico y Cretácico de todo el mundo, y un comparador de tamaños a escala real.', 'Triassic, Jurassic and Cretaceous dinosaurs from around the world, plus a true-to-scale size comparator.')}>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">{T('Sala III · Mesozoico · 252–66 Ma', 'Hall III · Mesozoic · 252–66 Ma')}</p>
+      <h1>{T('Hueso, hipótesis', 'Bone, hypothesis')}<br /><em>{T('y animal.', 'and animal.')}</em></h1>
+      <p class="lead">{T(`${dinoCount} dinosaurios de seis continentes, junto a los reptiles que compartieron con ellos el aire y el mar. Cada ficha distingue el fósil, el montaje de museo y la reconstrucción en vida.`, `${dinoCount} dinosaurs from six continents, alongside the reptiles that shared the air and sea with them. Every record separates the fossil, the museum mount and the life reconstruction.`)}</p>
+    </div>
+  </section>
+
+  <section class="section compare-section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="kicker">{T('Comparador a escala', 'Scale comparator')}</p><h2>{T('¿Qué tan grande', 'How big')}<br /><em>{T('era de verdad?', 'was it really?')}</em></h2></div>
+        <p>{T('Elige hasta cinco. Todo está a la misma escala, en metros. La longitud es de hocico a cola (envergadura en voladores); en muchos casos es una estimación.', 'Pick up to five. Everything is at the same scale, in metres. Length is snout to tail (wingspan for flyers); in many cases it is an estimate.')}</p>
+      </div>
+      <div class="compare vitrine">
+        <div id="scaleOut" class="scale-out" data-empty={T('Elige al menos una pieza.', 'Pick at least one piece.')} data-bus={T('Autobús', 'Bus')} data-max={T('Máximo 5 a la vez: quita uno primero.', 'Up to 5 at a time: remove one first.')}></div>
+      </div>
+      <div class="picker" role="group" aria-label={T('Elegir animales para comparar', 'Choose animals to compare')}>
+        {comparable.map((c) => (
+          <button type="button" class={`chip pick ${c.ref ? 'ref' : ''}`} data-pick={c.id} aria-pressed={defaults.includes(c.id) ? 'true' : 'false'} title={c.note}>{c.name}</button>
+        ))}
+      </div>
+      <p class="label" id="pickNote" aria-live="polite"></p>
+    </div>
+  </section>
+
+  {rooms.map(({ p, list }) => (
+    <section class="section room" id={p.id} style={`--pc:${p.color}`}>
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">{p.name} · {p.start}–{p.end} Ma</p>
+            <h2>{p.lead}</h2>
+          </div>
+          <p>{p.world}</p>
+        </div>
+        <div class="specimen-grid">
+          {list.map((s) => (
+            <div class="room-cell reveal">
+              <SpecimenCard s={s} />
+              {!isDino(s) && <span class="not-dino">{T('No es dinosaurio', 'Not a dinosaur')} · {s.group}</span>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section">
+    <div class="wrap kpg reveal">
+      <div>
+        <p class="kicker">{T('66 millones de años', '66 million years')}</p>
+        <h2>{T('El último día', 'The last day')}<br /><em>{T('del Mesozoico.', 'of the Mesozoic.')}</em></h2>
+      </div>
+      <div>
+        <p class="lead">{T('Un asteroide de unos 10 km cayó en el mar somero de lo que hoy es Yucatán. En minutos hubo sismos y tsunamis; en horas, incendios; durante años, un cielo oscurecido por polvo y azufre que frenó la fotosíntesis.', 'An asteroid about 10 km across struck the shallow sea of what is now Yucatán. Within minutes came earthquakes and tsunamis; within hours, wildfires; for years, a sky darkened by dust and sulphur that stalled photosynthesis.')}</p>
+        <p class="muted">{T('Sobrevivieron animales pequeños que podían refugiarse o comer semillas y detritos: entre ellos, los antepasados de las aves, que son los dinosaurios que siguen vivos.', 'Small animals that could shelter or eat seeds and detritus survived — among them the ancestors of birds, the dinosaurs that are still alive.')}</p>
+        <a class="btn" href={L(lang, '/especie/chicxulub')}>{T('Ver el cráter de Chicxulub →', 'See the Chicxulub crater →')}</a>
+      </div>
+    </div>
+  </section>
+</Museum>
+
+<script type="application/json" id="cmpData" set:html={JSON.stringify(comparable)} />
+<script>
+  import { scaleSvg } from '../scripts/scale';
+  const items: any[] = JSON.parse(document.getElementById('cmpData')!.textContent!);
+  const byId = Object.fromEntries(items.map((i) => [i.id, i]));
+  const btns = [...document.querySelectorAll<HTMLButtonElement>('[data-pick]')];
+  const out = document.getElementById('scaleOut')!;
+  const note = document.getElementById('pickNote')!;
+  const MAX = 5;
+
+  function render() {
+    const sel = btns.filter((b) => b.getAttribute('aria-pressed') === 'true').map((b) => byId[b.dataset.pick!]);
+    if (!sel.length) { out.innerHTML = `<p class="empty">${out.dataset.empty}</p>`; return; }
+    // Persona primero, luego de menor a mayor.
+    sel.sort((a, b) => (a.id === 'humano' ? -1 : b.id === 'humano' ? 1 : a.length - b.length));
+    out.innerHTML = scaleSvg(sel.map((s, i) => s.id === 'autobus'
+      ? { length: 12, rect: { h: 3.2 }, label: out.dataset.bus! }
+      : { file: s.file, aspect: s.aspect, length: s.length, label: s.name, tone: s.id === 'humano' ? 'human' : i % 2 ? 'alt' : 'animal' }));
+    note.textContent = sel.map((s) => `${s.name}: ${s.note}`).join(' · ');
+  }
+  btns.forEach((b) => b.addEventListener('click', () => {
+    const on = b.getAttribute('aria-pressed') === 'true';
+    const count = btns.filter((x) => x.getAttribute('aria-pressed') === 'true').length;
+    if (!on && count >= MAX) { note.textContent = out.dataset.max!; return; }
+    b.setAttribute('aria-pressed', String(!on));
+    render();
+  }));
+  render();
+</script>
+
+<style>
+  .compare { padding: 2.5rem 2rem 1.5rem; min-height: 320px; display: grid; align-items: end; }
+  .scale-out :global(.empty) { text-align: center; color: var(--muted); }
+  .picker { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1.4rem 0 .8rem; max-height: 220px; overflow: auto; padding: .2rem; }
+  .pick.ref { border-style: dashed; }
+  #pickNote { line-height: 1.6; }
+  .room { background: linear-gradient(180deg, color-mix(in srgb, var(--pc) 9%, transparent), transparent 40%); }
+  .room .kicker { color: color-mix(in srgb, var(--pc) 70%, var(--brass)); }
+  .room h2 { font-size: clamp(1.8rem, 3.4vw, 3rem); }
+  .room-cell { position: relative; }
+  .room-cell :global(.specimen) { height: 100%; }
+  .not-dino { position: absolute; top: .7rem; left: .7rem; z-index: 4; font: 600 .66rem var(--label); letter-spacing: .12em; text-transform: uppercase; background: #0e0b08e6; color: var(--sky); border: 1px solid #7fb0b555; padding: .25rem .5rem; border-radius: 3px; }
+  .kpg { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center; }
+  .kpg h2 { color: var(--rust); }
+  .kpg .btn { margin-top: 1rem; }
+  @media (max-width: 860px) { .kpg { grid-template-columns: 1fr; } }
+</style>

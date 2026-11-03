@@ -52,7 +52,7 @@ const expect = (cond, msg) => { if (!cond) throw new Error(msg); };
 const go = (page, p) => page.goto(BASE + p, { waitUntil: 'networkidle' });
 
 // ── Todas las páginas cargan sin errores ni desbordes ───────
-const pages = ['/', '/tiempo', '/continentes', '/vida', '/dinosaurios', '/mexico', '/donde-vives', '/mitos', '/metodo', '/pasaporte', '/creditos', '/especie/trex', '/especie/hallucigenia', '/especie/ambar-chiapas'];
+const pages = ['/', '/visita', '/colabora', '/tiempo', '/continentes', '/vida', '/dinosaurios', '/mexico', '/donde-vives', '/mitos', '/metodo', '/pasaporte', '/creditos', '/especie/trex', '/especie/hallucigenia', '/especie/ambar-chiapas'];
 await test('Todas las salas cargan sin errores', async (page) => {
   for (const p of pages) {
     const r = await go(page, p);
@@ -151,7 +151,7 @@ await test('Pasaporte: sellos y examen', async (page) => {
 await test('México: tocar un yacimiento', async (page) => {
   await go(page, '/mexico');
   await page.locator('#mxMap [data-site="chicxulub"]').click({ force: true });
-  expect((await page.textContent('#mxCard h3')) === 'Cráter de Chicxulub', 'la tarjeta no cambió');
+  expect((await page.textContent('#mxCard .mx-name')) === 'Cráter de Chicxulub', 'la tarjeta no cambió');
 });
 
 // ── Con servicios externos ──────────────────────────────────

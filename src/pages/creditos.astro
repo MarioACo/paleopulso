@@ -38,7 +38,7 @@ const sils = all.map((s) => ({ s, sil: assets.silhouettes?.[s.id] })).filter((x)
     <table>
       <thead><tr><th>Pieza</th><th>Taxón de la silueta</th><th>Autoría</th><th>Licencia</th></tr></thead>
       <tbody>
-        {sils.map(({ s, sil }) => <tr><td>{s.name}</td><td><a href={sil.page}>{sil.taxon}</a></td><td>{sil.attribution || sil.contributor}</td><td>{sil.licenseUrl ? <a href={sil.licenseUrl}>{sil.license}</a> : sil.license}</td></tr>)}
+        {sils.map(({ s, sil }) => <tr><td>{s.name}</td><td>{sil.page ? <a href={sil.page}>{sil.taxon}</a> : sil.taxon}</td><td>{sil.attribution || sil.contributor}</td><td>{sil.licenseUrl ? <a href={sil.licenseUrl}>{sil.license}</a> : sil.license}</td></tr>)}
       </tbody>
     </table>
   </section>

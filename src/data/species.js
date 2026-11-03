@@ -2,6 +2,7 @@
 // representativo (no el área total de distribución). `ma` = edad representativa.
 // `length` (m) solo cuando tiene sentido comparar tamaños; `lengthNote` explica estimaciones.
 // `silhouette` = taxón buscado en PhyloPic (y alternativas si no hay silueta con licencia libre).
+// `icon` = esquema propio en public/assets/icons/<id>.svg cuando no hay silueta posible (sitios, plantas, algas).
 // `wiki` = título en Wikipedia en español (foto de portada y enlace de lectura).
 
 const S = (o) => ({ mexico: false, debated: null, length: null, ...o });
@@ -12,12 +13,12 @@ export const species = [
     place: 'Strelley Pool, Pilbara', country: 'Australia', continent: 'Oceanía', lat: -21.2, lon: 119.4,
     summary: 'Montículos de capas construidos por comunidades de microbios que atrapan sedimento. No son un organismo, sino un ecosistema entero convertido en roca.',
     fact: 'Todavía se forman hoy: en Shark Bay (Australia) y en Bacalar (Quintana Roo, México) puedes ver estromatolitos vivos.',
-    silhouette: [], wiki: 'Estromatolito', pbdb: null }),
+    silhouette: [], icon: true, wiki: 'Estromatolito', pbdb: null }),
   S({ id: 'grypania', name: 'Grypania spiralis', group: 'Alga temprana', habitat: 'Mar', period: 'proterozoico', ma: 1870, age: '≈ 1,870 Ma',
     place: 'Formación de hierro Negaunee, Míchigan', country: 'Estados Unidos', continent: 'América', lat: 46.5, lon: -87.6,
     summary: 'Una cinta enrollada en espiral visible a simple vista. Probablemente un alga eucariota: una de las primeras formas de vida macroscópicas.',
     fact: 'Durante más de mil millones de años antes de Grypania, casi toda la vida fue microscópica.',
-    silhouette: [], wiki: 'Grypania', pbdb: 'Grypania' }),
+    silhouette: [], icon: true, wiki: 'Grypania', pbdb: 'Grypania' }),
   S({ id: 'charnia', name: 'Charnia', group: 'Biota de Ediacara', habitat: 'Mar profundo', period: 'ediacarico', ma: 562, age: '≈ 562 Ma',
     place: 'Bosque de Charnwood, Leicestershire', country: 'Reino Unido', continent: 'Europa', lat: 52.73, lon: -1.27, length: 0.6, lengthNote: 'hasta ~60 cm de alto',
     summary: 'Un organismo en forma de fronda, anclado al fondo marino. Vivía demasiado profundo para la fotosíntesis: absorbía nutrientes del agua.',
@@ -118,10 +119,10 @@ export const species = [
     fact: 'Aparece en Sudáfrica y en Brasil, pero no podía cruzar un océano: una de las pruebas clásicas de que esos continentes estuvieron unidos.',
     silhouette: ['Mesosaurus tenuidens'], wiki: 'Mesosaurus', pbdb: 'Mesosaurus' }),
   S({ id: 'glossopteris', name: 'Glossopteris', group: 'Planta con semilla', habitat: 'Tierra', period: 'permico', ma: 270, age: '≈ 299–252 Ma',
-    place: 'Glaciar Beardmore', country: 'Antártida', continent: 'Antártida', lat: -84.0, lon: 170.0, length: 4, lengthNote: 'árboles de hasta ~4–8 m',
+    place: 'Glaciar Beardmore', country: 'Antártida', continent: 'Antártida', lat: -84.0, lon: 170.0, lengthNote: 'árboles de hasta ~4–8 m (el esquema muestra una hoja)',
     summary: 'Árbol de hojas en forma de lengua que formó bosques en todo el sur de Pangea.',
     fact: 'La expedición de Robert Scott al polo sur cargó 16 kg de rocas con Glossopteris hasta su muerte en 1912.',
-    silhouette: ['Glossopteris'], wiki: 'Glossopteris', pbdb: 'Glossopteris' }),
+    silhouette: [], icon: true, wiki: 'Glossopteris', pbdb: 'Glossopteris' }),
   S({ id: 'inostrancevia', name: 'Inostrancevia', group: 'Gorgonópsido', habitat: 'Tierra', period: 'permico', ma: 254, age: '≈ 259–252 Ma',
     place: 'Río Dviná del Norte', country: 'Rusia', continent: 'Europa', lat: 64.0, lon: 41.5, length: 3.5, lengthNote: '≈ 3–3.5 m',
     summary: 'Superdepredador con colmillos de sable de más de 12 cm, pariente de los ancestros de los mamíferos.',
@@ -219,7 +220,7 @@ export const species = [
     place: 'Tepexi de Rodríguez, Puebla', country: 'México', continent: 'América', lat: 18.58, lon: -97.92, mexico: true,
     summary: 'Una cantera familiar de piedra laja convertida en uno de los yacimientos de conservación excepcional del mundo: peces, tortugas, lagartos, esfenodontes, insectos y plantas.',
     fact: 'La familia Aranguthy encontró los fósiles al extraer piedra y los compartió con la UNAM. Hoy hay un museo en Tepexi.',
-    silhouette: [], wiki: 'Cantera Tlayúa', pbdb: null }),
+    silhouette: [], icon: true, wiki: 'Cantera Tlayúa', pbdb: null }),
   S({ id: 'argentinosaurus', name: 'Argentinosaurus', group: 'Dinosaurio', habitat: 'Tierra', period: 'cretacico', ma: 95, age: '≈ 96–92 Ma',
     place: 'Plaza Huincul, Neuquén', country: 'Argentina', continent: 'América', lat: -38.93, lon: -69.2, length: 35, lengthNote: '≈ 30–35 m (estimación)',
     summary: 'Uno de los animales terrestres más grandes que han existido. Se estima entre 65 y 75 toneladas.',
@@ -293,7 +294,7 @@ export const species = [
     place: 'Península de Yucatán', country: 'México', continent: 'América', lat: 21.4, lon: -89.5, mexico: true,
     summary: 'Un asteroide de unos 10 km chocó en lo que hoy es Yucatán y dejó un cráter de ~180 km. Marca el final del Mesozoico.',
     fact: 'Lo detectaron geofísicos de Pemex en los años setenta (Glen Penfield y Antonio Camargo); en 1991 se confirmó como el cráter del impacto. El anillo de cenotes de Yucatán sigue su borde.',
-    silhouette: [], wiki: 'Cráter de Chicxulub', pbdb: null }),
+    silhouette: [], icon: true, wiki: 'Cráter de Chicxulub', pbdb: null }),
 
   // ── Cenozoico ───────────────────────────────────────────────
   S({ id: 'titanoboa', name: 'Titanoboa', group: 'Serpiente', habitat: 'Ríos y pantanos', period: 'paleogeno', ma: 59, age: '≈ 60–58 Ma',
@@ -322,7 +323,7 @@ export const species = [
     place: 'Hadar, Afar', country: 'Etiopía', continent: 'África', lat: 11.1, lon: 40.6, length: 1.1, lengthNote: 'Lucy: ≈ 1.1 m de alto',
     summary: 'Homininos que caminaban erguidos pero conservaban brazos largos para trepar. «Lucy» es un esqueleto con ~40 % de los huesos.',
     fact: 'Se llamó Lucy por la canción de The Beatles que sonaba en el campamento la noche del hallazgo, en 1974.',
-    silhouette: ['Australopithecus|afarensis', 'Australopithecus'], wiki: 'Australopithecus afarensis', pbdb: 'Australopithecus' }),
+    silhouette: ['Australopithecus africanus'], wiki: 'Australopithecus afarensis', pbdb: 'Australopithecus' }),
   S({ id: 'smilodon', name: 'Smilodon', group: 'Mamífero', habitat: 'Tierra', period: 'cuaternario', ma: 0.5, age: '≈ 2.5 Ma–10,000 años',
     place: 'Rancho La Brea, California', country: 'Estados Unidos', continent: 'América', lat: 34.06, lon: -118.36, length: 2, lengthNote: '≈ 1.8–2.2 m',
     summary: 'Felino robusto con caninos de hasta 28 cm. No era pariente directo de los tigres actuales.',
@@ -380,6 +381,28 @@ export const species = [
     summary: 'El marsupial más grande que ha existido: un herbívoro del tamaño de un hipopótamo, pariente lejano de los wombats y los koalas.',
     fact: 'En el lago seco de Callabonna se hallaron decenas de ejemplares atrapados en el lodo, algunos todavía de pie.',
     silhouette: ['Diprotodon', 'Diprotodontidae', 'Vombatiformes'], wiki: 'Diprotodon optatum', pbdb: 'Diprotodon' }),
+  S({ id: 'vallecillosaurus', name: 'Vallecillosaurus', group: 'Reptil marino', habitat: 'Mar', period: 'cretacico', ma: 93, age: '≈ 94–92 Ma (Turoniano)',
+    place: 'Vallecillo, Nuevo León', country: 'México', continent: 'América', lat: 26.66, lon: -99.98, mexico: true,
+    summary: 'Un aigialosaurio: lagarto marino pequeño y temprano, emparentado con los mosasaurios, conservado con restos de tejidos blandos.',
+    fact: 'Las lajas de Vallecillo, extraídas para construcción, guardan peces, amonites, tortugas y reptiles marinos de un mar que cubría el noreste de México.',
+    silhouette: ['Mosasauroidea', 'Mosasauridae'], wiki: 'Vallecillosaurus donrobertoi', pbdb: 'Vallecillosaurus' }),
+  S({ id: 'acantholipan', name: 'Acantholipan', group: 'Dinosaurio', habitat: 'Costa', period: 'cretacico', ma: 84, age: '≈ 85–84 Ma (Santoniano)',
+    place: 'Formación Pen, Ocampo, Coahuila', country: 'México', continent: 'América', lat: 27.3, lon: -102.4, mexico: true, length: 3.5, lengthNote: '≈ 3–4 m (estimación)',
+    summary: 'El primer nodosáurido descrito de México: un anquilosaurio acorazado con espinas en los costados y placas óseas en el lomo.',
+    fact: 'Su nombre une el griego akantha («espina») y lipán, el pueblo apache que vivió en esta región.',
+    debated: 'Material incompleto; el tamaño es una estimación.',
+    silhouette: ['Nodosauridae', 'Ankylosauria'], wiki: 'Acantholipan gonzalezi', pbdb: 'Acantholipan' }),
+  S({ id: 'yehuecauhceratops', name: 'Yehuecauhceratops', group: 'Dinosaurio', habitat: 'Costa', period: 'cretacico', ma: 75, age: '≈ 76–73 Ma',
+    place: 'Formación Aguja, norte de Coahuila', country: 'México', continent: 'América', lat: 28.9, lon: -102.5, mexico: true, length: 3, lengthNote: '≈ 3 m (estimación)',
+    summary: 'Un ceratópsido centrosaurino pequeño, de gola con cuernos cortos, de las llanuras costeras del norte de Coahuila.',
+    fact: 'Yehuecauh significa «antiguo» en náhuatl; su especie, mudei, honra al Museo del Desierto (MUDE) de Saltillo.',
+    silhouette: ['Centrosaurinae', 'Ceratopsidae'], wiki: 'Yehuecauhceratops mudei', pbdb: 'Yehuecauhceratops' }),
+  S({ id: 'labocania', name: 'Labocania', group: 'Dinosaurio', habitat: 'Costa', period: 'cretacico', ma: 75, age: '≈ 75 Ma (Campaniano)',
+    place: 'Formación La Bocana Roja, Baja California', country: 'México', continent: 'América', lat: 30.06, lon: -115.7, mexico: true,
+    summary: 'Un terópodo grande de Baja California conocido por huesos sueltos: parte del cráneo, la pelvis y las patas.',
+    fact: 'Fue de los primeros dinosaurios descritos de México (1974). Su parentesco sigue en discusión: quizá un tiranosauroide.',
+    debated: 'Material muy fragmentario; no hay consenso sobre su lugar en el árbol de los terópodos.',
+    silhouette: ['Tyrannosauroidea', 'Theropoda'], wiki: 'Labocania anomala', pbdb: 'Labocania' }),
 ];
 
 export const speciesById = Object.fromEntries(species.map((s) => [s.id, s]));

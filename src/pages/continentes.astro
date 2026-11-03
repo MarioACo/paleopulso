@@ -113,6 +113,8 @@ const start = Math.max(0, frames.findIndex((f) => f.t === 260));
     document.querySelector<HTMLElement>('.screen')!.style.setProperty('--c', f.color);
     $('tMa').textContent = f.t === 0 ? 'Hoy' : `${f.t} Ma`;
     $('tPeriod').textContent = f.period;
+    // Sonido ambiente según el periodo (el id es el nombre sin acentos).
+    dispatchEvent(new CustomEvent('paleo:era', { detail: (f.period || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase() }));
     $('cPeriod').textContent = f.t === 0 ? 'Presente' : `${f.period} · hace ${f.t} millones de años`;
     $('cClock').textContent = `${f.clock} en el día de la Tierra`;
     $('cNote').textContent = f.note;
