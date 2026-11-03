@@ -150,12 +150,17 @@
       <div class="dino-exhibit">
         <div class="dino-visual-panel">
           <div class="formation-label"><span id="dinoFormation">FORMACIÓN ISCHIGUALASTO</span><small id="dinoLocation">SAN JUAN · ARGENTINA</small></div>
+          <div class="media-tabs" id="dinoMediaTabs" role="tablist" aria-label="Forma de observar el ejemplar">
+            <button type="button" role="tab" data-view="evidence" aria-selected="true">01 · Evidencia</button>
+            <button type="button" role="tab" data-view="life" aria-selected="false">02 · En vida</button>
+            <button type="button" role="tab" data-view="polygon" aria-selected="false">03 · Facetas</button>
+          </div>
           <div class="dino-canvas" id="dinoCanvas">
             <p class="dino-empty">Preparando la reconstrucción…</p>
           </div>
           <div class="scale-rule" aria-hidden="true"><span>0</span><i></i><span id="scaleLength">6 M</span></div>
           <div class="human-scale" aria-hidden="true"><i></i><span>1.70 m</span></div>
-          <p class="visual-note">RECONSTRUCCIÓN POLIGONAL · COLORES INTERPRETATIVOS</p>
+          <p class="visual-note" id="mediaTruthLabel">EVIDENCIA FÓSIL · PROCEDENCIA DOCUMENTADA</p>
         </div>
 
         <article class="dino-sheet" aria-live="polite">

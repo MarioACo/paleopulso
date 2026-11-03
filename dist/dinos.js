@@ -8,6 +8,32 @@ const dinosaurs = [
   {name:'Tyrannosaurus rex',period:'CRETÁCICO TARDÍO · 68—66 MA',formation:'HELL CREEK / LANCE',location:'OESTE DE NORTEAMÉRICA',etymology:'“Rey de los lagartos tiranos”',length:'≈ 12—13 m',scale:'13 M',diet:'Carnívora',clade:'Tyrannosauridae',kind:'rex',palette:['#a8a560','#5c6845','#354132','#d7bd70'],description:'Un depredador de cráneo enorme, sentidos desarrollados y una de las mordidas más poderosas entre los animales terrestres.',note:'No era solo carroñero: marcas de mordida cicatrizadas demuestran ataques a animales vivos. También aprovechaba cadáveres cuando podía.'}
 ];
 
+const dinoMedia={
+  'Herrerasaurus':{
+    evidence:{file:'Herrerasaurusskeleton.jpg',label:'Montaje esquelético de Herrerasaurus y Eoraptor',credit:'Zach Tirrell · CC BY-SA 2.0',note:'Montaje de museo: combina material reconstruido y réplicas; no equivale a un esqueleto articulado hallado completo.'},
+    life:{file:'Herrerasaurus reconstruction.jpg',label:'Reconstrucción científica de Herrerasaurus',credit:'Fred Wierum · CC BY-SA 4.0',note:'La anatomía se apoya en fósiles; piel, patrón y color son interpretativos.'}},
+  'Stegosaurus':{
+    evidence:{file:'Stegosaurus Skeleton (36329568742).jpg',label:'“Sophie”, montaje de Stegosaurus stenops',credit:'Gary Todd · CC0',note:'Sophie es uno de los esqueletos de Stegosaurus más completos conocidos; el montaje completa las partes ausentes.'},
+    life:{file:'Stegosaurus stenops Life Reconstruction.png',label:'Reconstrucción de “Sophie” en vida',credit:'Fred Wierum · CC BY-SA 4.0',note:'Las proporciones se basan en Sophie; tejidos blandos y color siguen siendo hipótesis.'}},
+  'Archaeopteryx':{
+    evidence:{file:'Berlin Archaeopteryx - Museum fur Naturkunde, Berlin - DSC00067.JPG',label:'Espécimen de Berlín de Archaeopteryx',credit:'Daderot · Dominio público',note:'Fósil auténtico sobre caliza de Solnhofen; conserva esqueleto y delicadas impresiones de plumas.'},
+    life:{file:'Archaeopteryx TD.png',label:'Reconstrucción moderna de Archaeopteryx',credit:'TotalDino · CC BY-SA 4.0',note:'Las plumas están demostradas por fósiles; parte del color y la postura son interpretativos.'}},
+  'Spinosaurus':{
+    evidence:{file:'Digital skeletal reconstruction of Spinosaurus.png',label:'Mapa científico del material conocido de Spinosaurus',credit:'Sereno et al. · CC BY 4.0',note:'No existe un esqueleto completo. Los colores distinguen holotipo, neotipo y otros ejemplares referidos.'},
+    life:{file:'Spinosaurus 2020 reconstruction.jpg',label:'Reconstrucción de Spinosaurus basada en evidencia de 2020',credit:'Mario Lanzas · CC BY-SA 4.0',note:'Su postura, capacidad natatoria y contorno corporal continúan bajo debate científico.'}},
+  'Carnotaurus':{
+    evidence:{file:'Carnotaurus skeleton.jpg',label:'Montaje esquelético de Carnotaurus',credit:'John Barreiros · CC BY-SA 2.0',note:'El espécimen original conserva gran parte del esqueleto e impresiones de piel; el montaje repone elementos ausentes.'},
+    life:{file:'Carnotaurus sastrei life reconstruction.png',label:'Reconstrucción tridimensional de Carnotaurus',credit:'DerpyDuckAnimation · CC BY-SA 4.0',note:'Basada en proporciones esqueléticas; color, labios y otros tejidos blandos son interpretativos.'}},
+  'Triceratops':{
+    evidence:{file:'Triceratops Skeleton Senckenberg 2 White Background.jpg',label:'Montaje compuesto de Triceratops',credit:'EvaK · CC BY-SA 2.5',note:'Está ensamblado con fragmentos de distintos individuos; la interfaz lo identifica como montaje, no como un ejemplar único.'},
+    life:{file:'Triceratops horridus life restoration.jpg',label:'Reconstrucción de Triceratops horridus en vida',credit:'Anonymous Dinonerd · CC BY-SA 4.0',note:'Cuernos y gola son fósiles; queratina, piel y color se reconstruyen por comparación e inferencia.'}},
+  'Tyrannosaurus rex':{
+    evidence:{file:'Tyrannosaurus Rex Full Skeleton.JPG',label:'Montaje de Tyrannosaurus rex, UC Berkeley',credit:'WildFrogs · CC BY-SA 3.0',note:'Los montajes públicos suelen incluir réplicas y piezas reconstruidas para completar la anatomía.'},
+    life:{file:'Life reconstruction of Tyrannosaurus rex specimen TMP 1981.006.0001 ("Black Beauty").png',label:'Reconstrucción del ejemplar “Black Beauty”',credit:'Connor Ashbridge · CC BY 4.0',note:'Volumen muscular basado en el esqueleto; coloración y detalles de piel son interpretativos.'}}
+};
+const commonsImage=file=>`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encodeURIComponent(file)}?width=1600`;
+const commonsPage=file=>`https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file.replaceAll(' ','_'))}`;
+
 function polygonDino(kind,p){
   const [a,b,c,d]=p;
   const common=`<defs><linearGradient id="dust" x1="0" x2="1"><stop stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><g stroke="rgba(18,20,16,.28)" stroke-width="2" stroke-linejoin="round">`;
@@ -25,9 +51,20 @@ function polygonDino(kind,p){
 
 const selector=document.querySelector('#dinoSelector');
 const canvas=document.querySelector('#dinoCanvas');
+const mediaTabs=document.querySelector('#dinoMediaTabs');
+let currentDinosaur=0,currentMediaView='evidence';
+function renderDinoMedia(){
+  const d=dinosaurs[currentDinosaur],isGraphic=currentMediaView==='polygon';
+  document.querySelector('.scale-rule').hidden=!isGraphic;document.querySelector('.human-scale').hidden=!isGraphic;
+  document.querySelector('#mediaTruthLabel').textContent=isGraphic?'ILUSTRACIÓN FACETADA · COLORES INTERPRETATIVOS':currentMediaView==='life'?'RECONSTRUCCIÓN CIENTÍFICA · NO ES UNA FOTOGRAFÍA':'EVIDENCIA FÓSIL · PROCEDENCIA DOCUMENTADA';
+  if(isGraphic){canvas.innerHTML=polygonDino(d.kind,d.palette);return}
+  const m=dinoMedia[d.name][currentMediaView];
+  canvas.innerHTML=`<figure class="evidence-frame"><div class="evidence-image-wrap"><span class="image-loader">REVELANDO EVIDENCIA…</span><img src="${commonsImage(m.file)}" alt="${m.label}" loading="lazy"></div><figcaption><div><span>${currentMediaView==='life'?'RECONSTRUCCIÓN EN VIDA':'FÓSIL / MONTAJE'}</span><strong>${m.label}</strong></div><p>${m.note}</p><a href="${commonsPage(m.file)}" target="_blank" rel="noopener">${m.credit} ↗</a></figcaption></figure>`;
+  const img=canvas.querySelector('img');img.addEventListener('load',()=>canvas.querySelector('.evidence-image-wrap').classList.add('loaded'));img.addEventListener('error',()=>{canvas.querySelector('.evidence-image-wrap').innerHTML=`<div class="media-error"><strong>La imagen no pudo cargarse.</strong><span>La ficha y la fuente siguen disponibles.</span><a href="${commonsPage(m.file)}" target="_blank" rel="noopener">Abrir en Wikimedia Commons ↗</a></div>`});
+}
 function showDinosaur(index){
   const d=dinosaurs[index];
-  canvas.innerHTML=polygonDino(d.kind,d.palette);
+  currentDinosaur=index;currentMediaView='evidence';
   document.querySelector('#dinoFormation').textContent=d.formation;document.querySelector('#dinoLocation').textContent=d.location;
   document.querySelector('#dinoNumber').textContent=String(index+1).padStart(2,'0');document.querySelector('#dinoPeriod').textContent=d.period;
   document.querySelector('#dinoName').textContent=d.name;document.querySelector('#dinoEtymology').textContent=d.etymology;
@@ -35,12 +72,14 @@ function showDinosaur(index){
   document.querySelector('#scaleLength').textContent=d.scale;document.querySelector('#dinoDiet').textContent=d.diet;
   document.querySelector('#dinoClade').textContent=d.clade;document.querySelector('#dinoNote').textContent=d.note;
   [...selector.children].forEach((b,i)=>b.setAttribute('aria-selected',i===index?'true':'false'));
+  [...mediaTabs.children].forEach(b=>b.setAttribute('aria-selected',b.dataset.view==='evidence'?'true':'false'));renderDinoMedia();
 }
 
 if(selector&&canvas){
   dinosaurs.forEach((d,i)=>{const b=document.createElement('button');b.type='button';b.role='tab';b.dataset.index=i;b.setAttribute('aria-selected',i===0?'true':'false');b.innerHTML=`<span>${String(i+1).padStart(2,'0')}</span><strong>${d.name}</strong><small>${d.period.split(' · ')[0]}</small>`;selector.appendChild(b)});
   selector.addEventListener('click',e=>{const b=e.target.closest('button');if(b)showDinosaur(Number(b.dataset.index))});
   selector.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const current=[...selector.children].indexOf(document.activeElement);const next=e.key==='Home'?0:e.key==='End'?dinosaurs.length-1:Math.max(0,Math.min(dinosaurs.length-1,current+(e.key==='ArrowRight'?1:-1)));selector.children[next].focus();selector.children[next].click()});
+  mediaTabs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;currentMediaView=b.dataset.view;[...mediaTabs.children].forEach(x=>x.setAttribute('aria-selected',x===b?'true':'false'));renderDinoMedia()});
   showDinosaur(0);
   const hero=document.querySelector('#heroDino');if(hero)hero.innerHTML=polygonDino('rex',['#7d9278','#536c5a','#253b32','#b9c69a']);
 }
