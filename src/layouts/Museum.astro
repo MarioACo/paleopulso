@@ -1,0 +1,93 @@
+---
+import '../styles/global.css';
+import { stamps } from '../data/quiz.js';
+interface Props { title: string; description?: string; stamp?: string; image?: string }
+const { title, description = 'Un museo de historia natural en tu navegador: 4,567 millones de años de vida, rocas y mundos desaparecidos, con fuentes y niveles de certeza.', stamp, image } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const links = [
+  ['/tiempo', 'Tiempo'], ['/vida', 'Archivo'], ['/dinosaurios', 'Dinosaurios'],
+  ['/mexico', 'México'], ['/mitos', 'Mitos'], ['/metodo', 'Cómo sabemos'],
+];
+const fullTitle = title === 'Paleopulso' ? 'Paleopulso — Museo de la Tierra antes de nosotros' : `${title} · Paleopulso`;
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0e0b08" />
+  <meta name="description" content={description} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  {image && <meta property="og:image" content={image} />}
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <title>{fullTitle}</title>
+</head>
+<body data-stamp={stamp}>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="site-nav">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Paleopulso, vestíbulo">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <circle cx="16" cy="16" r="14" /><path d="M16 4c-4 4-4 8 0 12s4 8 0 12M8 9c5 2 11 2 16 0M7 16h18M8 23c5-2 11-2 16 0" opacity=".7" />
+        </svg>
+        Paleopulso
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navLinks">Salas</button>
+      <nav class="nav-links" id="navLinks" aria-label="Salas del museo">
+        {links.map(([h, l]) => <a href={h} aria-current={path.startsWith(h) ? 'page' : undefined}>{l}</a>)}
+      </nav>
+      <a class="passport-chip" href="/pasaporte" title="Tu pasaporte del museo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2" /><circle cx="12" cy="10" r="3.2" /><path d="M8 17h8" /></svg>
+        <span><span data-stamp-count>0</span>/{stamps.length}</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="contenido"><slot /></main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div>
+        <a class="brand" href="/">Paleopulso</a>
+        <p style="margin-top:1rem">Un museo hecho para quienes sienten curiosidad por haber llegado tan tarde. Las fechas siguen la Tabla Cronoestratigráfica Internacional; las reconstrucciones se marcan como interpretaciones.</p>
+      </div>
+      <ul aria-label="Salas">
+        <li><a href="/tiempo">Tiempo profundo</a></li><li><a href="/vida">Archivo de vida</a></li>
+        <li><a href="/dinosaurios">Sala mesozoica</a></li><li><a href="/mexico">Sala México</a></li>
+        <li><a href="/mitos">Mitos y evidencia</a></li><li><a href="/metodo">Cómo sabemos</a></li>
+      </ul>
+      <ul aria-label="Fuentes">
+        <li><a href="/creditos">Créditos e imágenes</a></li>
+        <li><a href="https://stratigraphy.org/chart" rel="noopener">Escala ICS</a></li>
+        <li><a href="https://paleobiodb.org" rel="noopener">Paleobiology Database</a></li>
+        <li><a href="https://www.phylopic.org" rel="noopener">PhyloPic</a> · <a href="https://www.gplates.org" rel="noopener">GPlates</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    import { stamps } from '../data/quiz.js';
+    // Pasaporte: sella la sala actual y actualiza el contador.
+    const KEY = 'paleopulso:stamps';
+    const got = new Set<string>(JSON.parse(localStorage.getItem(KEY) || '[]'));
+    const here = document.body.dataset.stamp;
+    if (here && !got.has(here)) { got.add(here); localStorage.setItem(KEY, JSON.stringify([...got])); }
+    const valid = [...got].filter((id) => stamps.some((s) => s.id === id));
+    document.querySelectorAll('[data-stamp-count]').forEach((el) => (el.textContent = String(valid.length)));
+
+    const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+    const nav = document.getElementById('navLinks');
+    toggle?.addEventListener('click', () => {
+      const open = nav!.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+
+    // Entradas suaves.
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

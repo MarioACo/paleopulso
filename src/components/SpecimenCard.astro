@@ -1,0 +1,23 @@
+---
+import Silhouette from './Silhouette.astro';
+import { mainPhoto, periodOf, href } from '../lib/site.js';
+import { formatMa } from '../data/periods.js';
+interface Props { s: any; index?: number }
+const { s } = Astro.props;
+const p = periodOf(s);
+const photo = mainPhoto(s.id);
+---
+<a class="specimen" href={href(s)} style={`--pc:${p.color}`}
+  data-id={s.id} data-period={s.period} data-era={p.group} data-habitat={s.habitat} data-continent={s.continent}
+  data-mexico={s.mexico ? '1' : '0'} data-search={`${s.name} ${s.group} ${s.place} ${s.country} ${p.name} ${s.habitat}`.toLowerCase()}>
+  <div class="vitrine">
+    {photo && <img src={photo.file} alt="" loading="lazy" decoding="async" width={photo.w} height={photo.h} />}
+    <Silhouette id={s.id} />
+  </div>
+  <div class="specimen-body">
+    <span class="meta"><b>{p.name}</b> · {formatMa(s.ma)}</span>
+    <h3>{s.name}</h3>
+    <span class="meta">{s.group} · <span class={s.mexico ? 'mx-flag' : ''}>{s.country}</span></span>
+    {s.debated && <span><span class="badge debate">En debate</span></span>}
+  </div>
+</a>

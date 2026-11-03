@@ -1,0 +1,42 @@
+# Paleopulso
+
+Un museo de historia natural en el navegador: 4,567 millones de años de vida, rocas y continentes en movimiento, con fuentes y niveles de certeza. Contenido de todo el mundo, con una sala dedicada a México.
+
+## Salas
+
+| Ruta | Qué hay |
+| --- | --- |
+| `/` | Vestíbulo: reloj de «la Tierra en 24 horas», pieza del día, las cinco extinciones, misión de huellas |
+| `/tiempo` | Descenso por estratos con mapa paleogeográfico que cambia con cada periodo |
+| `/vida` | Archivo de 64 piezas con mapa mundial, filtros por era, ambiente, continente y México |
+| `/especie/:id` | Ficha: fotos (evidencia / reconstrucción), escala con una persona, mapa «entonces y ahora», rango en PBDB |
+| `/dinosaurios` | Sala mesozoica por periodos y comparador de tamaños a escala |
+| `/mexico` | Yacimientos de México, línea de tiempo, Chicxulub y museos para visitar |
+| `/mitos` | 14 tarjetas «¿mito o realidad?» con marcador |
+| `/metodo` | Cómo trabaja la paleontología y qué tan segura es cada capa de una reconstrucción |
+| `/pasaporte` | Sellos por sala visitada y examen final |
+| `/creditos` | Autoría y licencia de cada imagen y silueta |
+
+## Desarrollo
+
+```bash
+npm install
+npm run dev        # http://localhost:4321
+npm run check      # verifica los datos y compila
+npm run build      # genera dist/
+```
+
+## Datos y recursos
+
+- `src/data/periods.js` — escala geológica (límites y colores de la ICS), extinciones y reloj de 24 h.
+- `src/data/species.js` — el catálogo. Cada pieza lleva lugar y coordenadas del hallazgo, edad, tamaño, dato curioso y si algo está en debate.
+- `src/data/myths.js`, `quiz.js`, `mexico.js`, `featured.js` — contenido de las salas.
+- `src/data/assets.json` + `public/assets/` — recursos descargados **y guardados en el repo**, para no depender de terceros al visitar el sitio.
+
+Para añadir una pieza: agrégala a `species.js`, ejecuta `npm run assets` (descarga silueta, foto, paleomapa y rango de PBDB solo de lo que falta) y luego `npm run check`.
+
+`npm run check` falla si una edad cae fuera de su periodo, si falta un archivo o una licencia, y avisa si una edad no coincide con el rango de la Paleobiology Database (las diferencias justificadas se documentan con `pbdbNote`).
+
+Fuentes: [ICS](https://stratigraphy.org/chart) · [GPlates Web Service](https://gws.gplates.org) (modelo MERDITH2021) · [Paleobiology Database](https://paleobiodb.org) · [PhyloPic](https://www.phylopic.org) (solo licencias sin restricción comercial) · [Wikimedia Commons](https://commons.wikimedia.org) · [Natural Earth](https://www.naturalearthdata.com).
+
+La versión anterior (HTML estático) se conserva en `legacy/`.

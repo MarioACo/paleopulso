@@ -1,0 +1,54 @@
+---
+import Museum from '../layouts/Museum.astro';
+import { species, scaleRefs } from '../data/species.js';
+import { assets, photosOf } from '../lib/site.js';
+const all = [...species, ...scaleRefs];
+const photos = species.flatMap((s) => photosOf(s.id).map((p) => ({ s, p })));
+const sils = all.map((s) => ({ s, sil: assets.silhouettes?.[s.id] })).filter((x) => x.sil);
+---
+<Museum title="Créditos e imágenes" description="Fuentes de datos, imágenes y siluetas de Paleopulso, con su autoría y licencia.">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Créditos</p>
+      <h1>Gracias a quienes<br /><em>comparten su trabajo.</em></h1>
+      <p class="lead">Paleopulso usa solo imágenes con licencia libre. Las licencias CC BY y CC BY-SA exigen reconocer la autoría; aquí está cada una, con enlace a su fuente.</p>
+    </div>
+  </section>
+  <section class="wrap credits">
+    <h2>Datos</h2>
+    <ul>
+      <li><a href="https://stratigraphy.org/chart">Comisión Internacional de Estratigrafía (ICS)</a>: límites y colores de la escala geológica.</li>
+      <li><a href="https://www.gplates.org">GPlates Web Service</a>, modelo <i>MERDITH2021</i> (Merdith et al., 2021, Earth-Science Reviews): costas antiguas y paleocoordenadas.</li>
+      <li><a href="https://paleobiodb.org">Paleobiology Database</a>: rangos de aparición y número de registros (CC BY 4.0).</li>
+      <li><a href="https://www.naturalearthdata.com">Natural Earth</a>: fronteras de México y países vecinos (dominio público).</li>
+      <li>Textos de Paleopulso redactados a partir de la literatura científica y artículos de divulgación; los datos debatidos se marcan como tales.</li>
+    </ul>
+    <h2>Fotografías y reconstrucciones ({photos.length})</h2>
+    <p class="muted">Wikimedia Commons. Las imágenes se redimensionaron y convirtieron a WebP; no se alteró su contenido.</p>
+    <table>
+      <thead><tr><th>Pieza</th><th>Imagen</th><th>Autoría</th><th>Licencia</th></tr></thead>
+      <tbody>
+        {photos.map(({ s, p }) => <tr><td>{s.name}</td><td><a href={p.source}>{p.label}</a></td><td>{p.credit}</td><td>{p.licenseUrl ? <a href={p.licenseUrl}>{p.license}</a> : p.license}</td></tr>)}
+      </tbody>
+    </table>
+    <h2>Siluetas ({sils.length})</h2>
+    <p class="muted"><a href="https://www.phylopic.org">PhyloPic</a>. Solo licencias que permiten cualquier uso. Cuando no existe silueta de la especie se usa la de un pariente cercano, indicado en la ficha.</p>
+    <table>
+      <thead><tr><th>Pieza</th><th>Taxón de la silueta</th><th>Autoría</th><th>Licencia</th></tr></thead>
+      <tbody>
+        {sils.map(({ s, sil }) => <tr><td>{s.name}</td><td><a href={sil.page}>{sil.taxon}</a></td><td>{sil.attribution || sil.contributor}</td><td>{sil.licenseUrl ? <a href={sil.licenseUrl}>{sil.license}</a> : sil.license}</td></tr>)}
+      </tbody>
+    </table>
+  </section>
+</Museum>
+<style>
+  .credits { padding-bottom: 6rem; }
+  .credits h2 { font-size: 2rem; margin: 3rem 0 1rem; }
+  .credits a { color: var(--brass); }
+  .credits ul { color: var(--muted); display: grid; gap: .5rem; }
+  table { width: 100%; border-collapse: collapse; font-size: .86rem; margin-top: 1rem; }
+  th { text-align: left; font: 600 .72rem var(--label); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--brass-dim); padding: .6rem .5rem; }
+  td { border-bottom: 1px solid var(--line); padding: .55rem .5rem; vertical-align: top; }
+  td:first-child { font-family: var(--serif); font-size: 1rem; white-space: nowrap; }
+  @media (max-width: 700px) { table { display: block; overflow-x: auto; } }
+</style>

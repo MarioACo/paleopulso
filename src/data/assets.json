@@ -1,0 +1,2623 @@
+{
+ "silhouettes": {
+  "charnia": {
+   "file": "/assets/silhouettes/charnia.svg",
+   "aspect": 0.185,
+   "uuid": "5711f5d3-b783-42a0-b217-56f3c4ef92d7",
+   "taxon": "Charnia",
+   "query": "Charnia",
+   "exact": true,
+   "contributor": "Caleb M. Gordon",
+   "attribution": "Caleb M. Gordon",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/5711f5d3-b783-42a0-b217-56f3c4ef92d7"
+  },
+  "hallucigenia": {
+   "file": "/assets/silhouettes/hallucigenia.svg",
+   "aspect": 1.736,
+   "uuid": "d22339f4-2d2e-42ca-9bec-4c9dfdac2a23",
+   "taxon": "Hallucigenia sparsa",
+   "query": "Hallucigenia",
+   "exact": true,
+   "contributor": "Caleb Brown",
+   "attribution": "Caleb M. Brown",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://www.phylopic.org/images/d22339f4-2d2e-42ca-9bec-4c9dfdac2a23"
+  },
+  "anomalocaris": {
+   "file": "/assets/silhouettes/anomalocaris.svg",
+   "aspect": 1.703,
+   "uuid": "6a83b364-5678-4b39-811c-d468f3248dcf",
+   "taxon": "Anomalocaris canadensis Whiteaves 1892",
+   "query": "Anomalocaris",
+   "exact": true,
+   "contributor": "Amy Beauvois",
+   "attribution": "Amy Beauvois",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/6a83b364-5678-4b39-811c-d468f3248dcf"
+  },
+  "dickinsonia": {
+   "file": "/assets/silhouettes/dickinsonia.svg",
+   "aspect": 1.38,
+   "uuid": "089629b8-c5a3-4214-8ee7-3160a6341628",
+   "taxon": "Dickinsonia Sprigg 1947",
+   "query": "Dickinsonia",
+   "exact": true,
+   "contributor": "Caleb M. Gordon",
+   "attribution": "Caleb M. Gordon",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/089629b8-c5a3-4214-8ee7-3160a6341628"
+  },
+  "haikouichthys": {
+   "file": "/assets/silhouettes/haikouichthys.svg",
+   "aspect": 3.927,
+   "uuid": "2cf72aa7-f948-48db-a1f7-514b6695053b",
+   "taxon": "Haikouichthys ercaicunensis",
+   "query": "Haikouichthys",
+   "exact": true,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Nobu Tamura",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://www.phylopic.org/images/2cf72aa7-f948-48db-a1f7-514b6695053b"
+  },
+  "trilobites": {
+   "file": "/assets/silhouettes/trilobites.svg",
+   "aspect": 0.76,
+   "uuid": "f73e5698-3cbe-4921-86fb-42a070918b41",
+   "taxon": "Fallotaspis longa",
+   "query": "Trilobita",
+   "exact": false,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Sam Gon III",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/f73e5698-3cbe-4921-86fb-42a070918b41"
+  },
+  "orthoceras": {
+   "file": "/assets/silhouettes/orthoceras.svg",
+   "aspect": 0.148,
+   "uuid": "ab2d8ba7-da72-4255-99a0-75cfaa844766",
+   "taxon": "Riocerida",
+   "query": "Orthoceratoidea",
+   "exact": false,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Alexander Pohle (modified)",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/ab2d8ba7-da72-4255-99a0-75cfaa844766"
+  },
+  "cooksonia": {
+   "file": "/assets/silhouettes/cooksonia.svg",
+   "aspect": 0.461,
+   "uuid": "c09ae2aa-8487-44fc-be16-fc834f10a618",
+   "taxon": "Cooksonia W. H. Lang 1937",
+   "query": "Cooksonia",
+   "exact": true,
+   "contributor": "T. Michael Keesey",
+   "attribution": "T. Michael Keesey",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/c09ae2aa-8487-44fc-be16-fc834f10a618"
+  },
+  "eurypterus": {
+   "file": "/assets/silhouettes/eurypterus.svg",
+   "aspect": 0.618,
+   "uuid": "39609e8b-65bf-4379-8602-a0007cbceb46",
+   "taxon": "Eurypterus remipes DeKay 1825",
+   "query": "Eurypterus",
+   "exact": true,
+   "contributor": "Gareth Monger",
+   "attribution": "Gareth Monger",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+   "page": "https://www.phylopic.org/images/39609e8b-65bf-4379-8602-a0007cbceb46"
+  },
+  "dunkleosteus": {
+   "file": "/assets/silhouettes/dunkleosteus.svg",
+   "aspect": 2.324,
+   "uuid": "22c74b7b-774a-4eff-abed-61219e1823ab",
+   "taxon": "Dunkleosteus terrelli",
+   "query": "Dunkleosteus",
+   "exact": true,
+   "contributor": "Olof Moleman",
+   "attribution": "Olof Moleman",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/22c74b7b-774a-4eff-abed-61219e1823ab"
+  },
+  "archaeopteris": {
+   "file": "/assets/silhouettes/archaeopteris.svg",
+   "aspect": 0.48,
+   "uuid": "9eba377e-5964-4554-a04c-43a115d31381",
+   "taxon": "Archaeopteris J. W. Dawson 1871",
+   "query": "Archaeopteris",
+   "exact": true,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Falconaumanni and T. Michael Keesey",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://www.phylopic.org/images/9eba377e-5964-4554-a04c-43a115d31381"
+  },
+  "meganeura": {
+   "file": "/assets/silhouettes/meganeura.svg",
+   "aspect": 1.071,
+   "uuid": "b7b2895c-f9c3-436a-8efa-d80b14fe0918",
+   "taxon": "Meganeura Brongniart 1885",
+   "query": "Meganeura",
+   "exact": true,
+   "contributor": "Joseba Iza",
+   "attribution": "Joseba Iza",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/b7b2895c-f9c3-436a-8efa-d80b14fe0918"
+  },
+  "sacabambaspis": {
+   "file": "/assets/silhouettes/sacabambaspis.svg",
+   "aspect": 2.829,
+   "uuid": "5a08f1d1-1f9d-41df-b589-f9dd4e0fdea0",
+   "taxon": "Arandaspis prionotolepis Ritchie & Gilbert-Tomlinson 1977",
+   "query": "Pteraspidomorphi",
+   "exact": false,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Nobu Tamura (modified by T. Michael Keesey)",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/5a08f1d1-1f9d-41df-b589-f9dd4e0fdea0"
+  },
+  "tiktaalik": {
+   "file": "/assets/silhouettes/tiktaalik.svg",
+   "aspect": 5.885,
+   "uuid": "10a9bdee-2c86-4f13-a8ae-5ff92dbed2a9",
+   "taxon": "Tiktaalik roseae Daeschler, Shubin, Jenkins 2005",
+   "query": "Tiktaalik roseae",
+   "exact": true,
+   "contributor": "Tetsuo Kon, MD, PhD",
+   "attribution": "Tetsuo Kon, MD, PhD",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/10a9bdee-2c86-4f13-a8ae-5ff92dbed2a9"
+  },
+  "arthropleura": {
+   "file": "/assets/silhouettes/arthropleura.svg",
+   "aspect": 4.074,
+   "uuid": "7fd55470-802d-4a0a-9bdd-73e2f828c5a6",
+   "taxon": "Arthropleura armata Jordan & Meyer 1854",
+   "query": "Arthropleura",
+   "exact": true,
+   "contributor": "Jun",
+   "attribution": "Jun",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/7fd55470-802d-4a0a-9bdd-73e2f828c5a6"
+  },
+  "hylonomus": {
+   "file": "/assets/silhouettes/hylonomus.svg",
+   "aspect": 2.931,
+   "uuid": "9a476c76-f0f2-4ffc-ae46-0e8311e9fe27",
+   "taxon": "Hylonomus lyelli",
+   "query": "Hylonomus",
+   "exact": true,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Nobu Tamura (vectorized by T. Michael Keesey)",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://www.phylopic.org/images/9a476c76-f0f2-4ffc-ae46-0e8311e9fe27"
+  },
+  "dimetrodon": {
+   "file": "/assets/silhouettes/dimetrodon.svg",
+   "aspect": 1.648,
+   "uuid": "b9b73c89-7609-4524-b068-7c7c7f566979",
+   "taxon": "Dimetrodon Cope 1878",
+   "query": "Dimetrodon",
+   "exact": true,
+   "contributor": "Alessio Ciaffi",
+   "attribution": "Alessio Ciaffi",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/b9b73c89-7609-4524-b068-7c7c7f566979"
+  },
+  "inostrancevia": {
+   "file": "/assets/silhouettes/inostrancevia.svg",
+   "aspect": 2.59,
+   "uuid": "730f5066-4b02-4548-be22-6d683af13d70",
+   "taxon": "Inostrancevia alexandri",
+   "query": "Inostrancevia",
+   "exact": true,
+   "contributor": "Will Toosey",
+   "attribution": "Will Toosey",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/730f5066-4b02-4548-be22-6d683af13d70"
+  },
+  "lystrosaurus": {
+   "file": "/assets/silhouettes/lystrosaurus.svg",
+   "aspect": 2.37,
+   "uuid": "03efb48d-b735-4812-bf65-39279d9f7067",
+   "taxon": "Lystrosaurus murrayi",
+   "query": "Lystrosaurus",
+   "exact": true,
+   "contributor": "Matt Celeskey",
+   "attribution": "Matt Celeskey",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/03efb48d-b735-4812-bf65-39279d9f7067"
+  },
+  "tanystropheus": {
+   "file": "/assets/silhouettes/tanystropheus.svg",
+   "aspect": 10.539,
+   "uuid": "2a60cfcf-6b46-42d1-9914-4eb9904ad9d2",
+   "taxon": "Tanystropheus longobardicus (Bassani 1886)",
+   "query": "Tanystropheus",
+   "exact": true,
+   "contributor": "Neil Kelley",
+   "attribution": "Neil Kelley",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/2a60cfcf-6b46-42d1-9914-4eb9904ad9d2"
+  },
+  "eoraptor": {
+   "file": "/assets/silhouettes/eoraptor.svg",
+   "aspect": 1.534,
+   "uuid": "8f3e5723-986f-4f1d-9292-ff041ce176ca",
+   "taxon": "Eoraptor lunensis",
+   "query": "Eoraptor",
+   "exact": true,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Marmelad",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://www.phylopic.org/images/8f3e5723-986f-4f1d-9292-ff041ce176ca"
+  },
+  "herrerasaurus": {
+   "file": "/assets/silhouettes/herrerasaurus.svg",
+   "aspect": 3.078,
+   "uuid": "02991935-372f-47ee-9236-53b5aa300418",
+   "taxon": "Herrerasaurus ischigualastensis Reig 1963",
+   "query": "Herrerasaurus",
+   "exact": true,
+   "contributor": "Ivan Iofrida",
+   "attribution": "Ivan Iofrida",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/02991935-372f-47ee-9236-53b5aa300418"
+  },
+  "mesosaurus": {
+   "file": "/assets/silhouettes/mesosaurus.svg",
+   "aspect": 9.253,
+   "uuid": "c4037b3c-ec9d-48a0-bd9d-9b0b1c701c5d",
+   "taxon": "Mesosaurus tenuidens Gervais 1865",
+   "query": "Mesosaurus tenuidens",
+   "exact": true,
+   "contributor": "Cy Marchant",
+   "attribution": "Slate Weasel (modified by Cy Marchant)",
+   "license": "Dominio público",
+   "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "page": "https://www.phylopic.org/images/c4037b3c-ec9d-48a0-bd9d-9b0b1c701c5d"
+  },
+  "coelophysis": {
+   "file": "/assets/silhouettes/coelophysis.svg",
+   "aspect": 3.645,
+   "uuid": "9ffcedbd-9948-468c-b80e-9a9414407af9",
+   "taxon": "Coelophysis Cope 1889",
+   "query": "Coelophysis",
+   "exact": true,
+   "contributor": "Scott Hartman",
+   "attribution": "Scott Hartman",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+   "page": "https://www.phylopic.org/images/9ffcedbd-9948-468c-b80e-9a9414407af9"
+  },
+  "plateosaurus": {
+   "file": "/assets/silhouettes/plateosaurus.svg",
+   "aspect": 3.319,
+   "uuid": "23027ce7-713d-4c28-97e2-aec0219266df",
+   "taxon": "Plateosaurus Meyer 1837",
+   "query": "Plateosaurus",
+   "exact": true,
+   "contributor": "Jack Mayer Wood",
+   "attribution": "Jack Mayer Wood",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/23027ce7-713d-4c28-97e2-aec0219266df"
+  },
+  "ichthyosaurus": {
+   "file": "/assets/silhouettes/ichthyosaurus.svg",
+   "aspect": 2.341,
+   "uuid": "447bec69-acdf-473c-8df7-4f2f79040bd0",
+   "taxon": "Ichthyosaurus communis Conybeare",
+   "query": "Ichthyosaurus",
+   "exact": true,
+   "contributor": "Jagged Fang Designs",
+   "attribution": "Jagged Fang Designs",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/447bec69-acdf-473c-8df7-4f2f79040bd0"
+  },
+  "huizachal": {
+   "file": "/assets/silhouettes/huizachal.svg",
+   "aspect": 4.635,
+   "uuid": "85ae4e85-e2a0-4b01-8528-188eff0336f8",
+   "taxon": "Oligokyphus lufengensis",
+   "query": "Tritylodontidae",
+   "exact": false,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Nobu Tamura",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://www.phylopic.org/images/85ae4e85-e2a0-4b01-8528-188eff0336f8"
+  },
+  "stegosaurus": {
+   "file": "/assets/silhouettes/stegosaurus.svg",
+   "aspect": 2.32,
+   "uuid": "173f44e3-2db7-4c98-b41f-6ab58093a145",
+   "taxon": "Stegosaurus Marsh 1877",
+   "query": "Stegosaurus",
+   "exact": true,
+   "contributor": "Andrew Farke",
+   "attribution": "Andrew A. Farke",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+   "page": "https://www.phylopic.org/images/173f44e3-2db7-4c98-b41f-6ab58093a145"
+  },
+  "allosaurus": {
+   "file": "/assets/silhouettes/allosaurus.svg",
+   "aspect": 3.282,
+   "uuid": "62f2e46f-9205-4e32-83d6-e14865a9e789",
+   "taxon": "Allosaurus europaeus",
+   "query": "Allosaurus",
+   "exact": true,
+   "contributor": "Jagged Fang Designs",
+   "attribution": "Jagged Fang Designs",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/62f2e46f-9205-4e32-83d6-e14865a9e789"
+  },
+  "giraffatitan": {
+   "file": "/assets/silhouettes/giraffatitan.svg",
+   "aspect": 0.557,
+   "uuid": "1e6b0240-6249-4149-8499-5f1c08079bcc",
+   "taxon": "Giraffatitan brancai (Janensch 1914)",
+   "query": "Giraffatitan",
+   "exact": true,
+   "contributor": "Amy Beauvois",
+   "attribution": "Amy Beauvois",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/1e6b0240-6249-4149-8499-5f1c08079bcc"
+  },
+  "diplodocus": {
+   "file": "/assets/silhouettes/diplodocus.svg",
+   "aspect": 5.134,
+   "uuid": "3cb1d5bf-7db5-4db2-82a6-4c39f6a4441b",
+   "taxon": "Diplodocus carnegii Hatcher 1901",
+   "query": "Diplodocus",
+   "exact": true,
+   "contributor": "Scott Hartman",
+   "attribution": "Scott Hartman",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+   "page": "https://www.phylopic.org/images/3cb1d5bf-7db5-4db2-82a6-4c39f6a4441b"
+  },
+  "archaeopteryx": {
+   "file": "/assets/silhouettes/archaeopteryx.svg",
+   "aspect": 1.674,
+   "uuid": "045279d5-24e5-4838-bec9-0bea86812e35",
+   "taxon": "Archaeopteryx lithographica von Meyer 1861",
+   "query": "Archaeopteryx",
+   "exact": true,
+   "contributor": "T. Michael Keesey",
+   "attribution": "T. Michael Keesey",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/045279d5-24e5-4838-bec9-0bea86812e35"
+  },
+  "iguanodon": {
+   "file": "/assets/silhouettes/iguanodon.svg",
+   "aspect": 2.941,
+   "uuid": "32c6591b-e7c8-4cc4-8f7b-be70776d7299",
+   "taxon": "Iguanodon bernissartensis Boulenger in Beneden 1881",
+   "query": "Iguanodon",
+   "exact": true,
+   "contributor": "Jaime Headden",
+   "attribution": "Jaime Headden",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+   "page": "https://www.phylopic.org/images/32c6591b-e7c8-4cc4-8f7b-be70776d7299"
+  },
+  "microraptor": {
+   "file": "/assets/silhouettes/microraptor.svg",
+   "aspect": 1.444,
+   "uuid": "90bf7ae5-8653-4dbf-ae36-8854ac711dab",
+   "taxon": "Microraptor zhaoianus",
+   "query": "Microraptor",
+   "exact": true,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Brad McFeeters (vectorized by T. Michael Keesey)",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/90bf7ae5-8653-4dbf-ae36-8854ac711dab"
+  },
+  "sinosauropteryx": {
+   "file": "/assets/silhouettes/sinosauropteryx.svg",
+   "aspect": 2.971,
+   "uuid": "1035c389-5e91-479d-b14c-b0665ec4e14d",
+   "taxon": "Sinosauropteryx prima Ji & Ji 1996",
+   "query": "Compsognathidae",
+   "exact": true,
+   "contributor": "Scott Hartman",
+   "attribution": "Scott Hartman",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+   "page": "https://www.phylopic.org/images/1035c389-5e91-479d-b14c-b0665ec4e14d"
+  },
+  "spinosaurus": {
+   "file": "/assets/silhouettes/spinosaurus.svg",
+   "aspect": 2.304,
+   "uuid": "0dd7eaf6-1caf-4579-9f42-340fa9f34c48",
+   "taxon": "Spinosaurus aegyptiacus Stromer 1915",
+   "query": "Spinosaurus",
+   "exact": true,
+   "contributor": "Rhiannon Dixon",
+   "attribution": "Tasman Dixon",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/0dd7eaf6-1caf-4579-9f42-340fa9f34c48"
+  },
+  "velociraptor": {
+   "file": "/assets/silhouettes/velociraptor.svg",
+   "aspect": 2.937,
+   "uuid": "687923ee-3a11-432b-b2fb-7ffd188c16be",
+   "taxon": "Velociraptor mongoliensis Osborn 1924",
+   "query": "Velociraptor",
+   "exact": true,
+   "contributor": "Chris Masna",
+   "attribution": "Christian A. Masnaghetti",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://www.phylopic.org/images/687923ee-3a11-432b-b2fb-7ffd188c16be"
+  },
+  "argentinosaurus": {
+   "file": "/assets/silhouettes/argentinosaurus.svg",
+   "aspect": 1.977,
+   "uuid": "769e86a0-ef2a-47ef-b6f9-5df58cf9fa9c",
+   "taxon": "Dreadnoughtus schrani Lacovara & al. 2014",
+   "query": "Titanosauria",
+   "exact": false,
+   "contributor": "Scott Hartman",
+   "attribution": "Scott Hartman",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+   "page": "https://www.phylopic.org/images/769e86a0-ef2a-47ef-b6f9-5df58cf9fa9c"
+  },
+  "coahuilaceratops": {
+   "file": "/assets/silhouettes/coahuilaceratops.svg",
+   "aspect": 1.587,
+   "uuid": "84d7b9cf-75ec-4144-b090-fec5f5448886",
+   "taxon": "Terminocavus sealeyi",
+   "query": "Chasmosaurinae",
+   "exact": false,
+   "contributor": "Itai Fein",
+   "attribution": "Itai Fein",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/84d7b9cf-75ec-4144-b090-fec5f5448886"
+  },
+  "carnotaurus": {
+   "file": "/assets/silhouettes/carnotaurus.svg",
+   "aspect": 2.229,
+   "uuid": "07ac345a-7b69-4f99-a3fd-84b4d08fcd80",
+   "taxon": "Carnotaurus sastrei Bonaparte 1985",
+   "query": "Carnotaurus",
+   "exact": true,
+   "contributor": "thetruespinofanboi",
+   "attribution": "thetruespinofanboi",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/07ac345a-7b69-4f99-a3fd-84b4d08fcd80"
+  },
+  "mosasaurus": {
+   "file": "/assets/silhouettes/mosasaurus.svg",
+   "aspect": 1.343,
+   "uuid": "7cebc9af-3379-4c7a-9276-d23c67b50984",
+   "taxon": "Mosasauridae Gervais 1853 [Madzia & Conrad 2020]",
+   "query": "Mosasauridae",
+   "exact": false,
+   "contributor": "Amy Beauvois",
+   "attribution": "Amy Beauvois",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/7cebc9af-3379-4c7a-9276-d23c67b50984"
+  },
+  "quetzalcoatlus": {
+   "file": "/assets/silhouettes/quetzalcoatlus.svg",
+   "aspect": 0.788,
+   "uuid": "6dd3a0b6-8c58-4205-9f10-45b6686c4cd0",
+   "taxon": "Azhdarcho lancicollis Nesov 1984",
+   "query": "Azhdarchidae",
+   "exact": false,
+   "contributor": "jack liddle",
+   "attribution": "jack liddle",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/6dd3a0b6-8c58-4205-9f10-45b6686c4cd0"
+  },
+  "trex": {
+   "file": "/assets/silhouettes/trex.svg",
+   "aspect": 3.006,
+   "uuid": "0c393043-8916-49b7-95df-5216285e7d17",
+   "taxon": "Tyrannosaurus rex Osborn 1905",
+   "query": "Tyrannosaurus rex",
+   "exact": true,
+   "contributor": "JFstudios",
+   "attribution": "artrociraptor",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/0c393043-8916-49b7-95df-5216285e7d17"
+  },
+  "triceratops": {
+   "file": "/assets/silhouettes/triceratops.svg",
+   "aspect": 2.013,
+   "uuid": "4c3f2e42-c7c6-42d6-934d-fed47b6888a1",
+   "taxon": "Triceratops Marsh 1889",
+   "query": "Triceratops",
+   "exact": true,
+   "contributor": "Aiden Gauthier",
+   "attribution": "Jose Carlos Cortes",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/4c3f2e42-c7c6-42d6-934d-fed47b6888a1"
+  },
+  "titanoboa": {
+   "file": "/assets/silhouettes/titanoboa.svg",
+   "aspect": 1.74,
+   "uuid": "beca4a24-33ef-4659-a20f-7d6835703c1c",
+   "taxon": "Titanoboa cerrejonensis Head & al. 2009",
+   "query": "Titanoboa",
+   "exact": true,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Nobu Tamura (modified by T. Michael Keesey)",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+   "page": "https://www.phylopic.org/images/beca4a24-33ef-4659-a20f-7d6835703c1c"
+  },
+  "basilosaurus": {
+   "file": "/assets/silhouettes/basilosaurus.svg",
+   "aspect": 5.565,
+   "uuid": "b99b9ce4-1b4f-4627-b0a3-f4f7fed4bfd0",
+   "taxon": "Basilosaurus",
+   "query": "Basilosaurus",
+   "exact": true,
+   "contributor": "Chris Forbes",
+   "attribution": "Chris Forbes",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/b99b9ce4-1b4f-4627-b0a3-f4f7fed4bfd0"
+  },
+  "paraceratherium": {
+   "file": "/assets/silhouettes/paraceratherium.svg",
+   "aspect": 1.55,
+   "uuid": "12fc9c0f-3b9e-4cc1-a184-df6abfbbe3e9",
+   "taxon": "Paraceratherium Forster Cooper 1911",
+   "query": "Paraceratherium",
+   "exact": true,
+   "contributor": "Steven Traver",
+   "attribution": "Steven Traver",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/12fc9c0f-3b9e-4cc1-a184-df6abfbbe3e9"
+  },
+  "megalodon": {
+   "file": "/assets/silhouettes/megalodon.svg",
+   "aspect": 2.639,
+   "uuid": "993d4e41-51b3-4c59-a4ad-b3dbd482968e",
+   "taxon": "Otodus megalodon (Agassiz 1843)",
+   "query": "Otodus megalodon",
+   "exact": false,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Scarlet23 (vectorized by T. Michael Keesey)",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://www.phylopic.org/images/993d4e41-51b3-4c59-a4ad-b3dbd482968e"
+  },
+  "smilodon": {
+   "file": "/assets/silhouettes/smilodon.svg",
+   "aspect": 1.641,
+   "uuid": "472e87b9-368f-47b3-a923-d46cfedb51a4",
+   "taxon": "Smilodon Lund 1842",
+   "query": "Smilodon",
+   "exact": true,
+   "contributor": "Margot Michaud",
+   "attribution": "Margot Michaud",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/472e87b9-368f-47b3-a923-d46cfedb51a4"
+  },
+  "latirhinus": {
+   "file": "/assets/silhouettes/latirhinus.svg",
+   "aspect": 2.695,
+   "uuid": "3bcbe8d3-a5e2-4d3e-b641-8fcb5be5c0e3",
+   "taxon": "Hadrosaurus foulkii",
+   "query": "Hadrosauridae",
+   "exact": false,
+   "contributor": "Will Toosey",
+   "attribution": "Will Toosey",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/3bcbe8d3-a5e2-4d3e-b641-8fcb5be5c0e3"
+  },
+  "glyptodon": {
+   "file": "/assets/silhouettes/glyptodon.svg",
+   "aspect": 1.558,
+   "uuid": "58986c3a-603d-4528-83e1-b9cc478c6c2e",
+   "taxon": "Glyptodon Owen 1838",
+   "query": "Glyptodon",
+   "exact": false,
+   "contributor": "Steven Traver",
+   "attribution": "Steven Traver",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/58986c3a-603d-4528-83e1-b9cc478c6c2e"
+  },
+  "mamut": {
+   "file": "/assets/silhouettes/mamut.svg",
+   "aspect": 1.753,
+   "uuid": "3866663c-e4ac-426f-b1cc-0f73955d0ed6",
+   "taxon": "Mammuthus columbi (Falconer 1857)",
+   "query": "Mammuthus columbi",
+   "exact": false,
+   "contributor": "William Gearty",
+   "attribution": "U.S. National Park Service (vectorized by William Gearty)",
+   "license": "Dominio público",
+   "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "page": "https://www.phylopic.org/images/3866663c-e4ac-426f-b1cc-0f73955d0ed6"
+  },
+  "megatherium": {
+   "file": "/assets/silhouettes/megatherium.svg",
+   "aspect": 2.296,
+   "uuid": "afde58bf-878b-46b0-864c-76c2543bcf11",
+   "taxon": "Proscelidodon gracillimus",
+   "query": "Folivora",
+   "exact": false,
+   "contributor": "Michael Tripoli",
+   "attribution": "Michael Tripoli",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/afde58bf-878b-46b0-864c-76c2543bcf11"
+  },
+  "muzquizopteryx": {
+   "file": "/assets/silhouettes/muzquizopteryx.svg",
+   "aspect": 2.262,
+   "uuid": "02651c35-768e-4570-9bad-90cac6911b52",
+   "taxon": "Pterodactylus antiquus (Soemmerring 1812)",
+   "query": "Pterodactyloidea",
+   "exact": false,
+   "contributor": "Gareth Monger",
+   "attribution": "Gareth Monger",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+   "page": "https://www.phylopic.org/images/02651c35-768e-4570-9bad-90cac6911b52"
+  },
+  "neandertal": {
+   "file": "/assets/silhouettes/neandertal.svg",
+   "aspect": 0.404,
+   "uuid": "e547cd01-7dd1-495b-8239-52cf9971a609",
+   "taxon": "Homo neanderthalensis King 1864",
+   "query": "Homo neanderthalensis",
+   "exact": true,
+   "contributor": "T. Michael Keesey",
+   "attribution": "T. Michael Keesey",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/e547cd01-7dd1-495b-8239-52cf9971a609"
+  },
+  "ballena-azul": {
+   "file": "/assets/silhouettes/ballena-azul.svg",
+   "aspect": 3.078,
+   "uuid": "16969246-31e0-48e3-90ff-cad9a8746073",
+   "taxon": "Balaenoptera musculus (Linnaeus 1758)",
+   "query": "Balaenoptera musculus",
+   "exact": false,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Chris huh",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://www.phylopic.org/images/16969246-31e0-48e3-90ff-cad9a8746073"
+  },
+  "elefante": {
+   "file": "/assets/silhouettes/elefante.svg",
+   "aspect": 1.071,
+   "uuid": "2a070808-0874-409d-81c0-d0c1995e54bb",
+   "taxon": "Loxodonta africana (Blumenbach 1797)",
+   "query": "Loxodonta africana",
+   "exact": false,
+   "contributor": "Margot Michaud",
+   "attribution": "Margot Michaud",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/2a070808-0874-409d-81c0-d0c1995e54bb"
+  },
+  "tlatolophus": {
+   "file": "/assets/silhouettes/tlatolophus.svg",
+   "aspect": 2.704,
+   "uuid": "76779b00-0150-406a-a443-23c534ec80fe",
+   "taxon": "Parasaurolophus Parks 1923",
+   "query": "Parasaurolophus",
+   "exact": false,
+   "contributor": "Scott Hartman",
+   "attribution": "Scott Hartman (vectorized by T. Michael Keesey)",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+   "page": "https://www.phylopic.org/images/76779b00-0150-406a-a443-23c534ec80fe"
+  },
+  "naia": {
+   "file": "/assets/silhouettes/naia.svg",
+   "aspect": 0.305,
+   "uuid": "37536a9c-db56-42d3-8923-8c5ffdfa637b",
+   "taxon": "Homo sapiens sapiens Linnaeus 1758",
+   "query": "uuid",
+   "exact": true,
+   "contributor": "Carlo De Rito",
+   "attribution": null,
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/37536a9c-db56-42d3-8923-8c5ffdfa637b"
+  },
+  "humano": {
+   "file": "/assets/silhouettes/humano.svg",
+   "aspect": 0.431,
+   "uuid": "30d16233-028d-4a70-9002-db349d73c0bc",
+   "taxon": "Homo sapiens sapiens Linnaeus 1758",
+   "query": "uuid",
+   "exact": true,
+   "contributor": "Tony Goldberg",
+   "attribution": "Jiro Wada",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/30d16233-028d-4a70-9002-db349d73c0bc"
+  },
+  "velafrons": {
+   "file": "/assets/silhouettes/velafrons.svg",
+   "aspect": 1.887,
+   "uuid": "86882478-2779-42f4-99a8-75ea58ef1198",
+   "taxon": "Corythosaurus casuarius",
+   "query": "Corythosaurus",
+   "exact": false,
+   "contributor": "Olof Moleman",
+   "attribution": "Olof Moleman",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "page": "https://www.phylopic.org/images/86882478-2779-42f4-99a8-75ea58ef1198"
+  }
+ },
+ "photos": {
+  "estromatolitos": [
+   {
+    "file": "/assets/photos/estromatolitos-lead.webp",
+    "w": 1600,
+    "h": 1191,
+    "credit": "Paul Harrison",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Stromatolites_in_Sharkbay.jpg",
+    "kind": "lead",
+    "label": "Stromatolites in Sharkbay"
+   }
+  ],
+  "charnia": [
+   {
+    "file": "/assets/photos/charnia-lead.webp",
+    "w": 908,
+    "h": 1600,
+    "credit": "Rept0n1x",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Charnia_masoni_(cast),_Wrexham_Museum.JPG",
+    "kind": "lead",
+    "label": "Charnia masoni (cast), Wrexham Museum"
+   }
+  ],
+  "grypania": [
+   {
+    "file": "/assets/photos/grypania-lead.webp",
+    "w": 1600,
+    "h": 1200,
+    "credit": "Xvazquez",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Grypania_spiralis.JPG",
+    "kind": "lead",
+    "label": "Grypania spiralis"
+   }
+  ],
+  "anomalocaris": [
+   {
+    "file": "/assets/photos/anomalocaris-lead.webp",
+    "w": 1027,
+    "h": 551,
+    "credit": "Keith Schengili-Roberts",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:ROM-BurgessShale-CompleteAnomalocarisFossil.png",
+    "kind": "lead",
+    "label": "ROM-BurgessShale-CompleteAnomalocarisFossil"
+   }
+  ],
+  "haikouichthys": [
+   {
+    "file": "/assets/photos/haikouichthys-lead.webp",
+    "w": 568,
+    "h": 205,
+    "credit": "Nobu Tamura",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Haikouichthys_cropped.jpg",
+    "kind": "lead",
+    "label": "Haikouichthys cropped"
+   }
+  ],
+  "hallucigenia": [
+   {
+    "file": "/assets/photos/hallucigenia-lead.webp",
+    "w": 1473,
+    "h": 1163,
+    "credit": "Michael Brett-Surman",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:NMNH-USNM83935_Hallucigeniasp_(cropped).jpg",
+    "kind": "lead",
+    "label": "NMNH-USNM83935 Hallucigeniasp (cropped)"
+   }
+  ],
+  "dickinsonia": [
+   {
+    "file": "/assets/photos/dickinsonia-lead.webp",
+    "w": 1600,
+    "h": 1200,
+    "credit": "Verisimilus at English Wikipedia",
+    "license": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:DickinsoniaCostata.jpg",
+    "kind": "lead",
+    "label": "DickinsoniaCostata"
+   }
+  ],
+  "trilobites": [
+   {
+    "file": "/assets/photos/trilobites-lead.webp",
+    "w": 1600,
+    "h": 1048,
+    "credit": "Dwergenpaartje",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Phacops_rana_crassituberulata_dorsal.jpg",
+    "kind": "lead",
+    "label": "Phacops rana crassituberulata dorsal"
+   }
+  ],
+  "orthoceras": [
+   {
+    "file": "/assets/photos/orthoceras-lead.webp",
+    "w": 800,
+    "h": 444,
+    "credit": "Nobu Tamura (http://spinops.blogspot.com)",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Orthoceras_BW.jpg",
+    "kind": "lead",
+    "label": "Orthoceras BW"
+   }
+  ],
+  "sacabambaspis": [
+   {
+    "file": "/assets/photos/sacabambaspis-lead.webp",
+    "w": 1148,
+    "h": 1600,
+    "credit": "Liopleurodon93 at English Wikipedia",
+    "license": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:Sacabambaspis.jpg",
+    "kind": "lead",
+    "label": "Sacabambaspis"
+   }
+  ],
+  "cooksonia": [
+   {
+    "file": "/assets/photos/cooksonia-lead.webp",
+    "w": 300,
+    "h": 400,
+    "credit": "Autor desconocido",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Cooksonia.png",
+    "kind": "lead",
+    "label": "Cooksonia"
+   }
+  ],
+  "eurypterus": [
+   {
+    "file": "/assets/photos/eurypterus-lead.webp",
+    "w": 1366,
+    "h": 1024,
+    "credit": "Obsidian Soul Background: Dimitris Siskopoulos from Alexandroupolis, Greece",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Eurypterus_Paleoart.jpg",
+    "kind": "lead",
+    "label": "Eurypterus Paleoart"
+   }
+  ],
+  "tiktaalik": [
+   {
+    "file": "/assets/photos/tiktaalik-lead.webp",
+    "w": 1600,
+    "h": 754,
+    "credit": "Eduard Solà",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tiktaalik_Chicago.JPG",
+    "kind": "lead",
+    "label": "Tiktaalik Chicago"
+   }
+  ],
+  "meganeura": [
+   {
+    "file": "/assets/photos/meganeura-lead.webp",
+    "w": 365,
+    "h": 226,
+    "credit": "Dodoni",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Meganeura.jpg",
+    "kind": "lead",
+    "label": "Meganeura"
+   }
+  ],
+  "dunkleosteus": [
+   {
+    "file": "/assets/photos/dunkleosteus-lead.webp",
+    "w": 1600,
+    "h": 1248,
+    "credit": "James St. John",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Dunkleosteus_terrelli_(fossil_fish)_(Cleveland_Shale_Member,_Ohio_Shale,_Upper_Devonian;_Rocky_River_Valley,_Cleveland,_Ohio,_USA)_16_(33289195654).jpg",
+    "kind": "lead",
+    "label": "Dunkleosteus terrelli (fossil fish) (Cleveland Shale Member, Ohio Shale, Upper Devonian; Rocky River Valley, Cleveland, Ohio, USA) 16 (33289195654)"
+   }
+  ],
+  "archaeopteris": [
+   {
+    "file": "/assets/photos/archaeopteris-lead.webp",
+    "w": 1400,
+    "h": 1600,
+    "credit": "User:Daderot (modified by User:Kontos)",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "source": "https://commons.wikimedia.org/wiki/File:Archaeopteris_hibernica_2.JPG",
+    "kind": "lead",
+    "label": "Archaeopteris hibernica 2"
+   }
+  ],
+  "hylonomus": [
+   {
+    "file": "/assets/photos/hylonomus-lead.webp",
+    "w": 1600,
+    "h": 1383,
+    "credit": "Autor desconocido",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Hylonomus_lyelli_-_MUSE.jpg",
+    "kind": "lead",
+    "label": "Hylonomus lyelli - MUSE"
+   }
+  ],
+  "dimetrodon": [
+   {
+    "file": "/assets/photos/dimetrodon-lead.webp",
+    "w": 1600,
+    "h": 993,
+    "credit": "H. Zell",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Dimetrodon_incisivum_01.jpg",
+    "kind": "lead",
+    "label": "Dimetrodon incisivum 01"
+   }
+  ],
+  "arthropleura": [
+   {
+    "file": "/assets/photos/arthropleura-lead.webp",
+    "w": 1600,
+    "h": 776,
+    "credit": "Ghedoghedo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Arthropleura_armata.jpg",
+    "kind": "lead",
+    "label": "Arthropleura armata"
+   }
+  ],
+  "mesosaurus": [
+   {
+    "file": "/assets/photos/mesosaurus-lead.webp",
+    "w": 800,
+    "h": 603,
+    "credit": "Nobu Tamura (http://spinops.blogspot.com)",
+    "license": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:Mesosaurus_BW.jpg",
+    "kind": "lead",
+    "label": "Mesosaurus BW"
+   }
+  ],
+  "inostrancevia": [
+   {
+    "file": "/assets/photos/inostrancevia-lead.webp",
+    "w": 1600,
+    "h": 970,
+    "credit": "Ghedoghedo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Inostrancevia_alexandri.JPG",
+    "kind": "lead",
+    "label": "Inostrancevia alexandri"
+   }
+  ],
+  "glossopteris": [
+   {
+    "file": "/assets/photos/glossopteris-lead.webp",
+    "w": 1200,
+    "h": 1600,
+    "credit": "Daderot",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Glossopteris_sp.,_seed_ferns,_Permian_-_Triassic_-_Houston_Museum_of_Natural_Science_-_DSC01765.JPG",
+    "kind": "lead",
+    "label": "Glossopteris sp., seed ferns, Permian - Triassic - Houston Museum of Natural Science - DSC01765"
+   }
+  ],
+  "tanystropheus": [
+   {
+    "file": "/assets/photos/tanystropheus-lead.webp",
+    "w": 800,
+    "h": 429,
+    "credit": "User:ArthurWeasley",
+    "license": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:Tanystropheus_BW.jpg",
+    "kind": "lead",
+    "label": "Tanystropheus BW"
+   }
+  ],
+  "lystrosaurus": [
+   {
+    "file": "/assets/photos/lystrosaurus-lead.webp",
+    "w": 1600,
+    "h": 851,
+    "credit": "Ghedoghedo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lystrosaurus_hedini.JPG",
+    "kind": "lead",
+    "label": "Lystrosaurus hedini"
+   }
+  ],
+  "eoraptor": [
+   {
+    "file": "/assets/photos/eoraptor-lead.webp",
+    "w": 773,
+    "h": 532,
+    "credit": "Nobu Tamura email:nobu.tamura@yahoo.com http://spinops.blogspot.com/ http://paleoexhibit.blogspot.com/",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Eoraptor_NT_small.jpg",
+    "kind": "lead",
+    "label": "Eoraptor NT small"
+   }
+  ],
+  "coelophysis": [
+   {
+    "file": "/assets/photos/coelophysis-lead.webp",
+    "w": 1600,
+    "h": 823,
+    "credit": "James St. John",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Coelophysis_bauri_mount.jpg",
+    "kind": "lead",
+    "label": "Coelophysis bauri mount"
+   }
+  ],
+  "plateosaurus": [
+   {
+    "file": "/assets/photos/plateosaurus-lead.webp",
+    "w": 1600,
+    "h": 952,
+    "credit": "FunkMonk",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Plateosaurus_Skelett_2.jpg",
+    "kind": "lead",
+    "label": "Plateosaurus Skelett 2"
+   }
+  ],
+  "ichthyosaurus": [
+   {
+    "file": "/assets/photos/ichthyosaurus-lead.webp",
+    "w": 1600,
+    "h": 917,
+    "credit": "Ballista at English Wikipedia",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Ichthyosaurus_breviceps_2.jpg",
+    "kind": "lead",
+    "label": "Ichthyosaurus breviceps 2"
+   }
+  ],
+  "allosaurus": [
+   {
+    "file": "/assets/photos/allosaurus-lead.webp",
+    "w": 750,
+    "h": 550,
+    "credit": "No machine-readable author provided. Sheep81~commonswiki assumed (based on copyright claims).",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "source": "https://commons.wikimedia.org/wiki/File:Allosaurus_SDNHM.jpg",
+    "kind": "lead",
+    "label": "Allosaurus SDNHM"
+   }
+  ],
+  "herrerasaurus": [
+   {
+    "file": "/assets/photos/herrerasaurus-evidence.webp",
+    "w": 1600,
+    "h": 1007,
+    "credit": "Zach Tirrell from Plymouth, USA",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Herrerasaurusskeleton.jpg",
+    "kind": "evidence",
+    "label": "Montaje esquelético de Herrerasaurus y Eoraptor",
+    "note": "Montaje de museo: combina material reconstruido y réplicas; no equivale a un esqueleto articulado hallado completo."
+   },
+   {
+    "file": "/assets/photos/herrerasaurus-life.webp",
+    "w": 1600,
+    "h": 960,
+    "credit": "Fred Wierum",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Herrerasaurus_reconstruction.jpg",
+    "kind": "life",
+    "label": "Reconstrucción científica de Herrerasaurus",
+    "note": "La anatomía se apoya en fósiles; piel, patrón y color son interpretativos."
+   },
+   {
+    "file": "/assets/photos/herrerasaurus-lead.webp",
+    "w": 1600,
+    "h": 1063,
+    "credit": "Eva K.",
+    "license": "GFDL 1.2",
+    "licenseUrl": "http://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
+    "source": "https://commons.wikimedia.org/wiki/File:Herrerasaurus_ischigualastensis_DSC_2929.jpg",
+    "kind": "lead",
+    "label": "Herrerasaurus ischigualastensis DSC 2929"
+   }
+  ],
+  "diplodocus": [
+   {
+    "file": "/assets/photos/diplodocus-lead.webp",
+    "w": 1600,
+    "h": 1200,
+    "credit": "Boris Dimitrov",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Diplodocus_model.jpg",
+    "kind": "lead",
+    "label": "Diplodocus model"
+   }
+  ],
+  "stegosaurus": [
+   {
+    "file": "/assets/photos/stegosaurus-evidence.webp",
+    "w": 1600,
+    "h": 1067,
+    "credit": "Gary Todd from Xinzheng, China",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Stegosaurus_Skeleton_(36329568742).jpg",
+    "kind": "evidence",
+    "label": "“Sophie”, montaje de Stegosaurus stenops",
+    "note": "Sophie es uno de los esqueletos de Stegosaurus más completos conocidos; el montaje completa las partes ausentes."
+   },
+   {
+    "file": "/assets/photos/stegosaurus-life.webp",
+    "w": 1600,
+    "h": 773,
+    "credit": "Fred Wierum",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Stegosaurus_stenops_Life_Reconstruction.png",
+    "kind": "life",
+    "label": "Reconstrucción de “Sophie” en vida",
+    "note": "Las proporciones se basan en Sophie; tejidos blandos y color siguen siendo hipótesis."
+   }
+  ],
+  "giraffatitan": [
+   {
+    "file": "/assets/photos/giraffatitan-lead.webp",
+    "w": 1200,
+    "h": 1600,
+    "credit": "Axel Mauruszat",
+    "license": "Attribution",
+    "licenseUrl": null,
+    "source": "https://commons.wikimedia.org/wiki/File:Giraffatitan_brancai_Naturkundemuseum_Berlin.jpg",
+    "kind": "lead",
+    "label": "Giraffatitan brancai Naturkundemuseum Berlin"
+   }
+  ],
+  "sinosauropteryx": [
+   {
+    "file": "/assets/photos/sinosauropteryx-lead.webp",
+    "w": 1600,
+    "h": 965,
+    "credit": "Sam / Olai Ose / Skjaervoy from Zhangjiagang, China",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Sinosauropteryxfossil.jpg",
+    "kind": "lead",
+    "label": "Sinosauropteryxfossil"
+   }
+  ],
+  "iguanodon": [
+   {
+    "file": "/assets/photos/iguanodon-lead.webp",
+    "w": 1333,
+    "h": 1600,
+    "credit": "Ben2",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Iguanodon_de_Bernissart_IRSNB_01.JPG",
+    "kind": "lead",
+    "label": "Iguanodon de Bernissart IRSNB 01"
+   }
+  ],
+  "microraptor": [
+   {
+    "file": "/assets/photos/microraptor-lead.webp",
+    "w": 822,
+    "h": 1024,
+    "credit": "Autor desconocido",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Microraptor_gui_fossil.JPG",
+    "kind": "lead",
+    "label": "Microraptor gui fossil"
+   }
+  ],
+  "archaeopteryx": [
+   {
+    "file": "/assets/photos/archaeopteryx-evidence.webp",
+    "w": 1223,
+    "h": 1600,
+    "credit": "Daderot",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Berlin_Archaeopteryx_-_Museum_fur_Naturkunde,_Berlin_-_DSC00067.JPG",
+    "kind": "evidence",
+    "label": "Espécimen de Berlín de Archaeopteryx",
+    "note": "Fósil auténtico sobre caliza de Solnhofen; conserva esqueleto y delicadas impresiones de plumas."
+   },
+   {
+    "file": "/assets/photos/archaeopteryx-life.webp",
+    "w": 1600,
+    "h": 933,
+    "credit": "TotalDino",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Archaeopteryx_TD.png",
+    "kind": "life",
+    "label": "Reconstrucción moderna de Archaeopteryx",
+    "note": "Las plumas están demostradas por fósiles; parte del color y la postura son interpretativos."
+   },
+   {
+    "file": "/assets/photos/archaeopteryx-lead.webp",
+    "w": 1184,
+    "h": 1600,
+    "credit": "H. Raab (User: Vesta)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Archaeopteryx_lithographica_(Berlin_specimen).jpg",
+    "kind": "lead",
+    "label": "Archaeopteryx lithographica (Berlin specimen)"
+   }
+  ],
+  "argentinosaurus": [
+   {
+    "file": "/assets/photos/argentinosaurus-lead.webp",
+    "w": 1600,
+    "h": 987,
+    "credit": "William Irvin Sellers, Lee Margetts, Rodolfo Aníbal Coria, Phillip Lars Manning",
+    "license": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:Argentinosaurus_skeleton,_PLoS_ONE.png",
+    "kind": "lead",
+    "label": "Argentinosaurus skeleton, PLoS ONE"
+   }
+  ],
+  "velociraptor": [
+   {
+    "file": "/assets/photos/velociraptor-lead.webp",
+    "w": 1002,
+    "h": 641,
+    "credit": "Fred Wierum",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Fred_Wierum_Velociraptor.png",
+    "kind": "lead",
+    "label": "Fred Wierum Velociraptor"
+   }
+  ],
+  "muzquizopteryx": [
+   {
+    "file": "/assets/photos/muzquizopteryx-lead.webp",
+    "w": 1598,
+    "h": 1054,
+    "credit": "Karkemish",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Muzquizopteryx_coahuilensis_copia.jpg",
+    "kind": "lead",
+    "label": "Muzquizopteryx coahuilensis copia"
+   }
+  ],
+  "spinosaurus": [
+   {
+    "file": "/assets/photos/spinosaurus-evidence.webp",
+    "w": 1154,
+    "h": 434,
+    "credit": "Paul C Sereno, Nathan Myhrvold, Donald M Henderson, Frank E Fish, Daniel Vidal, Stephanie L Baumgart, Tyler M Keillor, Kiersten K Formoso, Lauren L Conroy",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Digital_skeletal_reconstruction_of_Spinosaurus.png",
+    "kind": "evidence",
+    "label": "Mapa científico del material conocido de Spinosaurus",
+    "note": "No existe un esqueleto completo. Los colores distinguen holotipo, neotipo y otros ejemplares referidos."
+   },
+   {
+    "file": "/assets/photos/spinosaurus-life.webp",
+    "w": 1600,
+    "h": 688,
+    "credit": "User:Mariolanzas",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Spinosaurus_2020_reconstruction.jpg",
+    "kind": "life",
+    "label": "Reconstrucción de Spinosaurus basada en evidencia de 2020",
+    "note": "Su postura, capacidad natatoria y contorno corporal continúan bajo debate científico."
+   },
+   {
+    "file": "/assets/photos/spinosaurus-lead.webp",
+    "w": 1067,
+    "h": 1600,
+    "credit": "Mike Bowler from Canada",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Spinosaurus_new_skull.jpg",
+    "kind": "lead",
+    "label": "Spinosaurus new skull"
+   }
+  ],
+  "tlatolophus": [
+   {
+    "file": "/assets/photos/tlatolophus-lead.webp",
+    "w": 1600,
+    "h": 1328,
+    "credit": "Levi Martinez-Reza (fotografía) Samuel Nieves Tlapaya \"El Alebrije Prehistórico\" (Escultura)",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tlatolophus_El_Alebrije_Prehist%C3%B3rico.png",
+    "kind": "lead",
+    "label": "Tlatolophus El Alebrije Prehistórico"
+   }
+  ],
+  "latirhinus": [
+   {
+    "file": "/assets/photos/latirhinus-lead.webp",
+    "w": 1600,
+    "h": 1200,
+    "credit": "urbanomafia",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Museo_del_Desierto_de_Saltillo_-_panoramio_(10).jpg",
+    "kind": "lead",
+    "label": "Museo del Desierto de Saltillo - panoramio (10)"
+   }
+  ],
+  "quetzalcoatlus": [
+   {
+    "file": "/assets/photos/quetzalcoatlus-lead.webp",
+    "w": 1600,
+    "h": 835,
+    "credit": "User:Piotrus",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Dinosaurs_at_CMNH_44.JPG",
+    "kind": "lead",
+    "label": "Dinosaurs at CMNH 44"
+   }
+  ],
+  "mosasaurus": [
+   {
+    "file": "/assets/photos/mosasaurus-lead.webp",
+    "w": 1600,
+    "h": 1547,
+    "credit": "Wilson44691",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "source": "https://commons.wikimedia.org/wiki/File:MosasaurMaastricht080910.JPG",
+    "kind": "lead",
+    "label": "MosasaurMaastricht080910"
+   }
+  ],
+  "chicxulub": [
+   {
+    "file": "/assets/photos/chicxulub-lead.webp",
+    "w": 1410,
+    "h": 1600,
+    "credit": "Shuttle Radar Topography Mission",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "source": "https://commons.wikimedia.org/wiki/File:Chicxulub.jpg",
+    "kind": "lead",
+    "label": "Chicxulub"
+   }
+  ],
+  "titanoboa": [
+   {
+    "file": "/assets/photos/titanoboa-lead.webp",
+    "w": 600,
+    "h": 363,
+    "credit": "Nobu Tamura email:nobu.tamura@yahoo.com www.palaeocritti.com",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Titanoboa_NT.jpg",
+    "kind": "lead",
+    "label": "Titanoboa NT"
+   }
+  ],
+  "basilosaurus": [
+   {
+    "file": "/assets/photos/basilosaurus-lead.webp",
+    "w": 1600,
+    "h": 1200,
+    "credit": "Asmoth",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Basilosaurus_isis_fossil,_Nantes_History_Museum_03.jpg",
+    "kind": "lead",
+    "label": "Basilosaurus isis fossil, Nantes History Museum 03"
+   }
+  ],
+  "paraceratherium": [
+   {
+    "file": "/assets/photos/paraceratherium-lead.webp",
+    "w": 1600,
+    "h": 1248,
+    "credit": "Tim Bertelink",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Indricotherium.png",
+    "kind": "lead",
+    "label": "Indricotherium"
+   }
+  ],
+  "trex": [
+   {
+    "file": "/assets/photos/trex-evidence.webp",
+    "w": 1600,
+    "h": 1200,
+    "credit": "WildFrogs",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tyrannosaurus_Rex_Full_Skeleton.JPG",
+    "kind": "evidence",
+    "label": "Montaje de Tyrannosaurus rex, UC Berkeley",
+    "note": "Los montajes públicos suelen incluir réplicas y piezas reconstruidas para completar la anatomía."
+   },
+   {
+    "file": "/assets/photos/trex-life.webp",
+    "w": 1600,
+    "h": 514,
+    "credit": "Connor Ashbridge",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Life_reconstruction_of_Tyrannosaurus_rex_specimen_TMP_1981.006.0001_(%22Black_Beauty%22).png",
+    "kind": "life",
+    "label": "Reconstrucción del ejemplar “Black Beauty”",
+    "note": "Volumen muscular basado en el esqueleto; coloración y detalles de piel son interpretativos."
+   },
+   {
+    "file": "/assets/photos/trex-lead.webp",
+    "w": 1600,
+    "h": 1060,
+    "credit": "ScottRobertAnselmo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tyrannosaurus_Rex_Holotype.jpg",
+    "kind": "lead",
+    "label": "Tyrannosaurus Rex Holotype"
+   }
+  ],
+  "megalodon": [
+   {
+    "file": "/assets/photos/megalodon-lead.webp",
+    "w": 1600,
+    "h": 1439,
+    "credit": "Spotty11222 at English Wikipedia",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "source": "https://commons.wikimedia.org/wiki/File:Megalodon_shark_jaws_museum_of_natural_history_068.jpg",
+    "kind": "lead",
+    "label": "Megalodon shark jaws museum of natural history 068"
+   }
+  ],
+  "lucy": [
+   {
+    "file": "/assets/photos/lucy-lead.webp",
+    "w": 557,
+    "h": 495,
+    "credit": "Cicero Moraes",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Australopithecus_afarensis.png",
+    "kind": "lead",
+    "label": "Australopithecus afarensis"
+   }
+  ],
+  "smilodon": [
+   {
+    "file": "/assets/photos/smilodon-lead.webp",
+    "w": 1600,
+    "h": 1144,
+    "credit": "User Sethoscope",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Smilodon_californicus_-_Slice_and_stab.jpg",
+    "kind": "lead",
+    "label": "Smilodon californicus - Slice and stab"
+   }
+  ],
+  "glyptodon": [
+   {
+    "file": "/assets/photos/glyptodon-lead.webp",
+    "w": 1600,
+    "h": 774,
+    "credit": "Arent derivative work: WolfmanSF (talk)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Glyptodon-1.jpg",
+    "kind": "lead",
+    "label": "Glyptodon-1"
+   }
+  ],
+  "huizachal": [
+   {
+    "file": "/assets/photos/huizachal-evidence.webp",
+    "w": 1600,
+    "h": 925,
+    "credit": "Hemiauchenia",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cynosphenodon.svg",
+    "kind": "evidence",
+    "label": "Cráneo de Cynosphenodon, esfenodonte de Huizachal",
+    "note": "Dibujo científico del cráneo; Cynosphenodon es pariente de la tuátara actual."
+   }
+  ],
+  "tlayua": [
+   {
+    "file": "/assets/photos/tlayua-evidence.webp",
+    "w": 1600,
+    "h": 898,
+    "credit": "Mario E. Fuente Cid",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pez_fosil_Museo_Tepexi.jpg",
+    "kind": "evidence",
+    "label": "Pez fósil de la región de Tepexi",
+    "note": "Pieza exhibida en el museo de Tepexi de Rodríguez, Puebla."
+   },
+   {
+    "file": "/assets/photos/tlayua-evidence2.webp",
+    "w": 1029,
+    "h": 1600,
+    "credit": "Mario E. Fuente Cid",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tortuga_Museo_Tepexi.jpg",
+    "kind": "evidence2",
+    "label": "Tortuga fósil del museo de Tepexi",
+    "note": "Las tortugas son parte de la fauna de la laguna cretácica."
+   }
+  ],
+  "coahuilaceratops": [
+   {
+    "file": "/assets/photos/coahuilaceratops-lead.webp",
+    "w": 769,
+    "h": 621,
+    "credit": "Gustavo Monroy-Becerril",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Life_reconstruction_of_Coahuilaceratops_(cropped).png",
+    "kind": "lead",
+    "label": "Life reconstruction of Coahuilaceratops (cropped)"
+   }
+  ],
+  "carnotaurus": [
+   {
+    "file": "/assets/photos/carnotaurus-evidence.webp",
+    "w": 681,
+    "h": 960,
+    "credit": "John Barreiros from Norwalk, CT, USA",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Carnotaurus_skeleton.jpg",
+    "kind": "evidence",
+    "label": "Montaje esquelético de Carnotaurus",
+    "note": "El espécimen original conserva gran parte del esqueleto e impresiones de piel; el montaje repone elementos ausentes."
+   },
+   {
+    "file": "/assets/photos/carnotaurus-life.webp",
+    "w": 1600,
+    "h": 900,
+    "credit": "DerpyDuckAnimation",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Carnotaurus_sastrei_life_reconstruction.png",
+    "kind": "life",
+    "label": "Reconstrucción tridimensional de Carnotaurus",
+    "note": "Basada en proporciones esqueléticas; color, labios y otros tejidos blandos son interpretativos."
+   },
+   {
+    "file": "/assets/photos/carnotaurus-lead.webp",
+    "w": 1559,
+    "h": 1380,
+    "credit": "Carnotaurus, Chlupáč Museum, Prague-2.jpg: Czech Wikipedia user Packa derivative work: Hic et nunc",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Carnotaurus,_Chlup%C3%A1%C4%8D_Museum,_Prague-2.jpg",
+    "kind": "lead",
+    "label": "Carnotaurus, Chlupáč Museum, Prague-2"
+   }
+  ],
+  "megatherium": [
+   {
+    "file": "/assets/photos/megatherium-lead.webp",
+    "w": 1200,
+    "h": 1600,
+    "credit": "en:User:Ballista",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Megatherium_americanum_Skeleton_NHM.JPG",
+    "kind": "lead",
+    "label": "Megatherium americanum Skeleton NHM"
+   }
+  ],
+  "mamut": [
+   {
+    "file": "/assets/photos/mamut-lead.webp",
+    "w": 1280,
+    "h": 960,
+    "credit": "WolfmanSF",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Columbian_mammoth.JPG",
+    "kind": "lead",
+    "label": "Columbian mammoth"
+   }
+  ],
+  "neandertal": [
+   {
+    "file": "/assets/photos/neandertal-life.webp",
+    "w": 1600,
+    "h": 901,
+    "credit": "Matteo De Stefano/MUSE This file was uploaded by MUSE - Science Museum of Trento in cooperation with Wikimedia Italia.",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Homo_neanderthalensis_-_reconstruction_-_MUSE.jpg",
+    "kind": "life",
+    "label": "Reconstrucción de un neandertal (MUSE, Trento)",
+    "note": "Rasgos óseos a partir de cráneos reales; piel, pelo y expresión son interpretativos."
+   }
+  ],
+  "naia": [],
+  "velafrons": [
+   {
+    "file": "/assets/photos/velafrons-life.webp",
+    "w": 1053,
+    "h": 475,
+    "credit": "Connor Ashbridge",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Life_reconstruction_of_Velafrons_coahuilensis.png",
+    "kind": "life",
+    "label": "Reconstrucción en vida de Velafrons",
+    "note": "Basada en un cráneo juvenil; el tamaño adulto, la cresta adulta y el color son inferencias."
+   },
+   {
+    "file": "/assets/photos/velafrons-lead.webp",
+    "w": 1012,
+    "h": 1012,
+    "credit": "D. Barrera Guevara",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Velafrons_skull.png",
+    "kind": "lead",
+    "label": "Velafrons skull"
+   }
+  ],
+  "triceratops": [
+   {
+    "file": "/assets/photos/triceratops-evidence.webp",
+    "w": 1600,
+    "h": 973,
+    "credit": "EvaK",
+    "license": "GFDL 1.2",
+    "licenseUrl": "http://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
+    "source": "https://commons.wikimedia.org/wiki/File:Triceratops_Skeleton_Senckenberg_2_White_Background.jpg",
+    "kind": "evidence",
+    "label": "Montaje compuesto de Triceratops",
+    "note": "Está ensamblado con fragmentos de distintos individuos; la interfaz lo identifica como montaje, no como un ejemplar único."
+   },
+   {
+    "file": "/assets/photos/triceratops-life.webp",
+    "w": 1600,
+    "h": 640,
+    "credit": "TotalDino",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Triceratops_TD.png",
+    "kind": "life",
+    "label": "Reconstrucción de Triceratops horridus en vida",
+    "note": "Cuernos y gola son fósiles; queratina, piel y color se reconstruyen por comparación e inferencia."
+   },
+   {
+    "file": "/assets/photos/triceratops-lead.webp",
+    "w": 1600,
+    "h": 1214,
+    "credit": "Source: Allie_Caulfield Derivative: User:MathKnight",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:LA-Triceratops_mount-2.jpg",
+    "kind": "lead",
+    "label": "LA-Triceratops mount-2"
+   }
+  ]
+ },
+ "paleo": {
+  "grypania": {
+   "time": 800,
+   "lon": 117.4,
+   "lat": -24.71
+  },
+  "charnia": {
+   "time": 560,
+   "lon": -58.08,
+   "lat": -59.73
+  },
+  "dickinsonia": {
+   "time": 560,
+   "lon": 111.33,
+   "lat": 4.08
+  },
+  "haikouichthys": {
+   "time": 510,
+   "lon": 106,
+   "lat": -23.6
+  },
+  "sacabambaspis": {
+   "time": 460,
+   "lon": -163.48,
+   "lat": -32.23
+  },
+  "trilobites": {
+   "time": 510,
+   "lon": -161.14,
+   "lat": 11.37
+  },
+  "orthoceras": {
+   "time": 460,
+   "lon": -62.92,
+   "lat": -32.78
+  },
+  "cooksonia": {
+   "time": 430,
+   "lon": -72.24,
+   "lat": -18.48
+  },
+  "eurypterus": {
+   "time": 420,
+   "lon": -88.12,
+   "lat": -27.93
+  },
+  "dunkleosteus": {
+   "time": 370,
+   "lon": -60.54,
+   "lat": -29.2
+  },
+  "archaeopteris": {
+   "time": 370,
+   "lon": -26.79,
+   "lat": -24.53
+  },
+  "tiktaalik": {
+   "time": 370,
+   "lon": -39.55,
+   "lat": 1.3
+  },
+  "meganeura": {
+   "time": 290,
+   "lon": 24.23,
+   "lat": 4.22
+  },
+  "arthropleura": {
+   "time": 310,
+   "lon": 15.41,
+   "lat": 8.69
+  },
+  "hylonomus": {
+   "time": 310,
+   "lon": -2.9,
+   "lat": -2.01
+  },
+  "dimetrodon": {
+   "time": 290,
+   "lon": -29.85,
+   "lat": 1.74
+  },
+  "glossopteris": {
+   "time": 270,
+   "lon": 30.21,
+   "lat": -86.5
+  },
+  "mesosaurus": {
+   "time": 290,
+   "lon": -34.88,
+   "lat": -57.33
+  },
+  "inostrancevia": {
+   "time": 250,
+   "lon": 34.42,
+   "lat": 43.3
+  },
+  "lystrosaurus": {
+   "time": 250,
+   "lon": -19.34,
+   "lat": -58.11
+  },
+  "tanystropheus": {
+   "time": 250,
+   "lon": 28.64,
+   "lat": 10.22
+  },
+  "eoraptor": {
+   "time": 230,
+   "lon": -30.84,
+   "lat": -42.83
+  },
+  "herrerasaurus": {
+   "time": 230,
+   "lon": -30.72,
+   "lat": -42.83
+  },
+  "plateosaurus": {
+   "time": 210,
+   "lon": 22.37,
+   "lat": 34.36
+  },
+  "coelophysis": {
+   "time": 210,
+   "lon": -36.34,
+   "lat": 8.59
+  },
+  "ichthyosaurus": {
+   "time": 190,
+   "lon": 16.24,
+   "lat": 35.2
+  },
+  "huizachal": {
+   "time": 190,
+   "lon": -32.52,
+   "lat": 2.2
+  },
+  "allosaurus": {
+   "time": 150,
+   "lon": -38.32,
+   "lat": 37.62
+  },
+  "stegosaurus": {
+   "time": 150,
+   "lon": -33.45,
+   "lat": 35.78
+  },
+  "diplodocus": {
+   "time": 150,
+   "lon": -33.09,
+   "lat": 38.54
+  },
+  "giraffatitan": {
+   "time": 150,
+   "lon": 24.79,
+   "lat": -40.48
+  },
+  "archaeopteryx": {
+   "time": 150,
+   "lon": 37.75,
+   "lat": 31.06
+  },
+  "iguanodon": {
+   "time": 125,
+   "lon": 29.37,
+   "lat": 39.36
+  },
+  "sinosauropteryx": {
+   "time": 125,
+   "lon": 141.93,
+   "lat": 49.97
+  },
+  "microraptor": {
+   "time": 125,
+   "lon": 141.5,
+   "lat": 49.81
+  },
+  "tlayua": {
+   "time": 110,
+   "lon": -50.16,
+   "lat": 22.24
+  },
+  "argentinosaurus": {
+   "time": 90,
+   "lon": -40.56,
+   "lat": -41.76
+  },
+  "muzquizopteryx": {
+   "time": 90,
+   "lon": -62.44,
+   "lat": 32.12
+  },
+  "spinosaurus": {
+   "time": 90,
+   "lon": 4.85,
+   "lat": 20.67
+  },
+  "velociraptor": {
+   "time": 66,
+   "lon": 99.4,
+   "lat": 44.36
+  },
+  "coahuilaceratops": {
+   "time": 66,
+   "lon": -72.61,
+   "lat": 32.13
+  },
+  "velafrons": {
+   "time": 66,
+   "lon": -72.37,
+   "lat": 32.18
+  },
+  "tlatolophus": {
+   "time": 66,
+   "lon": -72.7,
+   "lat": 32.14
+  },
+  "latirhinus": {
+   "time": 66,
+   "lon": -72.49,
+   "lat": 32.16
+  },
+  "carnotaurus": {
+   "time": 66,
+   "lon": -55.39,
+   "lat": -46.24
+  },
+  "quetzalcoatlus": {
+   "time": 66,
+   "lon": -73.17,
+   "lat": 36.27
+  },
+  "mosasaurus": {
+   "time": 66,
+   "lon": 12.19,
+   "lat": 40.05
+  },
+  "triceratops": {
+   "time": 66,
+   "lon": -67.28,
+   "lat": 54.39
+  },
+  "trex": {
+   "time": 66,
+   "lon": -67.28,
+   "lat": 54.39
+  },
+  "chicxulub": {
+   "time": 66,
+   "lon": -62.1,
+   "lat": 25.04
+  },
+  "titanoboa": {
+   "time": 66,
+   "lon": -51.72,
+   "lat": 6.03
+  },
+  "basilosaurus": {
+   "time": 30,
+   "lon": 28.84,
+   "lat": 21.12
+  },
+  "paraceratherium": {
+   "time": 30,
+   "lon": 66.95,
+   "lat": 18.35
+  },
+  "megalodon": {
+   "time": 15,
+   "lon": -98.9,
+   "lat": 23.52
+  },
+  "lucy": {
+   "time": 0,
+   "lon": 40.6,
+   "lat": 11.1
+  },
+  "smilodon": {
+   "time": 0,
+   "lon": -118.36,
+   "lat": 34.06
+  },
+  "glyptodon": {
+   "time": 0,
+   "lon": -60,
+   "lat": -36
+  },
+  "megatherium": {
+   "time": 0,
+   "lon": -59.1,
+   "lat": -34.57
+  },
+  "mamut": {
+   "time": 0,
+   "lon": -99.02,
+   "lat": 19.75
+  },
+  "neandertal": {
+   "time": 0,
+   "lon": 6.95,
+   "lat": 51.23
+  },
+  "naia": {
+   "time": 0,
+   "lon": -87.4,
+   "lat": 20.3
+  }
+ },
+ "pbdb": {
+  "grypania": {
+   "taxon": "Grypania",
+   "first": 2050,
+   "last": 538.8,
+   "occurrences": 7,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=366739"
+  },
+  "anomalocaris": {
+   "taxon": "Anomalocaris",
+   "first": 521,
+   "last": 497,
+   "occurrences": 34,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=7370"
+  },
+  "dickinsonia": {
+   "taxon": "Dickinsonia",
+   "first": 635,
+   "last": 538.8,
+   "occurrences": 61,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=4717"
+  },
+  "charnia": {
+   "taxon": "Charnia",
+   "first": 635,
+   "last": 538.8,
+   "occurrences": 57,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=4729"
+  },
+  "sacabambaspis": {
+   "taxon": "Sacabambaspis",
+   "first": 471.3,
+   "last": 449.5,
+   "occurrences": 9,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=34203"
+  },
+  "orthoceras": {
+   "taxon": "Orthoceras",
+   "first": 483.4,
+   "last": 205.7,
+   "occurrences": 570,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=12557"
+  },
+  "haikouichthys": {
+   "taxon": "Haikouichthys",
+   "first": 521,
+   "last": 516,
+   "occurrences": 2,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=91608"
+  },
+  "hallucigenia": {
+   "taxon": "Hallucigenia",
+   "first": 521,
+   "last": 505.3,
+   "occurrences": 26,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=18884"
+  },
+  "trilobites": {
+   "taxon": "Trilobita",
+   "first": 538.8,
+   "last": 251.902,
+   "occurrences": 56605,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=19100"
+  },
+  "cooksonia": {
+   "taxon": "Cooksonia",
+   "first": 443.1,
+   "last": 382.31,
+   "occurrences": 65,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=391161"
+  },
+  "dunkleosteus": {
+   "taxon": "Dunkleosteus",
+   "first": 387.95,
+   "last": 358.86,
+   "occurrences": 7,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=34328"
+  },
+  "eurypterus": {
+   "taxon": "Eurypterus",
+   "first": 443.1,
+   "last": 307.4,
+   "occurrences": 47,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=18968"
+  },
+  "tiktaalik": {
+   "taxon": "Tiktaalik",
+   "first": 382.31,
+   "last": 372.15,
+   "occurrences": 2,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=77132"
+  },
+  "archaeopteris": {
+   "taxon": "Archaeopteris",
+   "first": 387.95,
+   "last": 358.86,
+   "occurrences": 129,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=249678"
+  },
+  "meganeura": {
+   "taxon": "Meganeura",
+   "first": 303.7,
+   "last": 298.9,
+   "occurrences": 7,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=175803"
+  },
+  "arthropleura": {
+   "taxon": "Arthropleura",
+   "first": 346.7,
+   "last": 290.1,
+   "occurrences": 61,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=238291"
+  },
+  "hylonomus": {
+   "taxon": "Hylonomus",
+   "first": 318.7,
+   "last": 307.4,
+   "occurrences": 6,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=37492"
+  },
+  "dimetrodon": {
+   "taxon": "Dimetrodon",
+   "first": 298.9,
+   "last": 266.9,
+   "occurrences": 94,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38904"
+  },
+  "mesosaurus": {
+   "taxon": "Mesosaurus",
+   "first": 290.1,
+   "last": 283.3,
+   "occurrences": 30,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=36324"
+  },
+  "glossopteris": {
+   "taxon": "Glossopteris",
+   "first": 315.2,
+   "last": 143.1,
+   "occurrences": 1329,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=157151"
+  },
+  "inostrancevia": {
+   "taxon": "Inostrancevia",
+   "first": 264.28,
+   "last": 254.14,
+   "occurrences": 12,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=39127"
+  },
+  "lystrosaurus": {
+   "taxon": "Lystrosaurus",
+   "first": 264.28,
+   "last": 247,
+   "occurrences": 124,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=39049"
+  },
+  "eoraptor": {
+   "taxon": "Eoraptor",
+   "first": 233.6,
+   "last": 227.3,
+   "occurrences": 1,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=57453"
+  },
+  "tanystropheus": {
+   "taxon": "Tanystropheus",
+   "first": 247,
+   "last": 201.4,
+   "occurrences": 19,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38196"
+  },
+  "herrerasaurus": {
+   "taxon": "Herrerasaurus",
+   "first": 237,
+   "last": 227.3,
+   "occurrences": 11,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38511"
+  },
+  "coelophysis": {
+   "taxon": "Coelophysis",
+   "first": 227.3,
+   "last": 192.9,
+   "occurrences": 26,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38520"
+  },
+  "ichthyosaurus": {
+   "taxon": "Ichthyosaurus",
+   "first": 227.3,
+   "last": 100.5,
+   "occurrences": 101,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=36558"
+  },
+  "plateosaurus": {
+   "taxon": "Plateosaurus",
+   "first": 227.3,
+   "last": 199.5,
+   "occurrences": 36,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38644"
+  },
+  "allosaurus": {
+   "taxon": "Allosaurus",
+   "first": 161.5,
+   "last": 137.05,
+   "occurrences": 147,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38590"
+  },
+  "stegosaurus": {
+   "taxon": "Stegosaurus",
+   "first": 161.5,
+   "last": 93.9,
+   "occurrences": 86,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38814"
+  },
+  "giraffatitan": {
+   "taxon": "Giraffatitan",
+   "first": 161.5,
+   "last": 143.1,
+   "occurrences": 42,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=67847"
+  },
+  "diplodocus": {
+   "taxon": "Diplodocus",
+   "first": 157.9,
+   "last": 143.1,
+   "occurrences": 66,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38669"
+  },
+  "archaeopteryx": {
+   "taxon": "Archaeopteryx",
+   "first": 149.2,
+   "last": 121.4,
+   "occurrences": 10,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=39240"
+  },
+  "iguanodon": {
+   "taxon": "Iguanodon",
+   "first": 154.8,
+   "last": 66,
+   "occurrences": 133,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38749"
+  },
+  "sinosauropteryx": {
+   "taxon": "Sinosauropteryx",
+   "first": 125.77,
+   "last": 119.57,
+   "occurrences": 4,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=54548"
+  },
+  "argentinosaurus": {
+   "taxon": "Argentinosaurus",
+   "first": 110.1,
+   "last": 106.3,
+   "occurrences": 1,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=66645"
+  },
+  "microraptor": {
+   "taxon": "Microraptor",
+   "first": 121.4,
+   "last": 113.2,
+   "occurrences": 10,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=68238"
+  },
+  "spinosaurus": {
+   "taxon": "Spinosaurus",
+   "first": 125.77,
+   "last": 72.2,
+   "occurrences": 44,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38598"
+  },
+  "muzquizopteryx": {
+   "taxon": "Muzquizopteryx",
+   "first": 93.9,
+   "last": 85.7,
+   "occurrences": 2,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=156936"
+  },
+  "velociraptor": {
+   "taxon": "Velociraptor",
+   "first": 89.8,
+   "last": 66,
+   "occurrences": 20,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38564"
+  },
+  "coahuilaceratops": {
+   "taxon": "Coahuilaceratops",
+   "first": 72.2,
+   "last": 66,
+   "occurrences": 1,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=170566"
+  },
+  "velafrons": {
+   "taxon": "Velafrons",
+   "first": 83.6,
+   "last": 72.2,
+   "occurrences": 2,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=113861"
+  },
+  "tlatolophus": {
+   "taxon": "Tlatolophus",
+   "first": 83.6,
+   "last": 72.2,
+   "occurrences": 1,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=437584"
+  },
+  "carnotaurus": {
+   "taxon": "Carnotaurus",
+   "first": 72.2,
+   "last": 66,
+   "occurrences": 1,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=54533"
+  },
+  "latirhinus": {
+   "taxon": "Latirhinus",
+   "first": 83.6,
+   "last": 72.2,
+   "occurrences": 1,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=251611"
+  },
+  "mosasaurus": {
+   "taxon": "Mosasaurus",
+   "first": 100.5,
+   "last": 61.66,
+   "occurrences": 130,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=36402"
+  },
+  "quetzalcoatlus": {
+   "taxon": "Quetzalcoatlus",
+   "first": 72.2,
+   "last": 66,
+   "occurrences": 8,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38504"
+  },
+  "triceratops": {
+   "taxon": "Triceratops",
+   "first": 83.6,
+   "last": 66,
+   "occurrences": 166,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38862"
+  },
+  "trex": {
+   "taxon": "Tyrannosaurus",
+   "first": 83.6,
+   "last": 66,
+   "occurrences": 85,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=38613"
+  },
+  "titanoboa": {
+   "taxon": "Titanoboa",
+   "first": 61.66,
+   "last": 56,
+   "occurrences": 1,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=179038"
+  },
+  "paraceratherium": {
+   "taxon": "Paraceratherium",
+   "first": 37.71,
+   "last": 15.98,
+   "occurrences": 38,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=43161"
+  },
+  "basilosaurus": {
+   "taxon": "Basilosaurus",
+   "first": 56,
+   "last": 33.9,
+   "occurrences": 89,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=36681"
+  },
+  "megalodon": {
+   "taxon": "Otodus megalodon",
+   "first": 66,
+   "last": 0.34,
+   "occurrences": 350,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=80603"
+  },
+  "lucy": {
+   "taxon": "Australopithecus",
+   "first": 11.63,
+   "last": 0.0117,
+   "occurrences": 85,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=40900"
+  },
+  "megatherium": {
+   "taxon": "Megatherium",
+   "first": 27.3,
+   "last": 0,
+   "occurrences": 97,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=43616"
+  },
+  "smilodon": {
+   "taxon": "Smilodon",
+   "first": 4.7,
+   "last": 0,
+   "occurrences": 137,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=41079"
+  },
+  "glyptodon": {
+   "taxon": "Glyptodontidae",
+   "first": 36,
+   "last": 0,
+   "occurrences": 561,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=43568"
+  },
+  "mamut": {
+   "taxon": "Mammuthus columbi",
+   "first": 4.7,
+   "last": 0,
+   "occurrences": 157,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=46017"
+  },
+  "neandertal": {
+   "taxon": "Homo neanderthalensis",
+   "first": 0.774,
+   "last": 0.0117,
+   "occurrences": 6,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=83087"
+  }
+ },
+ "maps": {
+  "0": "/assets/maps/coast-0.json",
+  "15": "/assets/maps/coast-15.json",
+  "30": "/assets/maps/coast-30.json",
+  "50": "/assets/maps/coast-50.json",
+  "66": "/assets/maps/coast-66.json",
+  "80": "/assets/maps/coast-80.json",
+  "90": "/assets/maps/coast-90.json",
+  "110": "/assets/maps/coast-110.json",
+  "125": "/assets/maps/coast-125.json",
+  "150": "/assets/maps/coast-150.json",
+  "170": "/assets/maps/coast-170.json",
+  "190": "/assets/maps/coast-190.json",
+  "210": "/assets/maps/coast-210.json",
+  "220": "/assets/maps/coast-220.json",
+  "230": "/assets/maps/coast-230.json",
+  "250": "/assets/maps/coast-250.json",
+  "260": "/assets/maps/coast-260.json",
+  "270": "/assets/maps/coast-270.json",
+  "290": "/assets/maps/coast-290.json",
+  "310": "/assets/maps/coast-310.json",
+  "340": "/assets/maps/coast-340.json",
+  "370": "/assets/maps/coast-370.json",
+  "380": "/assets/maps/coast-380.json",
+  "400": "/assets/maps/coast-400.json",
+  "420": "/assets/maps/coast-420.json",
+  "430": "/assets/maps/coast-430.json",
+  "460": "/assets/maps/coast-460.json",
+  "480": "/assets/maps/coast-480.json",
+  "510": "/assets/maps/coast-510.json",
+  "540": "/assets/maps/coast-540.json",
+  "560": "/assets/maps/coast-560.json",
+  "800": "/assets/maps/coast-800.json",
+  "mexico": "/assets/maps/mexico.json"
+ },
+ "articles": {
+  "estromatolitos": "https://es.wikipedia.org/wiki/Estromatolito",
+  "grypania": "https://es.wikipedia.org/wiki/Grypania_spiralis",
+  "charnia": "https://es.wikipedia.org/wiki/Charnia",
+  "dickinsonia": "https://es.wikipedia.org/wiki/Dickinsonia",
+  "anomalocaris": "https://es.wikipedia.org/wiki/Anomalocaris",
+  "hallucigenia": "https://es.wikipedia.org/wiki/Hallucigenia",
+  "haikouichthys": "https://es.wikipedia.org/wiki/Haikouichthys",
+  "trilobites": "https://es.wikipedia.org/wiki/Trilobita",
+  "sacabambaspis": "https://es.wikipedia.org/wiki/Sacabambaspis",
+  "orthoceras": "https://en.wikipedia.org/wiki/Orthoceras",
+  "cooksonia": "https://es.wikipedia.org/wiki/Cooksonia",
+  "eurypterus": "https://es.wikipedia.org/wiki/Eurypterus",
+  "dunkleosteus": "https://es.wikipedia.org/wiki/Dunkleosteus",
+  "tiktaalik": "https://es.wikipedia.org/wiki/Tiktaalik",
+  "archaeopteris": "https://es.wikipedia.org/wiki/Archaeopteris",
+  "meganeura": "https://es.wikipedia.org/wiki/Meganeura",
+  "arthropleura": "https://es.wikipedia.org/wiki/Arthropleura",
+  "hylonomus": "https://es.wikipedia.org/wiki/Hylonomus",
+  "dimetrodon": "https://es.wikipedia.org/wiki/Dimetrodon",
+  "mesosaurus": "https://es.wikipedia.org/wiki/Mesosaurus",
+  "glossopteris": "https://es.wikipedia.org/wiki/Glossopteris",
+  "inostrancevia": "https://es.wikipedia.org/wiki/Inostrancevia",
+  "lystrosaurus": "https://es.wikipedia.org/wiki/Lystrosaurus",
+  "tanystropheus": "https://es.wikipedia.org/wiki/Tanystropheus",
+  "eoraptor": "https://es.wikipedia.org/wiki/Eoraptor_lunensis",
+  "herrerasaurus": "https://es.wikipedia.org/wiki/Herrerasaurus_ischigualastensis",
+  "coelophysis": "https://es.wikipedia.org/wiki/Coelophysis_bauri",
+  "plateosaurus": "https://es.wikipedia.org/wiki/Plateosaurus",
+  "ichthyosaurus": "https://es.wikipedia.org/wiki/Ichthyosaurus",
+  "allosaurus": "https://es.wikipedia.org/wiki/Allosaurus",
+  "stegosaurus": "https://es.wikipedia.org/wiki/Stegosaurus",
+  "diplodocus": "https://es.wikipedia.org/wiki/Diplodocus",
+  "giraffatitan": "https://es.wikipedia.org/wiki/Giraffatitan_brancai",
+  "archaeopteryx": "https://es.wikipedia.org/wiki/Archaeopteryx",
+  "iguanodon": "https://es.wikipedia.org/wiki/Iguanodon_bernissartensis",
+  "sinosauropteryx": "https://es.wikipedia.org/wiki/Sinosauropteryx_prima",
+  "microraptor": "https://es.wikipedia.org/wiki/Microraptor",
+  "argentinosaurus": "https://es.wikipedia.org/wiki/Argentinosaurus_huinculensis",
+  "spinosaurus": "https://es.wikipedia.org/wiki/Spinosaurus",
+  "muzquizopteryx": "https://es.wikipedia.org/wiki/Muzquizopteryx",
+  "velociraptor": "https://es.wikipedia.org/wiki/Velociraptor_mongoliensis",
+  "coahuilaceratops": "https://es.wikipedia.org/wiki/Coahuilaceratops_magnacuerna",
+  "velafrons": "https://es.wikipedia.org/wiki/Velafrons_coahuilensis",
+  "tlatolophus": "https://es.wikipedia.org/wiki/Tlatolophus_galorum",
+  "latirhinus": "https://es.wikipedia.org/wiki/Latirhinus_uitstlani",
+  "carnotaurus": "https://es.wikipedia.org/wiki/Carnotaurus_sastrei",
+  "mosasaurus": "https://es.wikipedia.org/wiki/Mosasaurus",
+  "quetzalcoatlus": "https://es.wikipedia.org/wiki/Quetzalcoatlus",
+  "triceratops": "https://es.wikipedia.org/wiki/Triceratops",
+  "trex": "https://es.wikipedia.org/wiki/Tyrannosaurus_rex",
+  "chicxulub": "https://es.wikipedia.org/wiki/Cr%C3%A1ter_de_Chicxulub",
+  "titanoboa": "https://es.wikipedia.org/wiki/Titanoboa",
+  "basilosaurus": "https://es.wikipedia.org/wiki/Basilosaurus",
+  "paraceratherium": "https://es.wikipedia.org/wiki/Paraceratherium",
+  "megalodon": "https://es.wikipedia.org/wiki/Otodus_megalodon",
+  "lucy": "https://es.wikipedia.org/wiki/Australopithecus_afarensis",
+  "smilodon": "https://es.wikipedia.org/wiki/Smilodon",
+  "megatherium": "https://es.wikipedia.org/wiki/Megatherium",
+  "glyptodon": "https://es.wikipedia.org/wiki/Glyptodon",
+  "mamut": "https://es.wikipedia.org/wiki/Mammuthus_columbi",
+  "neandertal": "https://es.wikipedia.org/wiki/Homo_neanderthalensis"
+ }
+}

@@ -1,0 +1,90 @@
+---
+import Museum from '../layouts/Museum.astro';
+// Contenido heredado de la versión anterior (legacy/metodo.html), ampliado.
+const methods = [
+  ['Fósiles corporales', 'Huesos, dientes, conchas, hojas y, en casos raros, piel o plumas. Casi siempre están incompletos y deformados por el peso de las rocas, así que se comparan con otros ejemplares.'],
+  ['Huellas y rastros', 'Pisadas, madrigueras, coprolitos (excremento fósil), marcas de mordida y nidos registran comportamientos que un esqueleto no puede mostrar: velocidad, manadas, dieta.'],
+  ['Estratigrafía', 'En una pila de rocas sin alterar, las capas de abajo son más antiguas. Esa regla da el orden; los fósiles guía permiten correlacionar capas de distintos continentes.'],
+  ['Datación radiométrica', 'Minerales de cenizas volcánicas atrapan uranio, potasio o argón al formarse. Como se desintegran a ritmo constante, funcionan como relojes: así se fechó en 66.0 Ma el límite K–Pg.'],
+  ['Anatomía comparada', 'Los músculos dejan marcas en los huesos y las articulaciones limitan los movimientos. Los animales vivos (aves, cocodrilos) dan rangos posibles, no copias exactas.'],
+  ['Tafonomía', 'Estudia qué pasó entre la muerte y el hallazgo: transporte, carroñeo, enterramiento y mineralización. Sin ella, un montón de huesos puede contar una historia falsa.'],
+  ['Paleoambiente', 'Polen, sedimentos, isótopos de oxígeno y carbono, paleosuelos y la fauna asociada revelan temperatura, lluvia, dieta y paisaje.'],
+  ['Moléculas y microscopio', 'Melanosomas que revelan colores, colesterol en Dickinsonia, ADN antiguo en mamuts y humanos de menos de ~2 millones de años. La tecnología sigue ampliando lo que podemos saber.'],
+];
+const layers = [
+  ['Huesos preservados', 96, 'Observación directa, aunque puede haber deformación o identificaciones dudosas.'],
+  ['Proporciones del cuerpo', 85, 'Se reconstruyen con el esqueleto; los huesos ausentes se toman de parientes.'],
+  ['Músculos y postura', 72, 'Inferidos por las marcas de inserción, las articulaciones y los parientes vivos.'],
+  ['Piel, plumas y escamas', 48, 'Muy alta cuando hay impresiones (Carnotaurus, Sinosauropteryx); baja cuando se extrapola.'],
+  ['Color', 22, 'Solo en casos excepcionales con melanosomas; casi siempre es la capa más interpretativa.'],
+  ['Sonidos y conducta', 15, 'Hipótesis con base en anatomía (crestas huecas de hadrosaurios, oído interno) y parientes.'],
+];
+---
+<Museum title="Cómo sabemos" stamp="metodo" description="Cómo la paleontología reconstruye mundos desaparecidos y cómo expresa la incertidumbre.">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Sala VI · Método</p>
+      <h1>La ciencia no adivina.<br /><em>Reconstruye.</em></h1>
+      <p class="lead">Una imagen paleontológica mezcla observación, medición, comparación e hipótesis. Aquí separamos cada capa para que la incertidumbre también se vea. «No sabemos» también es un resultado científico.</p>
+    </div>
+  </section>
+
+  <section class="wrap methods">
+    {methods.map(([t, d], i) => (
+      <article class="method reveal"><span class="sc">{['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'][i]}</span><h2>{t}</h2><p>{d}</p></article>
+    ))}
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="kicker">Anatomía de una reconstrucción</p><h2>No todo tiene<br /><em>la misma certeza</em></h2></div>
+        <p>Valores ilustrativos de qué tan directa suele ser la evidencia de cada capa en un dinosaurio típico. Varían de un fósil a otro.</p>
+      </div>
+      <div class="certainty">
+        {layers.map(([t, v, d]) => (
+          <div class="row reveal">
+            <strong>{t}</strong>
+            <div class="meter" role="meter" aria-valuenow={v} aria-valuemin="0" aria-valuemax="100" aria-label={t}><i style={`--v:${v}%`}></i></div>
+            <p>{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap deep reveal">
+      <p class="kicker">Escala humana del tiempo profundo</p>
+      <h2>Si cada año fuera <em>un milímetro…</em></h2>
+      <ul>
+        <li><strong>2 m</strong><span>desde la época de Jesucristo</span></li>
+        <li><strong>12 m</strong><span>desde la cueva de Naia (Quintana Roo)</span></li>
+        <li><strong>66 km</strong><span>desde el impacto de Chicxulub</span></li>
+        <li><strong>252 km</strong><span>desde la Gran Mortandad del Pérmico</span></li>
+        <li><strong>4,567 km</strong><span>desde el origen de la Tierra: más que de Tijuana a Cancún en línea recta (~3,200 km)</span></li>
+      </ul>
+      <p class="muted">En el reloj de 24 horas, toda la historia escrita (unos 5,000 años) cabe en la última décima de segundo antes de la medianoche.</p>
+    </div>
+  </section>
+</Museum>
+
+<style>
+  .methods { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 4rem; }
+  .method { background: var(--wall); padding: 1.8rem 1.6rem; }
+  .method .sc { color: var(--brass-dim); font-size: 1.4rem; }
+  .method h2 { font-size: 1.6rem; margin: .6rem 0; }
+  .method p { color: var(--muted); font-size: .96rem; margin: 0; }
+  .certainty { display: grid; gap: 1.4rem; }
+  .row { display: grid; grid-template-columns: 220px 1fr 1.2fr; gap: 1.5rem; align-items: center; }
+  .row strong { font: 400 1.3rem var(--serif); }
+  .row p { margin: 0; color: var(--muted); font-size: .92rem; }
+  .meter { height: 10px; background: var(--wall-2); border-radius: 5px; overflow: hidden; }
+  .meter i { display: block; height: 100%; width: var(--v); background: linear-gradient(90deg, var(--rust), var(--brass)); border-radius: 5px; transform-origin: left; }
+  .row.in .meter i { animation: grow 1.4s cubic-bezier(.2, .8, .2, 1); }
+  @keyframes grow { from { transform: scaleX(0); } }
+  .deep ul { list-style: none; padding: 0; margin: 2rem 0; display: grid; gap: .3rem; }
+  .deep li { display: grid; grid-template-columns: 9rem 1fr; gap: 1.5rem; align-items: baseline; padding: .7rem 0; border-bottom: 1px solid var(--line); }
+  .deep strong { font: 400 2rem var(--serif); color: var(--brass); text-align: right; }
+  @media (max-width: 860px) { .row { grid-template-columns: 1fr; gap: .5rem; } .deep li { grid-template-columns: 6rem 1fr; } }
+</style>

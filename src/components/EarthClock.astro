@@ -1,0 +1,102 @@
+---
+// La historia de la Tierra comprimida en 24 horas. Ángulos calculados con la edad real.
+import { EARTH_AGE, clockTime, periodById } from '../data/periods.js';
+
+const events = [
+  { ma: 4567, t: 'Se forma la Tierra', d: 'Polvo y rocas alrededor del joven Sol se agregan en un planeta.' },
+  { ma: 4500, t: 'Nace la Luna', d: 'Un impacto gigante arranca material que forma la Luna.' },
+  { ma: 4400, t: 'El mineral más antiguo', d: 'Circones de Jack Hills: ya había corteza y probablemente agua líquida.' },
+  { ma: 3430, t: 'Estromatolitos', d: 'Las evidencias de vida más sólidas y antiguas: tapetes microbianos fosilizados.' },
+  { ma: 2400, t: 'Gran Oxidación', d: 'Las cianobacterias llenan de oxígeno la atmósfera por primera vez.' },
+  { ma: 1870, t: 'Vida visible', d: 'Grypania, una espiral de algas, es de los primeros fósiles que se ven a simple vista.' },
+  { ma: 717, t: 'Tierra bola de nieve', d: 'El hielo llega cerca del ecuador.' },
+  { ma: 538.8, t: 'Explosión cámbrica', d: 'Aparecen casi todos los grandes grupos de animales.' },
+  { ma: 470, t: 'Plantas en tierra', d: 'Esporas fósiles muestran las primeras plantas terrestres.' },
+  { ma: 375, t: 'Aletas que caminan', d: 'Tiktaalik y los primeros tetrápodos.' },
+  { ma: 252, t: 'La Gran Mortandad', d: 'La peor extinción: desaparece ~81–95 % de las especies marinas.' },
+  { ma: 233, t: 'Primeros dinosaurios', d: 'Pequeños y escasos, en el sur de Pangea.' },
+  { ma: 66, t: 'Chicxulub', d: 'Un asteroide cae en Yucatán y termina la era de los dinosaurios no avianos.' },
+  { ma: 0.3, t: 'Homo sapiens', d: 'Nuestra especie aparece en África hace ~300,000 años.' },
+].map((e) => ({ ...e, time: clockTime(e.ma), angle: (1 - e.ma / EARTH_AGE) * 360 }));
+
+const eons = ['hadico', 'arcaico', 'proterozoico'].map((id) => periodById[id]).concat([{ ...periodById.cambrico, name: 'Fanerozoico', start: 538.8, end: 0, color: '#9AD9DD' }]);
+const R = 180, C = 210;
+const pt = (deg: number, r: number) => {
+  const a = ((deg - 90) * Math.PI) / 180;
+  return [C + r * Math.cos(a), C + r * Math.sin(a)];
+};
+const arc = (from: number, to: number, r: number) => {
+  const [x1, y1] = pt(from, r), [x2, y2] = pt(to, r);
+  return `M${x1.toFixed(2)} ${y1.toFixed(2)} A${r} ${r} 0 ${to - from > 180 ? 1 : 0} 1 ${x2.toFixed(2)} ${y2.toFixed(2)}`;
+};
+const deg = (ma: number) => (1 - ma / EARTH_AGE) * 360;
+---
+<div class="clock">
+  <svg viewBox="0 0 420 420" class="clock-face" role="img" aria-labelledby="clockTitle">
+    <title id="clockTitle">Reloj de 24 horas con la historia de la Tierra</title>
+    <circle cx={C} cy={C} r={R + 22} class="clock-rim" />
+    {eons.map((e) => <path d={arc(deg(e.start), Math.min(deg(e.end), 359.99), R)} stroke={e.color} class="clock-eon"><title>{e.name}</title></path>)}
+    {Array.from({ length: 24 }, (_, h) => {
+      const [x1, y1] = pt(h * 15, R + 12), [x2, y2] = pt(h * 15, R + (h % 6 ? 17 : 22));
+      const [tx, ty] = pt(h * 15, R - 26);
+      return <g>
+        <line x1={x1} y1={y1} x2={x2} y2={y2} class="clock-tick" />
+        {h % 3 === 0 && <text x={tx} y={ty} class="clock-hour">{String(h).padStart(2, '0')}</text>}
+      </g>;
+    })}
+    {events.map((e, i) => {
+      const [x, y] = pt(e.angle, R);
+      return <circle cx={x} cy={y} r="6" class="clock-dot" data-event={i} tabindex="0" aria-label={`${e.time} · ${e.t}`} />;
+    })}
+    <line x1={C} y1={C} x2={C} y2={C - R + 40} class="clock-hand" id="clockHand" />
+    <circle cx={C} cy={C} r="5" fill="var(--brass)" />
+    <text x={C} y={C + 40} class="clock-center" id="clockCenter">23:59:54</text>
+    <text x={C} y={C + 60} class="clock-sub" id="clockSub">aparece Homo sapiens</text>
+  </svg>
+  <ol class="clock-list">
+    {events.map((e, i) => (
+      <li data-event={i}>
+        <button type="button"><span class="clock-time num">{e.time}</span><span><strong>{e.t}</strong><small>{e.ma >= 1 ? `${e.ma.toLocaleString('es-MX')} Ma` : `hace ${(e.ma * 1000).toLocaleString('es-MX')} mil años`} · {e.d}</small></span></button>
+      </li>
+    ))}
+  </ol>
+</div>
+<script define:vars={{ events }}>
+  const hand = document.getElementById('clockHand');
+  const center = document.getElementById('clockCenter');
+  const sub = document.getElementById('clockSub');
+  const items = document.querySelectorAll('.clock-list li');
+  const dots = document.querySelectorAll('.clock-dot');
+  function show(i) {
+    const e = events[i];
+    hand.style.transform = `rotate(${e.angle}deg)`;
+    center.textContent = e.time;
+    sub.textContent = e.t;
+    items.forEach((li) => li.classList.toggle('active', Number(li.dataset.event) === i));
+    dots.forEach((d) => d.classList.toggle('active', Number(d.dataset.event) === i));
+  }
+  items.forEach((li) => li.querySelector('button').addEventListener('click', () => show(Number(li.dataset.event))));
+  dots.forEach((d) => { const f = () => show(Number(d.dataset.event)); d.addEventListener('click', f); d.addEventListener('focus', f); d.addEventListener('mouseenter', f); });
+  show(events.length - 1);
+</script>
+<style>
+  .clock { display: grid; grid-template-columns: minmax(280px, 460px) 1fr; gap: 3rem; align-items: center; }
+  .clock-face { width: 100%; overflow: visible; }
+  .clock-rim { fill: #120e0a; stroke: var(--brass-dim); stroke-width: 1.5; }
+  .clock-eon { fill: none; stroke-width: 22; opacity: .85; }
+  .clock-tick { stroke: var(--brass-dim); stroke-width: 1.4; }
+  .clock-hour { fill: var(--muted); font: 600 12px var(--label); letter-spacing: .1em; text-anchor: middle; dominant-baseline: middle; }
+  .clock-dot { fill: var(--paper); stroke: #0e0b08; stroke-width: 2; cursor: pointer; transition: r .2s, fill .2s; outline: none; }
+  .clock-dot:hover, .clock-dot.active, .clock-dot:focus-visible { fill: var(--brass); r: 9; }
+  .clock-hand { stroke: var(--brass); stroke-width: 2.5; stroke-linecap: round; transform-origin: 210px 210px; transition: transform .7s cubic-bezier(.2, .8, .2, 1); }
+  .clock-center { fill: var(--text); font: 400 34px var(--serif); text-anchor: middle; }
+  .clock-sub { fill: var(--brass); font: 600 11px var(--label); letter-spacing: .18em; text-transform: uppercase; text-anchor: middle; }
+  .clock-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; max-height: 520px; overflow: auto; scrollbar-width: thin; }
+  .clock-list button { width: 100%; display: grid; grid-template-columns: 6.5rem 1fr; gap: 1rem; text-align: left; background: none; border: 0; border-left: 2px solid transparent; padding: .55rem .9rem; border-radius: 0 4px 4px 0; transition: background .2s, border-color .2s; }
+  .clock-list button:hover { background: var(--wall-2); }
+  .clock-list li.active button { border-color: var(--brass); background: var(--wall-2); }
+  .clock-time { font-size: 1.2rem; color: var(--brass); }
+  .clock-list strong { display: block; font: 400 1.15rem var(--serif); }
+  .clock-list small { color: var(--muted); font-size: .88rem; line-height: 1.45; }
+  @media (max-width: 860px) { .clock { grid-template-columns: 1fr; } .clock-list { max-height: none; } }
+</style>
