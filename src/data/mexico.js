@@ -7,6 +7,7 @@ export const mexicoTimeline = [
   { ma: 110, title: 'La laguna de Tlayúa', text: 'Una laguna tropical en Puebla conservó con detalle excepcional peces, tortugas, lagartos e insectos.' },
   { ma: 72.5, title: 'La costa de los dinosaurios', text: 'El sur de Coahuila era una llanura costera con deltas y manglares. Ahí vivieron Coahuilaceratops, Velafrons, Latirhinus, Tlatolophus y tiranosáuridos.' },
   { ma: 66, title: 'Chicxulub', text: 'Un asteroide de ~10 km choca en el mar somero de Yucatán. Se forma un cráter de ~180 km y termina la era de los dinosaurios no avianos.' },
+  { ma: 20, title: 'Selvas de ámbar en Chiapas', text: 'Un árbol emparentado con el guapinol, Hymenaea mexicana, escurre resina que atrapa insectos, arañas, flores y pequeños animales. Hoy es el ámbar de Simojovel.' },
   { ma: 15, title: 'Volcanes y tiburones', text: 'Se forman la Sierra Madre Occidental y, más tarde, la Faja Volcánica Transmexicana. Megalodón recorre las costas de Baja California.' },
   { ma: 0.02, title: 'Megafauna del Pleistoceno', text: 'Mamuts, gonfoterios, caballos, camellos, gliptodontes y perezosos gigantes recorren el centro de México.' },
   { ma: 0.013, title: 'Los primeros pobladores', text: 'Naia cae en Hoyo Negro, Quintana Roo, cuando la cueva estaba seca. Su ADN la conecta con los pueblos indígenas actuales.' },
@@ -17,6 +18,7 @@ export const museums = [
   { name: 'Museo de Historia Natural y Cultura Ambiental', city: 'Bosque de Chapultepec, CDMX', what: 'La réplica del Diplodocus donada por Carnegie que llegó a México en 1930.' },
   { name: 'Museo de Geología de la UNAM', city: 'Santa María la Ribera, CDMX', what: 'Edificio porfiriano con minerales, rocas y fósiles, incluido un esqueleto de mamut.' },
   { name: 'Museo Paleontológico Quinametzin', city: 'Aeropuerto Felipe Ángeles, Estado de México', what: 'Mamuts y otra megafauna recuperada durante la construcción del aeropuerto.' },
+  { name: 'Museo del Ámbar de Chiapas', city: 'San Cristóbal de las Casas, Chiapas', what: 'Piezas de ámbar de Simojovel con insectos y plantas atrapados hace unos 20 millones de años.' },
   { name: 'Museo Pie de Vaca', city: 'Tepexi de Rodríguez, Puebla', what: 'Fósiles de la cantera de Tlayúa y de la región de Tepexi.' },
   { name: 'Museo Regional de Paleontología de Rincón Colorado', city: 'General Cepeda, Coahuila', what: 'A pie de yacimiento: excavaciones de hadrosaurios en la zona donde vivieron.' },
 ];

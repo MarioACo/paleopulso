@@ -201,6 +201,10 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .map .site { fill: var(--rust); stroke: var(--paper); stroke-width: 1.5; }
 .map .site.mx { fill: var(--brass); }
 .map .site-ring { fill: none; stroke: var(--rust); stroke-width: 1.5; animation: ping 2.4s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+.map .you-halo { fill: rgba(209, 171, 98, .18); stroke: var(--brass); stroke-width: 1; animation: pulse 2s ease-in-out infinite; }
+.map .you-dot { fill: var(--brass); stroke: var(--night); stroke-width: 2.5; }
+.map .you-label { fill: var(--paper); font: 600 13px var(--label); letter-spacing: .14em; text-transform: uppercase; text-anchor: middle; paint-order: stroke; stroke: var(--night); stroke-width: 4px; }
+@keyframes pulse { 50% { transform: scale(1.35); opacity: .6; } }
 @keyframes ping { from { opacity: .9; transform: scale(.6); } to { opacity: 0; transform: scale(3); } }
 
 /* ── Pie de página ──────────────────────────────────────── */

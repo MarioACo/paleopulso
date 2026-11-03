@@ -15,6 +15,9 @@ const p = periodOf(s);
 const photos = [...photosOf(s.id)].sort((a, b) => ['life', 'evidence', 'evidence2', 'lead'].indexOf(a.kind) - ['life', 'evidence', 'evidence2', 'lead'].indexOf(b.kind));
 const paleo = paleoOf(s.id);
 const pbdb = pbdbOf(s.id);
+const refs = assets.refs?.[s.id] || { original: null, studies: [] };
+const doiUrl = (d: string) => `https://doi.org/${d}`;
+const scholar = (t: string) => `https://scholar.google.com/scholar?q=${encodeURIComponent(t.slice(0, 200))}`;
 const sil = silhouetteOf(s.id);
 const human = silhouetteOf('humano');
 const chrono = [...species].sort((a, b) => b.ma - a.ma);
@@ -76,6 +79,7 @@ const pos = (ma: number) => ((hi - ma) / (hi - lo || 1)) * 100;
           <div><dt>Tamaño</dt><dd>{s.lengthNote || '—'}</dd></div>
           <div><dt>Ambiente</dt><dd>{s.habitat}</dd></div>
           <div><dt>En el día de la Tierra</dt><dd>{clockTime(s.ma)}</dd></div>
+          {refs.original?.authority && <div><dt>Nombrado por</dt><dd>{refs.original.authority.replace(/(\D)(\d{4})/, '$1, $2')}</dd></div>}
         </dl>
         {s.debated && <p class="debate"><span class="badge debate">En debate</span> {s.debated}</p>}
       </aside>
@@ -133,7 +137,33 @@ const pos = (ma: number) => ((hi - ma) / (hi - lo || 1)) * 100;
     )}
 
     <section class="block sources reveal">
-      <p class="kicker">Para seguir leyendo</p>
+      {(refs.studies.length > 0 || refs.original) && (
+        <div class="biblio">
+          <div class="block-head"><p class="kicker">Bibliografía</p><h2>De dónde sale <em>lo que leíste</em></h2></div>
+          {refs.studies.length > 0 && (
+            <ol class="refs">
+              {refs.studies.map((r: any) => (
+                <li>
+                  <span class="why label">{r.why}</span>
+                  <span class="cite">{r.authors} ({r.year}). {r.title}. <i>{r.journal}</i>.</span>
+                  <a href={doiUrl(r.doi)} rel="noopener">doi:{r.doi} ↗</a>
+                </li>
+              ))}
+            </ol>
+          )}
+          {refs.original && (
+            <div class="pbdb-ref">
+              <span class="label">Fuente de su clasificación en PBDB</span>
+              <p class="cite">{refs.original.citation}</p>
+              {refs.original.doi
+                ? <a href={doiUrl(refs.original.doi)} rel="noopener">doi:{refs.original.doi} ↗</a>
+                : <a href={scholar(refs.original.citation)} rel="noopener">Buscar en Google Académico ↗</a>}
+            </div>
+          )}
+          <p class="note">Cada DOI se comprobó en Crossref (título, año y primer autor) antes de publicarse.</p>
+        </div>
+      )}
+      <p class="kicker" style="margin-top:3rem">Para seguir leyendo</p>
       <ul>
         {articleOf(s.id) && <li><a href={articleOf(s.id)} rel="noopener">Artículo en Wikipedia ↗</a></li>}
         {sil && <li>Silueta: <a href={sil.page} rel="noopener">{sil.taxon}</a> por {sil.attribution || sil.contributor} · {sil.license} (PhyloPic)</li>}
@@ -214,6 +244,15 @@ const pos = (ma: number) => ((hi - ma) / (hi - lo || 1)) * 100;
   .pbdb-bar .period i { font: 600 .68rem var(--label); letter-spacing: .1em; text-transform: uppercase; font-style: normal; color: #000c; padding: .2rem .5rem; display: block; white-space: nowrap; overflow: hidden; }
   .pbdb-bar .range { position: absolute; bottom: 3px; height: 6px; min-width: 6px; background: var(--brass); border-radius: 3px; }
   .pbdb-axis { display: flex; justify-content: space-between; margin: .3rem 0 1rem; }
+  .biblio { margin-bottom: 1rem; }
+  .refs { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; gap: .8rem; counter-reset: ref; }
+  .refs li { counter-increment: ref; display: grid; gap: .25rem; padding: 1rem 1.2rem 1rem 3rem; position: relative; background: var(--wall); border: 1px solid var(--line); border-radius: 6px; }
+  .refs li::before { content: counter(ref); position: absolute; left: 1.1rem; top: .9rem; font: 400 1.3rem var(--serif); color: var(--brass-dim); }
+  .refs .why { color: var(--brass); }
+  .cite { font-family: var(--serif); font-size: 1.05rem; line-height: 1.45; }
+  .refs a, .pbdb-ref a { font-size: .82rem; overflow-wrap: anywhere; }
+  .pbdb-ref { padding: 1rem 1.2rem; border-left: 2px solid var(--brass-dim); }
+  .pbdb-ref .cite { margin: .4rem 0; color: var(--muted); font-size: .98rem; }
   .sources ul { padding-left: 1.2rem; color: var(--muted); }
   .sources a { color: var(--brass); }
   .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 5rem; border-top: 1px solid var(--line); padding-top: 2rem; }

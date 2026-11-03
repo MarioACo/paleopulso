@@ -14,7 +14,8 @@ const LEAD_KIND = {
   grypania: 'evidence', hallucigenia: 'evidence', dickinsonia: 'evidence', trilobites: 'evidence', tiktaalik: 'evidence',
   archaeopteris: 'evidence', dimetrodon: 'evidence', arthropleura: 'evidence', inostrancevia: 'evidence', lystrosaurus: 'evidence',
   ichthyosaurus: 'evidence', allosaurus: 'evidence', herrerasaurus: 'evidence', iguanodon: 'evidence', quetzalcoatlus: 'evidence',
-  mosasaurus: 'evidence', glyptodon: 'evidence', mamut: 'evidence', tlatolophus: 'evidence',
+  mosasaurus: 'evidence', glyptodon: 'evidence', mamut: 'evidence', tlatolophus: 'evidence', eryops: 'evidence', 'ambar-chiapas': 'evidence',
+  cryolophosaurus: 'life',
   haikouichthys: 'life', sacabambaspis: 'life', cooksonia: 'life', meganeura: 'life', hylonomus: 'life', diplodocus: 'life',
   velociraptor: 'life', muzquizopteryx: 'life', paraceratherium: 'life', lucy: 'life', smilodon: 'life',
 };

@@ -8,8 +8,9 @@ Un museo de historia natural en el navegador: 4,567 millones de años de vida, r
 | --- | --- |
 | `/` | Vestíbulo: reloj de «la Tierra en 24 horas», pieza del día, las cinco extinciones, misión de huellas |
 | `/tiempo` | Descenso por estratos con mapa paleogeográfico que cambia con cada periodo |
-| `/vida` | Archivo de 64 piezas con mapa mundial, filtros por era, ambiente, continente y México |
-| `/especie/:id` | Ficha: fotos (evidencia / reconstrucción), escala con una persona, mapa «entonces y ahora», rango en PBDB |
+| `/donde-vives` | Elige un lugar y mira dónde estaba en cada época (GPlates en vivo) y qué fósiles hay cerca |
+| `/vida` | Archivo de 69 piezas con mapa mundial, filtros por era, ambiente, continente y México |
+| `/especie/:id` | Ficha: fotos (evidencia / reconstrucción), escala con una persona, mapa «entonces y ahora», rango en PBDB, bibliografía verificada |
 | `/dinosaurios` | Sala mesozoica por periodos y comparador de tamaños a escala |
 | `/mexico` | Yacimientos de México, línea de tiempo, Chicxulub y museos para visitar |
 | `/mitos` | 14 tarjetas «¿mito o realidad?» con marcador |
@@ -30,6 +31,7 @@ npm run build      # genera dist/
 
 - `src/data/periods.js` — escala geológica (límites y colores de la ICS), extinciones y reloj de 24 h.
 - `src/data/species.js` — el catálogo. Cada pieza lleva lugar y coordenadas del hallazgo, edad, tamaño, dato curioso y si algo está en debate.
+- `src/data/refs.js` — estudios clave por pieza. Los DOI no se escriben a mano: `npm run assets` los busca en Crossref y solo los acepta si coinciden título, año y primer autor. Los DOI que trae PBDB también se confirman en Crossref (PBDB tiene algunos erróneos).
 - `src/data/myths.js`, `quiz.js`, `mexico.js`, `featured.js` — contenido de las salas.
 - `src/data/assets.json` + `public/assets/` — recursos descargados **y guardados en el repo**, para no depender de terceros al visitar el sitio.
 

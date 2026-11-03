@@ -792,6 +792,71 @@
    "license": "CC BY 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
    "page": "https://www.phylopic.org/images/86882478-2779-42f4-99a8-75ea58ef1198"
+  },
+  "eryops": {
+   "file": "/assets/silhouettes/eryops.svg",
+   "aspect": 1.774,
+   "uuid": "6c49ad2e-8d4d-4afa-8392-67074ea0a57c",
+   "taxon": "Eryops megacephalus Cope 1877",
+   "query": "Eryops",
+   "exact": true,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Dmitry Bogdanov (vectorized by T. Michael Keesey)",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://www.phylopic.org/images/6c49ad2e-8d4d-4afa-8392-67074ea0a57c"
+  },
+  "titanis": {
+   "file": "/assets/silhouettes/titanis.svg",
+   "aspect": 1.206,
+   "uuid": "5fad3e3e-1b8d-44a6-b537-f06e3135c444",
+   "taxon": "Titanis walleri",
+   "query": "Titanis",
+   "exact": true,
+   "contributor": "Dan Niel",
+   "attribution": "Dan Niel",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/5fad3e3e-1b8d-44a6-b537-f06e3135c444"
+  },
+  "cryolophosaurus": {
+   "file": "/assets/silhouettes/cryolophosaurus.svg",
+   "aspect": 1.329,
+   "uuid": "6655838b-ba6a-4889-92f4-879444d1b931",
+   "taxon": "Cryolophosaurus ellioti",
+   "query": "Cryolophosaurus",
+   "exact": true,
+   "contributor": "T. Michael Keesey",
+   "attribution": "Brad McFeeters (vectorized by T. Michael Keesey)",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/6655838b-ba6a-4889-92f4-879444d1b931"
+  },
+  "diprotodon": {
+   "file": "/assets/silhouettes/diprotodon.svg",
+   "aspect": 1.429,
+   "uuid": "0dd852df-bb80-456f-ab3f-d8bf011ca2a1",
+   "taxon": "Diprotodon optatum",
+   "query": "Diprotodon",
+   "exact": true,
+   "contributor": "Steven Traver",
+   "attribution": "Steven Traver",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/0dd852df-bb80-456f-ab3f-d8bf011ca2a1"
+  },
+  "ambar-chiapas": {
+   "file": "/assets/silhouettes/ambar-chiapas.svg",
+   "aspect": 2.024,
+   "uuid": "f4d28481-3b28-4cdb-9877-9b9d4f07e5f2",
+   "taxon": "Martialis heureka",
+   "query": "Formicidae",
+   "exact": false,
+   "contributor": "T. Michael Keesey",
+   "attribution": "T. Michael Keesey",
+   "license": "CC0 1.0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "page": "https://www.phylopic.org/images/f4d28481-3b28-4cdb-9877-9b9d4f07e5f2"
   }
  },
  "photos": {
@@ -1798,6 +1863,71 @@
     "kind": "lead",
     "label": "LA-Triceratops mount-2"
    }
+  ],
+  "eryops": [
+   {
+    "file": "/assets/photos/eryops-lead.webp",
+    "w": 1600,
+    "h": 949,
+    "credit": "Ryan Schwark",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Eryops_at_AMNH.jpg",
+    "kind": "lead",
+    "label": "Eryops at AMNH"
+   }
+  ],
+  "cryolophosaurus": [
+   {
+    "file": "/assets/photos/cryolophosaurus-lead.webp",
+    "w": 684,
+    "h": 900,
+    "credit": "ДиБгд at Russian Wikipedia",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "source": "https://commons.wikimedia.org/wiki/File:CryolophosaurusDB.jpg",
+    "kind": "lead",
+    "label": "CryolophosaurusDB"
+   }
+  ],
+  "ambar-chiapas": [
+   {
+    "file": "/assets/photos/ambar-chiapas-lead.webp",
+    "w": 1080,
+    "h": 810,
+    "credit": "VivaLaPinateria",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ambardechiapas.jpg",
+    "kind": "lead",
+    "label": "Ambardechiapas"
+   }
+  ],
+  "titanis": [
+   {
+    "file": "/assets/photos/titanis-lead.webp",
+    "w": 839,
+    "h": 663,
+    "credit": "Amanda from Chicago, USA",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Skeleton_of_Titanis_at_the_Florida_Museum_of_Natural_History.jpg",
+    "kind": "lead",
+    "label": "Skeleton of Titanis at the Florida Museum of Natural History"
+   }
+  ],
+  "diprotodon": [
+   {
+    "file": "/assets/photos/diprotodon-lead.webp",
+    "w": 1600,
+    "h": 1328,
+    "credit": "Ghedoghedo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Diprotodon_australis_skeleton_1.JPG",
+    "kind": "lead",
+    "label": "Diprotodon australis skeleton 1"
+   }
   ]
  },
  "paleo": {
@@ -2105,6 +2235,31 @@
    "time": 0,
    "lon": -87.4,
    "lat": 20.3
+  },
+  "cryolophosaurus": {
+   "time": 190,
+   "lon": 52.4,
+   "lat": -61.26
+  },
+  "eryops": {
+   "time": 290,
+   "lon": -29.76,
+   "lat": 1.44
+  },
+  "titanis": {
+   "time": 0,
+   "lon": -82.6,
+   "lat": 29.85
+  },
+  "diprotodon": {
+   "time": 0,
+   "lon": 140.1,
+   "lat": -29.7
+  },
+  "ambar-chiapas": {
+   "time": 15,
+   "lon": -86.85,
+   "lat": 16.76
   }
  },
  "pbdb": {
@@ -2520,6 +2675,34 @@
    "last": 0.0117,
    "occurrences": 6,
    "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=83087"
+  },
+  "cryolophosaurus": {
+   "taxon": "Cryolophosaurus",
+   "first": 199.5,
+   "last": 184.2,
+   "occurrences": 1,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=64371"
+  },
+  "titanis": {
+   "taxon": "Titanis",
+   "first": 5.333,
+   "last": 1.8,
+   "occurrences": 4,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=39470"
+  },
+  "eryops": {
+   "taxon": "Eryops",
+   "first": 323.4,
+   "last": 266.9,
+   "occurrences": 88,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=37011"
+  },
+  "diprotodon": {
+   "taxon": "Diprotodon",
+   "first": 23.04,
+   "last": 0,
+   "occurrences": 72,
+   "url": "https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=40187"
   }
  },
  "maps": {
@@ -2618,6 +2801,806 @@
   "megatherium": "https://es.wikipedia.org/wiki/Megatherium",
   "glyptodon": "https://es.wikipedia.org/wiki/Glyptodon",
   "mamut": "https://es.wikipedia.org/wiki/Mammuthus_columbi",
-  "neandertal": "https://es.wikipedia.org/wiki/Homo_neanderthalensis"
+  "neandertal": "https://es.wikipedia.org/wiki/Homo_neanderthalensis",
+  "eryops": "https://es.wikipedia.org/wiki/Eryops_megacephalus",
+  "cryolophosaurus": "https://es.wikipedia.org/wiki/Cryolophosaurus_ellioti",
+  "ambar-chiapas": "https://es.wikipedia.org/wiki/%C3%81mbar_de_Chiapas",
+  "titanis": "https://es.wikipedia.org/wiki/Titanis",
+  "diprotodon": "https://en.wikipedia.org/wiki/Diprotodon"
+ },
+ "refs": {
+  "estromatolitos": {
+   "original": null,
+   "studies": [
+    {
+     "title": "Stromatolite reef from the Early Archaean era of Australia",
+     "year": 2006,
+     "journal": "Nature",
+     "authors": "Allwood et al.",
+     "doi": "10.1038/nature04764",
+     "why": "Estromatolitos de Strelley Pool como evidencia de vida"
+    }
+   ]
+  },
+  "huizachal": {
+   "original": null,
+   "studies": [
+    {
+     "title": "Distinctive mammal-like reptile from Mexico and its bearing on the phylogeny of the Tritylodontidae",
+     "year": 1985,
+     "journal": "Nature",
+     "authors": "Clark y Hopson",
+     "doi": "10.1038/315398a0",
+     "why": "Bocatherium de Huizachal"
+    }
+   ]
+  },
+  "tlayua": {
+   "original": null,
+   "studies": []
+  },
+  "chicxulub": {
+   "original": null,
+   "studies": [
+    {
+     "title": "Chicxulub Crater: A possible Cretaceous/Tertiary boundary impact crater on the Yucatán Peninsula, Mexico",
+     "year": 1991,
+     "journal": "Geology",
+     "authors": "Hildebrand et al.",
+     "doi": "10.1130/0091-7613(1991)019<0867:ccapct>2.3.co;2",
+     "why": "Identificación del cráter"
+    }
+   ]
+  },
+  "naia": {
+   "original": null,
+   "studies": [
+    {
+     "title": "Late Pleistocene Human Skeleton and mtDNA Link Paleoamericans and Modern Native Americans",
+     "year": 2014,
+     "journal": "Science",
+     "authors": "Chatters et al.",
+     "doi": "10.1126/science.1252619",
+     "why": "Naia y su ADN"
+    }
+   ]
+  },
+  "ambar-chiapas": {
+   "original": null,
+   "studies": [
+    {
+     "title": "Hymenaea mexicana sp. nov. (Leguminosae: Caesalpinioideae) from Mexican amber indicates Old World connections",
+     "year": 2002,
+     "journal": "Botanical Journal of the Linnean Society",
+     "authors": "POINAR y BROWN",
+     "doi": "10.1046/j.1095-8339.2002.00053.x",
+     "why": "El árbol que produjo el ámbar"
+    }
+   ]
+  },
+  "grypania": {
+   "original": {
+    "authority": "Walter et al. 1976",
+    "citation": "M. R. Walter, J. H. Oehler, and D. Z. Oehler. 1976. Megascopic Algae 1300 Million Years Old from the Belt Supergroup, Montana: A Reinterpretation of Walcott's Helminthoidichnites. Journal of Paleontology 50(5):872-881",
+    "doi": null
+   },
+   "studies": []
+  },
+  "charnia": {
+   "original": {
+    "authority": "Ford 1958",
+    "citation": "T. D. Ford. 1958. Pre-Cambrian fossils from Charnwood Forest. Proceedings of the Yorkshire Geological Society 31(3):211-217",
+    "doi": "10.1144/pygs.31.3.211"
+   },
+   "studies": [
+    {
+     "title": "PRE-CAMBRIAN FOSSILS FROM CHARNWOOD FOREST",
+     "year": 1958,
+     "journal": "Proceedings of the Yorkshire Geological Society",
+     "authors": "Ford",
+     "doi": "10.1144/pygs.31.3.211",
+     "why": "Descripción de Charnia"
+    }
+   ]
+  },
+  "anomalocaris": {
+   "original": {
+    "citation": "J. J., Jr. Sepkoski. 2002. A compendium of fossil marine animal genera. Bulletins of American Paleontology 363:1-560",
+    "doi": null
+   },
+   "studies": []
+  },
+  "dickinsonia": {
+   "original": {
+    "authority": "Sprigg 1947",
+    "citation": "R. C. Sprigg. 1947. Early Cambrian (?) jellyfishes from the Flinders Ranges, South Australia. Tranactions of the Royal Society of South Australia 73:212-224",
+    "doi": null
+   },
+   "studies": [
+    {
+     "title": "Ancient steroids establish the Ediacaran fossilDickinsoniaas one of the earliest animals",
+     "year": 2018,
+     "journal": "Science",
+     "authors": "Bobrovskiy et al.",
+     "doi": "10.1126/science.aat7228",
+     "why": "Colesterol fósil en Dickinsonia"
+    }
+   ]
+  },
+  "haikouichthys": {
+   "original": {
+    "authority": "Luo et al. 1999",
+    "citation": "D. Shu, H.-L. Luo, and S. Conway Morris, X.-L. Zhang, S.-X. Hu, L. Chen, J. Han, M. Zhu, Y. Li, L.-Z. Chen. 1999. Lower Cambrian vertebrates from south China. Nature 402:42-46",
+    "doi": "10.1038/46965"
+   },
+   "studies": []
+  },
+  "trilobites": {
+   "original": {
+    "authority": "(Walch 1771)",
+    "citation": "J. J., Jr. Sepkoski. 2002. A compendium of fossil marine animal genera. Bulletins of American Paleontology 363:1-560",
+    "doi": null
+   },
+   "studies": []
+  },
+  "sacabambaspis": {
+   "original": {
+    "citation": "J. J., Jr. Sepkoski. 2002. A compendium of fossil marine animal genera. Bulletins of American Paleontology 363:1-560",
+    "doi": null
+   },
+   "studies": []
+  },
+  "orthoceras": {
+   "original": {
+    "authority": "Breynius 1832",
+    "citation": "J. J., Jr. Sepkoski. 2002. A compendium of fossil marine animal genera. Bulletins of American Paleontology 363:1-560",
+    "doi": null
+   },
+   "studies": []
+  },
+  "cooksonia": {
+   "original": {
+    "authority": "Lang 1937",
+    "citation": "W. H. Lang. 1937. On the plant-remains from the Downtonian of England and Wales. Philosophical Transactions of the Royal Society 227B:245-291",
+    "doi": "10.1098/rstb.1937.0004"
+   },
+   "studies": []
+  },
+  "eurypterus": {
+   "original": {
+    "authority": "De Kay 1825",
+    "citation": "J. J., Jr. Sepkoski. 2002. A compendium of fossil marine animal genera. Bulletins of American Paleontology 363:1-560",
+    "doi": null
+   },
+   "studies": []
+  },
+  "hallucigenia": {
+   "original": {
+    "authority": "Conway Morris 1977",
+    "citation": "S. Conway Morris. 1977. A new metazoan from the Cambrian Burgess Shale of British Columbia. Palaeontology 20:623-640",
+    "doi": null
+   },
+   "studies": [
+    {
+     "title": "Hallucigenia’s head and the pharyngeal armature of early ecdysozoans",
+     "year": 2015,
+     "journal": "Nature",
+     "authors": "Smith y Caron",
+     "doi": "10.1038/nature14573",
+     "why": "Identificación de la cabeza"
+    }
+   ]
+  },
+  "dunkleosteus": {
+   "original": {
+    "authority": "Newberry 1874",
+    "citation": "J. J., Jr. Sepkoski. 2002. A compendium of fossil marine animal genera. Bulletins of American Paleontology 363:1-560",
+    "doi": null
+   },
+   "studies": [
+    {
+     "title": "A Devonian Fish Tale: A New Method of Body Length Estimation Suggests Much Smaller Sizes for Dunkleosteus terrelli (Placodermi: Arthrodira)",
+     "year": 2023,
+     "journal": "Diversity",
+     "authors": "Engelman",
+     "doi": "10.3390/d15030318",
+     "why": "Nueva estimación de tamaño (~4 m)"
+    }
+   ]
+  },
+  "archaeopteris": {
+   "original": {
+    "authority": "Dawson 1871",
+    "citation": "S. E. Scheckler. 1986. Geology, Floristics and Paleoecology of Late Devonian Coal Swamps from Appalachian Laurentia (U.S.A.). Annales de la Societe geologique de Belgique 109:209-222",
+    "doi": null
+   },
+   "studies": []
+  },
+  "meganeura": {
+   "original": {
+    "authority": "Brongniart 1885",
+    "citation": "C. Brongniart. 1885. Les insectes fossiles des terrains primaires. Coup d'oeil rapide sur la fauna entomologique des terrains paléozoïques. Bulletin de la Société des Amis des Sciences Naturelles de Rouen 21(3):50-68",
+    "doi": "10.5962/bhl.title.36372"
+   },
+   "studies": []
+  },
+  "tiktaalik": {
+   "original": {
+    "authority": "Daeschler et al. 2006",
+    "citation": "E. B. Daeschler, N. H. Shubin, and F. A. Jenkins Jr. 2006. A Devonian tetrapod-like fish and the evolution of the tetrapod body plan. Nature 440:757-763",
+    "doi": "10.1038/nature04639"
+   },
+   "studies": [
+    {
+     "title": "A Devonian tetrapod-like fish and the evolution of the tetrapod body plan",
+     "year": 2006,
+     "journal": "Nature",
+     "authors": "Daeschler et al.",
+     "doi": "10.1038/nature04639",
+     "why": "Descripción de Tiktaalik"
+    }
+   ]
+  },
+  "hylonomus": {
+   "original": {
+    "authority": "Dawson 1860",
+    "citation": "J. W. Dawson. 1860. On a Terrestrial Mollusk, a Chilognathous Myriapod, and some New Species of Reptiles, from the Coal-Formation of Nova Scotia. Quarterly Journal of the Geological Society of London 16:268-277",
+    "doi": "10.1144/GSL.JGS.1860.016.01-02.37"
+   },
+   "studies": []
+  },
+  "dimetrodon": {
+   "original": {
+    "authority": "Cope 1878",
+    "citation": "E. D. Cope. 1878. Descriptions of extinct Batrachia and Reptilia from the Permian formations of Texas. Proceedings of the American Philosophical Society 17:505-530",
+    "doi": "10.5962/bhl.title.104569"
+   },
+   "studies": []
+  },
+  "mesosaurus": {
+   "original": {
+    "authority": "Gervais 1865",
+    "citation": "P. Gervais. 1865. Description du Mesosaurus tenudiens. Reptile fossile de l'Afrique australe. Académie des Sciences et Lettres de Montpellier. Mémoires de la Section des Sciences 6(2):169-175",
+    "doi": null
+   },
+   "studies": []
+  },
+  "glossopteris": {
+   "original": {
+    "authority": "Brongniart 1828",
+    "citation": "A. T. Brongniart. 1828. Prodrome d'une histoire des végétaux fossiles.",
+    "doi": "10.5962/bhl.title.62840"
+   },
+   "studies": []
+  },
+  "inostrancevia": {
+   "original": {
+    "authority": "Amalitski 1922",
+    "citation": "R. L. Carroll. 1988. Vertebrate Paleontology and Evolution.",
+    "doi": null
+   },
+   "studies": [
+    {
+     "title": "Rapid turnover of top predators in African terrestrial faunas around the Permian-Triassic mass extinction",
+     "year": 2023,
+     "journal": "Current Biology",
+     "authors": "Kammerer et al.",
+     "doi": "10.1016/j.cub.2023.04.007",
+     "why": "Inostrancevia en Sudáfrica"
+    }
+   ]
+  },
+  "arthropleura": {
+   "original": {
+    "authority": "(Jordan 1854)",
+    "citation": "F. W. H. Jordan. 1854. Taxonomic names, in Ueber die Crustaceen der Steinkohlenformation von Saarbrücken. Palaeontographica 4:1-15",
+    "doi": null
+   },
+   "studies": [
+    {
+     "title": "The largest arthropod in Earth history: insights from newly discovered Arthropleura remains (Serpukhovian Stainmore Formation, Northumberland, England)",
+     "year": 2021,
+     "journal": "Journal of the Geological Society",
+     "authors": "Davies et al.",
+     "doi": "10.1144/jgs2021-115",
+     "why": "Ejemplar gigante de Northumberland"
+    },
+    {
+     "title": "Head anatomy and phylogenomics show the Carboniferous giant Arthropleura belonged to a millipede-centipede group",
+     "year": 2024,
+     "journal": "Science Advances",
+     "authors": "Lhéritier et al.",
+     "doi": "10.1126/sciadv.adp6362",
+     "why": "Anatomía de la cabeza"
+    }
+   ]
+  },
+  "lystrosaurus": {
+   "original": {
+    "authority": "Cope 1870",
+    "citation": "R. Broom. 1913. A revision of the reptiles of the Karroo. Annals of the South African Museum 7(6):361-366",
+    "doi": null
+   },
+   "studies": []
+  },
+  "eoraptor": {
+   "original": {
+    "authority": "Sereno et al. 1993",
+    "citation": "P. C. Sereno, C. A. Forster, and R. R. Rogers, A. M. Monetta. 1993. Primitive dinosaur skeleton from Argentina and the early evolution of Dinosauria. Nature 361:64-66",
+    "doi": "10.1038/361064a0"
+   },
+   "studies": []
+  },
+  "herrerasaurus": {
+   "original": {
+    "authority": "Reig 1963",
+    "citation": "O. A. Reig. 1963. La presencia de dinosaurios saurisquios en los \"Estratos de Ischigualasto\" (Mesotriasico Superior) de las provincias de San Juan y La Rioja (República Argentina) [The presence of saurischian dinosaurs in the \"Ischigualasto beds\" (upper Middle Triassic) of San Juan and La Rioja Provinces (Argentine Republic)]. Ameghiniana 3(1):3-20",
+    "doi": null
+   },
+   "studies": []
+  },
+  "coelophysis": {
+   "original": {
+    "authority": "Cope 1889",
+    "citation": "E. D. Cope. 1889. On a new genus of Triassic Dinosauria. The American Naturalist 23:626",
+    "doi": null
+   },
+   "studies": []
+  },
+  "plateosaurus": {
+   "original": {
+    "authority": "Meyer 1837",
+    "citation": "H. v. Meyer. 1837. Mittheilungen, an Professor Bronn gerichtet [Communications, sent to Professor Bronn]. Neues Jahrbuch für Mineralogie, Geognosie, Geologie und Petrefaktenkunde 1837:314-317",
+    "doi": null
+   },
+   "studies": []
+  },
+  "ichthyosaurus": {
+   "original": {
+    "authority": "Koenig 1818",
+    "citation": "J. J., Jr. Sepkoski. 2002. A compendium of fossil marine animal genera. Bulletins of American Paleontology 363:1-560",
+    "doi": null
+   },
+   "studies": []
+  },
+  "allosaurus": {
+   "original": {
+    "authority": "Marsh 1877",
+    "citation": "O. C. Marsh. 1877. Notice of new dinosaurian reptiles from the Jurassic formation. American Journal of Science and Arts 14:514-516",
+    "doi": "10.2475/ajs.s3-14.84.514"
+   },
+   "studies": []
+  },
+  "stegosaurus": {
+   "original": {
+    "authority": "Marsh 1877",
+    "citation": "O. C. Marsh. 1877. A new order of extinct Reptilia (Stegosauria) from the Jurassic of the Rocky Mountains. American Journal of Science and Arts 14:513-514",
+    "doi": "10.2475/ajs.s3-14.84.513"
+   },
+   "studies": []
+  },
+  "tanystropheus": {
+   "original": {
+    "authority": "von Meyer 1852",
+    "citation": "R. L. Carroll. 1988. Vertebrate Paleontology and Evolution.",
+    "doi": null
+   },
+   "studies": [
+    {
+     "title": "Aquatic Habits and Niche Partitioning in the Extraordinarily Long-Necked Triassic Reptile Tanystropheus",
+     "year": 2020,
+     "journal": "Current Biology",
+     "authors": "Spiekman et al.",
+     "doi": "10.1016/j.cub.2020.07.025",
+     "why": "Dos especies con nichos distintos"
+    }
+   ]
+  },
+  "diplodocus": {
+   "original": {
+    "authority": "Marsh 1878",
+    "citation": "O. C. Marsh. 1878. Principal characters of American Jurassic dinosaurs. Part I. American Journal of Science and Arts 16:411-416",
+    "doi": "10.2475/ajs.s3-16.95.411"
+   },
+   "studies": [
+    {
+     "title": "A specimen-level phylogenetic analysis and taxonomic revision of Diplodocidae (Dinosauria, Sauropoda)",
+     "year": 2015,
+     "journal": "PeerJ",
+     "authors": "Tschopp et al.",
+     "doi": "10.7717/peerj.857",
+     "why": "Revalidación de Brontosaurus"
+    }
+   ]
+  },
+  "archaeopteryx": {
+   "original": {
+    "authority": "Meyer 1861",
+    "citation": "H. v. Meyer. 1861. [Die Feder von Solenhofen] [The feather of Solnhofen]. Neues Jahrbuch für Mineralogie, Geognosie, Geologie und Petrefakten-Kunde 1861:678-679",
+    "doi": null
+   },
+   "studies": []
+  },
+  "iguanodon": {
+   "original": {
+    "authority": "Mantell 1825",
+    "citation": "G. A. Mantell. 1825. Notice on the Iguanodon, a newly discovered fossil reptile, from the sandstone of Tilgate Forest, in Sussex. Philosophical Transactions of the Royal Society of London 115:179-186",
+    "doi": null
+   },
+   "studies": []
+  },
+  "giraffatitan": {
+   "original": {
+    "authority": "(Paul 1988)",
+    "citation": "G. S. Paul. 1988. The brachiosaur giants of the Morrison and Tendaguru with a description of a new subgenus, Giraffatitan, and a comparison of the world's largest dinosaurs. Hunteria 2(3):1-14",
+    "doi": null
+   },
+   "studies": [
+    {
+     "title": "A re-evaluation ofBrachiosaurus altithoraxRiggs 1903 (Dinosauria, Sauropoda) and its generic separation fromGiraffatitan brancai(Janensch 1914)",
+     "year": 2009,
+     "journal": "Journal of Vertebrate Paleontology",
+     "authors": "Taylor",
+     "doi": "10.1671/039.029.0309",
+     "why": "Giraffatitan como género distinto de Brachiosaurus"
+    }
+   ]
+  },
+  "sinosauropteryx": {
+   "original": {
+    "authority": "Ji and Ji 1996",
+    "citation": "Q. Ji and S. Ji. 1996. [On discovery of the earliest bird fossil in China and the origin of birds]. Chinese Geology 10(233):30-33",
+    "doi": null
+   },
+   "studies": [
+    {
+     "title": "Countershading and Stripes in the Theropod Dinosaur Sinosauropteryx Reveal Heterogeneous Habitats in the Early Cretaceous Jehol Biota",
+     "year": 2017,
+     "journal": "Current Biology",
+     "authors": "Smithwick et al.",
+     "doi": "10.1016/j.cub.2017.09.032",
+     "why": "Colores de Sinosauropteryx"
+    }
+   ]
+  },
+  "argentinosaurus": {
+   "original": {
+    "authority": "Bonaparte and Coria 1993",
+    "citation": "J. F. Bonaparte and R. A. Coria. 1993. Un nuevo y gigantesco saurópodo titanosaurio de la Formación Rio Limay (Albanio-Cenomaniano) de la Provincia del Neuquén, Argentina [A new and huge titanosaur sauropod from the Rio Limay Formation (Albian-Cenomanian) of Neuquén Province, Argentina]. Ameghiniana 30(3):271-282",
+    "doi": null
+   },
+   "studies": []
+  },
+  "microraptor": {
+   "original": {
+    "authority": "Xu et al. 2000",
+    "citation": "X. Xu, Z. Zhou, and X. Wang. 2000. The smallest known non-avian theropod dinosaur. Nature 408:705-708",
+    "doi": "10.1038/35047056"
+   },
+   "studies": [
+    {
+     "title": "Reconstruction of Microraptor and the Evolution of Iridescent Plumage",
+     "year": 2012,
+     "journal": "Science",
+     "authors": "Li et al.",
+     "doi": "10.1126/science.1213780",
+     "why": "Plumaje iridiscente"
+    }
+   ]
+  },
+  "muzquizopteryx": {
+   "original": {
+    "authority": "Frey et al. 2006",
+    "citation": "E. Frey, M.-C. Buchy, and W. Stinnesbeck, A. González González, A. di Stefano. 2006. Muzquizopteryx coahuilensis n. g., n. sp., a nyctosaurid pterosaur with soft tissue preservation from the Coniacian (Late Cretaceous) of northeast Mexico (Coahuila). Oryctos 6:19-39",
+    "doi": null
+   },
+   "studies": []
+  },
+  "velociraptor": {
+   "original": {
+    "authority": "Osborn 1924",
+    "citation": "H. F. Osborn. 1924. Three new Theropoda, Protoceratops zone, central Mongolia. American Museum Novitates 144:1-12",
+    "doi": null
+   },
+   "studies": [
+    {
+     "title": "Feather Quill Knobs in the Dinosaur Velociraptor",
+     "year": 2007,
+     "journal": "Science",
+     "authors": "Turner et al.",
+     "doi": "10.1126/science.1145076",
+     "why": "Evidencia de plumas"
+    }
+   ]
+  },
+  "coahuilaceratops": {
+   "original": {
+    "authority": "Loewen et al. 2010",
+    "citation": "M. A. Loewen, S. D. Sampson, and E. K. Lund, A. A. Farke, M. C. Aguillón-Martínez, C. A. de Leon, R. A. Rodríguez-de la Rosa, M. A. Getty, D. A. Eberth. 2010. Horned dinosaurs (Ornithischia: Ceratopsia) from the Upper Cretaceous (Campanian) Cerro del Pueblo Formation, Coahuila, Mexico. New Perspectives on Horned Dinosaurs: The Royal Tyrrell Museum Ceratopsian Symposium. Indiana University Press, Bloomington",
+    "doi": null
+   },
+   "studies": []
+  },
+  "velafrons": {
+   "original": {
+    "authority": "Gates et al. 2007",
+    "citation": "T. A. Gates, S. D. Sampson, and C. R. Delgado de Jesús, L. E. Zanno, D. A. Eberth, E. Hernández-Rivera, M. C. Aguillón Martínez, J. I. Kirkland. 2007. Velafrons coahuilensis, a new lambeosaurine hadrosaurid (Dinosauria: Ornithopoda) from the late Campanian Cerro del Pueblo Formation, Coahuila, Mexico. Journal of Vertebrate Paleontology 27(4):917-930",
+    "doi": "10.1671/0272-4634(2007)27[917:vcanlh]2.0.co;2"
+   },
+   "studies": []
+  },
+  "spinosaurus": {
+   "original": {
+    "authority": "Stromer 1915",
+    "citation": "E. Stromer. 1915. Ergebnisse der Forschungsreisen Prof. E. Stromers in den Wüsten Ägyptens. II. Wirbeltier-Reste der Baharîje-Stufe (unterstes Cenoman). 3. Das Original des Theropoden Spinosaurus aegyptiacus nov. gen., nov. spec. Abhandlungen der Königlich Bayerischen Akademie der Wissenschaften Mathematisch-physikalische Klasse Abhandlung 28(3):1-31",
+    "doi": null
+   },
+   "studies": [
+    {
+     "title": "Tail-propelled aquatic locomotion in a theropod dinosaur",
+     "year": 2020,
+     "journal": "Nature",
+     "authors": "Ibrahim et al.",
+     "doi": "10.1038/s41586-020-2190-3",
+     "why": "Hipótesis de nadador"
+    },
+    {
+     "title": "Spinosaurus is not an aquatic dinosaur",
+     "year": 2022,
+     "journal": "eLife",
+     "authors": "Sereno et al.",
+     "doi": "10.7554/elife.80092",
+     "why": "Hipótesis de cazador en la orilla"
+    }
+   ]
+  },
+  "latirhinus": {
+   "original": {
+    "authority": "Prieto-Márquez and Serrano Brañas 2012",
+    "citation": "A. Prieto-Márquez and C. I. Serrano Brañas. 2012. Latirhinus uitstlani, a ‘broad-nosed’ saurolophine hadrosaurid (Dinosauria, Ornithopoda) from the late Campanian (Cretaceous) of northern Mexico. Historical Biology 24(6):607-619",
+    "doi": "10.1080/08912963.2012.671311"
+   },
+   "studies": []
+  },
+  "carnotaurus": {
+   "original": {
+    "authority": "Bonaparte 1985",
+    "citation": "J. F. Bonaparte. 1985. A horned Cretaceous carnosaur from Patagonia. National Geographic Research 1(1):149-151",
+    "doi": null
+   },
+   "studies": []
+  },
+  "mosasaurus": {
+   "original": {
+    "authority": "Parkinson 1822",
+    "citation": "J. Parkinson. 1822. Outlines of Oryctology. An Introduction to the Study of Fossil Organic Remains; Especially of Those Found in the British Strata: Intended to Aid the Student in His Inquiries Respecting the Nature of Fossils",
+    "doi": null
+   },
+   "studies": []
+  },
+  "tlatolophus": {
+   "original": {
+    "authority": "Ramírez-Velasco et al. 2021",
+    "citation": "A. A. Ramírez-Velasco, F. J. Aguilar, and R. Hernández-Rivera, J. L. G. Maussán, M. L. Rodríguez, J. Alvarado-Ortega. 2021. Tlatolophus galorum, gen. et sp. nov., a parasaurolophini dinosaur from the upper Campanian of the Cerro del Pueblo Formation, Coahuila, northern Mexico. Cretaceous Research",
+    "doi": "10.1016/j.cretres.2021.104884"
+   },
+   "studies": [
+    {
+     "title": "Tlatolophus galorum, gen. et sp. nov., a parasaurolophini dinosaur from the upper Campanian of the Cerro del Pueblo Formation, Coahuila, northern Mexico",
+     "year": 2021,
+     "journal": "Cretaceous Research",
+     "authors": "Ramírez Velasco et al.",
+     "doi": "10.1016/j.cretres.2021.104884",
+     "why": "Descripción de Tlatolophus"
+    }
+   ]
+  },
+  "triceratops": {
+   "original": {
+    "authority": "Marsh 1889",
+    "citation": "O. C. Marsh. 1889. Notice of gigantic horned Dinosauria from the Cretaceous. American Journal of Science 38:173-175",
+    "doi": "10.2475/ajs.s3-38.224.173"
+   },
+   "studies": []
+  },
+  "quetzalcoatlus": {
+   "original": {
+    "authority": "Lawson 1975",
+    "citation": "D. A. Lawson. 1975. Could pterosaurs fly?. Science 188:676-677",
+    "doi": "10.1126/science.188.4189.676-b"
+   },
+   "studies": [
+    {
+     "title": "Pterosaur from the Latest Cretaceous of West Texas: Discovery of the Largest Flying Creature",
+     "year": 1975,
+     "journal": "Science",
+     "authors": "Lawson",
+     "doi": "10.1126/science.187.4180.947",
+     "why": "Descubrimiento de Quetzalcoatlus"
+    }
+   ]
+  },
+  "titanoboa": {
+   "original": {
+    "authority": "Head et al. 2009",
+    "citation": "J. J. Head, J. I. Bloch, and A. K. Hastings, J. R. Bourque, E. A. Cadena, F. A. Herrera, P. D. Polly, C. A. Jaramillo. 2009. Giant boid snake from the Paleocene neotropics reveals hotter past equatorial temperatures. Nature 457:715-717",
+    "doi": "10.1038/nature07671"
+   },
+   "studies": [
+    {
+     "title": "Giant boid snake from the Palaeocene neotropics reveals hotter past equatorial temperatures",
+     "year": 2009,
+     "journal": "Nature",
+     "authors": "Head et al.",
+     "doi": "10.1038/nature07671",
+     "why": "Descripción de Titanoboa"
+    }
+   ]
+  },
+  "basilosaurus": {
+   "original": {
+    "authority": "Harlan 1834",
+    "citation": "R. Harlan. 1834. Notice of fossil bones found in the Tertiary formation of the State of Louisiana. Transactions of the American Philosophical society 4:397-403",
+    "doi": "10.2307/1004838"
+   },
+   "studies": []
+  },
+  "trex": {
+   "original": {
+    "authority": "Osborn 1905",
+    "citation": "H. F. Osborn. 1905. Tyrannosaurus and other Cretaceous carnivorous dinosaurs. Bulletin of the American Museum of Natural History 21(14):259-265",
+    "doi": null
+   },
+   "studies": [
+    {
+     "title": "Binocular vision in theropod dinosaurs",
+     "year": 2006,
+     "journal": "Journal of Vertebrate Paleontology",
+     "authors": "Stevens",
+     "doi": "10.1671/0272-4634(2006)26[321:bvitd]2.0.co;2",
+     "why": "Visión binocular"
+    },
+    {
+     "title": "Physical evidence of predatory behavior in Tyrannosaurus rex",
+     "year": 2013,
+     "journal": "Proceedings of the National Academy of Sciences",
+     "authors": "DePalma et al.",
+     "doi": "10.1073/pnas.1216534110",
+     "why": "Mordida cicatrizada: cazaba presas vivas"
+    }
+   ]
+  },
+  "paraceratherium": {
+   "original": {
+    "authority": "Forster Cooper 1911",
+    "citation": "R. L. Carroll. 1988. Vertebrate Paleontology and Evolution.",
+    "doi": null
+   },
+   "studies": []
+  },
+  "lucy": {
+   "original": {
+    "authority": "Dart 1925",
+    "citation": "M. C. McKenna and S. K. Bell. 1997. Classification of Mammals Above the Species Level",
+    "doi": null
+   },
+   "studies": [
+    {
+     "title": "Plio—Pleistocene hominid discoveries in Hadar, Ethiopia",
+     "year": 1976,
+     "journal": "Nature",
+     "authors": "Johanson y Taieb",
+     "doi": "10.1038/260293a0",
+     "why": "Hallazgos de Hadar"
+    }
+   ]
+  },
+  "smilodon": {
+   "original": {
+    "authority": "Lund 1841",
+    "citation": "J. Alroy. 2002. Synonymies and reidentifications of North American fossil mammals.",
+    "doi": null
+   },
+   "studies": []
+  },
+  "megatherium": {
+   "original": {
+    "authority": "Cuvier 1796",
+    "citation": "E. L. Lundelius, Jr. 1972. Fossil Vertebrates from the Late Pleistocene Ingleside Fauna, San Patricio County, Texas. Bureau of Economic Geology Report of Investigations 77:1-74",
+    "doi": null
+   },
+   "studies": []
+  },
+  "glyptodon": {
+   "original": {
+    "authority": "(Burmeister 1879)",
+    "citation": "D. E. Savage. 1951. Report on Fossil Vertebrates from the Upper Magdalena Valley, Colombia. Science 114(2955):186-187",
+    "doi": "10.1126/science.114.2955.186"
+   },
+   "studies": []
+  },
+  "megalodon": {
+   "original": {
+    "authority": "(Agassiz 1835)",
+    "citation": "L. Agassiz. 1835. Recherches Sur Les Poissons Fossiles. Tome III (5me livraison)",
+    "doi": "10.5962/bhl.title.5745"
+   },
+   "studies": [
+    {
+     "title": "Body dimensions of the extinct giant shark Otodus megalodon: a 2D reconstruction",
+     "year": 2020,
+     "journal": "Scientific Reports",
+     "authors": "Cooper et al.",
+     "doi": "10.1038/s41598-020-71387-y",
+     "why": "Estimación de proporciones"
+    }
+   ]
+  },
+  "mamut": {
+   "original": {
+    "authority": "(Falconer 1857)",
+    "citation": "E. W. Haury, E. Antevs, and J. F. Lance. 1953. Artifacts with mammoth remains, Naco, Arizona. American Antiquity 19(1):1-24",
+    "doi": "10.2307/276409"
+   },
+   "studies": [
+    {
+     "title": "Holocene dwarf mammoths from Wrangel Island in the Siberian Arctic",
+     "year": 1993,
+     "journal": "Nature",
+     "authors": "Vartanyan et al.",
+     "doi": "10.1038/362337a0",
+     "why": "Mamuts de Wrangel (dato de la sala de mitos)"
+    }
+   ]
+  },
+  "eryops": {
+   "original": {
+    "authority": "Cope 1877",
+    "citation": "E. D. Cope. 1877. Descriptions of extinct Vertebrata from the Permian and Triassic formations of the United States. Proceedings of the American Philosophical Society 17(100):182-193",
+    "doi": null
+   },
+   "studies": []
+  },
+  "neandertal": {
+   "original": {
+    "authority": "King 1864",
+    "citation": "C. J. Cela-Conde and F. J. Ayala. 2003. Genera of the human lineage. Proceedings of the National Academy of Sciences 100(13):7684-7689",
+    "doi": "10.1073/pnas.0832372100"
+   },
+   "studies": []
+  },
+  "titanis": {
+   "original": {
+    "authority": "Brodkorb 1963",
+    "citation": "P. Brodkorb. 1963. A giant flightless bird from the Pleistocene of Florida. The Auk 80(2):111-115",
+    "doi": "10.2307/4082556"
+   },
+   "studies": []
+  },
+  "diprotodon": {
+   "original": {
+    "authority": "Owen 1838",
+    "citation": "M. C. McKenna and S. K. Bell. 1997. Classification of Mammals Above the Species Level",
+    "doi": null
+   },
+   "studies": []
+  },
+  "cryolophosaurus": {
+   "original": {
+    "authority": "Hammer and Hickerson 1994",
+    "citation": "W. R. Hammer and W. J. Hickerson. 1994. A crested theropod dinosaur from Antarctica. Science 264:828-830",
+    "doi": "10.1126/science.264.5160.828"
+   },
+   "studies": [
+    {
+     "title": "A Crested Theropod Dinosaur from Antarctica",
+     "year": 1994,
+     "journal": "Science",
+     "authors": "Hammer y Hickerson",
+     "doi": "10.1126/science.264.5160.828",
+     "why": "Descripción de Cryolophosaurus"
+    }
+   ]
+  }
  }
 }

@@ -6,7 +6,7 @@ const { title, description = 'Un museo de historia natural en tu navegador: 4,56
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const links = [
   ['/tiempo', 'Tiempo'], ['/vida', 'Archivo'], ['/dinosaurios', 'Dinosaurios'],
-  ['/mexico', 'México'], ['/mitos', 'Mitos'], ['/metodo', 'Cómo sabemos'],
+  ['/mexico', 'México'], ['/donde-vives', 'Tu lugar'], ['/mitos', 'Mitos'], ['/metodo', 'Cómo sabemos'],
 ];
 const fullTitle = title === 'Paleopulso' ? 'Paleopulso — Museo de la Tierra antes de nosotros' : `${title} · Paleopulso`;
 ---
@@ -54,7 +54,7 @@ const fullTitle = title === 'Paleopulso' ? 'Paleopulso — Museo de la Tierra an
       </div>
       <ul aria-label="Salas">
         <li><a href="/tiempo">Tiempo profundo</a></li><li><a href="/vida">Archivo de vida</a></li>
-        <li><a href="/dinosaurios">Sala mesozoica</a></li><li><a href="/mexico">Sala México</a></li>
+        <li><a href="/dinosaurios">Sala mesozoica</a></li><li><a href="/mexico">Sala México</a></li><li><a href="/donde-vives">¿Qué había donde vives?</a></li>
         <li><a href="/mitos">Mitos y evidencia</a></li><li><a href="/metodo">Cómo sabemos</a></li>
       </ul>
       <ul aria-label="Fuentes">

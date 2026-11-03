@@ -1,7 +1,7 @@
 // Mapas del museo: costas de GPlates (paleomapas) o Natural Earth (México), con d3-geo.
 import { geoArea, geoEqualEarth, geoGraticule10, geoMercator, geoPath, type GeoProjection } from 'd3-geo';
 
-export type Site = { id: string; lon: number; lat: number; label?: string; href?: string; mx?: boolean; ping?: boolean };
+export type Site = { id: string; lon: number; lat: number; label?: string; href?: string; mx?: boolean; ping?: boolean; you?: boolean };
 type Opts = { url: string; sites?: Site[]; projection?: 'world' | 'mexico'; width?: number; height?: number; onSite?: (id: string) => void };
 
 const cache = new Map<string, Promise<any>>();
@@ -49,7 +49,9 @@ export async function drawMap(svg: SVGSVGElement, o: Opts) {
     if (!p) return '';
     const [x, y] = p.map((v) => v.toFixed(1));
     const ring = s.ping ? `<circle class="site-ring" cx="${x}" cy="${y}" r="7"/>` : '';
-    const dot = `<circle class="site${s.mx ? ' mx' : ''}" cx="${x}" cy="${y}" r="${s.ping ? 6 : 5}" data-site="${s.id}"><title>${s.label || ''}</title></circle>`;
+    const dot = s.you
+      ? `<g class="you" transform="translate(${x} ${y})"><circle r="16" class="you-halo"/><circle r="7" class="you-dot"/><text y="-14" class="you-label">${s.label || 'Tú'}</text></g>`
+      : `<circle class="site${s.mx ? ' mx' : ''}" cx="${x}" cy="${y}" r="${s.ping ? 6 : 5}" data-site="${s.id}"><title>${s.label || ''}</title></circle>`;
     return s.href ? `<a href="${s.href}" aria-label="${s.label || s.id}">${ring}${dot}</a>` : `<g>${ring}${dot}</g>`;
   }).join('');
   svg.innerHTML = `${sphere}<path class="grat" d="${path(geoGraticule10()) || ''}"/>${land}<g class="sites">${sites}</g>`;

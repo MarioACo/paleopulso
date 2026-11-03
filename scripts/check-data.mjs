@@ -32,6 +32,10 @@ for (const s of species) {
     if (!f.license) errors.push(`${s.id}: ${f.file} sin licencia`);
   }
 }
+for (const [id, r] of Object.entries(assets.refs || {})) {
+  if (!speciesById[id]) errors.push(`referencias de una pieza inexistente: ${id}`);
+  for (const st of r.studies) if (!st.doi || !st.title || !st.year) errors.push(`${id}: estudio incompleto`);
+}
 for (const m of myths) if (m.species && !speciesById[m.species]) errors.push(`mito con especie inexistente: ${m.species}`);
 for (const q of quiz) if (!(q.a >= 0 && q.a < q.o.length)) errors.push(`pregunta con respuesta inválida: ${q.q}`);
 for (let i = 1; i < periods.length; i++) if (periods[i].start > periods[i - 1].start && periods[i].rank === 'Periodo' && periods[i - 1].rank === 'Periodo') errors.push(`orden de periodos: ${periods[i].id}`);

@@ -35,4 +35,5 @@ export const stamps = [
   { id: 'mexico', label: 'Sala México', href: '/mexico' },
   { id: 'mitos', label: 'Mitos y evidencia', href: '/mitos' },
   { id: 'metodo', label: 'Cómo sabemos', href: '/metodo' },
+  { id: 'donde', label: 'Tu lugar en el tiempo', href: '/donde-vives' },
 ];

@@ -73,6 +73,19 @@ const maxMa = 500;
     </div>
   </section>
 
+  <section class="section where">
+    <div class="wrap where-grid reveal">
+      <div>
+        <p class="kicker">Nuevo · Tu lugar en el tiempo</p>
+        <h2>¿Qué había<br /><em>donde vives?</em></h2>
+      </div>
+      <div>
+        <p class="lead">Elige tu ciudad y viaja: mira dónde estaba ese punto del planeta en cada época, qué latitud tenía y qué fósiles de la colección vivieron cerca.</p>
+        <a class="btn" href="/donde-vives">Viajar desde mi ciudad →</a>
+      </div>
+    </div>
+  </section>
+
   <section class="section daily-section">
     <div class="wrap daily" id="daily">
       <div class="vitrine daily-vitrine"><img id="dailyImg" alt="" /><div class="plinth"></div></div>
@@ -232,6 +245,10 @@ const maxMa = 500;
   @media (max-width: 900px) { .hall-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 600px) { .hall-grid { grid-template-columns: 1fr; } .hall { min-height: 240px; } }
 
+  .where { background: radial-gradient(60% 90% at 80% 50%, rgba(127, 176, 181, .12), transparent 70%), var(--night); }
+  .where-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: center; }
+  .where-grid .btn { margin-top: 1rem; }
+  @media (max-width: 860px) { .where-grid { grid-template-columns: 1fr; } }
   .daily { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3.5rem; align-items: center; }
   .daily-vitrine { aspect-ratio: 4 / 3; }
   .daily-vitrine img { width: 100%; height: 100%; object-fit: cover; }

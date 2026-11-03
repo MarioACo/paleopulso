@@ -353,6 +353,33 @@ export const species = [
     summary: 'Una adolescente de 15–16 años que cayó en una cueva seca que hoy está bajo el agua. Es uno de los esqueletos humanos más completos y antiguos de América.',
     fact: 'Su ADN conecta a los primeros pobladores de América con los pueblos indígenas actuales. Junto a ella había restos de un gonfoterio y un tigre dientes de sable.',
     silhouette: ['uuid:37536a9c-db56-42d3-8923-8c5ffdfa637b'], wiki: 'Naia (esqueleto)', pbdb: null }),
+
+  // ── Ampliación (2026-11-03) ─────────────────────────────────
+  S({ id: 'eryops', name: 'Eryops', group: 'Anfibio', habitat: 'Ríos y pantanos', period: 'permico', ma: 295, age: '≈ 298–290 Ma',
+    place: 'Lechos rojos de Texas', country: 'Estados Unidos', continent: 'América', lat: 33.4, lon: -99.0, length: 2, lengthNote: '≈ 1.5–2 m',
+    summary: 'Un temnospóndilo robusto de cabeza ancha y plana: uno de los animales terrestres más grandes de inicios del Pérmico.',
+    fact: 'Cazaba peces y otros animales en orillas y pantanos, como un cocodrilo, aunque era un anfibio emparentado lejanamente con las ranas actuales.',
+    silhouette: ['Eryops', 'Temnospondyli'], wiki: 'Eryops', pbdb: 'Eryops' }),
+  S({ id: 'cryolophosaurus', name: 'Cryolophosaurus', group: 'Dinosaurio', habitat: 'Bosque templado', period: 'jurasico', ma: 190, age: '≈ 194–188 Ma',
+    place: 'Monte Kirkpatrick, montes Transantárticos', country: 'Antártida', continent: 'Antártida', lat: -84.33, lon: 166.5, length: 6.5, lengthNote: '≈ 6–7 m',
+    summary: 'Terópodo con una cresta transversal sobre los ojos. Vivió cuando la Antártida no tenía hielo y estaba cubierta de bosques.',
+    fact: 'Fue el primer dinosaurio carnívoro de la Antártida en recibir nombre (1994). Su cresta le valió el apodo de «Elvisaurus».',
+    silhouette: ['Cryolophosaurus', 'Theropoda'], wiki: 'Cryolophosaurus ellioti', pbdb: 'Cryolophosaurus' }),
+  S({ id: 'ambar-chiapas', name: 'Ámbar de Chiapas', group: 'Insectos y plantas en resina', habitat: 'Bosque tropical', period: 'neogeno', ma: 20, age: '≈ 23–15 Ma (Mioceno)',
+    place: 'Simojovel de Allende, Chiapas', country: 'México', continent: 'América', lat: 17.14, lon: -92.71, mexico: true,
+    summary: 'Resina fosilizada de un árbol extinto, Hymenaea mexicana, que atrapó insectos, arañas, flores, hojas y hasta pequeños vertebrados con un detalle microscópico.',
+    fact: 'Se extrae a mano en minas de Simojovel desde hace siglos. En San Cristóbal de las Casas hay un Museo del Ámbar de Chiapas.',
+    silhouette: ['Formicidae'], wiki: 'Ámbar de Chiapas', pbdb: null }),
+  S({ id: 'titanis', name: 'Titanis', group: 'Ave del terror', habitat: 'Sabana', period: 'neogeno', ma: 4, age: '≈ 5–1.8 Ma',
+    place: 'Río Santa Fe, Florida', country: 'Estados Unidos', continent: 'América', lat: 29.85, lon: -82.6, length: 2.5, lengthNote: '≈ 2.5 m de largo; ~1.9 m de alto',
+    summary: 'Un forusrácido: ave carnívora no voladora con un pico enorme en forma de gancho, pariente de las seriemas actuales.',
+    fact: 'Las aves del terror evolucionaron en Sudamérica; Titanis llegó al norte cuando se cerró el istmo de Panamá, en el Gran Intercambio Biótico Americano.',
+    silhouette: ['Titanis', 'Phorusrhacidae'], wiki: 'Titanis walleri', pbdb: 'Titanis' }),
+  S({ id: 'diprotodon', name: 'Diprotodon', group: 'Marsupial', habitat: 'Tierra', period: 'cuaternario', ma: 0.5, age: '≈ 1.8 Ma–40,000 años',
+    place: 'Lago Callabonna, Australia Meridional', country: 'Australia', continent: 'Oceanía', lat: -29.7, lon: 140.1, length: 3.8, lengthNote: '≈ 3.8 m, ~2.7 t',
+    summary: 'El marsupial más grande que ha existido: un herbívoro del tamaño de un hipopótamo, pariente lejano de los wombats y los koalas.',
+    fact: 'En el lago seco de Callabonna se hallaron decenas de ejemplares atrapados en el lodo, algunos todavía de pie.',
+    silhouette: ['Diprotodon', 'Diprotodontidae', 'Vombatiformes'], wiki: 'Diprotodon optatum', pbdb: 'Diprotodon' }),
 ];
 
 export const speciesById = Object.fromEntries(species.map((s) => [s.id, s]));

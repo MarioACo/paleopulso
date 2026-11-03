@@ -16,6 +16,7 @@ import sharp from 'sharp';
 import { species, scaleRefs } from '../src/data/species.js';
 import { periods, MAP_TIMES, mapTimeFor } from '../src/data/periods.js';
 import { featured } from '../src/data/featured.js';
+import { keyRefs } from '../src/data/refs.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'public/assets');
@@ -262,6 +263,69 @@ await pool(species.filter((s) => s.pbdb), 4, async (s) => {
   const j = await get(`https://paleobiodb.org/data1.2/taxa/single.json?name=${encodeURIComponent(s.pbdb)}&show=app`);
   const r = j?.records?.[0];
   if (r && r.fea !== undefined) manifest.pbdb[s.id] = { taxon: r.nam, first: r.fea, last: r.lla, occurrences: r.noc, url: `https://paleobiodb.org/classic/checkTaxonInfo?taxon_no=${r.oid.replace('txn:', '')}` };
+});
+
+// ── Bibliografía ────────────────────────────────────────────
+// Descripción original (PBDB) y estudios clave (src/data/refs.js), verificados en Crossref.
+const norm = (t = '') => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const MAILTO = 'mailto=paleopulso@users.noreply.github.com';
+async function crossref(q, year, must) {
+  const expected = norm(q.split(' ')[0]).replace(/[^a-z]/g, '');
+  const j = await get(`https://api.crossref.org/works?query.bibliographic=${encodeURIComponent(q)}&rows=12&select=DOI,title,issued,container-title,author&${MAILTO}`);
+  const hits = [];
+  for (const it of j?.message?.items || []) {
+    const title = stripHtml(it.title?.[0] || '');
+    const y = it.issued?.['date-parts']?.[0]?.[0];
+    // Solo el artículo: fuera respuestas, comentarios, reseñas (F1000) y fe de erratas.
+    if (/^(author response|response to|reply|comment|faculty opinions|correction|erratum|retraction)/i.test(title) || /^10\.3410\/|\.sa\d+$/i.test(it.DOI)) continue;
+    const au = it.author || [];
+    const first = norm(au[0]?.family || '').replace(/[^a-z]/g, '');
+    if (!first.startsWith(expected.slice(0, 5))) continue;
+    if (must.every((w) => norm(title).includes(norm(w))) && (!year || Math.abs(y - year) <= 1)) {
+      const authors = au.length > 2 ? `${au[0].family} et al.` : au.map((a) => a.family).join(' y ');
+      hits.push({ title, year: y, journal: it['container-title']?.[0] || '', authors, doi: it.DOI });
+    }
+  }
+  // Preferir la versión publicada en revista sobre el preprint (bioRxiv 10.1101).
+  return hits.find((h) => !h.doi.startsWith('10.1101/')) || hits[0] || null;
+}
+console.log('Bibliografía');
+manifest.refs ||= {};
+await pool(species, 2, async (s) => {
+  if (!FORCE && manifest.refs[s.id]) return;
+  const out = { original: null, studies: [] };
+  if (s.pbdb) {
+    const t = await get(`https://paleobiodb.org/data1.2/taxa/single.json?name=${encodeURIComponent(s.pbdb)}&show=attr,ref`);
+    const r = t?.records?.[0];
+    if (r?.ref) {
+      const ref = r.rid && (await get(`https://paleobiodb.org/data1.2/refs/single.json?id=${r.rid.replace('ref:', '')}&show=both`))?.records?.[0];
+      // Solo el DOI que registra PBDB (buscarlo por título dio falsos positivos), y aun así
+      // se confirma en Crossref: PBDB tiene DOI erróneos (p. ej. Dart 1925 apunta a una revista de fisioterapia).
+      let doi = ref?.doi || null;
+      if (doi) {
+        const w = (await get(`https://api.crossref.org/works/${encodeURIComponent(doi)}?${MAILTO}`))?.message;
+        const y = w?.issued?.['date-parts']?.[0]?.[0];
+        const fam = norm(w?.author?.[0]?.family || '').replace(/[^a-z]/g, '');
+        const exp = norm(ref.al1 || '').replace(/[^a-z]/g, '');
+        // Los libros escaneados (BHL) no traen autor en Crossref: basta el año.
+        const authorOk = fam ? fam.startsWith(exp.slice(0, 5)) : doi.startsWith('10.5962/bhl');
+        // También el título: hay homónimos (otro «McKenna 1997» en una revista de fisioterapia).
+        const words = (t) => new Set(norm(stripHtml(t)).split(/[^a-z]+/).filter((x) => x.length > 4));
+        const tw = words(ref.tit || ref.pbt || r.ref), cw = words(w?.title?.[0] || '');
+        const titleOk = [...tw].filter((x) => cw.has(x)).length >= Math.max(1, Math.min(2, tw.size));
+        if (!w || !authorOk || !titleOk || Math.abs(y - +ref.pby) > 2) { console.warn(`  · DOI de PBDB descartado: ${s.id} ${doi}`); doi = null; }
+      }
+      // PBDB da la fuente de su clasificación, que no siempre es la descripción original:
+      // en la ficha se muestra como «Fuente en PBDB», junto a la autoría del nombre.
+      out.original = { authority: r.att, citation: r.ref, doi };
+    }
+  }
+  for (const k of keyRefs[s.id] || []) {
+    const hit = await crossref(k.q, k.year, k.must);
+    if (hit) out.studies.push({ ...hit, why: k.why });
+    else console.warn(`  · sin confirmar en Crossref: ${s.id} · ${k.q.slice(0, 60)}`);
+  }
+  manifest.refs[s.id] = out;
 });
 
 for (const s of species) if (s._article) (manifest.articles ||= {})[s.id] = s._article;
