@@ -40,6 +40,9 @@ const recordExtras={
 };
 
 const mediaByName=new Map();
+const recordFacts={
+  'Estromatolitos':['Milímetros a metros','Estructuras laminadas','Ecosistema microbiano'],'Dickinsonia':['Hasta ≈ 1.4 m','Impresiones y biomarcadores','Consumidor de fondo'],'Anomalocaris':['Hasta ≈ 1 m','Compresiones de cuerpo blando','Depredador marino'],'Trilobites':['Milímetros a ≈ 70 cm','Exoesqueleto de calcita','Múltiples nichos marinos'],'Orthoceras':['Tamaño muy variable','Conchas mineralizadas','Cefalópodo depredador'],'Cooksonia':['Pocos centímetros','Ejes y esporangios','Planta terrestre pionera'],'Eurypterus':['Hasta ≈ 1.3 m','Exoesqueletos y mudas','Depredador acuático'],'Dunkleosteus':['≈ 4–6 m','Placas craneales','Gran depredador marino'],'Tiktaalik':['≈ 1.25–2.75 m','Esqueletos parciales','Depredador de aguas someras'],'Archaeopteris':['Árboles de hasta ≈ 20 m','Madera, hojas y esporas','Constructor de bosques'],'Meganeura':['≈ 65–70 cm de alas','Impresiones de alas','Depredador aéreo'],'Arthropleura':['Hasta ≈ 2.5 m','Huellas y exoesqueleto','Detritívoro probable'],'Dimetrodon':['≈ 1.7–4.6 m','Esqueletos y huellas','Sinápsido terrestre'],'Glossopteris':['Arbusto a gran árbol','Hojas, madera y semillas','Productor dominante'],'Lystrosaurus':['≈ 0.6–2.5 m','Cráneos y esqueletos','Herbívoro excavador'],'Herrerasaurus':['≈ 4–6 m','Esqueletos parciales','Carnívoro bípedo'],'Stegosaurus':['≈ 7 m','Esqueletos, placas y huellas','Herbívoro de ramoneo bajo'],'Archaeopteryx':['≈ 50 cm','Compresiones con plumas','Pequeño depredador avialano'],'Diplodocus':['≈ 24–27 m','Esqueletos y huellas','Herbívoro saurópodo'],'Spinosaurus':['Hasta ≈ 14 m, debatido','Huesos de varios individuos','Piscívoro y depredador'],'Argentinosaurus':['≈ 30–35 m, estimado','Vértebras y huesos de miembros','Herbívoro gigante'],'Tyrannosaurus rex':['≈ 12–13 m','Esqueletos, coprolitos e histología','Superdepredador y carroñero'],'Basilosaurus':['≈ 15–18 m','Esqueletos marinos','Cetáceo depredador'],'Paraceratherium':['Hasta ≈ 4.8 m al hombro','Cráneos y miembros','Ramoneador gigante'],'Megalodon':['≈ 15–20 m, estimado','Dientes y centros vertebrales','Superdepredador marino'],'Australopithecus':['≈ 1.1–1.5 m','Esqueletos y huellas','Hominino bípedo'],'Mammuthus':['≈ 2.7–4 m al hombro','Huesos, tejidos y ADN','Gran herbívoro'],'Smilodon':['≈ 160–280 kg','Esqueletos y marcas de lesión','Depredador de emboscada'],'Megatherium':['≈ 4 m erguido','Esqueletos y huellas','Herbívoro gigante'],'Homo neanderthalensis':['≈ 1.5–1.7 m','Huesos, ADN y herramientas','Humano cazador-recolector']
+};
 const eraFor=p=>['Arcaico','Ediacárico'].some(x=>p.includes(x))?'Precámbrico':['Cámbrico','Ordovícico','Silúrico','Devónico','Carbonífero','Pérmico'].some(x=>p.includes(x))?'Paleozoico':['Triásico','Jurásico','Cretácico'].some(x=>p.includes(x))?'Mesozoico':'Cenozoico';
 const periodId=p=>({Arcaico:'arcaico',Ediacárico:'ediacarico',Cámbrico:'cambrico',Ordovícico:'ordovicico',Silúrico:'silurico',Devónico:'devonico',Carbonífero:'carbonifero',Pérmico:'permico',Triásico:'triasico',Jurásico:'jurasico',Cretácico:'cretacico',Paleógeno:'paleogeno',Neógeno:'neogeno',Cuaternario:'cuaternario'})[p.split('–')[0]]||'';
 const wikiArticle=title=>`https://en.wikipedia.org/wiki/${encodeURIComponent(title.replaceAll(' ','_'))}`;
@@ -47,8 +50,9 @@ const commonsFile=file=>`https://commons.wikimedia.org/wiki/File:${encodeURIComp
 const commonsThumb=file=>`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encodeURIComponent(file)}?width=900`;
 
 function mediaMarkup(record,media){
-  if(!media?.thumbnail)return `<span class="life-thumb life-thumb--pending" aria-hidden="true">${record.name.slice(0,2)}</span>`;
-  return `<span class="life-thumb"><img src="${media.thumbnail}" alt="Imagen documental de ${record.name}" loading="lazy"></span>`;
+  const polygon=PaleoPolygonArt.render(record.name);
+  if(!media?.thumbnail)return `<span class="life-thumb life-thumb--pending">${polygon}</span>`;
+  return `<span class="life-thumb"><img src="${media.thumbnail}" alt="Imagen documental de ${record.name}" loading="lazy"><span class="life-poly">${polygon}</span></span>`;
 }
 
 function render(){
@@ -57,7 +61,8 @@ function render(){
   count.textContent=`${records.length} DE ${LIFE_RECORDS.length} REGISTROS`;
   grid.innerHTML=records.map(r=>{
     const extra=recordExtras[r.name];
-    return `<button class="life-card" data-id="${r.id}"><span class="record-no">${String(LIFE_RECORDS.indexOf(r)+1).padStart(2,'0')} · IMAGEN CON FUENTE</span>${mediaMarkup(r,mediaByName.get(r.name))}<span class="record-period">${r.period}</span><strong>${r.name}</strong><small>${r.group} · ${r.habitat}</small><span class="record-joke-preview">“${extra.joke}”</span></button>`;
+    const facts=recordFacts[r.name];
+    return `<button class="life-card" data-id="${r.id}"><span class="record-no">${String(LIFE_RECORDS.indexOf(r)+1).padStart(2,'0')} · FOTO + FIGURA</span>${mediaMarkup(r,mediaByName.get(r.name))}<span class="record-period">${r.period}</span><strong>${r.name}</strong><small>${r.group} · ${r.habitat}</small><span class="record-data"><b>ESCALA</b>${facts[0]}<b>EVIDENCIA</b>${facts[1]}</span><span class="record-joke-preview">“${extra.joke}”</span></button>`;
   }).join('');
   empty.hidden=records.length>0;
 }
@@ -92,8 +97,10 @@ function openRecord(record){
   document.querySelector('#recordName').textContent=record.name;
   document.querySelector('#recordMeta').innerHTML=`<span>${record.group}</span><span>${record.habitat}</span><span>${eraFor(record.period)}</span>`;
   document.querySelector('#recordSummary').textContent=record.summary;
+  const facts=recordFacts[record.name];
+  document.querySelector('#recordFacts').innerHTML=`<div><dt>ESCALA</dt><dd>${facts[0]}</dd></div><div><dt>EVIDENCIA</dt><dd>${facts[1]}</dd></div><div><dt>PAPEL ECOLÓGICO</dt><dd>${facts[2]}</dd></div>`;
   document.querySelector('#recordJoke').textContent=extra.joke;
-  document.querySelector('#recordImage').innerHTML=media?.thumbnail?`<img src="${media.thumbnail}" alt="Imagen documental de ${record.name}">`:'<span class="record-image-missing">Imagen no disponible en este momento</span>';
+  document.querySelector('#recordImage').innerHTML=`${media?.thumbnail?`<img src="${media.thumbnail}" alt="Imagen documental de ${record.name}">`:''}<span class="record-dialog-poly">${PaleoPolygonArt.render(record.name)}</span>`;
   const source=document.querySelector('#recordImageSource');
   source.href=media?.file?commonsFile(media.file):`https://commons.wikimedia.org/w/index.php?search=${encodeURIComponent(record.name)}&title=Special:MediaSearch&type=image`;
   const reference=document.querySelector('#recordReference');

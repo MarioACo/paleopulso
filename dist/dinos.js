@@ -54,9 +54,10 @@ const canvas=document.querySelector('#dinoCanvas');
 const mediaTabs=document.querySelector('#dinoMediaTabs');
 let currentDinosaur=0,currentMediaView='evidence';
 function renderDinoMedia(){
-  const d=dinosaurs[currentDinosaur];
-  document.querySelector('.scale-rule').hidden=true;document.querySelector('.human-scale').hidden=true;
-  document.querySelector('#mediaTruthLabel').textContent=currentMediaView==='life'?'RECONSTRUCCIÓN CIENTÍFICA · NO ES UNA FOTOGRAFÍA':'EVIDENCIA FÓSIL · PROCEDENCIA DOCUMENTADA';
+  const d=dinosaurs[currentDinosaur],isFigure=currentMediaView==='figure';
+  document.querySelector('.scale-rule').hidden=!isFigure;document.querySelector('.human-scale').hidden=!isFigure;
+  document.querySelector('#mediaTruthLabel').textContent=isFigure?'FIGURA EDITORIAL · PROPORCIONES GENERALES':currentMediaView==='life'?'RECONSTRUCCIÓN CIENTÍFICA · NO ES UNA FOTOGRAFÍA':'EVIDENCIA FÓSIL · PROCEDENCIA DOCUMENTADA';
+  if(isFigure){canvas.innerHTML=`<div class="poly-dino-stage">${PaleoPolygonArt.render(d.name)}</div>`;return}
   const m=dinoMedia[d.name][currentMediaView];
   canvas.innerHTML=`<figure class="evidence-frame"><div class="evidence-image-wrap"><span class="image-loader">REVELANDO EVIDENCIA…</span><img src="${commonsImage(m.file)}" alt="${m.label}" loading="lazy"></div><figcaption><div><span>${currentMediaView==='life'?'RECONSTRUCCIÓN EN VIDA':'FÓSIL / MONTAJE'}</span><strong>${m.label}</strong></div><p>${m.note}</p><a href="${commonsPage(m.file)}" target="_blank" rel="noopener">${m.credit} ↗</a></figcaption></figure>`;
   const img=canvas.querySelector('img');img.addEventListener('load',()=>canvas.querySelector('.evidence-image-wrap').classList.add('loaded'));img.addEventListener('error',()=>{canvas.querySelector('.evidence-image-wrap').innerHTML=`<div class="media-error"><strong>La imagen no pudo cargarse.</strong><span>La ficha y la fuente siguen disponibles.</span><a href="${commonsPage(m.file)}" target="_blank" rel="noopener">Abrir en Wikimedia Commons ↗</a></div>`});
@@ -75,7 +76,7 @@ function showDinosaur(index){
 }
 
 if(selector&&canvas){
-  dinosaurs.forEach((d,i)=>{const b=document.createElement('button');b.type='button';b.role='tab';b.dataset.index=i;b.setAttribute('aria-selected',i===0?'true':'false');b.innerHTML=`<span>${String(i+1).padStart(2,'0')}</span><strong>${d.name}</strong><small>${d.period.split(' · ')[0]}</small>`;selector.appendChild(b)});
+  dinosaurs.forEach((d,i)=>{const b=document.createElement('button');b.type='button';b.role='tab';b.dataset.index=i;b.setAttribute('aria-selected',i===0?'true':'false');b.innerHTML=`<span>${String(i+1).padStart(2,'0')}</span><span class="selector-poly">${PaleoPolygonArt.render(d.name)}</span><strong>${d.name}</strong><small>${d.period.split(' · ')[0]}</small>`;selector.appendChild(b)});
   selector.addEventListener('click',e=>{const b=e.target.closest('button');if(b)showDinosaur(Number(b.dataset.index))});
   selector.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const current=[...selector.children].indexOf(document.activeElement);const next=e.key==='Home'?0:e.key==='End'?dinosaurs.length-1:Math.max(0,Math.min(dinosaurs.length-1,current+(e.key==='ArrowRight'?1:-1)));selector.children[next].focus();selector.children[next].click()});
   mediaTabs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;currentMediaView=b.dataset.view;[...mediaTabs.children].forEach(x=>x.setAttribute('aria-selected',x===b?'true':'false'));renderDinoMedia()});
