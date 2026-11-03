@@ -163,7 +163,6 @@
           <div class="media-tabs" id="dinoMediaTabs" role="tablist" aria-label="Forma de observar el ejemplar">
             <button type="button" role="tab" data-view="evidence" aria-selected="true">01 · Evidencia</button>
             <button type="button" role="tab" data-view="life" aria-selected="false">02 · En vida</button>
-            <button type="button" role="tab" data-view="polygon" aria-selected="false">03 · Facetas</button>
           </div>
           <div class="dino-canvas" id="dinoCanvas">
             <p class="dino-empty">Preparando la reconstrucción…</p>
@@ -189,17 +188,19 @@
       </div>
 
       <div class="dino-selector" id="dinoSelector" role="tablist" aria-label="Dinosaurios de la colección"></div>
-      <p class="dino-disclaimer"><span>◐</span> Las siluetas respetan proporciones generales conocidas. Volumen, piel y color son decisiones interpretativas y pueden cambiar con nueva evidencia.</p>
+      <p class="dino-disclaimer"><span>◐</span> Cada imagen distingue entre fósil, montaje y reconstrucción. La fuente y la licencia están disponibles junto a la pieza.</p>
     </section>
 
     <dialog class="specimen-dialog" id="specimenDialog">
       <button class="dialog-close" id="dialogClose" type="button" aria-label="Cerrar">×</button>
+      <figure class="home-record-figure"><div id="dialogImage"></div><figcaption><a id="dialogImageSource" target="_blank" rel="noopener">Imagen, autoría y licencia ↗</a></figcaption></figure>
       <p class="section-index" id="dialogPeriod"></p>
-      <div class="dialog-mark" id="dialogMark" aria-hidden="true"></div>
       <h2 id="dialogName"></h2>
       <p class="dialog-pronounce" id="dialogGroup"></p>
       <p class="dialog-description" id="dialogDescription"></p>
       <div class="dialog-facts"><p><small>VIVIÓ HACE</small><strong id="dialogAge"></strong></p><p><small>AMBIENTE</small><strong id="dialogHabitat"></strong></p></div>
+      <aside class="dialog-joke"><span>HUMOR DEL LABORATORIO · NO ES EVIDENCIA</span><p id="dialogJoke"></p></aside>
+      <a class="dialog-reference" id="dialogReference" target="_blank" rel="noopener">Consultar referencia biológica ↗</a>
       <p class="dialog-caveat"><span>◐</span> Reconstrucción basada en evidencia disponible; los detalles no preservados son interpretativos.</p>
     </dialog>
 
