@@ -83,7 +83,7 @@ const start = Math.max(0, frames.findIndex((f) => f.t === 260));
       <div class="slider">
         <input type="range" id="slider" min="0" max={frames.length - 1} step="1" value={start} aria-label={T('Edad del mapa', 'Map age')} />
         <div class="ticks" aria-hidden="true">
-          {frames.map((f, i) => TICKS[f.t] && <span style={`left:${(i / (frames.length - 1)) * 100}%`}>{TICKS[f.t]}</span>)}
+          {frames.map((f, i) => TICKS[f.t] && <span class={[540, 380, 150].includes(f.t) ? 'minor' : undefined} style={`left:${(i / (frames.length - 1)) * 100}%`}>{TICKS[f.t]}</span>)}
         </div>
       </div>
     </div>
@@ -163,5 +163,5 @@ const start = Math.max(0, frames.findIndex((f) => f.t === 260));
   .note-text { font: 400 clamp(1.2rem, 2vw, 1.6rem)/1.4 var(--serif); margin: .8rem 0; color: var(--ink); }
   .caption :global(a) { color: var(--ink); }
   .fine { font-size: .8rem; color: var(--muted); }
-  @media (max-width: 700px) { .controls { grid-template-columns: 1fr; } .screen { aspect-ratio: 4 / 3; } }
+  @media (max-width: 700px) { .controls { grid-template-columns: 1fr; } .screen { aspect-ratio: 4 / 3; } .ticks .minor { display: none; } }
 </style>

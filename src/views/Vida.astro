@@ -114,6 +114,19 @@ const sites = list.map((s) => ({ id: s.id, lon: s.lon, lat: s.lat, label: `${s.n
   .mxonly input { accent-color: var(--brass); width: 18px; height: 18px; }
   .count { margin: 0; font: 500 .85rem var(--label); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
   .count span { color: var(--brass); font-size: 1.1rem; }
+  @media (max-width: 600px) {
+    .tools { padding: .8rem; gap: .6rem; margin-bottom: 1rem; }
+    .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+    .row { gap: .5rem; flex-wrap: wrap; }
+    .search { flex: 1 1 100%; order: -1; }
+    .select { flex: none; } .select .label, .search .label { display: none; }
+    select, input[type='search'] { padding: .45rem .6rem; font-size: .9rem; }
+    .search { min-width: 0; }
+    .mxonly { font-size: .8rem; white-space: nowrap; padding-bottom: .45rem; }
+    .map-legend { margin-bottom: 1.4rem; font-size: .72rem; }
+  }
   .cell[hidden] { display: none; }
+  .cell { display: flex; }
+  .cell > :global(.specimen) { flex: 1; }
   .empty { text-align: center; color: var(--muted); padding: 3rem; font-family: var(--serif); font-size: 1.3rem; }
 </style>

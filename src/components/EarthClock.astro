@@ -103,5 +103,15 @@ const deg = (ma: number) => (1 - ma / EARTH_AGE) * 360;
   .clock-time { font-size: 1.2rem; color: var(--brass); }
   .clock-list strong { display: block; font: 400 1.15rem var(--serif); }
   .clock-list small { color: var(--muted); font-size: .88rem; line-height: 1.45; }
-  @media (max-width: 860px) { .clock { grid-template-columns: 1fr; } .clock-list { max-height: none; } }
+  @media (max-width: 860px) {
+    .clock { grid-template-columns: 1fr; gap: 1.2rem; }
+    .clock-face { max-width: 330px; margin: 0 auto; }
+    /* En celular la lista es compacta: solo el evento elegido muestra su descripción. */
+    .clock-list { max-height: none; }
+    .clock-list button { grid-template-columns: 5rem 1fr; padding: .4rem .6rem; gap: .6rem; }
+    .clock-list small { display: none; }
+    .clock-list li.active small { display: block; }
+    .clock-time { font-size: 1rem; }
+    .clock-list strong { font-size: 1rem; }
+  }
 </style>

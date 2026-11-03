@@ -225,6 +225,17 @@ const barH = (l: any) => (Math.log10(l.start + 1) - Math.log10(l.end + 1)) / tot
     .panel-inner { grid-template-columns: 1fr 1.3fr; align-items: center; gap: .6rem; }
     .depth strong { font-size: 1.8rem; }
     .column, .map-note { display: none; }
-    .stratum { padding: 3rem 1.2rem 3rem 1.6rem; min-height: 0; }
+    .stratum { padding: 2rem .9rem 2rem 1.3rem; min-height: 0; }
+    .stratum-lead { margin: 1rem 0; font-size: 1.15rem; }
+    .stratum-facts { gap: .5rem; }
+    .stratum-facts div { padding: .7rem .8rem; }
+    .stratum-facts dd { font-size: .9rem; }
+    .fossils ul { grid-template-columns: 1fr 1fr; gap: .4rem; }
+    .fossils a { padding: .5rem; }
+    .fossils :global(.fossil-sil) { height: 30px; }
+    .fossils li span { font-size: .95rem; }
+    .fossils small { font-size: .68rem; }
+    .boundary { padding: .9rem; }
+    .panel-map { aspect-ratio: auto; }
   }
 </style>

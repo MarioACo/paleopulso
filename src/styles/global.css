@@ -193,9 +193,12 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .specimen .vitrine { aspect-ratio: 4 / 3; border-radius: 0; border: 0; box-shadow: none; }
 .specimen .vitrine .ph { position: absolute; inset: 0; transition: transform .6s; }
 .specimen:hover .vitrine .ph { transform: scale(1.04); }
-.specimen .vitrine:has(.ph-plate) .sil { color: var(--ink); filter: none; opacity: .75; }
-.specimen .vitrine .sil { position: absolute; right: 10px; bottom: 10px; width: auto; height: 24%; max-width: 40%; color: var(--paper); opacity: .9; z-index: 2; filter: drop-shadow(0 2px 6px #000); }
-.specimen-body { padding: 1rem 1.1rem 1.2rem; display: grid; gap: .3rem; }
+/* Silueta de la tarjeta: recuadro fijo junto al nombre, nunca encima de la foto. */
+.specimen .card-sil { position: absolute; right: .9rem; bottom: .9rem; width: 72px; height: 34px; display: grid; place-items: center; opacity: .55; transition: opacity .3s; }
+.specimen:hover .card-sil { opacity: .9; }
+.specimen .card-sil .sil, .specimen .card-sil .sil-fallback { width: 100%; height: 100%; aspect-ratio: auto; color: var(--paper); font-size: 1.2rem; }
+.specimen .vitrine .card-sil-big { position: absolute; inset: 18% 14%; width: auto; height: auto; aspect-ratio: auto; color: var(--paper); opacity: .8; }
+.specimen-body { position: relative; padding: 1rem 1.1rem 1.2rem; padding-right: 6.2rem; display: grid; gap: .3rem; align-content: start; flex: 1; }
 .specimen-body h3 { font-size: 1.5rem; }
 .specimen-body .meta { font: 500 .78rem var(--label); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: flex; gap: .4rem; flex-wrap: wrap; }
 .specimen-body .meta b { color: color-mix(in srgb, var(--pc, var(--brass)) 62%, #fff); font-weight: 600; }
@@ -273,4 +276,28 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   .sound-btn { width: 32px; height: 32px; }
   .passport-chip { padding: .3rem; }
   .passport-chip > span { display: none; }
+}
+
+/* ── Celular: menos relleno, tarjetas en dos columnas, filtros en una fila deslizable ── */
+@media (max-width: 600px) {
+  :root { --wrap: min(1240px, 100% - 1.6rem); }
+  body { font-size: 1rem; }
+  .section { padding-block: 3rem; }
+  .page-hero { padding-block: 2.4rem 1.6rem; }
+  .page-hero .lead { margin-top: 1rem; font-size: 1.02rem; }
+  .section-head { margin-bottom: 1.4rem; gap: .8rem; }
+  h1 { font-size: clamp(2.3rem, 11vw, 3.2rem); }
+  h2 { font-size: clamp(1.7rem, 8vw, 2.3rem); }
+
+  .specimen-grid { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .specimen-body { padding: .6rem .65rem .75rem; gap: .15rem; }
+  .specimen-body h3 { font-size: 1.05rem; line-height: 1.15; }
+  .specimen-body .meta { font-size: .64rem; letter-spacing: .08em; gap: .2rem; }
+  .specimen .card-sil { display: none; }
+  .badge { font-size: .58rem; }
+
+  .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -.2rem; padding: .1rem .2rem; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { flex: none; padding: .35rem .75rem; font-size: .75rem; }
+  .cedula { padding: 1rem 1.1rem; }
 }
