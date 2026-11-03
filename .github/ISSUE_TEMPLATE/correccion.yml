@@ -1,38 +1,39 @@
-name: Corregir un dato
-description: Algo en una ficha o sala no es correcto o está desactualizado.
+name: Corregir un dato · Correct a fact
+description: Algo en una ficha o sala no es correcto o está desactualizado. · Something on a record or hall is wrong or outdated.
 title: "[Corrección] "
 labels: ["corrección"]
 body:
   - type: markdown
     attributes:
       value: |
-        ¡Gracias por ayudar! Paleopulso intenta que cada dato sea verificable. Una fuente (artículo, DOI, libro o museo) nos ayuda muchísimo a corregir rápido.
+        ¡Gracias por ayudar! Paleopulso intenta que cada dato sea verificable. Una fuente (artículo, DOI, libro o museo) nos ayuda muchísimo.
+        Thanks for helping! Paleopulso tries to keep every fact verifiable. A source (paper, DOI, book or museum) helps a lot. You can write in English.
   - type: input
     id: pieza
     attributes:
-      label: Pieza o sala
-      description: El nombre o la dirección de la página (p. ej. /especie/trex).
+      label: Pieza o sala · Piece or page
+      description: El nombre o la dirección (p. ej. /especie/trex). · Name or address (e.g. /en/especie/trex).
     validations:
       required: true
   - type: textarea
     id: dice
     attributes:
-      label: ¿Qué dice ahora?
+      label: ¿Qué dice ahora? · What does it say now?
     validations:
       required: true
   - type: textarea
     id: deberia
     attributes:
-      label: ¿Qué debería decir?
+      label: ¿Qué debería decir? · What should it say?
     validations:
       required: true
   - type: input
     id: fuente
     attributes:
-      label: Fuente
-      description: DOI, enlace o referencia bibliográfica.
+      label: Fuente · Source
+      description: DOI, enlace o referencia. · DOI, link or reference.
   - type: dropdown
     id: experiencia
     attributes:
-      label: Tu relación con el tema (opcional)
-      options: ["Aficionado/a", "Estudiante", "Docente", "Investigador/a", "Personal de museo", "Prefiero no decir"]
+      label: Tu relación con el tema (opcional) · Your background (optional)
+      options: ["Aficionado/a · Enthusiast", "Estudiante · Student", "Docente · Teacher", "Investigador/a · Researcher", "Personal de museo · Museum staff", "Prefiero no decir · Prefer not to say"]

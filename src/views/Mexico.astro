@@ -1,0 +1,175 @@
+---
+import Museum from '../layouts/Museum.astro';
+import SpecimenCard from '../components/SpecimenCard.astro';
+import { mexicoTimeline as tlEs, museums as musEs } from '../data/mexico.js';
+import { clockTime } from '../data/periods.js';
+import { assets, mainPhoto } from '../lib/site.js';
+import { speciesL, periodByIdL, formatMaL, tr, L } from '../i18n.js';
+import { mexicoTimelineEn, museumsEn } from '../data/en/content.js';
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const species = speciesL(lang);
+const periodById = periodByIdL(lang);
+const mexicoTimeline = tlEs.map((t, i) => (lang === 'en' ? { ...t, ...mexicoTimelineEn[i] } : t));
+const museums = musEs.map((m, i) => (lang === 'en' ? { ...m, ...museumsEn[i] } : m));
+
+const mx = species.filter((s) => s.mexico).sort((a, b) => b.ma - a.ma);
+const sites = mx.map((s) => ({ id: s.id, lon: s.lon, lat: s.lat, label: s.name, mx: true, ping: true }));
+const info = Object.fromEntries(mx.map((s) => [s.id, {
+  name: s.name, place: s.place, period: periodById[s.period].name, age: s.age, summary: s.summary, href: L(lang, `/especie/${s.id}`), photo: mainPhoto(s.id)?.sm || mainPhoto(s.id)?.file || null, frame: mainPhoto(s.id)?.frame || 'photo',
+}]));
+const chicx = species.find((s) => s.id === 'chicxulub')!;
+const chicxPhoto = mainPhoto('chicxulub');
+---
+<Museum title={T('Sala México', 'Mexico hall')} stamp="mexico" description={T('La historia profunda de México: trilobites de Sonora, dinosaurios de Coahuila, la laguna de Tlayúa, Chicxulub, mamuts de Santa Lucía y Naia.', 'The deep history of Mexico: Sonora trilobites, Coahuila dinosaurs, the Tlayúa lagoon, Chicxulub, the Santa Lucía mammoths and Naia.')}>
+  <section class="page-hero mx-hero">
+    <div class="wrap">
+      <p class="kicker">{T('Sala IV · México', 'Hall IV · Mexico')}</p>
+      <h1>{T('Bajo nuestros pies', 'Beneath our feet')}<br /><em>{T('hubo otros mundos.', 'there were other worlds.')}</em></h1>
+      <p class="lead">{T('Mares cámbricos en Sonora, costas de dinosaurios en Coahuila, una laguna tropical en Puebla, el cráter que cerró el Mesozoico en Yucatán y la megafauna del valle de México. El territorio mexicano guarda capítulos clave de la historia de la vida.', 'Cambrian seas in Sonora, dinosaur coasts in Coahuila, a tropical lagoon in Puebla, the crater that closed the Mesozoic in Yucatán and the megafauna of the Valley of Mexico. Mexico holds key chapters in the history of life.')}</p>
+    </div>
+  </section>
+
+  <section class="wrap mx-map-wrap">
+    <div class="vitrine mx-map"><svg id="mxMap" aria-label={T('Mapa de yacimientos de México', 'Map of fossil sites in Mexico')}></svg></div>
+    <aside class="cedula mx-card" id="mxCard" aria-live="polite" data-see={T('Ver la ficha →', 'See the record →')}>
+      <h2 class="sr-only">{T('Yacimiento seleccionado', 'Selected site')}</h2>
+      <p class="label" style="color:var(--ink-soft)">{T('Toca un punto del mapa', 'Tap a dot on the map')}</p>
+    </aside>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="kicker">{T('Línea de tiempo', 'Timeline')}</p><h2>{T('1,200 millones de años', '1,200 million years')}<br /><em>{T('de historia mexicana', 'of Mexican history')}</em></h2></div>
+        <p>{T('Los continentes se movieron y el territorio que hoy es México se armó con piezas de distintos orígenes. Estos son algunos de sus momentos.', 'Continents moved, and the land that is now Mexico was assembled from pieces of different origins. These are some of its moments.')}</p>
+      </div>
+      <ol class="mx-line">
+        {mexicoTimeline.map((t) => (
+          <li class="reveal">
+            <span class="num when">{formatMaL(t.ma, lang)}</span>
+            <div><h3>{t.title}</h3><p>{t.text}</p></div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section chicx">
+    <div class="wrap chicx-grid">
+      <div class="reveal">
+        <p class="kicker">66.0 Ma · {clockTime(66)} {T('en el día de la Tierra', 'on Earth’s 24-hour clock')}</p>
+        <h2>Chicxulub:<br /><em>{T('el día que cambió todo.', 'the day everything changed.')}</em></h2>
+        <p class="lead">{chicx.summary}</p>
+        <p>{chicx.fact}</p>
+        <ul class="chicx-facts">
+          <li><strong>~10 km</strong><span>{T('diámetro del asteroide', 'asteroid diameter')}</span></li>
+          <li><strong>~180 km</strong><span>{T('diámetro del cráter', 'crater diameter')}</span></li>
+          <li><strong>{T('~76 %', '~76%')}</strong><span>{T('de especies extintas', 'of species extinct')}</span></li>
+        </ul>
+      </div>
+      <figure class="reveal cenotes">
+        <svg viewBox="0 0 400 300" aria-label={T('Esquema del cráter bajo Yucatán y el anillo de cenotes', 'Sketch of the crater beneath Yucatán and the ring of cenotes')}>
+          <path d="M40 40 L360 40 L360 120 C330 170 300 230 240 270 L160 270 C100 230 60 170 40 120 Z" class="yuc" />
+          <path d="M40 40 L360 40" class="coast" />
+          {[150, 110, 70].map((r, i) => <circle cx="200" cy="40" r={r} class={`ring r${i}`} />)}
+          {Array.from({ length: 26 }, (_, k) => {
+            const a = Math.PI * (0.08 + (k / 25) * 0.84);
+            return <circle cx={200 + Math.cos(a) * 110} cy={40 + Math.sin(a) * 110} r="3.4" class="cenote" />;
+          })}
+          <text x="200" y="30" class="lbl">{T('Golfo de México', 'Gulf of Mexico')}</text>
+          <text x="200" y="250" class="lbl">{T('Península de Yucatán', 'Yucatán Peninsula')}</text>
+        </svg>
+        <figcaption class="label">{T('Esquema: el cráter está enterrado bajo ~1 km de rocas; los cenotes se alinean sobre su borde.', 'Sketch: the crater is buried under ~1 km of rock; the cenotes line up along its rim.')}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="kicker">{T('Piezas mexicanas', 'Mexican pieces')}</p><h2>{T('La colección', 'The collection')}<br /><em>{T('de México', 'from Mexico')}</em></h2></div>
+        <p>{T('Fichas con dónde se hallaron, cuándo vivieron y cómo se veía el planeta entonces.', 'Records of where they were found, when they lived and what the planet looked like then.')}</p>
+      </div>
+      <div class="specimen-grid">{mx.map((s) => <SpecimenCard s={s} />)}</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="kicker">{T('Para visitar', 'Visit')}</p><h2>{T('Museos', 'Museums')}<br /><em>{T('con fósiles de México', 'with Mexican fossils')}</em></h2></div>
+        <p>{T('Nada sustituye ver un hueso de 72 millones de años de cerca. Revisa horarios antes de ir.', 'Nothing beats seeing a 72-million-year-old bone up close. Check opening hours before you go.')}</p>
+      </div>
+      <div class="museums">
+        {museums.map((m) => (
+          <article class="cedula reveal">
+            <div class="ced-no"><span>{m.city}</span></div>
+            <h3>{m.name}</h3>
+            <p>{m.what}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Museum>
+
+<script type="application/json" id="mxData" set:html={JSON.stringify({ sites, info, url: assets.maps?.mexico })} />
+<script>
+  import { drawMap } from '../scripts/map';
+  const { sites, info, url } = JSON.parse(document.getElementById('mxData')!.textContent!);
+  const card = document.getElementById('mxCard')!;
+  const esc = (t: string) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
+  function show(id: string) {
+    const d = info[id];
+    card.innerHTML = `${d.photo ? `<figure class="ph ph-${d.frame} ${d.frame === 'photo' ? 'fit-cover' : 'fit-contain'} mx-photo"><img src="${d.photo}" alt=""></figure>` : ''}
+      <div class="ced-no"><span>${esc(d.period)}</span><span>${esc(d.age)}</span></div>
+      <h2 class="mx-name">${esc(d.name)}</h2><p class="sci">${esc(d.place)}</p><p>${esc(d.summary)}</p>
+      <a class="btn" href="${d.href}">${card.dataset.see}</a>`;
+    document.querySelectorAll<SVGElement>('[data-site]').forEach((c) => c.classList.toggle('on', c.dataset.site === id));
+  }
+  drawMap(document.getElementById('mxMap') as unknown as SVGSVGElement, { url, sites, projection: 'mexico', width: 900, height: 600, onSite: show })
+    .then(() => show('coahuilaceratops'));
+</script>
+
+<style>
+  .mx-hero::before { background: radial-gradient(closest-side, rgba(207, 107, 67, .16), transparent 70%); }
+  .mx-map-wrap { display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.5rem; align-items: start; margin-bottom: 2rem; }
+  .mx-map { padding: .8rem; }
+  .mx-map :global(.land) { fill: #3a3326; stroke: #6d6249; }
+  .mx-map :global(.mx-land) { fill: #7a6a48; stroke: var(--brass); stroke-width: 1; }
+  .mx-map :global(.site.on) { fill: var(--rust); r: 9; }
+  .mx-card { position: sticky; top: 88px; }
+  .mx-card :global(.mx-photo) { width: 100%; height: auto; aspect-ratio: 16 / 10; margin-bottom: 1rem; border-radius: 2px; background-color: #1a140e; }
+  .mx-card :global(.btn) { margin-top: .5rem; }
+  .mx-card :global(.mx-name) { font-size: 1.9rem; color: var(--ink); margin: .5rem 0 .15rem; }
+  .mx-line { list-style: none; padding: 0; margin: 0; position: relative; }
+  .mx-line::before { content: ''; position: absolute; left: 8.5rem; top: 0; bottom: 0; width: 1px; background: linear-gradient(var(--brass), var(--rust)); }
+  .mx-line li { display: grid; grid-template-columns: 8.5rem 1fr; gap: 2.2rem; padding: 1.2rem 0; position: relative; }
+  .mx-line li::after { content: ''; position: absolute; left: calc(8.5rem - 5px); top: 1.7rem; width: 11px; height: 11px; border-radius: 50%; background: var(--night); border: 2px solid var(--brass); }
+  .when { color: var(--brass); font-size: 1.3rem; text-align: right; padding: .1rem 1.4rem 0 0; }
+  .mx-line h3 { font-size: 1.6rem; margin-bottom: .4rem; }
+  .mx-line p { color: var(--muted); margin: 0; max-width: 62ch; }
+  .chicx { background: radial-gradient(60% 80% at 80% 50%, #3b140b, transparent 70%), var(--night); }
+  .chicx-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
+  .chicx h2 em { color: var(--rust); }
+  .chicx .lead { margin: 1.4rem 0 1rem; }
+  .chicx-facts { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.8rem; }
+  .chicx-facts strong { display: block; font: 400 2rem var(--serif); color: var(--brass); }
+  .chicx-facts span { font-size: .85rem; color: var(--muted); }
+  .cenotes { margin: 0; }
+  .cenotes .yuc { fill: #4b3d29; stroke: #8f7444; }
+  .cenotes .coast { stroke: #7fb0b5; stroke-width: 2; }
+  .cenotes .ring { fill: none; stroke: var(--rust); stroke-dasharray: 4 6; opacity: .7; }
+  .cenotes .ring.r1 { stroke-dasharray: none; stroke-width: 1.5; }
+  .cenotes .cenote { fill: #7fd1d6; filter: drop-shadow(0 0 4px #7fd1d6); }
+  .cenotes .lbl { fill: var(--muted); font: 600 11px var(--label); letter-spacing: .14em; text-transform: uppercase; text-anchor: middle; }
+  .museums { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+  .museums h3 { font-size: 1.5rem; }
+  @media (max-width: 900px) {
+    .mx-map-wrap, .chicx-grid { grid-template-columns: 1fr; }
+    .mx-card { position: static; }
+    .mx-line::before { left: 5.5rem; } .mx-line li { grid-template-columns: 5.5rem 1fr; gap: 1.4rem; } .mx-line li::after { left: calc(5.5rem - 5px); }
+    .when { font-size: 1rem; }
+  }
+</style>

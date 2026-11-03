@@ -4,18 +4,26 @@
 import '../../styles/global.css';
 import Photo from '../../components/Photo.astro';
 import Silhouette from '../../components/Silhouette.astro';
-import { species } from '../../data/species.js';
 import { ogPages } from '../../data/og.js';
-import { mainPhoto, periodOf } from '../../lib/site.js';
-import { formatMa } from '../../data/periods.js';
+import { ogPagesEn } from '../../data/en/content.js';
+import { mainPhoto } from '../../lib/site.js';
+import { speciesL, periodByIdL, formatMaL } from '../../i18n.js';
 
+// Español: /og/<id>; inglés: /og/en-<id>.
 export function getStaticPaths() {
-  return [
-    ...ogPages.map((o) => ({ params: { id: o.id }, props: { kicker: o.kicker, title: o.title, pid: o.photo, sub: 'Paleopulso · museo de la Tierra' } })),
-    ...species.map((s) => ({ params: { id: s.id }, props: {
-      kicker: `${periodOf(s).name} · ${formatMa(s.ma)}`, title: s.name, pid: s.id, sub: `${s.place}, ${s.country}`, color: periodOf(s).color,
-    } })),
-  ];
+  return ['es', 'en'].flatMap((lang) => {
+    const pre = lang === 'en' ? 'en-' : '';
+    const periods = periodByIdL(lang);
+    return [
+      ...ogPages.map((o) => ({ params: { id: pre + o.id }, props: {
+        kicker: lang === 'en' ? ogPagesEn[o.id].kicker : o.kicker, title: lang === 'en' ? ogPagesEn[o.id].title : o.title, pid: o.photo,
+        sub: lang === 'en' ? 'Paleopulso · a museum of the Earth' : 'Paleopulso · museo de la Tierra',
+      } })),
+      ...speciesL(lang).map((s) => ({ params: { id: pre + s.id }, props: {
+        kicker: `${periods[s.period].name} · ${formatMaL(s.ma, lang)}`, title: s.name, pid: s.id, sub: `${s.place}, ${s.country}`, color: periods[s.period].color,
+      } })),
+    ];
+  });
 }
 const { kicker, title, pid, sub, color = '#d1ab62' } = Astro.props;
 const photo = mainPhoto(pid);

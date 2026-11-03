@@ -1,0 +1,251 @@
+---
+import Museum from '../layouts/Museum.astro';
+import { clockTime } from '../data/periods.js';
+import { assets, paleoOf } from '../lib/site.js';
+import { quickCities } from '../data/cities.js';
+import { speciesL, periodsL, formatMaL, tr, L } from '../i18n.js';
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const species = speciesL(lang);
+const periods = periodsL(lang);
+const href = (s: any) => L(lang, `/especie/${s.id}`);
+const CITY_EN: Record<string, string> = { 'Ciudad de México': 'Mexico City', 'Nueva York': 'New York', 'Tokio': 'Tokyo' };
+// Textos del script (el viaje se arma en el navegador).
+const S = {
+  moving: T('Moviendo las placas tectónicas…', 'Moving the tectonic plates…'),
+  noService: T('No pudimos contactar al servicio de reconstrucción. Intenta de nuevo en un momento.', 'We could not reach the reconstruction service. Please try again in a moment.'),
+  you: T('Tú', 'You'),
+  ago: T('{p} · hace {t} Ma', '{p} · {t} Ma ago'),
+  clock: T('{c} en el día de la Tierra', '{c} on Earth’s 24-hour clock'),
+  was: T('{n} estaba en {c}', '{n} was at {c}'),
+  noRec: T('{n}: sin reconstrucción', '{n}: no reconstruction'),
+  belts: lang === 'en' ? ['inside the tropics, near the equator', 'at subtropical latitudes', 'at temperate latitudes', 'at cold latitudes', 'in the polar region'] : ['dentro del trópico, cerca del ecuador', 'en latitudes subtropicales', 'en latitudes templadas', 'en latitudes frías', 'en la región polar'],
+  meaning: T('Es decir, {b}{h}. La latitud no lo dice todo: en épocas cálidas como el Cretácico no había hielo ni en los polos.', 'That is, {b}{h}. Latitude isn’t everything: in warm ages like the Cretaceous there was no ice even at the poles.'),
+  otherHemi: T(', y en el otro hemisferio', ', and in the other hemisphere'),
+  noPlate: T('El modelo de placas no asigna este punto a ninguna placa en esa época (suele pasar con terrenos que se unieron al continente después).', 'The plate model does not assign this point to any plate at that age (this often happens with terranes that joined the continent later).'),
+  moved: T('<b>{k} km</b> entre aquel lugar y el actual.', '<b>{k} km</b> between that place and today’s.'),
+  onMap: T('En el mapa, de la colección:', 'On the map, from the collection:'),
+  searching: T('Buscando el lugar…', 'Looking up the place…'),
+  notFound: T('No encontramos ese lugar. Prueba con la ciudad y el país.', 'We couldn’t find that place. Try the city and country.'),
+  searchDown: T('La búsqueda no respondió. Prueba con uno de los lugares de ejemplo.', 'The search did not respond. Try one of the example places.'),
+  noGeo: T('Tu navegador no permite compartir la ubicación.', 'Your browser does not allow sharing your location.'),
+  asking: T('Pidiendo tu ubicación…', 'Asking for your location…'),
+  geoFail: T('No se pudo obtener tu ubicación. Puedes escribir tu ciudad.', 'Your location could not be obtained. You can type your city instead.'),
+  yourLoc: T('Tu ubicación', 'Your location'),
+  W: T('O', 'W'), locale: lang === 'en' ? 'en-US' : 'es-MX', lang,
+};
+
+// Momentos del viaje: un mapa por periodo (los que GPlates puede reconstruir).
+const stops = periods.filter((p) => p.map !== null && ['Periodo', 'Period'].includes(p.rank) || p.id === 'proterozoico')
+  .map((p) => ({ id: p.id, name: p.name, color: p.color, time: p.map, url: assets.maps?.[p.map], lead: p.lead, clock: clockTime(p.map) }))
+  .sort((a, b) => b.time - a.time);
+// Fósiles de la colección en su posición antigua, agrupados por periodo.
+const fossils = Object.fromEntries(stops.map((st) => [st.id, species.filter((s) => s.period === st.id && paleoOf(s.id))
+  .map((s) => ({ id: s.id, name: s.name, href: href(s), mx: s.mexico, lon: paleoOf(s.id)!.lon, lat: paleoOf(s.id)!.lat }))]));
+const collection = species.map((s) => ({ id: s.id, name: s.name, href: href(s), lat: s.lat, lon: s.lon, place: `${s.place}, ${s.country}`, age: formatMaL(s.ma, lang) }));
+const quick = quickCities;
+---
+<Museum title={T('¿Qué había donde vives?', 'What was where you live?')} stamp="donde" description={T('Elige tu ciudad y viaja en el tiempo: dónde estaba ese punto del planeta hace 66, 150 o 500 millones de años.', 'Pick your city and travel in time: where that spot on the planet was 66, 150 or 500 million years ago.')}>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">{T('Tu lugar en el tiempo', 'Your place in time')}</p>
+      <h1>{T('¿Qué había', 'What was')}<br /><em>{T('donde vives?', 'where you live?')}</em></h1>
+      <p class="lead">{T('El suelo que pisas ha viajado miles de kilómetros. Elige un lugar y te mostramos dónde estaba en cada época, qué latitud tenía y qué fósiles de la colección vivieron cerca.', 'The ground beneath you has travelled thousands of kilometres. Pick a place and we’ll show you where it was in each age, its latitude, and which fossils in the collection lived nearby.')}</p>
+    </div>
+  </section>
+
+  <section class="wrap finder">
+    <form class="search" id="search" role="search">
+      <label for="place" class="label">{T('Busca un lugar', 'Search for a place')}</label>
+      <div class="row">
+        <input id="place" type="search" placeholder={T('Tu ciudad, pueblo o colonia…', 'Your city, town or neighbourhood…')} autocomplete="off" required />
+        <button class="btn" type="submit">{T('Viajar', 'Travel')}</button>
+        <button class="btn ghost" type="button" id="geo">{T('Usar mi ubicación', 'Use my location')}</button>
+      </div>
+      <div class="quick" role="group" aria-label={T('Lugares de ejemplo', 'Example places')}>
+        {quick.map((c) => <button type="button" class="chip" data-lat={c.lat} data-lon={c.lon} data-name={c.name} data-label={lang === 'en' ? CITY_EN[c.name] || c.name : c.name}>{lang === 'en' ? CITY_EN[c.name] || c.name : c.name}</button>)}
+      </div>
+      <p class="status" id="status" aria-live="polite"></p>
+    </form>
+
+    <div class="journey" id="journey" hidden>
+      <div class="here">
+        <p class="label">{T('Tu punto de partida', 'Your starting point')}</p>
+        <h2 id="hereName"></h2>
+        <p class="muted" id="hereCoord"></p>
+      </div>
+
+      <div class="timeline" role="tablist" aria-label={T('Épocas', 'Ages')}>
+        {stops.map((st, i) => (
+          <button type="button" role="tab" class="stop" data-stop={st.id} style={`--c:${st.color}`} aria-selected={st.id === 'cretacico' ? 'true' : 'false'}>
+            <span class="num">{st.time} Ma</span><strong>{st.name}</strong>
+          </button>
+        ))}
+      </div>
+
+      <div class="view">
+        <div class="vitrine map-box"><svg id="paleo" aria-label={T('Mapa de la época con tu punto', 'Map of the age with your point')}></svg></div>
+        <aside class="cedula reading" aria-live="polite">
+          <div class="ced-no"><span id="rPeriod"></span><span id="rClock"></span></div>
+          <h3 id="rTitle"></h3>
+          <p id="rLead" class="sci"></p>
+          <p id="rText"></p>
+          <p id="rMoved"></p>
+          <div id="rFossils"></div>
+        </aside>
+      </div>
+      <p class="note">{T('Las siluetas de tierra son los continentes actuales desplazados por el modelo de placas MERDITH2021 (GPlates). El nivel del mar antiguo era distinto, así que el mapa no indica si tu punto era tierra firme o fondo marino. Cada fósil aparece en la posición que tenía en su propia edad, que puede diferir unos millones de años de la del mapa.', 'Land shapes are present-day continents moved by the MERDITH2021 plate model (GPlates). Ancient sea level was different, so the map does not tell whether your point was dry land or sea floor. Each fossil is shown where it was at its own age, which may differ by a few million years from the map’s.')}</p>
+
+      <div class="near">
+        <p class="kicker">{T('Lo más cercano de la colección', 'Closest pieces in the collection')}</p>
+        <div class="near-list" id="near"></div>
+      </div>
+    </div>
+    <p class="privacy">{T('Privacidad: tus coordenadas se redondean a 0.1° (unos 10 km) y se envían solo a GPlates para el cálculo; las búsquedas por nombre usan OpenStreetMap Nominatim. Nada se guarda.', 'Privacy: your coordinates are rounded to 0.1° (about 10 km) and sent only to GPlates for the calculation; searches by name use OpenStreetMap Nominatim. Nothing is stored.')}</p>
+  </section>
+</Museum>
+
+<script type="application/json" id="dvData" set:html={JSON.stringify({ stops, fossils, collection, cities: assets.cities || {}, S })} />
+<script>
+  import { drawMap } from '../scripts/map';
+  const { stops, fossils, collection, cities, S } = JSON.parse(document.getElementById('dvData')!.textContent!);
+  const $ = (id: string) => document.getElementById(id)!;
+  const status = $('status');
+  let here: { lat: number; lon: number; name: string } | null = null;
+  let paleo: Record<number, { lat: number; lon: number } | null> = {};
+  let current = 'cretacico';
+
+  const fmtCoord = (lat: number, lon: number) => `${Math.abs(lat).toFixed(1)}° ${lat >= 0 ? 'N' : 'S'}, ${Math.abs(lon).toFixed(1)}° ${lon >= 0 ? 'E' : S.W}`;
+  const km = (a: any, b: any) => {
+    const r = Math.PI / 180, dLat = (b.lat - a.lat) * r, dLon = (b.lon - a.lon) * r;
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(dLon / 2) ** 2;
+    return Math.round(2 * 6371 * Math.asin(Math.sqrt(h)));
+  };
+  const belt = (lat: number) => {
+    const a = Math.abs(lat);
+    return S.belts[a < 23.5 ? 0 : a < 35 ? 1 : a < 55 ? 2 : a < 66.5 ? 3 : 4];
+  };
+  const esc = (t: string) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
+
+  async function reconstruct(lat: number, lon: number) {
+    paleo = {};
+    const times = stops.map((s: any) => s.time);
+    let done = 0;
+    status.textContent = S.moving;
+    // De tres en tres para no saturar el servicio.
+    for (let i = 0; i < times.length; i += 3) {
+      await Promise.all(times.slice(i, i + 3).map(async (t: number) => {
+        try {
+          const r = await fetch(`https://gws.gplates.org/reconstruct/reconstruct_points/?points=${lon},${lat}&time=${t}&model=MERDITH2021`);
+          const c = (await r.json())?.coordinates?.[0];
+          // 1000,1000 = el punto no pertenece a ninguna placa del modelo en esa edad.
+          paleo[t] = c && Math.abs(c[1]) <= 90 && Math.abs(c[0]) <= 180 ? { lon: c[0], lat: c[1] } : null;
+        } catch { paleo[t] = null; }
+        status.textContent = `${S.moving} ${++done}/${times.length}`;
+      }));
+    }
+  }
+
+  async function go(lat: number, lon: number, name: string, pre?: Record<number, any>) {
+    lat = Math.round(lat * 10) / 10; lon = Math.round(lon * 10) / 10;
+    here = { lat, lon, name };
+    // Ciudades rápidas: viaje ya calculado (funciona sin conexión a GPlates).
+    if (pre) paleo = Object.fromEntries(Object.entries(pre).map(([t, v]) => [+t, v]));
+    else await reconstruct(lat, lon);
+    if (Object.values(paleo).every((v) => v === null)) {
+      status.textContent = S.noService;
+      return;
+    }
+    status.textContent = '';
+    $('journey').hidden = false;
+    $('hereName').textContent = name;
+    $('hereCoord').textContent = fmtCoord(lat, lon);
+    nearest();
+    await show(current);
+    $('journey').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  async function show(id: string) {
+    current = id;
+    const st = stops.find((s: any) => s.id === id);
+    document.querySelectorAll<HTMLElement>('[data-stop]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.stop === id)));
+    const p = paleo[st.time];
+    const sites = (fossils[id] || []).map((f: any) => ({ ...f, label: f.name, ping: false }));
+    if (p) sites.push({ id: 'you', lat: p.lat, lon: p.lon, label: S.you, you: true });
+    await drawMap($('paleo') as unknown as SVGSVGElement, { url: st.url, sites, width: 900, height: 460 });
+    $('rPeriod').textContent = S.ago.replace('{p}', st.name).replace('{t}', st.time);
+    $('rClock').textContent = S.clock.replace('{c}', st.clock);
+    $('rTitle').textContent = p ? S.was.replace('{n}', here!.name).replace('{c}', fmtCoord(p.lat, p.lon)) : S.noRec.replace('{n}', here!.name);
+    $('rLead').textContent = st.lead;
+    $('rText').textContent = p
+      ? S.meaning.replace('{b}', belt(p.lat)).replace('{h}', p.lat * here!.lat < 0 ? S.otherHemi : '')
+      : S.noPlate;
+    $('rMoved').innerHTML = p ? S.moved.replace('{k}', km(here!, p).toLocaleString(S.locale)) : '';
+    const list = fossils[id] || [];
+    $('rFossils').innerHTML = list.length
+      ? `<p class="label">${S.onMap}</p><p>${list.map((f: any) => `<a href="${f.href}">${esc(f.name)}</a>`).join(' · ')}</p>`
+      : '';
+  }
+
+  function nearest() {
+    const list = collection.map((s: any) => ({ ...s, d: km(here!, s) })).sort((a: any, b: any) => a.d - b.d).slice(0, 4);
+    $('near').innerHTML = list.map((s: any) => `<a class="near-item" href="${s.href}"><strong>${esc(s.name)}</strong><span>${esc(s.place)}</span><span class="label">${s.d.toLocaleString(S.locale)} km · ${esc(s.age)}</span></a>`).join('');
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('[data-stop]').forEach((b) => b.addEventListener('click', () => here && show(b.dataset.stop!)));
+  document.querySelectorAll<HTMLButtonElement>('.quick [data-lat]').forEach((b) => b.addEventListener('click', () => go(+b.dataset.lat!, +b.dataset.lon!, b.dataset.label!, cities[b.dataset.name!])));
+
+  $('search').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const q = ($('place') as HTMLInputElement).value.trim();
+    if (!q) return;
+    status.textContent = S.searching;
+    try {
+      const r = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&accept-language=${S.lang}&q=${encodeURIComponent(q)}`);
+      const [hit] = await r.json();
+      if (!hit) { status.textContent = S.notFound; return; }
+      go(+hit.lat, +hit.lon, hit.display_name.split(',').slice(0, 2).join(','));
+    } catch { status.textContent = S.searchDown; }
+  });
+
+  $('geo').addEventListener('click', () => {
+    if (!navigator.geolocation) { status.textContent = S.noGeo; return; }
+    status.textContent = S.asking;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => go(pos.coords.latitude, pos.coords.longitude, S.yourLoc),
+      () => { status.textContent = S.geoFail; },
+      { timeout: 10000, maximumAge: 600000 },
+    );
+  });
+</script>
+
+<style>
+  .finder { padding-bottom: 6rem; }
+  .search { background: var(--wall); border: 1px solid var(--line); border-radius: 6px; padding: 1.6rem; display: grid; gap: .9rem; }
+  .search .row { display: flex; gap: .6rem; flex-wrap: wrap; }
+  .search input { flex: 1; min-width: 240px; font: inherit; color: var(--text); background: var(--night); border: 1px solid var(--line); border-radius: 4px; padding: .8rem 1rem; }
+  .quick { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .status { margin: 0; color: var(--brass); min-height: 1.4em; font-size: .95rem; }
+  .journey { margin-top: 3rem; scroll-margin-top: 80px; }
+  .here h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin: .3rem 0 .2rem; }
+  .timeline { display: flex; gap: 2px; overflow-x: auto; margin: 2rem 0 1.4rem; padding-bottom: .4rem; scrollbar-width: thin; }
+  .stop { flex: 1 0 96px; text-align: left; display: grid; gap: .1rem; background: var(--wall); border: 0; border-top: 4px solid color-mix(in srgb, var(--c) 60%, #000); padding: .7rem .7rem .8rem; transition: background .2s; }
+  .stop:hover { background: var(--wall-2); }
+  .stop[aria-selected='true'] { background: color-mix(in srgb, var(--c) 22%, var(--wall)); border-top-color: var(--c); }
+  .stop .num { font-size: .95rem; color: var(--muted); }
+  .stop strong { font: 400 1.1rem var(--serif); }
+  .view { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.4rem; align-items: start; }
+  .map-box { padding: .8rem; }
+  .map-box :global(.you-halo) { transform-box: fill-box; transform-origin: center; }
+  .reading h3 { font-size: 1.6rem; }
+  .reading :global(a) { color: var(--ink); }
+  .note { font-size: .8rem; color: var(--muted); margin-top: .8rem; max-width: 80ch; }
+  .near { margin-top: 3rem; }
+  .near-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: .8rem; margin-top: 1rem; }
+  .near-list :global(.near-item) { display: grid; gap: .2rem; padding: 1rem 1.1rem; background: var(--wall); border: 1px solid var(--line); border-radius: 6px; text-decoration: none; transition: border-color .2s; }
+  .near-list :global(.near-item:hover) { border-color: var(--brass); }
+  .near-list :global(strong) { font: 400 1.3rem var(--serif); }
+  .near-list :global(span) { color: var(--muted); font-size: .88rem; }
+  .privacy { font-size: .78rem; color: var(--muted); margin-top: 3rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+  @media (max-width: 900px) { .view { grid-template-columns: 1fr; } }
+</style>

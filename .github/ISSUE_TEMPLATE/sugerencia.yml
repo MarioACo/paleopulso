@@ -1,23 +1,24 @@
-name: Sugerir una mejora
-description: Una pieza que falta, una idea para una sala o algo incómodo de usar.
+name: Sugerir una mejora · Suggest an improvement
+description: Una pieza que falta, una idea para una sala o algo incómodo de usar. · A missing piece, an idea for a hall, or something awkward to use.
 title: "[Sugerencia] "
 labels: ["sugerencia"]
 body:
   - type: dropdown
     id: tipo
     attributes:
-      label: Tipo
+      label: Tipo · Type
       options: ["Nueva pieza para la colección", "Mejorar una sala", "Algo es difícil de usar o leer", "Accesibilidad", "Imágenes o fotos", "Traducción", "Otro"]
+      description: "Nueva pieza = new piece · Mejorar una sala = improve a hall · Difícil de usar = hard to use · Accesibilidad = accessibility · Imágenes = images · Traducción = translation · Otro = other"
     validations:
       required: true
   - type: textarea
     id: idea
     attributes:
-      label: Cuéntanos
-      description: Si es una pieza nueva, dinos el nombre, la época y dónde se encontró. Si es un problema de uso, en qué dispositivo y navegador.
+      label: Cuéntanos · Tell us
+      description: Pieza nueva → nombre, época y lugar. Problema de uso → dispositivo y navegador. · New piece → name, age and place. Usability issue → device and browser.
     validations:
       required: true
   - type: input
     id: fuente
     attributes:
-      label: Fuente o imagen con licencia libre (opcional)
+      label: Fuente o imagen con licencia libre (opcional) · Source or freely licensed image (optional)

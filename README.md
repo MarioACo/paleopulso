@@ -1,6 +1,6 @@
 # Paleopulso
 
-Un museo de historia natural en el navegador: 4,567 millones de años de vida, rocas y continentes en movimiento, con fuentes y niveles de certeza. Contenido de todo el mundo, con una sala dedicada a México.
+Un museo de historia natural en el navegador: 4,567 millones de años de vida, rocas y continentes en movimiento, con fuentes y niveles de certeza. Contenido de todo el mundo, con una sala dedicada a México. En español (raíz) e inglés (`/en/`).
 
 ## Salas
 
@@ -10,13 +10,15 @@ Un museo de historia natural en el navegador: 4,567 millones de años de vida, r
 | `/tiempo` | Descenso por estratos con mapa paleogeográfico que cambia con cada periodo |
 | `/continentes` | Máquina del tiempo: los continentes de hace 800 Ma a hoy, con reproducción |
 | `/donde-vives` | Elige un lugar y mira dónde estaba en cada época (GPlates en vivo) y qué fósiles hay cerca |
-| `/vida` | Archivo de 69 piezas con mapa mundial, filtros por era, ambiente, continente y México |
+| `/vida` | Archivo de 73 piezas con mapa mundial, filtros por era, ambiente, continente y México |
 | `/especie/:id` | Ficha: fotos (evidencia / reconstrucción), escala con una persona, mapa «entonces y ahora», rango en PBDB, bibliografía verificada |
 | `/dinosaurios` | Sala mesozoica por periodos y comparador de tamaños a escala |
 | `/mexico` | Yacimientos de México, línea de tiempo, Chicxulub y museos para visitar |
 | `/mitos` | 14 tarjetas «¿mito o realidad?» con marcador |
 | `/metodo` | Cómo trabaja la paleontología y qué tan segura es cada capa de una reconstrucción |
+| `/visita` | Visita guiada de 10 paradas con preguntas, guía para docentes y hoja imprimible |
 | `/pasaporte` | Sellos por sala visitada y examen final |
+| `/colabora` | Cómo reportar errores y sugerir piezas (avisos prellenados en GitHub) |
 | `/creditos` | Autoría y licencia de cada imagen y silueta |
 
 ## Desarrollo
@@ -26,12 +28,19 @@ npm install
 npm run dev        # http://localhost:4321
 npm run check      # verifica los datos y compila
 npm test           # pruebas en navegador real sobre dist/ (usa Chrome o Edge; o CHROME_PATH)
-npm run verify     # check + test
+npm run a11y       # auditoría de accesibilidad con axe-core (WCAG 2.1 AA)
+npm run verify     # check + test + a11y
 npm run og         # regenera las imágenes para compartir (public/og/)
 node tests/weight.mjs   # peso de carga de cada sala
 ```
 
 La URL pública se toma de `SITE_URL` o, en Vercel, de `VERCEL_PROJECT_PRODUCTION_URL` (sitemap, enlaces canónicos e imágenes para compartir). La analítica de Vercel solo se incluye al compilar en Vercel y hay que activarla en el panel del proyecto (*Analytics → Enable*).
+
+## Idiomas
+
+Cada sala vive en `src/views/` y se publica dos veces: `src/pages/x.astro` (español) y `src/pages/en/x.astro` (inglés). El idioma se deduce de la URL. Los textos en inglés están en `src/data/en/`; `npm run check` falla si a una pieza, mito, pregunta o parada le falta su traducción, y `npm test` busca frases de la interfaz en español dentro de `/en/`.
+
+Para traducir un texto nuevo de la interfaz: `T('texto', 'text')` en la vista (ver `src/i18n.js`).
 
 ## Datos y recursos
 

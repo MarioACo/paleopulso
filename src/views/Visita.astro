@@ -1,0 +1,123 @@
+---
+import Museum from '../layouts/Museum.astro';
+import Photo from '../components/Photo.astro';
+import { tour as tourEs } from '../data/tour.js';
+import { tourEn } from '../data/en/content.js';
+import { mainPhoto } from '../lib/site.js';
+import { speciesByIdL, periodByIdL, formatMaL, tr, L } from '../i18n.js';
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const speciesById = speciesByIdL(lang);
+const periodById = periodByIdL(lang);
+const tour = tourEs.map((t, i) => (lang === 'en' ? { ...t, ...tourEn[i] } : t));
+const href = (s: any) => L(lang, `/especie/${s.id}`);
+const formatMa = (ma: number) => formatMaL(ma, lang);
+const stops = tour.map((t, i) => ({ ...t, n: i + 1, s: speciesById[t.id], p: periodById[speciesById[t.id].period], photo: mainPhoto(t.id) }));
+---
+<Museum title={T('Visita guiada', 'Guided tour')} description={T('Recorrido de 10 paradas por la historia de la vida, con preguntas y hoja imprimible para escuelas.', 'A 10-stop tour through the history of life, with questions and a printable worksheet for schools.')}>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">{T('Visita guiada · 10 paradas · ~30 minutos', 'Guided tour · 10 stops · ~30 minutes')}</p>
+      <h1>{T('De un microbio', 'From a microbe')}<br /><em>{T('a una persona.', 'to a person.')}</em></h1>
+      <p class="lead">{T('Un recorrido corto por 3,400 millones de años. En cada parada hay algo que observar y una pregunta. Ideal para clase, para ir en familia o para empezar si nunca has visitado un museo de paleontología.', 'A short walk through 3,400 million years. Each stop has something to look at and a question. Ideal for class, for families, or as a first visit if you have never been to a palaeontology museum.')}</p>
+      <div class="actions"><a class="btn" href="#parada-1">{T('Empezar →', 'Start →')}</a><button class="btn ghost" type="button" id="print">{T('Imprimir hoja de trabajo', 'Print worksheet')}</button></div>
+    </div>
+  </section>
+
+  <section class="wrap teachers">
+    <details>
+      <summary>{T('Para docentes', 'For teachers')}</summary>
+      <ul>
+        <li><b>{T('Edades:', 'Ages:')}</b> {T('desde 10 años; con apoyo, desde 8.', '10 and up; with support, from 8.')}</li>
+        <li><b>{T('Objetivos:', 'Goals:')}</b> {T('comprender la escala del tiempo geológico, distinguir evidencia de interpretación y reconocer el patrimonio paleontológico de México.', 'understand the scale of geological time, tell evidence from interpretation, and recognise palaeontological heritage such as Mexico’s.')}</li>
+        <li><b>{T('Cómo usarla:', 'How to use it:')}</b> {T('en grupo con proyector, o cada estudiante en su dispositivo. La hoja impresa sirve sin conexión.', 'as a group on a projector, or each student on their own device. The printed sheet works offline.')}</li>
+        <li><b>{T('Para cerrar:', 'To finish:')}</b> {T('el', 'the')} <a href={L(lang, '/pasaporte')}>{T('examen final del pasaporte', 'passport final exam')}</a> {T('y la sala', 'and the')} <a href={L(lang, '/donde-vives')}>{T('¿Qué había donde vives?', 'What was where you live?')}</a> {T('con la ciudad de la escuela.', 'hall using the school’s city.')}</li>
+      </ul>
+    </details>
+  </section>
+
+  <ol class="wrap tour">
+    {stops.map((st) => (
+      <li class="stop" id={`parada-${st.n}`} style={`--pc:${st.p.color}`}>
+        <div class="vitrine pic">{st.photo && <Photo p={st.photo} alt={st.s.name} sizes="(max-width: 800px) 100vw, 420px" />}</div>
+        <div class="body">
+          <p class="label"><span class="n">{T('Parada', 'Stop')} {st.n} {T('de', 'of')} {stops.length}</span> · {st.p.name} · {formatMa(st.s.ma)}</p>
+          <h2>{st.title}</h2>
+          <p class="look"><span class="label">{T('Observa', 'Look')}</span> {st.look}</p>
+          <fieldset class="qa" data-a={st.a}>
+            <legend>{st.q}</legend>
+            {st.o.map((o, k) => <label><input type="radio" name={`q${st.n}`} value={k} /> {o}</label>)}
+            <p class="why" hidden>{st.why}</p>
+          </fieldset>
+          <p class="more"><a href={href(st.s)}>{T('Ver la ficha de', 'See the record for')} {st.s.name} →</a>{st.n < stops.length && <a href={`#parada-${st.n + 1}`}>{T('Siguiente parada ↓', 'Next stop ↓')}</a>}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+  <section class="wrap done" aria-live="polite"><p id="tourScore" class="lead" data-done={T('Terminaste la visita: {r} de {t} respuestas correctas. ¿Te animas con el examen del pasaporte?', 'You finished the tour: {r} of {t} correct answers. Fancy trying the passport exam?')}></p></section>
+</Museum>
+
+<script>
+  let answered = 0, right = 0;
+  const total = document.querySelectorAll('.qa').length;
+  document.querySelectorAll<HTMLFieldSetElement>('.qa').forEach((fs) => {
+    fs.addEventListener('change', (e) => {
+      if (fs.dataset.done) return;
+      fs.dataset.done = '1';
+      const v = (e.target as HTMLInputElement).value;
+      const ok = v === fs.dataset.a;
+      answered++; if (ok) right++;
+      fs.querySelectorAll<HTMLLabelElement>('label').forEach((l, k) => {
+        l.classList.add(String(k) === fs.dataset.a ? 'right' : String(k) === v ? 'wrong' : 'dim');
+        l.querySelector('input')!.disabled = true;
+      });
+      const why = fs.querySelector<HTMLElement>('.why')!;
+      why.textContent = (ok ? '✓ ' : '✗ ') + why.textContent; why.hidden = false;
+      if (answered === total) { const el = document.getElementById('tourScore')!; el.textContent = el.dataset.done!.replace('{r}', String(right)).replace('{t}', String(total)); }
+    });
+  });
+  document.getElementById('print')!.addEventListener('click', () => print());
+</script>
+
+<style>
+  .actions { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2rem; }
+  .teachers details { background: var(--wall); border: 1px solid var(--line); border-radius: 6px; padding: 1rem 1.3rem; }
+  .teachers summary { cursor: pointer; font: 600 .85rem var(--label); letter-spacing: .16em; text-transform: uppercase; color: var(--brass); }
+  .teachers ul { color: var(--muted); margin: 1rem 0 .3rem; display: grid; gap: .4rem; }
+  .teachers a { color: var(--brass); }
+  .tour { list-style: none; padding: 3rem 0 2rem; display: grid; gap: 3rem; }
+  .stop { display: grid; grid-template-columns: 420px 1fr; gap: 2.4rem; align-items: start; scroll-margin-top: 80px; border-left: 3px solid var(--pc); padding-left: 1.6rem; }
+  .pic { aspect-ratio: 4 / 3; }
+  .pic :global(.ph) { position: absolute; inset: 0; }
+  .n { color: var(--brass); }
+  .stop h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin: .4rem 0 1rem; }
+  .look { font-size: 1.05rem; }
+  .look .label { display: block; color: var(--brass); margin-bottom: .2rem; }
+  .qa { border: 1px solid var(--line); border-radius: 6px; padding: 1rem 1.2rem; display: grid; gap: .45rem; margin: 1.2rem 0; }
+  .qa legend { font: 400 1.25rem var(--serif); padding: 0 .4rem; }
+  .qa label { display: flex; gap: .6rem; align-items: center; padding: .55rem .8rem; border: 1px solid var(--line); border-radius: 4px; cursor: pointer; }
+  .qa label:has(input:focus-visible) { outline: 2px solid var(--brass); }
+  .qa input { accent-color: var(--brass); }
+  .qa label.right { border-color: var(--moss); background: rgba(140, 164, 110, .12); }
+  .qa label.wrong { border-color: var(--rust); background: rgba(207, 107, 67, .12); }
+  .qa label.dim { opacity: .5; }
+  .why { margin: .4rem 0 0; color: var(--text); }
+  .more { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .more a { color: var(--brass); }
+  .done { padding-bottom: 5rem; }
+  @media (max-width: 860px) { .stop { grid-template-columns: 1fr; } }
+  /* Hoja de trabajo impresa: sin navegación, en blanco y negro, con espacio para responder. */
+  @media print {
+    :global(.site-nav), :global(.site-foot), .actions, .teachers, .more, .pic, .done, .why { display: none !important; }
+    :global(body) { background: #fff; color: #000; font-size: 11pt; }
+    :global(body::after) { display: none; }
+    :global(.page-hero) { padding: 0 0 1rem; }
+    :global(.page-hero::before) { display: none; }
+    :global(h1), :global(h1 em), .stop h2 { color: #000 !important; }
+    :global(.lead), .look { color: #222; }
+    .stop { grid-template-columns: 1fr; border-left: 2px solid #000; page-break-inside: avoid; gap: 0; }
+    .tour { gap: 1.2rem; padding-top: 0; }
+    .qa, .qa label { border-color: #999; }
+    .qa label::after { content: ''; }
+  }
+</style>

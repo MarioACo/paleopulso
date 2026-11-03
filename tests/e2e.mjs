@@ -61,6 +61,26 @@ await test('Todas las salas cargan sin errores', async (page) => {
   }
   return `${pages.length} páginas`;
 });
+await test('Inglés: todas las salas en /en/ sin restos de la interfaz en español', async (page) => {
+  // Frases de la interfaz que nunca deberían aparecer en inglés (los nombres de lugares sí pueden ir en español).
+  const SPANISH = ['Ver la ficha', 'Toca un punto', 'Pieza del día', '¿Sabías que', 'En debate', 'Sin mapa', 'Siguiente', 'Comprobar', 'Archivo de vida', 'Sala mesozoica', 'Saltar al contenido', 'Cómo sabemos', 'Reconstrucción en vida', 'Fósil o montaje', 'Para seguir leyendo'];
+  let n = 0;
+  for (const p of pages) {
+    const url = p === '/' ? '/en/' : `/en${p}`;
+    const r = await go(page, url);
+    expect(r.status() === 200, `${url} respondió ${r.status()}`);
+    expect((await page.getAttribute('html', 'lang')) === 'en', `${url} sin lang="en"`);
+    const text = await page.evaluate(() => document.body.innerText);
+    const left = SPANISH.filter((s) => text.includes(s));
+    expect(!left.length, `${url} contiene: ${left.join(', ')}`);
+    n++;
+  }
+  await go(page, '/vida');
+  await page.click('.lang-switch');
+  await page.waitForLoadState('networkidle');
+  expect(page.url().endsWith('/en/vida') || page.url().endsWith('/en/vida/'), `el selector llevó a ${page.url()}`);
+  return `${n} páginas en inglés`;
+});
 await test('Móvil: sin desbordamiento horizontal y menú funcional', async () => {
   const m = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true });
   try {
@@ -69,6 +89,13 @@ await test('Móvil: sin desbordamiento horizontal y menú funcional', async () =
       const o = await m.evaluate(() => document.documentElement.scrollWidth - innerWidth);
       expect(o <= 1, `${p} se desborda ${o}px`);
     }
+    // La barra superior no debe cortarse: el pasaporte tiene que quedar dentro de la pantalla.
+    for (const p of ['/', '/en/']) {
+      await go(m, p);
+      const right = await m.evaluate(() => document.querySelector('.passport-chip').getBoundingClientRect().right);
+      expect(right <= 390, `${p}: la barra se sale de la pantalla (${Math.round(right)} px)`);
+    }
+    await go(m, '/');
     await m.click('.menu-toggle');
     expect(await m.locator('#navLinks').isVisible(), 'el menú no se abre');
   } finally { await m.close(); }

@@ -1,13 +1,14 @@
 ---
 import Museum from '../layouts/Museum.astro';
 ---
-<Museum title="Pieza no encontrada">
+<Museum title="Pieza no encontrada · Page not found">
   <section class="page-hero" style="min-height:60vh">
     <div class="wrap">
-      <p class="kicker">Error 404 · Laguna estratigráfica</p>
+      <p class="kicker">Error 404 · Laguna estratigráfica · Stratigraphic gap</p>
       <h1>Esta capa<br /><em>se erosionó.</em></h1>
       <p class="lead">El registro fósil está lleno de huecos, y esta página es uno de ellos. Vuelve al vestíbulo o busca en el archivo.</p>
-      <p style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap"><a class="btn" href="/">Ir al vestíbulo</a><a class="btn ghost" href="/vida">Archivo de vida</a></p>
+      <p class="lead" lang="en">This layer has eroded away. The fossil record is full of gaps, and this page is one of them.</p>
+      <p style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap"><a class="btn" href="/">Ir al vestíbulo</a><a class="btn ghost" href="/vida">Archivo de vida</a><a class="btn ghost" href="/en/" lang="en">Entrance hall (English)</a></p>
     </div>
   </section>
 </Museum>

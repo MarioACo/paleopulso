@@ -1,0 +1,64 @@
+---
+import Museum from '../layouts/Museum.astro';
+import { assets, photosOf } from '../lib/site.js';
+import { speciesL, scaleRefsL, tr } from '../i18n.js';
+import { featuredEn } from '../data/en/content.js';
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const species = speciesL(lang);
+const scaleRefs = scaleRefsL(lang);
+const all = [...species, ...scaleRefs];
+const photos = species.flatMap((s) => photosOf(s.id).map((p) => {
+  const en = lang === 'en' && featuredEn[`${s.id}-${p.kind}`];
+  return { s, p: en ? { ...p, label: en.label } : p };
+}));
+const sils = all.map((s) => ({ s, sil: assets.silhouettes?.[s.id] })).filter((x) => x.sil);
+---
+<Museum title={T('Créditos e imágenes', 'Credits & images')} description={T('Fuentes de datos, imágenes y siluetas de Paleopulso, con su autoría y licencia.', 'Data sources, images and silhouettes used by Paleopulso, with authorship and licence.')}>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">{T('Créditos', 'Credits')}</p>
+      <h1>{T('Gracias a quienes', 'Thanks to everyone')}<br /><em>{T('comparten su trabajo.', 'who shares their work.')}</em></h1>
+      <p class="lead">{T('Paleopulso usa solo imágenes con licencia libre. Las licencias CC BY y CC BY-SA exigen reconocer la autoría; aquí está cada una, con enlace a su fuente.', 'Paleopulso only uses freely licensed images. CC BY and CC BY-SA licences require attribution; each one is listed here with a link to its source.')}</p>
+    </div>
+  </section>
+  <section class="wrap credits">
+    <h2>{T('Datos', 'Data')}</h2>
+    <ul>
+      <li><a href="https://stratigraphy.org/chart">{T('Comisión Internacional de Estratigrafía (ICS)', 'International Commission on Stratigraphy (ICS)')}</a>: {T('límites y colores de la escala geológica.', 'boundaries and colours of the geological time scale.')}</li>
+      <li><a href="https://www.gplates.org">GPlates Web Service</a>, {T('modelo', 'model')} <i>MERDITH2021</i> (Merdith et al., 2021, Earth-Science Reviews): {T('costas antiguas y paleocoordenadas.', 'ancient coastlines and palaeocoordinates.')}</li>
+      <li><a href="https://paleobiodb.org">Paleobiology Database</a>: {T('rangos de aparición y número de registros (CC BY 4.0).', 'stratigraphic ranges and occurrence counts (CC BY 4.0).')}</li>
+      <li><a href="https://www.crossref.org">Crossref</a>: {T('verificación de cada DOI de la bibliografía (título, año y primer autor).', 'verification of every DOI in the references (title, year and first author).')}</li>
+      <li><a href="https://nominatim.openstreetmap.org">OpenStreetMap Nominatim</a>: {T('búsqueda de lugares en «¿Qué había donde vives?» (© colaboradores de OpenStreetMap, ODbL).', 'place search in “What was where you live?” (© OpenStreetMap contributors, ODbL).')}</li>
+      <li><a href="https://www.naturalearthdata.com">Natural Earth</a>: {T('fronteras de México y países vecinos (dominio público).', 'borders of Mexico and neighbouring countries (public domain).')}</li>
+      <li>{T('Textos de Paleopulso redactados a partir de la literatura científica y artículos de divulgación; los datos debatidos se marcan como tales.', 'Paleopulso texts are written from the scientific literature and popular-science sources, originally in Spanish and translated to English; debated data are marked as such.')}</li>
+    </ul>
+    <h2>{T('Fotografías y reconstrucciones', 'Photos and reconstructions')} ({photos.length})</h2>
+    <p class="muted">{T('Wikimedia Commons. Las imágenes se redimensionaron y convirtieron a WebP; no se alteró su contenido.', 'Wikimedia Commons. Images were resized and converted to WebP; their content was not altered.')}</p>
+    <table>
+      <thead><tr><th>{T('Pieza', 'Piece')}</th><th>{T('Imagen', 'Image')}</th><th>{T('Autoría', 'Author')}</th><th>{T('Licencia', 'Licence')}</th></tr></thead>
+      <tbody>
+        {photos.map(({ s, p }) => <tr><td>{s.name}</td><td><a href={p.source}>{p.label}</a></td><td>{p.credit}</td><td>{p.licenseUrl ? <a href={p.licenseUrl}>{p.license}</a> : p.license}</td></tr>)}
+      </tbody>
+    </table>
+    <h2>{T('Siluetas', 'Silhouettes')} ({sils.length})</h2>
+    <p class="muted"><a href="https://www.phylopic.org">PhyloPic</a>. {T('Solo licencias que permiten cualquier uso. Cuando no existe silueta de la especie se usa la de un pariente cercano, indicado en la ficha.', 'Only licences that allow any use. When no silhouette of the species exists, a close relative is used and noted on the record.')}</p>
+    <table>
+      <thead><tr><th>{T('Pieza', 'Piece')}</th><th>{T('Taxón de la silueta', 'Silhouette taxon')}</th><th>{T('Autoría', 'Author')}</th><th>{T('Licencia', 'Licence')}</th></tr></thead>
+      <tbody>
+        {sils.map(({ s, sil }) => <tr><td>{s.name}</td><td>{sil.page ? <a href={sil.page}>{sil.taxon}</a> : sil.taxon}</td><td>{sil.attribution || sil.contributor}</td><td>{sil.licenseUrl ? <a href={sil.licenseUrl}>{sil.license}</a> : sil.license}</td></tr>)}
+      </tbody>
+    </table>
+  </section>
+</Museum>
+<style>
+  .credits { padding-bottom: 6rem; }
+  .credits h2 { font-size: 2rem; margin: 3rem 0 1rem; }
+  .credits a { color: var(--brass); }
+  .credits ul { color: var(--muted); display: grid; gap: .5rem; }
+  table { width: 100%; border-collapse: collapse; font-size: .86rem; margin-top: 1rem; }
+  th { text-align: left; font: 600 .72rem var(--label); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--brass-dim); padding: .6rem .5rem; }
+  td { border-bottom: 1px solid var(--line); padding: .55rem .5rem; vertical-align: top; }
+  td:first-child { font-family: var(--serif); font-size: 1rem; white-space: nowrap; }
+  @media (max-width: 700px) { table { display: block; overflow-x: auto; } }
+</style>

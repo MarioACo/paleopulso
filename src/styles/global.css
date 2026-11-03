@@ -97,7 +97,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .passport-chip svg { width: 20px; height: 20px; }
 .lang-switch { font: 600 .8rem var(--label); letter-spacing: .14em; text-decoration: none; color: var(--muted); border: 1px solid var(--line); border-radius: 99px; padding: .35rem .7rem; }
 .lang-switch:hover { color: var(--brass); border-color: var(--brass-dim); }
-.site-foot .made { color: var(--brass-dim); font-size: .85rem; }
+.site-foot .made { color: var(--brass); font-size: .85rem; }
 .sound-btn { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: none; color: var(--muted); flex: none; }
 .sound-btn svg { width: 20px; height: 20px; }
 .sound-btn .wave { opacity: .25; }
@@ -262,3 +262,15 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 /* Recorte: la figura flota en la vitrina. */
 .ph-cutout { padding: 4% 5% 7%; }
 .ph-cutout img { filter: drop-shadow(0 18px 22px rgba(0, 0, 0, .85)) sepia(.08); }
+
+/* Barra superior en celulares: todo cabe en una línea. */
+@media (max-width: 520px) {
+  .site-nav .wrap { gap: .5rem; }
+  .brand { font-size: 1.05rem; gap: .4rem; }
+  .brand svg { width: 24px; height: 24px; }
+  .menu-toggle { padding: .35rem .5rem; font-size: .9rem; }
+  .lang-switch { padding: .3rem .5rem; }
+  .sound-btn { width: 32px; height: 32px; }
+  .passport-chip { padding: .3rem; }
+  .passport-chip > span { display: none; }
+}

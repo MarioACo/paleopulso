@@ -1,0 +1,93 @@
+---
+import Museum from '../layouts/Museum.astro';
+import { tr } from '../i18n.js';
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+// Contenido heredado de la versión anterior (legacy/metodo.html), ampliado.
+const methods = [
+  [T('Fósiles corporales', 'Body fossils'), T('Huesos, dientes, conchas, hojas y, en casos raros, piel o plumas. Casi siempre están incompletos y deformados por el peso de las rocas, así que se comparan con otros ejemplares.', 'Bones, teeth, shells, leaves and, rarely, skin or feathers. They are almost always incomplete and distorted by the weight of the rock, so they are compared with other specimens.')],
+  [T('Huellas y rastros', 'Trace fossils'), T('Pisadas, madrigueras, coprolitos (excremento fósil), marcas de mordida y nidos registran comportamientos que un esqueleto no puede mostrar: velocidad, manadas, dieta.', 'Footprints, burrows, coprolites (fossil dung), bite marks and nests record behaviour a skeleton cannot show: speed, herding, diet.')],
+  [T('Estratigrafía', 'Stratigraphy'), T('En una pila de rocas sin alterar, las capas de abajo son más antiguas. Esa regla da el orden; los fósiles guía permiten correlacionar capas de distintos continentes.', 'In an undisturbed pile of rock, the lower layers are older. That rule gives the order; index fossils let us correlate layers across continents.')],
+  [T('Datación radiométrica', 'Radiometric dating'), T('Minerales de cenizas volcánicas atrapan uranio, potasio o argón al formarse. Como se desintegran a ritmo constante, funcionan como relojes: así se fechó en 66.0 Ma el límite K–Pg.', 'Minerals in volcanic ash trap uranium, potassium or argon as they form. Because these decay at a steady rate they work as clocks: that is how the K–Pg boundary was dated to 66.0 Ma.')],
+  [T('Anatomía comparada', 'Comparative anatomy'), T('Los músculos dejan marcas en los huesos y las articulaciones limitan los movimientos. Los animales vivos (aves, cocodrilos) dan rangos posibles, no copias exactas.', 'Muscles leave marks on bones and joints limit movement. Living animals (birds, crocodiles) give plausible ranges, not exact copies.')],
+  [T('Tafonomía', 'Taphonomy'), T('Estudia qué pasó entre la muerte y el hallazgo: transporte, carroñeo, enterramiento y mineralización. Sin ella, un montón de huesos puede contar una historia falsa.', 'It studies what happened between death and discovery: transport, scavenging, burial and mineralisation. Without it, a pile of bones can tell a false story.')],
+  [T('Paleoambiente', 'Palaeoenvironment'), T('Polen, sedimentos, isótopos de oxígeno y carbono, paleosuelos y la fauna asociada revelan temperatura, lluvia, dieta y paisaje.', 'Pollen, sediments, oxygen and carbon isotopes, fossil soils and associated fauna reveal temperature, rainfall, diet and landscape.')],
+  [T('Moléculas y microscopio', 'Molecules and microscopes'), T('Melanosomas que revelan colores, colesterol en Dickinsonia, ADN antiguo en mamuts y humanos de menos de ~2 millones de años. La tecnología sigue ampliando lo que podemos saber.', 'Melanosomes that reveal colours, cholesterol in Dickinsonia, ancient DNA from mammoths and humans under ~2 million years old. Technology keeps widening what we can know.')],
+];
+const layers = [
+  [T('Huesos preservados', 'Preserved bones'), 96, T('Observación directa, aunque puede haber deformación o identificaciones dudosas.', 'Direct observation, though there may be distortion or doubtful identifications.')],
+  [T('Proporciones del cuerpo', 'Body proportions'), 85, T('Se reconstruyen con el esqueleto; los huesos ausentes se toman de parientes.', 'Reconstructed from the skeleton; missing bones are borrowed from relatives.')],
+  [T('Músculos y postura', 'Muscles and posture'), 72, T('Inferidos por las marcas de inserción, las articulaciones y los parientes vivos.', 'Inferred from attachment scars, joints and living relatives.')],
+  [T('Piel, plumas y escamas', 'Skin, feathers and scales'), 48, T('Muy alta cuando hay impresiones (Carnotaurus, Sinosauropteryx); baja cuando se extrapola.', 'Very high when impressions exist (Carnotaurus, Sinosauropteryx); low when extrapolated.')],
+  [T('Color', 'Colour'), 22, T('Solo en casos excepcionales con melanosomas; casi siempre es la capa más interpretativa.', 'Only in exceptional cases with melanosomes; usually the most interpretive layer.')],
+  [T('Sonidos y conducta', 'Sounds and behaviour'), 15, T('Hipótesis con base en anatomía (crestas huecas de hadrosaurios, oído interno) y parientes.', 'Hypotheses based on anatomy (hollow hadrosaur crests, inner ear) and relatives.')],
+];
+---
+<Museum title={T('Cómo sabemos', 'How we know')} stamp="metodo" description={T('Cómo la paleontología reconstruye mundos desaparecidos y cómo expresa la incertidumbre.', 'How palaeontology reconstructs vanished worlds and how it expresses uncertainty.')}>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">{T('Sala VI · Método', 'Hall VI · Method')}</p>
+      <h1>{T('La ciencia no adivina.', 'Science doesn’t guess.')}<br /><em>{T('Reconstruye.', 'It reconstructs.')}</em></h1>
+      <p class="lead">{T('Una imagen paleontológica mezcla observación, medición, comparación e hipótesis. Aquí separamos cada capa para que la incertidumbre también se vea. «No sabemos» también es un resultado científico.', 'A palaeontological image mixes observation, measurement, comparison and hypothesis. Here we separate each layer so that uncertainty is visible too. “We don’t know” is also a scientific result.')}</p>
+    </div>
+  </section>
+
+  <section class="wrap methods">
+    {methods.map(([t, d], i) => (
+      <article class="method reveal"><span class="sc">{['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'][i]}</span><h2>{t}</h2><p>{d}</p></article>
+    ))}
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="kicker">{T('Anatomía de una reconstrucción', 'Anatomy of a reconstruction')}</p><h2>{T('No todo tiene', 'Not everything has')}<br /><em>{T('la misma certeza', 'the same certainty')}</em></h2></div>
+        <p>{T('Valores ilustrativos de qué tan directa suele ser la evidencia de cada capa en un dinosaurio típico. Varían de un fósil a otro.', 'Illustrative values for how direct the evidence for each layer usually is in a typical dinosaur. They vary from fossil to fossil.')}</p>
+      </div>
+      <div class="certainty">
+        {layers.map(([t, v, d]) => (
+          <div class="row reveal">
+            <strong>{t}</strong>
+            <div class="meter" role="meter" aria-valuenow={v} aria-valuemin="0" aria-valuemax="100" aria-label={t}><i style={`--v:${v}%`}></i></div>
+            <p>{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap deep reveal">
+      <p class="kicker">{T('Escala humana del tiempo profundo', 'Deep time at human scale')}</p>
+      <h2>{T('Si cada año fuera', 'If every year were')} <em>{T('un milímetro…', 'one millimetre…')}</em></h2>
+      <ul>
+        <li><strong>2 m</strong><span>{T('desde la época de Jesucristo', 'back to the time of Jesus')}</span></li>
+        <li><strong>12 m</strong><span>{T('desde la cueva de Naia (Quintana Roo)', 'back to Naia’s cave (Quintana Roo)')}</span></li>
+        <li><strong>66 km</strong><span>{T('desde el impacto de Chicxulub', 'back to the Chicxulub impact')}</span></li>
+        <li><strong>252 km</strong><span>{T('desde la Gran Mortandad del Pérmico', 'back to the Permian Great Dying')}</span></li>
+        <li><strong>4,567 km</strong><span>{T('desde el origen de la Tierra: más que de Tijuana a Cancún en línea recta (~3,200 km)', 'back to the origin of Earth: farther than New York to Los Angeles in a straight line (~3,940 km)')}</span></li>
+      </ul>
+      <p class="muted">{T('En el reloj de 24 horas, toda la historia escrita (unos 5,000 años) cabe en la última décima de segundo antes de la medianoche.', 'On the 24-hour clock, all of written history (about 5,000 years) fits into the last tenth of a second before midnight.')}</p>
+    </div>
+  </section>
+</Museum>
+
+<style>
+  .methods { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 4rem; }
+  .method { background: var(--wall); padding: 1.8rem 1.6rem; }
+  .method .sc { color: var(--brass); font-size: 1.4rem; }
+  .method h2 { font-size: 1.6rem; margin: .6rem 0; }
+  .method p { color: var(--muted); font-size: .96rem; margin: 0; }
+  .certainty { display: grid; gap: 1.4rem; }
+  .row { display: grid; grid-template-columns: 220px 1fr 1.2fr; gap: 1.5rem; align-items: center; }
+  .row strong { font: 400 1.3rem var(--serif); }
+  .row p { margin: 0; color: var(--muted); font-size: .92rem; }
+  .meter { height: 10px; background: var(--wall-2); border-radius: 5px; overflow: hidden; }
+  .meter i { display: block; height: 100%; width: var(--v); background: linear-gradient(90deg, var(--rust), var(--brass)); border-radius: 5px; transform-origin: left; }
+  .row.in .meter i { animation: grow 1.4s cubic-bezier(.2, .8, .2, 1); }
+  @keyframes grow { from { transform: scaleX(0); } }
+  .deep ul { list-style: none; padding: 0; margin: 2rem 0; display: grid; gap: .3rem; }
+  .deep li { display: grid; grid-template-columns: 9rem 1fr; gap: 1.5rem; align-items: baseline; padding: .7rem 0; border-bottom: 1px solid var(--line); }
+  .deep strong { font: 400 2rem var(--serif); color: var(--brass); text-align: right; }
+  @media (max-width: 860px) { .row { grid-template-columns: 1fr; gap: .5rem; } .deep li { grid-template-columns: 6rem 1fr; } }
+</style>

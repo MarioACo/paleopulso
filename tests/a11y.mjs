@@ -11,7 +11,7 @@ const T = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css
 const srv = http.createServer((q, r) => { let f = path.join(ROOT, decodeURIComponent(q.url.split('?')[0])); if (fs.existsSync(f) && fs.statSync(f).isDirectory()) f = path.join(f, 'index.html'); if (!fs.existsSync(f)) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'content-type': T[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(r); });
 await new Promise((ok) => srv.listen(0, '127.0.0.1', ok));
 const b = await chromium.launch({ executablePath: exe });
-const pages = (process.argv[2] || '/,/visita,/colabora,/tiempo,/continentes,/vida,/dinosaurios,/mexico,/donde-vives,/mitos,/metodo,/pasaporte,/creditos,/especie/trex,/especie/estromatolitos').split(',');
+const pages = (process.argv[2] || '/,/visita,/colabora,/tiempo,/continentes,/vida,/dinosaurios,/mexico,/donde-vives,/mitos,/metodo,/pasaporte,/creditos,/especie/trex,/especie/estromatolitos,/en/,/en/vida,/en/especie/trex,/en/donde-vives').split(',');
 let serious = 0;
 for (const p of pages) {
   const page = await b.newPage({ viewport: { width: 1280, height: 900 } });

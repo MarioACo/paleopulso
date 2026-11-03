@@ -1,0 +1,87 @@
+---
+import Museum from '../layouts/Museum.astro';
+import Silhouette from '../components/Silhouette.astro';
+import { myths as mythsEs } from '../data/myths.js';
+import { mythsEn } from '../data/en/content.js';
+import { speciesByIdL, tr, L } from '../i18n.js';
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const speciesById = speciesByIdL(lang);
+const myths = mythsEs.map((m, i) => (lang === 'en' ? { ...m, ...mythsEn[i] } : m));
+const href = (s: any) => L(lang, `/especie/${s.id}`);
+const VERDICT: Record<string, string> = lang === 'en' ? { mito: 'Myth', realidad: 'True', matizado: 'It depends' } : { mito: 'Mito', realidad: 'Realidad', matizado: 'Depende' };
+---
+<Museum title={T('Mitos y evidencia', 'Myths & evidence')} stamp="mitos" description={T('Lo que las películas dicen de los dinosaurios y lo que dicen los fósiles.', 'What the movies say about dinosaurs, and what the fossils say.')}>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">{T('Sala V · Mitos y evidencia', 'Hall V · Myths & evidence')}</p>
+      <h1>{T('¿Mito', 'Myth')}<br /><em>{T('o fósil?', 'or fossil?')}</em></h1>
+      <p class="lead">{T('Las películas y los documentales viejos dejaron ideas que la evidencia ya corrigió. Antes de voltear cada tarjeta, decide qué crees. Al final verás tu marcador.', 'Movies and old documentaries left ideas that the evidence has since corrected. Before you flip each card, decide what you think. You’ll see your score at the end.')}</p>
+      <p class="score label" aria-live="polite" data-ok={T('✓ Acertaste', '✓ Correct')} data-no={T('✗ No esta vez', '✗ Not this time')}>{T('Aciertos', 'Correct')}: <b id="hits">0</b> {T('de', 'of')} <b id="done">0</b> · {myths.length} {T('tarjetas', 'cards')}</p>
+    </div>
+  </section>
+
+  <section class="wrap myths">
+    {myths.map((m, i) => {
+      const s = speciesById[m.species];
+      return (
+        <article class={`myth v-${m.verdict}`} data-verdict={m.verdict}>
+          <div class="front">
+            <span class="label">{T('Tarjeta', 'Card')} {String(i + 1).padStart(2, '0')}</span>
+            {s && <Silhouette id={s.id} class="myth-sil" />}
+            <h2>{T('«', '“')}{m.claim}{T('»', '”')}</h2>
+            <div class="guess" role="group" aria-label={T('Tu respuesta', 'Your answer')}>
+              <button type="button" class="chip" data-guess="realidad">{T('Es real', 'True')}</button>
+              <button type="button" class="chip" data-guess="mito">{T('Es mito', 'Myth')}</button>
+              <button type="button" class="chip" data-guess="matizado">{T('Depende', 'It depends')}</button>
+            </div>
+          </div>
+          <div class="back" hidden>
+            <span class="verdict">{VERDICT[m.verdict]}</span>
+            <p class="you label"></p>
+            <p>{m.answer}</p>
+            {s && <a href={href(s)} class="label">{T('Ver la pieza', 'See the piece')}: {s.name} →</a>}
+          </div>
+        </article>
+      );
+    })}
+  </section>
+</Museum>
+
+<script>
+  let hits = 0, done = 0;
+  document.querySelectorAll<HTMLElement>('.myth').forEach((card) => {
+    card.querySelectorAll<HTMLButtonElement>('[data-guess]').forEach((b) => b.addEventListener('click', () => {
+      const ok = b.dataset.guess === card.dataset.verdict;
+      done++; if (ok) hits++;
+      card.classList.add('flipped', ok ? 'ok' : 'no');
+      card.querySelector<HTMLElement>('.front .guess')!.remove();
+      const back = card.querySelector<HTMLElement>('.back')!;
+      back.hidden = false;
+      const sc = document.querySelector<HTMLElement>('.score')!.dataset;
+      back.querySelector('.you')!.textContent = ok ? sc.ok! : sc.no!;
+      document.getElementById('hits')!.textContent = String(hits);
+      document.getElementById('done')!.textContent = String(done);
+      const all = document.querySelectorAll('.myth').length;
+      if (done === all) localStorage.setItem('paleopulso:mitos', JSON.stringify({ hits, all }));
+    }, { once: true }));
+  });
+</script>
+
+<style>
+  .score b { color: var(--brass); font-size: 1.1rem; }
+  .myths { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1.2rem; padding-bottom: 6rem; }
+  .myth { background: var(--wall); border: 1px solid var(--line); border-radius: 6px; padding: 1.6rem; display: grid; gap: 1rem; align-content: start; position: relative; overflow: hidden; transition: border-color .3s, background .3s; }
+  .myth :global(.myth-sil) { position: absolute; right: -6%; top: 1rem; width: 52%; max-height: 120px; color: var(--paper); opacity: .07; }
+  .myth h2 { font-size: 1.55rem; line-height: 1.2; position: relative; }
+  .guess { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .myth.flipped { background: var(--paper); color: var(--ink); }
+  .myth.flipped h2 { color: var(--ink); font-size: 1.25rem; }
+  .myth.flipped .label { color: var(--ink-soft); }
+  .myth.ok { border-color: var(--moss); } .myth.no { border-color: var(--rust); }
+  .back p { margin: 0 0 .7rem; color: #3d3226; }
+  .back a { color: var(--ink); }
+  .verdict { display: inline-block; font: 400 1.9rem var(--sc); padding: 0 .2rem; margin-bottom: .2rem; }
+  .v-mito .verdict { color: #a2391c; } .v-realidad .verdict { color: #4e6b33; } .v-matizado .verdict { color: #355e66; }
+  .myth.ok .you { color: #4e6b33 !important; } .myth.no .you { color: #a2391c !important; }
+</style>

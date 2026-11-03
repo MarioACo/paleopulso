@@ -1,0 +1,56 @@
+---
+import Museum from '../layouts/Museum.astro';
+import { species } from '../data/species.js';
+import { assets, REPO, issueUrl } from '../lib/site.js';
+import { tr, L } from '../i18n.js';
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const studies = Object.values(assets.refs || {}).reduce((n: number, r: any) => n + r.studies.length, 0);
+const ways = [
+  { t: T('Corrige un dato', 'Correct a fact'), d: T('Si una fecha, un tamaño o una afirmación no es correcta, dinos qué dice, qué debería decir y, si puedes, la fuente.', 'If a date, a size or a claim is wrong, tell us what it says, what it should say and, if you can, the source.'), href: issueUrl('correccion.yml', T('[Corrección] ', '[Correction] ')), cta: T('Reportar una corrección', 'Report a correction') },
+  { t: T('Propón una pieza', 'Suggest a piece'), d: T('Falta tu fósil favorito, un yacimiento de tu país o un descubrimiento reciente. Cuéntanos nombre, época y lugar.', 'Your favourite fossil, a site from your country or a recent discovery is missing? Tell us its name, age and place.'), href: issueUrl('sugerencia.yml', T('[Sugerencia] Nueva pieza: ', '[Suggestion] New piece: '), { tipo: 'Nueva pieza para la colección' }), cta: T('Sugerir una pieza', 'Suggest a piece') },
+  { t: T('Dinos qué es incómodo', 'Tell us what’s awkward'), d: T('Algo difícil de leer, lento en tu celular o confuso de usar. Indica tu dispositivo y navegador.', 'Something hard to read, slow on your phone or confusing to use. Tell us your device and browser.'), href: issueUrl('sugerencia.yml', T('[Sugerencia] Uso: ', '[Suggestion] Usability: '), { tipo: 'Algo es difícil de usar o leer' }), cta: T('Reportar un problema de uso', 'Report a usability issue') },
+  { t: T('Comparte imágenes', 'Share images'), d: T('¿Tienes fotos de fósiles o paleoarte propio? Si lo publicas con licencia libre (CC BY o CC0), podemos exhibirlo con tu nombre.', 'Do you have fossil photos or your own palaeoart? If you publish it under a free licence (CC BY or CC0), we can exhibit it with your name.'), href: issueUrl('sugerencia.yml', T('[Sugerencia] Imágenes: ', '[Suggestion] Images: '), { tipo: 'Imágenes o fotos' }), cta: T('Ofrecer imágenes', 'Offer images') },
+];
+---
+<Museum title={T('Colabora', 'Contribute')} description={T('Ayuda a mejorar Paleopulso: corrige datos, propone piezas y cuéntanos qué es incómodo de usar.', 'Help improve Paleopulso: correct facts, suggest pieces and tell us what is awkward to use.')}>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">{T('Colabora', 'Contribute')}</p>
+      <h1>{T('Un museo que se', 'A museum')}<br /><em>{T('corrige en público.', 'corrected in public.')}</em></h1>
+      <p class="lead">{T(
+        `Paleopulso es un proyecto independiente hecho en México. Cada dato está verificado contra fuentes (${species.length} piezas, ${studies} estudios con DOI comprobado), pero la ciencia cambia y siempre se nos escapa algo. Si sabes de paleontología, geología o simplemente viste algo raro, tu ayuda vale mucho.`,
+        `Paleopulso is an independent project made in Mexico. Every fact is checked against sources (${species.length} pieces, ${studies} studies with verified DOIs), but science changes and something always slips through. If you know palaeontology or geology — or simply spotted something odd — your help is worth a lot.`)}</p>
+    </div>
+  </section>
+  <section class="wrap ways">
+    {ways.map((w) => (
+      <article class="cedula">
+        <h2>{w.t}</h2>
+        <p>{w.d}</p>
+        <a class="btn" href={w.href} rel="noopener">{w.cta} ↗</a>
+      </article>
+    ))}
+  </section>
+  <section class="wrap how">
+    <h2>{T('Cómo verificamos', 'How we verify')}</h2>
+    <ul>
+      <li>{T('Fechas de la escala geológica: Tabla Cronoestratigráfica Internacional (ICS).', 'Geological time scale dates: International Chronostratigraphic Chart (ICS).')}</li>
+      <li>{T('Edad de cada pieza: se compara automáticamente con su rango en la Paleobiology Database; las diferencias se documentan.', 'Each piece’s age is automatically compared with its range in the Paleobiology Database; differences are documented.')}</li>
+      <li>{T('Bibliografía: cada DOI se comprueba en Crossref (título, año y primer autor) antes de publicarse.', 'References: every DOI is checked against Crossref (title, year and first author) before publishing.')}</li>
+      <li>{T('Imágenes: solo licencias libres, con autoría en', 'Images: free licences only, with attribution in')} <a href={L(lang, '/creditos')}>{T('Créditos', 'Credits')}</a>.</li>
+      <li>{T('Lo que está en discusión científica se marca como', 'Anything under scientific debate is marked as')} <span class="badge debate">{T('En debate', 'Debated')}</span>.</li>
+      <li>{T('La versión en inglés es una traducción del texto original en español.', 'The English version is a translation of the original Spanish text.')}</li>
+    </ul>
+    <p class="muted">{T('Los avisos se gestionan en', 'Reports are handled on')} <a href={`${REPO}/issues`} rel="noopener">GitHub</a> {T('(necesitas una cuenta gratuita). El código es público:', '(you need a free account). The code is public:')} <a href={REPO} rel="noopener">{REPO.replace('https://', '')}</a>.</p>
+  </section>
+</Museum>
+<style>
+  .ways { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+  .ways h2 { font-size: 1.7rem; color: var(--ink); margin-bottom: .6rem; }
+  .ways .btn { margin-top: .4rem; }
+  .how { padding: 4rem 0 6rem; max-width: 760px; }
+  .how h2 { font-size: 2rem; margin-bottom: 1rem; }
+  .how ul { color: var(--muted); display: grid; gap: .5rem; }
+  .how a { color: var(--brass); }
+</style>

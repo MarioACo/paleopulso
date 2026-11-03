@@ -40,6 +40,26 @@ for (const m of myths) if (m.species && !speciesById[m.species]) errors.push(`mi
 for (const q of quiz) if (!(q.a >= 0 && q.a < q.o.length)) errors.push(`pregunta con respuesta inválida: ${q.q}`);
 for (let i = 1; i < periods.length; i++) if (periods[i].start > periods[i - 1].start && periods[i].rank === 'Periodo' && periods[i - 1].rank === 'Periodo') errors.push(`orden de periodos: ${periods[i].id}`);
 
+// ── Traducción al inglés completa ─────────────────────────
+{
+  const { speciesEn } = await import('../src/data/en/species.js');
+  const en = await import('../src/data/en/content.js');
+  const { periods } = await import('../src/data/periods.js');
+  const { tour } = await import('../src/data/tour.js');
+  const { mexicoTimeline, museums } = await import('../src/data/mexico.js');
+  for (const s of species) {
+    const e = speciesEn[s.id];
+    if (!e) { errors.push(`${s.id}: falta la traducción al inglés`); continue; }
+    for (const k of ['summary', 'fact', 'group', 'habitat', 'country', 'age', 'place']) if (!e[k]) errors.push(`${s.id}: falta «${k}» en inglés`);
+    for (const k of ['lengthNote', 'debated', 'pbdbNote']) if (s[k] && !e[k]) errors.push(`${s.id}: falta «${k}» en inglés`);
+  }
+  for (const p of periods) if (!en.periodsEn[p.id]?.lead) errors.push(`periodo ${p.id}: falta en inglés`);
+  const same = [['mitos', myths, en.mythsEn], ['quiz', quiz, en.quizEn], ['visita', tour, en.tourEn], ['línea de México', mexicoTimeline, en.mexicoTimelineEn], ['museos', museums, en.museumsEn]];
+  for (const [name, a, b] of same) if (a.length !== b.length) errors.push(`${name}: ${a.length} en español y ${b.length} en inglés`);
+  for (const q of quiz) { const i = quiz.indexOf(q); if (en.quizEn[i] && en.quizEn[i].o.length !== q.o.length) errors.push(`quiz ${i + 1}: distinto número de opciones en inglés`); }
+  for (const t of tour) { const i = tour.indexOf(t); if (en.tourEn[i] && en.tourEn[i].o.length !== t.o.length) errors.push(`visita ${i + 1}: distinto número de opciones en inglés`); }
+}
+
 for (const w of warnings) console.warn('⚠', w);
 for (const e of errors) console.error('✗', e);
 console.log(`${species.length} especies · ${myths.length} mitos · ${quiz.length} preguntas · ${errors.length} errores · ${warnings.length} avisos`);

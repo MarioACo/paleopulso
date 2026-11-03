@@ -1,0 +1,127 @@
+---
+import Museum from '../layouts/Museum.astro';
+import Silhouette from '../components/Silhouette.astro';
+import { stamps as stampsEs, quiz as quizEs } from '../data/quiz.js';
+import { quizEn, stampsEn } from '../data/en/content.js';
+import { tr, L } from '../i18n.js';
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+const T = tr(lang);
+const quiz = quizEs.map((q, i) => (lang === 'en' ? { ...q, ...quizEn[i] } : q));
+const stamps = stampsEs.map((s) => ({ ...s, label: lang === 'en' ? stampsEn[s.id] : s.label, href: L(lang, s.href) }));
+const S = {
+  myths: T('Sala de mitos: {h} de {a} aciertos.', 'Myths hall: {h} of {a} correct.'),
+  next: T('Siguiente →', 'Next →'), result: T('Ver resultado →', 'See result →'),
+  ranks: lang === 'en' ? ['Museum curator', 'Field palaeontologist', 'Dig assistant', 'Curious visitor'] : ['Curador del museo', 'Paleontólogo de campo', 'Asistente de excavación', 'Visitante curioso'],
+  of: T('de', 'of'),
+  perfect: T('Perfecto. Ya puedes dar recorridos guiados.', 'Perfect. You’re ready to give guided tours.'),
+  again: T('Vuelve a las salas, busca las respuestas y repite el examen cuando quieras.', 'Go back to the halls, find the answers and retake the exam whenever you like.'),
+};
+const stampSil: Record<string, string> = { inicio: 'trex', tiempo: 'dickinsonia', vida: 'anomalocaris', dinosaurios: 'stegosaurus', mexico: 'coahuilaceratops', mitos: 'velociraptor', metodo: 'trilobites', donde: 'mamut' };
+---
+<Museum title={T('Pasaporte', 'Passport')} description={T('Tu pasaporte del museo: sellos por sala visitada y el examen final de paleontología.', 'Your museum passport: stamps for each hall visited and the final palaeontology exam.')}>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">{T('Pasaporte del museo', 'Museum passport')}</p>
+      <h1>{T('Tu cuaderno', 'Your field')}<br /><em>{T('de campo.', 'notebook.')}</em></h1>
+      <p class="lead">{T(`Cada sala que visitas deja un sello. Cuando quieras, resuelve el examen final: ${quiz.length} preguntas con lo que viste en el recorrido. Todo se guarda solo en tu navegador.`, `Every hall you visit leaves a stamp. Whenever you like, take the final exam: ${quiz.length} questions on what you saw. Everything is stored only in your browser.`)}</p>
+    </div>
+  </section>
+
+  <section class="wrap passport">
+    <div class="book">
+      <div class="page left">
+        <p class="label">{T('Sellos', 'Stamps')} · <span data-stamp-count>0</span>/{stamps.length}</p>
+        <div class="stamps">
+          {stamps.map((s, i) => (
+            <a class="stamp" href={s.href} data-stamp-id={s.id} style={`--r:${(i % 3 - 1) * 6}deg`}>
+              <Silhouette id={stampSil[s.id]} class="stamp-sil" />
+              <span>{s.label}</span>
+            </a>
+          ))}
+        </div>
+        <p class="muted small" id="mythScore"></p>
+      </div>
+      <div class="page right">
+        <div id="quiz">
+          <p class="label">{T('Examen final', 'Final exam')} · <span id="qNum">1</span>/{quiz.length}</p>
+          <h2 id="qText"></h2>
+          <div class="opts" id="qOpts"></div>
+          <p class="why" id="qWhy" hidden></p>
+          <button class="btn" id="qNext" type="button" hidden>{T('Siguiente →', 'Next →')}</button>
+        </div>
+        <div id="result" hidden>
+          <p class="label">{T('Resultado', 'Result')}</p>
+          <h2 id="rTitle"></h2>
+          <p class="lead" id="rText"></p>
+          <button class="btn ghost" id="again" type="button">{T('Repetir examen', 'Retake the exam')}</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Museum>
+
+<script define:vars={{ quiz, S }}>
+  const got = new Set(JSON.parse(localStorage.getItem('paleopulso:stamps') || '[]'));
+  document.querySelectorAll('[data-stamp-id]').forEach((el) => el.classList.toggle('got', got.has(el.dataset.stampId)));
+  const m = JSON.parse(localStorage.getItem('paleopulso:mitos') || 'null');
+  if (m) document.getElementById('mythScore').textContent = S.myths.replace('{h}', m.hits).replace('{a}', m.all);
+
+  const $ = (id) => document.getElementById(id);
+  let i = 0, score = 0;
+  function ask() {
+    const q = quiz[i];
+    $('qNum').textContent = i + 1;
+    $('qText').textContent = q.q;
+    $('qWhy').hidden = true; $('qNext').hidden = true;
+    $('qOpts').innerHTML = '';
+    q.o.forEach((o, k) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'opt'; b.textContent = o;
+      b.addEventListener('click', () => {
+        const ok = k === q.a; if (ok) score++;
+        [...$('qOpts').children].forEach((x, j) => { x.disabled = true; x.classList.add(j === q.a ? 'right' : j === k ? 'wrong' : 'dim'); });
+        $('qWhy').textContent = (ok ? '✓ ' : '✗ ') + q.why; $('qWhy').hidden = false;
+        $('qNext').hidden = false; $('qNext').textContent = i === quiz.length - 1 ? S.result : S.next;
+        $('qNext').focus();
+      });
+      $('qOpts').appendChild(b);
+    });
+  }
+  $('qNext').addEventListener('click', () => { i++; i < quiz.length ? ask() : finish(); });
+  function finish() {
+    $('quiz').hidden = true; $('result').hidden = false;
+    const r = score / quiz.length;
+    const rank = S.ranks[r === 1 ? 0 : r >= .75 ? 1 : r >= .5 ? 2 : 3];
+    $('rTitle').textContent = `${score} ${S.of} ${quiz.length} · ${rank}`;
+    $('rText').textContent = r === 1 ? S.perfect : S.again;
+    localStorage.setItem('paleopulso:quiz', JSON.stringify({ score, total: quiz.length }));
+  }
+  $('again').addEventListener('click', () => { i = 0; score = 0; $('quiz').hidden = false; $('result').hidden = true; ask(); });
+  ask();
+</script>
+
+<style>
+  .passport { padding-bottom: 6rem; }
+  .book { display: grid; grid-template-columns: 1fr 1fr; background: linear-gradient(90deg, #e9dec4, #f3ead6 48%, #d9cba9 50%, #f3ead6 52%, #e9dec4); color: var(--ink); border-radius: 8px; box-shadow: 0 40px 80px -30px #000, inset 0 0 0 10px #5a3b22, inset 0 0 0 12px #b08a52; padding: 2.6rem; gap: 3rem; }
+  .page h2 { color: var(--ink); font-size: clamp(1.5rem, 2.6vw, 2.1rem); margin: .6rem 0 1.2rem; }
+  .book .label { color: var(--ink-soft); }
+  .stamps { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .stamp { aspect-ratio: 1; border: 2px dashed #8a7a5d; border-radius: 50%; display: grid; place-items: center; align-content: center; gap: .3rem; text-decoration: none; text-align: center; padding: .8rem; color: #8a7a5d; rotate: var(--r); transition: transform .2s; }
+  .stamp:hover { transform: scale(1.05); }
+  .stamp span { font: 600 .7rem var(--label); letter-spacing: .1em; text-transform: uppercase; }
+  .stamp :global(.stamp-sil) { width: 70%; opacity: .25; }
+  .stamp.got { border: 3px double #9b3a1f; color: #9b3a1f; background: radial-gradient(circle, #9b3a1f14, transparent 70%); }
+  .stamp.got :global(.stamp-sil) { opacity: .85; }
+  .small { font-size: .85rem; margin-top: 1.2rem; color: var(--ink-soft) !important; }
+  .opts { display: grid; gap: .5rem; }
+  .opts :global(.opt) { text-align: left; padding: .85rem 1rem; border: 1px solid #b9a888; background: #fffaf0; border-radius: 4px; color: var(--ink); font-size: 1rem; transition: border-color .2s, background .2s; }
+  .opts :global(.opt:hover:not(:disabled)) { border-color: #5a3b22; background: #fff; }
+  .opts :global(.opt.right) { border-color: #4e6b33; background: #e4ecd5; }
+  .opts :global(.opt.wrong) { border-color: #a2391c; background: #f3d9cf; }
+  .opts :global(.opt.dim) { opacity: .55; }
+  .why { margin: 1rem 0; padding: .8rem 1rem; background: #fffaf0; border-left: 3px solid #b08a52; color: #3d3226; }
+  #quiz .btn, #result .btn { margin-top: .5rem; }
+  #result .lead { color: #3d3226; }
+  #result .btn.ghost { color: #5a3b22; border-color: #5a3b22; }
+  @media (max-width: 860px) { .book { grid-template-columns: 1fr; padding: 1.6rem; background: #f0e6cf; } }
+</style>
