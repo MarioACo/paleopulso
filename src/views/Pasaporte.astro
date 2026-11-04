@@ -40,6 +40,15 @@ const stampSil: Record<string, string> = { inicio: 'trex', tiempo: 'dickinsonia'
           ))}
         </div>
         <p class="muted small" id="mythScore"></p>
+        <div class="resume" id="resume" hidden
+          data-tour={T('Visita guiada: {d} de {t} paradas.', 'Guided tour: {d} of {t} stops.')}
+          data-go={T('Seguir en la parada {n} →', 'Continue at stop {n} →')}
+          data-hall={T('Sala sin sello: {h} →', 'Unstamped hall: {h} →')}
+          data-visita={L(lang, '/visita')}>
+          <p class="label">{T('Donde te quedaste', 'Where you left off')}</p>
+          <p id="resumeTour"></p>
+          <p id="resumeHall"></p>
+        </div>
       </div>
       <div class="page right">
         <div id="quiz">
@@ -100,7 +109,28 @@ const stampSil: Record<string, string> = { inicio: 'trex', tiempo: 'dickinsonia'
   ask();
 </script>
 
+<script>
+  // Para volver a mitad del recorrido: siguiente parada de la visita y primera sala sin sello.
+  import { loadTour, nextStop, TOUR_STOPS } from '../scripts/tour-progress';
+  const box = document.getElementById('resume')!;
+  const d = box.dataset;
+  const link = (href: string, text: string) => { const a = document.createElement('a'); a.href = href; a.textContent = text; return a; };
+  const done = Object.keys(loadTour()).length, n = nextStop();
+  if (done) {
+    const p = document.getElementById('resumeTour')!;
+    p.textContent = d.tour!.replace('{d}', String(done)).replace('{t}', String(TOUR_STOPS)) + ' ';
+    if (n) p.append(link(`${d.visita}#parada-${n}`, d.go!.replace('{n}', String(n))));
+  }
+  const missing = document.querySelector<HTMLAnchorElement>('.stamp:not(.got)');
+  const anyStamp = document.querySelector('.stamp.got');
+  if (missing && anyStamp) document.getElementById('resumeHall')!.append(link(missing.href, d.hall!.replace('{h}', missing.textContent!.trim())));
+  box.hidden = !done && !(missing && anyStamp);
+</script>
+
 <style>
+  .resume { margin-top: 1.4rem; padding: .9rem 1.1rem; border: 1px solid #b9a888; border-radius: 6px; background: #fffaf0; }
+  .resume p { margin: .3rem 0; }
+  .resume a { color: #7a3418; font-weight: 600; }
   .passport { padding-bottom: 6rem; }
   .book { display: grid; grid-template-columns: 1fr 1fr; background: linear-gradient(90deg, #e9dec4, #f3ead6 48%, #d9cba9 50%, #f3ead6 52%, #e9dec4); color: var(--ink); border-radius: 8px; box-shadow: 0 40px 80px -30px #000, inset 0 0 0 10px #5a3b22, inset 0 0 0 12px #b08a52; padding: 2.6rem; gap: 3rem; }
   .page h2 { color: var(--ink); font-size: clamp(1.5rem, 2.6vw, 2.1rem); margin: .6rem 0 1.2rem; }

@@ -145,7 +145,7 @@ const chicxPhoto = mainPhoto('chicxulub');
   .mx-card :global(.mx-name) { font-size: 1.9rem; color: var(--ink); margin: .5rem 0 .15rem; }
   .mx-line { list-style: none; padding: 0; margin: 0; position: relative; }
   .mx-line::before { content: ''; position: absolute; left: 8.5rem; top: 0; bottom: 0; width: 1px; background: linear-gradient(var(--brass), var(--rust)); }
-  .mx-line li { display: grid; grid-template-columns: 8.5rem 1fr; gap: 2.2rem; padding: 1.2rem 0; position: relative; }
+  .mx-line li { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 2.2rem; padding: 1.2rem 0; position: relative; }
   .mx-line li::after { content: ''; position: absolute; left: calc(8.5rem - 5px); top: 1.7rem; width: 11px; height: 11px; border-radius: 50%; background: var(--night); border: 2px solid var(--brass); }
   .when { color: var(--brass); font-size: 1.3rem; text-align: right; padding: .1rem 1.4rem 0 0; }
   .mx-line h3 { font-size: 1.6rem; margin-bottom: .4rem; }
@@ -154,7 +154,7 @@ const chicxPhoto = mainPhoto('chicxulub');
   .chicx-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
   .chicx h2 em { color: var(--rust); }
   .chicx .lead { margin: 1.4rem 0 1rem; }
-  .chicx-facts { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.8rem; }
+  .chicx-facts { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 7rem), 1fr)); gap: 1rem; margin-top: 1.8rem; }
   .chicx-facts strong { display: block; font: 400 2rem var(--serif); color: var(--brass); }
   .chicx-facts span { font-size: .85rem; color: var(--muted); }
   .cenotes { margin: 0; }
@@ -164,12 +164,12 @@ const chicxPhoto = mainPhoto('chicxulub');
   .cenotes .ring.r1 { stroke-dasharray: none; stroke-width: 1.5; }
   .cenotes .cenote { fill: #7fd1d6; filter: drop-shadow(0 0 4px #7fd1d6); }
   .cenotes .lbl { fill: var(--muted); font: 600 11px var(--label); letter-spacing: .14em; text-transform: uppercase; text-anchor: middle; }
-  .museums { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+  .museums { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 1.2rem; }
   .museums h3 { font-size: 1.5rem; }
   @media (max-width: 900px) {
     .mx-map-wrap, .chicx-grid { grid-template-columns: 1fr; }
     .mx-card { position: static; }
-    .mx-line::before { left: 5.5rem; } .mx-line li { grid-template-columns: 5.5rem 1fr; gap: 1.4rem; } .mx-line li::after { left: calc(5.5rem - 5px); }
+    .mx-line::before { left: 5.5rem; } .mx-line li { grid-template-columns: 5.5rem minmax(0, 1fr); gap: 1.4rem; overflow-wrap: anywhere; } .mx-line li::after { left: calc(5.5rem - 5px); }
     .when { font-size: 1rem; }
   }
 </style>

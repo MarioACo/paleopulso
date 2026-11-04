@@ -126,7 +126,7 @@ const sites = list.map((s) => ({ id: s.id, lon: s.lon, lat: s.lat, label: `${s.n
     .map-legend { margin-bottom: 1.4rem; font-size: .72rem; }
   }
   .cell[hidden] { display: none; }
-  .cell { display: flex; }
+  .cell { display: flex; min-width: 0; }
   .cell > :global(.specimen) { flex: 1; }
   .empty { text-align: center; color: var(--muted); padding: 3rem; font-family: var(--serif); font-size: 1.3rem; }
 </style>

@@ -1,6 +1,7 @@
 # Paleopulso en Reddit — borradores
 
-> Sustituye `[URL]` por la dirección pública del sitio antes de publicar.
+> Dirección pública: https://paleopulso.vercel.app
+> Pega los textos con el editor de Reddit en **modo Markdown**; si usas el editor normal, los `**` y `-` salen escapados.
 > Lee las reglas de cada subreddit el mismo día (cambian seguido) y usa la *flair* que pidan.
 
 ## Antes de publicar
@@ -23,7 +24,7 @@ I built a free, fully sourced “museum” website: 73 fossils, every DOI checke
 
 **Texto:**
 
-Hi! I’m from Mexico and I’ve loved fossils since I was a kid, so I built **Paleopulso**, a free natural-history-museum-style site (Spanish and English): [URL]/en/
+Hi! I’m from Mexico and I’ve loved fossils since I was a kid, so I built **Paleopulso**, a free natural-history-museum-style site (Spanish and English): https://paleopulso.vercel.app/en/
 
 What’s in it:
 
@@ -51,7 +52,7 @@ Made a free size comparator + “myth or fossil?” cards for dinosaurs (no movi
 
 **Texto:**
 
-I made a museum-style site where you can put any dinosaur next to a person, a bus or a blue whale, at real scale: [URL]/en/dinosaurios
+I made a museum-style site where you can put any dinosaur next to a person, a bus or a blue whale, at real scale: https://paleopulso.vercel.app/en/dinosaurios
 
 There are also 14 “myth or fossil?” cards (T. rex vision, feathered Velociraptor, Brontosaurus…) with the evidence behind each answer, and a hall of Mexican dinosaurs that rarely get attention (Coahuilaceratops, Tlatolophus, Velafrons).
 
@@ -68,9 +69,9 @@ A free interactive “descent through the strata” + plate tectonics time machi
 
 **Texto:**
 
-I built an educational site where you scroll down through the strata (ICS colours, a rock texture per period) while a side panel shows the palaeogeographic map of each period: [URL]/en/tiempo
+I built an educational site where you scroll down through the strata (ICS colours, a rock texture per period) while a side panel shows the palaeogeographic map of each period: https://paleopulso.vercel.app/en/tiempo
 
-There’s also a time machine with 33 maps from the GPlates Web Service (MERDITH2021) — [URL]/en/continentes — and a page where you type your town and it reconstructs where that point was at each age: [URL]/en/donde-vives
+There’s also a time machine with 33 maps from the GPlates Web Service (MERDITH2021) — https://paleopulso.vercel.app/en/continentes — and a page where you type your town and it reconstructs where that point was at each age: https://paleopulso.vercel.app/en/donde-vives
 
 Caveats I state on the site: the coastlines are present-day outlines rotated back (not palaeo-shorelines), and some terranes have no plate assignment at certain ages (e.g. the Burgess Shale at 510 Ma). If you know a better way to communicate this to the public, or spot an error in the period notes, I’d love to hear it. The texts were written with AI help and checked against sources.
 
@@ -83,7 +84,7 @@ Hice un museo de paleontología gratis en línea con una sala dedicada a los fó
 
 **Texto:**
 
-Desde niño me encantan los dinosaurios y me di cuenta de que casi nadie sabe todo lo que hay en México, así que hice **Paleopulso**, un museo en línea gratuito: [URL]/mexico
+Desde niño me encantan los dinosaurios y me di cuenta de que casi nadie sabe todo lo que hay en México, así que hice **Paleopulso**, un museo en línea gratuito: https://paleopulso.vercel.app/mexico
 
 - Dinosaurios de Coahuila: Coahuilaceratops (con cuernos posiblemente de los más largos de su familia), Tlatolophus (su nombre viene del náhuatl), Velafrons, Latirhinus, Yehuecauhceratops.
 - La laguna de Tlayúa en Puebla, las lajas de Vallecillo en Nuevo León, el ámbar de Simojovel, el cráter de Chicxulub y los mamuts del AIFA.
@@ -103,7 +104,7 @@ Paleopulso: a night-time natural history museum in the browser. Looking for UX f
 
 **Texto:**
 
-I built a museum-style science site (Astro, no framework on the client): [URL]/en/
+I built a museum-style science site (Astro, no framework on the client): https://paleopulso.vercel.app/en/
 
 Showcases with warm “spotlight” lighting, paper museum labels, strata you scroll through, a 24-hour “Earth day” clock, a size comparator, a plate tectonics time machine, optional synthesised ambient sound and a stamp passport. It’s bilingual (ES/EN), passes axe-core WCAG AA checks and has browser tests.
 

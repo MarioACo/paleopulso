@@ -20,7 +20,7 @@
   --ink: #2a2118;
   --ink-soft: #5c4e3c;
   --text: #ece3cf;
-  --muted: #a99d87;
+  --muted: #bcb09a;
   --rust: #cf6b43;
   --moss: #8ca46e;
   --sky: #7fb0b5;
@@ -184,6 +184,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .sil-fallback { display: grid; place-items: center; aspect-ratio: 2; font: 400 2.4rem var(--sc); color: var(--brass-dim); }
 
 /* ── Tarjeta de especie ─────────────────────────────────── */
+.specimen-grid > * { min-width: 0; }
 .specimen-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.2rem; }
 .specimen {
   display: flex; flex-direction: column; text-decoration: none; background: var(--wall); border: 1px solid var(--line);
@@ -269,7 +270,9 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 /* Barra superior en celulares: todo cabe en una línea. */
 @media (max-width: 520px) {
   .site-nav .wrap { gap: .5rem; }
-  .brand { font-size: 1.05rem; gap: .4rem; }
+  .brand { font-size: 1.05rem; gap: .4rem; min-width: 0; overflow: hidden; white-space: nowrap; }
+  .brand svg { flex: none; }
+  .brand-name { overflow: hidden; text-overflow: ellipsis; }
   .brand svg { width: 24px; height: 24px; }
   .menu-toggle { padding: .35rem .5rem; font-size: .9rem; }
   .lang-switch { padding: .3rem .5rem; }
@@ -289,12 +292,14 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   h1 { font-size: clamp(2.3rem, 11vw, 3.2rem); }
   h2 { font-size: clamp(1.7rem, 8vw, 2.3rem); }
 
-  .specimen-grid { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  /* Dos columnas con letra normal; una sola si el usuario agranda el texto. */
+  .specimen-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr)); gap: .6rem; }
+  .specimen h3 { overflow-wrap: anywhere; hyphens: auto; }
   .specimen-body { padding: .6rem .65rem .75rem; gap: .15rem; }
   .specimen-body h3 { font-size: 1.05rem; line-height: 1.15; }
-  .specimen-body .meta { font-size: .64rem; letter-spacing: .08em; gap: .2rem; }
+  .specimen-body .meta { font-size: .7rem; letter-spacing: .06em; gap: .2rem; }
   .specimen .card-sil { display: none; }
-  .badge { font-size: .58rem; }
+  .badge { font-size: .64rem; }
 
   .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -.2rem; padding: .1rem .2rem; }
   .chips::-webkit-scrollbar { display: none; }

@@ -98,7 +98,25 @@ await test('Móvil: sin desbordamiento horizontal y menú funcional', async () =
     await go(m, '/');
     await m.click('.menu-toggle');
     expect(await m.locator('#navLinks').isVisible(), 'el menú no se abre');
+    // Texto ampliado al 150 % (ajuste de accesibilidad del celular): tampoco debe desbordar.
+    for (const p of pages) {
+      await go(m, p);
+      await m.addStyleTag({ content: 'html{font-size:150%!important}' });
+      const o = await m.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+      expect(o <= 1, `${p} con texto al 150 % se desborda ${o}px`);
+    }
   } finally { await m.close(); }
+});
+await test('Visita guiada: se puede dejar a medias y retomar', async (page) => {
+  await go(page, '/visita');
+  for (const n of [1, 2]) await page.locator(`#parada-${n} input`).first().check();
+  await page.reload({ waitUntil: 'networkidle' });
+  expect((await page.locator('#parada-1 input:disabled').count()) > 0, 'no recuerda las respuestas');
+  expect((await page.getAttribute('#startBtn', 'href')) === '#parada-3', 'el botón no lleva a la parada 3');
+  await go(page, '/');
+  expect((await page.getAttribute('#tourBtn', 'href')).endsWith('#parada-3'), 'la portada no ofrece continuar');
+  await go(page, '/pasaporte');
+  expect(await page.locator('#resume a[href$="#parada-3"]').isVisible(), 'el pasaporte no indica la siguiente parada');
 });
 await test('Imágenes locales sin enlaces rotos', async (page) => {
   let n = 0;

@@ -20,7 +20,13 @@ const stops = tour.map((t, i) => ({ ...t, n: i + 1, s: speciesById[t.id], p: per
       <p class="kicker">{T('Visita guiada · 10 paradas · ~30 minutos', 'Guided tour · 10 stops · ~30 minutes')}</p>
       <h1>{T('De un microbio', 'From a microbe')}<br /><em>{T('a una persona.', 'to a person.')}</em></h1>
       <p class="lead">{T('Un recorrido corto por 3,400 millones de años. En cada parada hay algo que observar y una pregunta. Ideal para clase, para ir en familia o para empezar si nunca has visitado un museo de paleontología.', 'A short walk through 3,400 million years. Each stop has something to look at and a question. Ideal for class, for families, or as a first visit if you have never been to a palaeontology museum.')}</p>
-      <div class="actions"><a class="btn" href="#parada-1">{T('Empezar →', 'Start →')}</a><button class="btn ghost" type="button" id="print">{T('Imprimir hoja de trabajo', 'Print worksheet')}</button></div>
+      <div class="actions">
+        <a class="btn" href="#parada-1" id="startBtn" data-resume={T('Continuar en la parada {n} →', 'Continue at stop {n} →')}>{T('Empezar →', 'Start →')}</a>
+        <button class="btn ghost" type="button" id="print">{T('Imprimir hoja de trabajo', 'Print worksheet')}</button>
+      </div>
+      <p class="progress muted" id="progress" hidden data-text={T('Respondiste {d} de {t} paradas. Tu avance se guarda en este navegador.', 'You have answered {d} of {t} stops. Your progress is saved in this browser.')}>
+        <span></span> <button type="button" class="linkish" id="restart">{T('Empezar de nuevo', 'Start over')}</button>
+      </p>
     </div>
   </section>
 
@@ -58,29 +64,53 @@ const stops = tour.map((t, i) => ({ ...t, n: i + 1, s: speciesById[t.id], p: per
 </Museum>
 
 <script>
+  import { loadTour, saveAnswer, resetTour, nextStop } from '../scripts/tour-progress';
   let answered = 0, right = 0;
-  const total = document.querySelectorAll('.qa').length;
-  document.querySelectorAll<HTMLFieldSetElement>('.qa').forEach((fs) => {
-    fs.addEventListener('change', (e) => {
-      if (fs.dataset.done) return;
-      fs.dataset.done = '1';
-      const v = (e.target as HTMLInputElement).value;
-      const ok = v === fs.dataset.a;
-      answered++; if (ok) right++;
-      fs.querySelectorAll<HTMLLabelElement>('label').forEach((l, k) => {
-        l.classList.add(String(k) === fs.dataset.a ? 'right' : String(k) === v ? 'wrong' : 'dim');
-        l.querySelector('input')!.disabled = true;
-      });
-      const why = fs.querySelector<HTMLElement>('.why')!;
-      why.textContent = (ok ? '✓ ' : '✗ ') + why.textContent; why.hidden = false;
-      if (answered === total) { const el = document.getElementById('tourScore')!; el.textContent = el.dataset.done!.replace('{r}', String(right)).replace('{t}', String(total)); }
+  const sets = [...document.querySelectorAll<HTMLFieldSetElement>('.qa')];
+  const total = sets.length;
+  const progress = document.getElementById('progress')!;
+  const start = document.getElementById('startBtn') as HTMLAnchorElement;
+  const startText = start.textContent!;
+
+  function mark(fs: HTMLFieldSetElement, v: string) {
+    fs.dataset.done = '1';
+    const ok = v === fs.dataset.a;
+    answered++; if (ok) right++;
+    fs.querySelectorAll<HTMLLabelElement>('label').forEach((l, k) => {
+      l.classList.add(String(k) === fs.dataset.a ? 'right' : String(k) === v ? 'wrong' : 'dim');
+      const input = l.querySelector('input')!;
+      input.disabled = true; if (String(k) === v) input.checked = true;
     });
-  });
+    const why = fs.querySelector<HTMLElement>('.why')!;
+    why.textContent = (ok ? '✓ ' : '✗ ') + why.textContent; why.hidden = false;
+    if (answered === total) { const el = document.getElementById('tourScore')!; el.textContent = el.dataset.done!.replace('{r}', String(right)).replace('{t}', String(total)); }
+  }
+  function update() {
+    const n = nextStop();
+    progress.hidden = answered === 0;
+    progress.querySelector('span')!.textContent = progress.dataset.text!.replace('{d}', String(answered)).replace('{t}', String(total));
+    start.href = `#parada-${n || 1}`;
+    start.textContent = n ? start.dataset.resume!.replace('{n}', String(n)) : startText;
+  }
+
+  // Recupera lo que respondiste en otra visita.
+  const saved = loadTour();
+  sets.forEach((fs, i) => { if (saved[i + 1] != null) mark(fs, saved[i + 1]); });
+  update();
+
+  sets.forEach((fs, i) => fs.addEventListener('change', (e) => {
+    if (fs.dataset.done) return;
+    const v = (e.target as HTMLInputElement).value;
+    saveAnswer(i + 1, v); mark(fs, v); update();
+  }));
+  document.getElementById('restart')!.addEventListener('click', () => { resetTour(); location.hash = ''; location.reload(); });
   document.getElementById('print')!.addEventListener('click', () => print());
 </script>
 
 <style>
   .actions { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2rem; }
+  .progress { margin-top: 1rem; font-size: .95rem; }
+  .linkish { background: none; border: 0; padding: 0; color: var(--brass); text-decoration: underline; cursor: pointer; font: inherit; }
   .teachers details { background: var(--wall); border: 1px solid var(--line); border-radius: 6px; padding: 1rem 1.3rem; }
   .teachers summary { cursor: pointer; font: 600 .85rem var(--label); letter-spacing: .16em; text-transform: uppercase; color: var(--brass); }
   .teachers ul { color: var(--muted); margin: 1rem 0 .3rem; display: grid; gap: .4rem; }
@@ -108,7 +138,7 @@ const stops = tour.map((t, i) => ({ ...t, n: i + 1, s: speciesById[t.id], p: per
   @media (max-width: 860px) { .stop { grid-template-columns: 1fr; } }
   /* Hoja de trabajo impresa: sin navegación, en blanco y negro, con espacio para responder. */
   @media print {
-    :global(.site-nav), :global(.site-foot), .actions, .teachers, .more, .pic, .done, .why { display: none !important; }
+    :global(.site-nav), :global(.site-foot), .actions, .progress, .teachers, .more, .pic, .done, .why { display: none !important; }
     :global(body) { background: #fff; color: #000; font-size: 11pt; }
     :global(body::after) { display: none; }
     :global(.page-hero) { padding: 0 0 1rem; }

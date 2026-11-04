@@ -129,7 +129,7 @@ const dinoCount = species.filter(isDino).length;
   .room { background: linear-gradient(180deg, color-mix(in srgb, var(--pc) 9%, transparent), transparent 40%); }
   .room .kicker { color: color-mix(in srgb, var(--pc) 70%, var(--brass)); }
   .room h2 { font-size: clamp(1.8rem, 3.4vw, 3rem); }
-  .room-cell { position: relative; }
+  .room-cell { position: relative; min-width: 0; }
   .room-cell :global(.specimen) { height: 100%; }
   .not-dino { position: absolute; top: .7rem; left: .7rem; z-index: 4; font: 600 .66rem var(--label); letter-spacing: .12em; text-transform: uppercase; background: #0e0b08e6; color: var(--sky); border: 1px solid #7fb0b555; padding: .25rem .5rem; border-radius: 3px; }
   .kpg { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center; }

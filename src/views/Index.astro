@@ -49,8 +49,11 @@ const maxMa = 500;
       <h1>{T('La Tierra', 'The Earth')}<br /><em>{T('antes de nosotros.', 'before us.')}</em></h1>
       <p class="lead">{T('Recorre 4,567 millones de años de océanos de magma, microbios, bosques gigantes, dinosaurios y mamuts. Cada pieza separa lo que muestran los fósiles de lo que todavía interpretamos.', 'Walk through 4,567 million years of magma oceans, microbes, giant forests, dinosaurs and mammoths. Every piece separates what the fossils show from what we still interpret.')}</p>
       <div class="hero-actions">
-        <a class="btn" href={L(lang, '/tiempo')}>{T('Comenzar el recorrido', 'Start the tour')} <span aria-hidden="true">→</span></a>
-        <a class="btn ghost" href={L(lang, '/visita')}>{T('Visita guiada', 'Guided tour')}</a>
+        <a class="btn tour-btn" id="tourBtn" href={L(lang, '/visita')} data-resume={T('Continuar la visita · parada {n} de {t}', 'Continue the tour · stop {n} of {t}')}>
+          <span data-label>{T('Visita guiada', 'Guided tour')} <span aria-hidden="true">→</span></span>
+          <small data-sub>{T('10 paradas · unos 30 minutos', '10 stops · about 30 minutes')}</small>
+        </a>
+        <a class="btn ghost" href={L(lang, '/tiempo')}>{T('Explorar la línea del tiempo', 'Explore the timeline')}</a>
         <a class="btn ghost" href={L(lang, '/mexico')}>{T('Sala México', 'Mexico hall')}</a>
       </div>
     </div>
@@ -228,6 +231,17 @@ const maxMa = 500;
   });
 </script>
 
+<script>
+  // Si dejaste la visita a medias, el botón te lleva a tu siguiente parada.
+  import { nextStop, TOUR_STOPS } from '../scripts/tour-progress';
+  const n = nextStop();
+  const btn = document.getElementById('tourBtn') as HTMLAnchorElement | null;
+  if (n && btn) {
+    btn.href = `${btn.pathname}#parada-${n}`;
+    btn.querySelector('[data-sub]')!.textContent = btn.dataset.resume!.replace('{n}', String(n)).replace('{t}', String(TOUR_STOPS));
+  }
+</script>
+
 <style>
   .hero { position: relative; min-height: min(92vh, 900px); display: grid; align-items: center; overflow: hidden; border-bottom: 1px solid var(--line); }
   .hero-light { position: absolute; inset: 0; background: radial-gradient(60% 70% at 70% 35%, rgba(255, 214, 150, .2), transparent 70%), radial-gradient(40% 30% at 70% 95%, rgba(209, 171, 98, .12), transparent 70%); }
@@ -236,7 +250,9 @@ const maxMa = 500;
   .hero-copy { position: relative; z-index: 2; padding-block: 6rem; }
   .hero-copy h1 { max-width: 14ch; text-shadow: 0 4px 30px #000; }
   .hero-copy .lead { margin-top: 1.6rem; max-width: 48ch; color: #cfc4ad; text-shadow: 0 2px 12px #000; }
-  .hero-actions { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2rem; }
+  .hero-actions { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2rem; align-items: stretch; }
+  .tour-btn { flex-direction: column; align-items: flex-start; gap: .2rem; padding-block: .7rem; }
+  .tour-btn small { font: 500 .78rem var(--sans); letter-spacing: 0; text-transform: none; opacity: .85; }
   .hero-cedula { position: absolute; right: 3rem; bottom: 2.5rem; z-index: 2; width: 280px; padding: 1rem 1.2rem; }
   .hero-cedula .ced-title { font: 400 1.5rem/1.1 var(--serif); margin: .5rem 0 .15rem; }
   /* Celular: texto, luego el T. rex, luego su cédula; nada encimado. */

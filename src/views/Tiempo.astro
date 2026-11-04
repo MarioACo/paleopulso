@@ -230,7 +230,8 @@ const barH = (l: any) => (Math.log10(l.start + 1) - Math.log10(l.end + 1)) / tot
     .stratum-facts { gap: .5rem; }
     .stratum-facts div { padding: .7rem .8rem; }
     .stratum-facts dd { font-size: .9rem; }
-    .fossils ul { grid-template-columns: 1fr 1fr; gap: .4rem; }
+    .fossils ul { grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr)); gap: .4rem; }
+    .fossils li span { overflow-wrap: anywhere; }
     .fossils a { padding: .5rem; }
     .fossils :global(.fossil-sil) { height: 30px; }
     .fossils li span { font-size: .95rem; }
