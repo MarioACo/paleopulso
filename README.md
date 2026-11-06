@@ -34,7 +34,7 @@ npm run og         # regenera las imágenes para compartir (public/og/)
 node tests/weight.mjs   # peso de carga de cada sala
 ```
 
-La URL pública se toma de `SITE_URL` o, en Vercel, de `VERCEL_PROJECT_PRODUCTION_URL` (sitemap, enlaces canónicos e imágenes para compartir). La analítica de Vercel solo se incluye al compilar en Vercel y hay que activarla en el panel del proyecto (*Analytics → Enable*).
+La URL pública se toma de `SITE_URL` o, en Vercel, de `VERCEL_PROJECT_PRODUCTION_URL` (sitemap, enlaces canónicos e imágenes para compartir). La analítica usa el componente de Astro de `@vercel/analytics` y solo se incluye al compilar en Vercel; hay que activarla en el panel del proyecto (*Analytics → Enable*).
 
 ## Idiomas
 
